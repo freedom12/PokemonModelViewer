@@ -38,6 +38,7 @@ interface SceneState {
   renderer: THREE.WebGLRenderer | null
   controls: OrbitControls | null
   cube: THREE.Mesh | null
+  gridHelper: THREE.GridHelper | null
   ambientLight: THREE.AmbientLight | null
   directionalLight: THREE.DirectionalLight | null
   animationId: number | null
@@ -76,6 +77,13 @@ const CONFIG = {
     size: 1,
     color: 0x00d4ff
   },
+  // 网格辅助线配置
+  grid: {
+    size: 10,           // 网格大小
+    divisions: 10,      // 网格分割数
+    colorCenterLine: 0x444444,  // 中心线颜色
+    colorGrid: 0x333333         // 网格线颜色
+  },
   // 光照配置
   // Requirements: 4.1 - 场景应有适当的光照来照亮立方体
   lighting: {
@@ -107,6 +115,7 @@ export function useThreeScene(options: UseThreeSceneOptions): UseThreeSceneRetur
     renderer: null,
     controls: null,
     cube: null,
+    gridHelper: null,
     ambientLight: null,
     directionalLight: null,
     animationId: null
@@ -171,6 +180,16 @@ export function useThreeScene(options: UseThreeSceneOptions): UseThreeSceneRetur
     })
     state.cube = new THREE.Mesh(geometry, material)
     state.scene.add(state.cube)
+
+    // 4.5 添加网格辅助线
+    // 帮助显示模型空间和方向
+    state.gridHelper = new THREE.GridHelper(
+      CONFIG.grid.size,
+      CONFIG.grid.divisions,
+      CONFIG.grid.colorCenterLine,
+      CONFIG.grid.colorGrid
+    )
+    state.scene.add(state.gridHelper)
 
     // 5. 添加光照系统
     // Requirements: 4.1 - 场景应有适当的光照来照亮立方体
@@ -321,6 +340,9 @@ export function useThreeScene(options: UseThreeSceneOptions): UseThreeSceneRetur
     // 清理光照引用
     state.ambientLight = null
     state.directionalLight = null
+
+    // 清理网格辅助线引用
+    state.gridHelper = null
 
     console.log('useThreeScene: 资源已清理')
   }
