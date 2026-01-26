@@ -107,8 +107,31 @@ export function createGeometryFromMeshShape(
   
   // 设置法线
   if (vertexData.normals) {
+    // 法线数据可能是 4 分量（RGBA_16_FLOAT），需要提取前 3 个分量
+    let normals3: Float32Array
+    
+    // 通过位置数据计算顶点数量
+    const vertexCount = vertexData.positions ? vertexData.positions.length / 3 : 0
+    const expectedLength4 = vertexCount * 4
+    const expectedLength3 = vertexCount * 3
+    
+    console.log(`[Debug] Normals: length=${vertexData.normals.length}, vertexCount=${vertexCount}, expected4=${expectedLength4}, expected3=${expectedLength3}`)
+    
+    if (vertexData.normals.length === expectedLength4) {
+      // 4 分量数据，提取前 3 个分量
+      normals3 = new Float32Array(vertexCount * 3)
+      for (let i = 0; i < vertexCount; i++) {
+        normals3[i * 3] = vertexData.normals[i * 4]
+        normals3[i * 3 + 1] = vertexData.normals[i * 4 + 1]
+        normals3[i * 3 + 2] = vertexData.normals[i * 4 + 2]
+      }
+    } else {
+      // 已经是 3 分量数据
+      normals3 = vertexData.normals
+    }
+    
     // 归一化法线向量
-    const normalizedNormals = normalizeNormals(vertexData.normals)
+    const normalizedNormals = normalizeNormals(normals3)
     geometry.setAttribute('normal', new THREE.BufferAttribute(normalizedNormals, 3))
   }
   
@@ -144,6 +167,11 @@ export function createGeometryFromMeshShape(
   // 计算包围盒和包围球
   geometry.computeBoundingBox()
   geometry.computeBoundingSphere()
+  
+  // 如果没有法线数据，自动计算法线
+  if (!vertexData.normals) {
+    geometry.computeVertexNormals()
+  }
   
   return { geometry, groups }
 }

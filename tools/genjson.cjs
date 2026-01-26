@@ -24,6 +24,7 @@ const OUTPUT_DIR = path.join(__dirname, 'json_output');
 const MODEL_FILE_TYPES = [
   { ext: 'trmdl', schema: 'trmdl.fbs' },
   { ext: 'trmsh', schema: 'trmsh.fbs' },
+  { ext: 'trmbf', schema: 'trmbf.fbs' },
   { ext: 'trmtr', schema: 'trmtr.fbs' },
   { ext: 'trmmt', schema: 'trmmt.fbs' },
   { ext: 'trskl', schema: 'trskl.fbs' },

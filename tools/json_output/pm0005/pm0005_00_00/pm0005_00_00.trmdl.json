@@ -1,0 +1,53 @@
+{
+  meshes: [
+    {
+      filename: "pm0005_00_00.trmsh"
+    },
+    {
+      filename: "pm0005_00_00_lod1.trmsh"
+    },
+    {
+      filename: "pm0005_00_00_lod2.trmsh"
+    }
+  ],
+  skeleton: {
+    filename: "pm0005_00_00.trskl"
+  },
+  materials: [
+    "pm0005_00_00.trmtr"
+  ],
+  lods: [
+    {
+      index: [
+        {
+        },
+        {
+          unk0: 1
+        },
+        {
+          unk0: 2
+        }
+      ],
+      lod_type: "Custom"
+    }
+  ],
+  bounds: {
+    min: {
+      x: -0.55623,
+      y: -0.055714,
+      z: -0.978896
+    },
+    max: {
+      x: 0.55623,
+      y: 1.084995,
+      z: 0.343879
+    }
+  },
+  tex_spc_loc: {
+    x: 0.0,
+    y: 0.505669,
+    z: -0.317471,
+    w: 0.797319
+  },
+  unk9: 2
+}

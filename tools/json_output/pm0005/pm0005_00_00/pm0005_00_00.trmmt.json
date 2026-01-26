@@ -1,0 +1,27 @@
+{
+  material: [
+    {
+      name: "rare",
+      material_name: [
+        "pm0005_00_00_rare.trmtr"
+      ],
+      material_switches: [
+        {
+          material_name: "pm0005_00_00_body_mesh_shape",
+          material_flag: 1
+        },
+        {
+          material_name: "pm0005_00_00_eye_mesh_shape",
+          material_flag: 1
+        },
+        {
+          material_name: "pm0005_00_00_fire_mesh_shape",
+          material_flag: 1
+        }
+      ],
+      material_properties: [
+
+      ]
+    }
+  ]
+}
