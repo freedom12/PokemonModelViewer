@@ -25,8 +25,22 @@ export interface UseThreeSceneOptions {
  * useThreeScene 返回值接口
  */
 export interface UseThreeSceneReturn {
+  /** 初始化场景 */
   init: () => void
+  /** 清理资源 */
   dispose: () => void
+  /** 获取场景对象 */
+  getScene: () => THREE.Scene | null
+  /** 获取摄像机对象 */
+  getCamera: () => THREE.PerspectiveCamera | null
+  /** 获取控制器对象 */
+  getControls: () => OrbitControls | null
+  /** 添加对象到场景 */
+  addToScene: (object: THREE.Object3D) => void
+  /** 从场景移除对象 */
+  removeFromScene: (object: THREE.Object3D) => void
+  /** 移除测试立方体和网格辅助线 */
+  removeTestObjects: () => void
 }
 
 /**
@@ -347,8 +361,85 @@ export function useThreeScene(options: UseThreeSceneOptions): UseThreeSceneRetur
     console.log('useThreeScene: 资源已清理')
   }
 
+  /**
+   * 获取场景对象
+   * @returns Three.js 场景对象或 null
+   */
+  function getScene(): THREE.Scene | null {
+    return state.scene
+  }
+
+  /**
+   * 获取摄像机对象
+   * @returns Three.js 透视摄像机对象或 null
+   */
+  function getCamera(): THREE.PerspectiveCamera | null {
+    return state.camera
+  }
+
+  /**
+   * 获取控制器对象
+   * @returns OrbitControls 对象或 null
+   */
+  function getControls(): OrbitControls | null {
+    return state.controls
+  }
+
+  /**
+   * 添加对象到场景
+   * @param object - 要添加的 Three.js 对象
+   */
+  function addToScene(object: THREE.Object3D): void {
+    if (state.scene) {
+      state.scene.add(object)
+    } else {
+      console.warn('useThreeScene: 场景未初始化，无法添加对象')
+    }
+  }
+
+  /**
+   * 从场景移除对象
+   * @param object - 要移除的 Three.js 对象
+   */
+  function removeFromScene(object: THREE.Object3D): void {
+    if (state.scene) {
+      state.scene.remove(object)
+    }
+  }
+
+  /**
+   * 移除测试立方体和网格辅助线
+   * 用于在加载真实模型时清理测试对象
+   */
+  function removeTestObjects(): void {
+    if (state.scene) {
+      // 移除测试立方体
+      if (state.cube) {
+        state.scene.remove(state.cube)
+        state.cube.geometry.dispose()
+        if (state.cube.material instanceof THREE.Material) {
+          state.cube.material.dispose()
+        }
+        state.cube = null
+      }
+      
+      // 移除网格辅助线
+      if (state.gridHelper) {
+        state.scene.remove(state.gridHelper)
+        state.gridHelper.dispose()
+        state.gridHelper = null
+      }
+    }
+  }
+
   return {
     init,
-    dispose
+    dispose,
+    getScene,
+    getCamera,
+    getControls,
+    addToScene,
+    removeFromScene,
+    removeTestObjects
   }
 }
