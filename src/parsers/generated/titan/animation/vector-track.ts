@@ -2,10 +2,10 @@
 
 /* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any, @typescript-eslint/no-non-null-assertion */
 
-import { DynamicVectorTrack } from './dynamic-vector-track.js';
-import { FixedVectorTrack } from './fixed-vector-track.js';
-import { Framed16VectorTrack } from './framed16-vector-track.js';
-import { Framed8VectorTrack } from './framed8-vector-track.js';
+import { DynamicVectorTrack } from '../../titan/animation/dynamic-vector-track.js';
+import { FixedVectorTrack } from '../../titan/animation/fixed-vector-track.js';
+import { Framed16VectorTrack } from '../../titan/animation/framed16-vector-track.js';
+import { Framed8VectorTrack } from '../../titan/animation/framed8-vector-track.js';
 
 
 export enum VectorTrack {

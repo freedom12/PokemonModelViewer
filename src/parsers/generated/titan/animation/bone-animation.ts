@@ -4,8 +4,8 @@
 
 import * as flatbuffers from 'flatbuffers';
 
-import { BoneInit } from './bone-init.js';
-import { BoneTrack } from './bone-track.js';
+import { BoneInit } from '../../titan/animation/bone-init.js';
+import { BoneTrack } from '../../titan/animation/bone-track.js';
 
 
 export class BoneAnimation {

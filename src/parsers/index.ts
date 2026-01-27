@@ -75,8 +75,45 @@ export { TransformNode } from './generated/titan/model/transform-node.js'
 export { BoneMatrix } from './generated/titan/model/bone-matrix.js'
 
 // ============================================
-// 枚举类型
+// 动画文件解析器
 // ============================================
+
+// TRACM - 材质动画文件
+export { TRACM } from './generated/titan/animation/tracm.js'
+export { Track } from './generated/titan/animation/track.js'
+export { TrackConfig } from './generated/titan/animation/track-config.js'
+export { TrackMaterialTimeline } from './generated/titan/animation/track-material-timeline.js'
+export { TrackMaterial } from './generated/titan/animation/track-material.js'
+export { TrackMaterialAnim } from './generated/titan/animation/track-material-anim.js'
+export { TrackMaterialChannels } from './generated/titan/animation/track-material-channels.js'
+export { TrackMaterialValue } from './generated/titan/animation/track-material-value.js'
+export { TrackMaterialValueList } from './generated/titan/animation/track-material-value-list.js'
+export { VisibilityShapeTimeline } from './generated/titan/animation/visibility-shape-timeline.js'
+export { TrackFlag } from './generated/titan/animation/track-flag.js'
+export { FixedBoolTrack } from './generated/titan/animation/fixed-bool-track.js'
+export { DynamicBoolTrack } from './generated/titan/animation/dynamic-bool-track.js'
+export { Framed16BoolTrack } from './generated/titan/animation/framed16-bool-track.js'
+export { Framed8BoolTrack } from './generated/titan/animation/framed8-bool-track.js'
+
+// TRANM - 骨骼动画文件
+export { TRANM } from './generated/titan/animation/tranm.js'
+export { BoneAnimation } from './generated/titan/animation/bone-animation.js'
+export { BoneTrack } from './generated/titan/animation/bone-track.js'
+export { BoneInit } from './generated/titan/animation/bone-init.js'
+export { AnimationInfo } from './generated/titan/animation/animation-info.js'
+export { Transform } from './generated/titan/animation/transform.js'
+export { Vec2 } from './generated/titan/animation/vec2.js'
+// Vec3 and Vec4 are exported from model section
+export { VectorTrack } from './generated/titan/animation/vector-track.js'
+export { RotationTrack } from './generated/titan/animation/rotation-track.js'
+export { FixedVectorTrack } from './generated/titan/animation/fixed-vector-track.js'
+export { DynamicVectorTrack } from './generated/titan/animation/dynamic-vector-track.js'
+export { Framed16VectorTrack } from './generated/titan/animation/framed16-vector-track.js'
+export { Framed8VectorTrack } from './generated/titan/animation/framed8-vector-track.js'
+export { FixedRotationTrack } from './generated/titan/animation/fixed-rotation-track.js'
+export { DynamicRotationTrack } from './generated/titan/animation/dynamic-rotation-track.js'
+export { Framed16RotationTrack } from './generated/titan/animation/framed16-rotation-track.js'
+export { Framed8RotationTrack } from './generated/titan/animation/framed8-rotation-track.js'
 
 // 顶点属性类型
 export { VertexAttribute } from './generated/titan/model/vertex-attribute.js'

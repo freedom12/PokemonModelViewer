@@ -10,10 +10,10 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "gen-json": "node tools/gen-json.cjs",
-    "gen-index": "node tools/gen-index.cjs"
+    "gen-index": "node tools/gen-index.cjs",
+    "gen-parsers": "node tools/gen-parsers.cjs"
   },
   "dependencies": {
-    "flatbuffers": "^25.9.23",
     "three": "^0.162.0",
     "vue": "^3.4.21"
   },
@@ -21,6 +21,7 @@
     "@types/three": "^0.162.0",
     "@vitejs/plugin-vue": "^5.0.4",
     "@vue/test-utils": "^2.4.6",
+    "flatbuffers": "^25.9.23",
     "jsdom": "^27.4.0",
     "typescript": "^5.4.2",
     "vite": "^5.1.6",

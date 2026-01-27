@@ -1,3 +1,7 @@
+namespace Titan.Animation;
+
+file_extension "tranm";
+
 struct sVec2 {
   u: int16;
   v: int16;

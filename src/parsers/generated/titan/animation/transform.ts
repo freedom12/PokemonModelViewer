@@ -4,8 +4,8 @@
 
 import * as flatbuffers from 'flatbuffers';
 
-import { Vec3 } from './vec3.js';
-import { Vec4 } from './vec4.js';
+import { Vec3 } from '../../titan/animation/vec3.js';
+import { Vec4 } from '../../titan/animation/vec4.js';
 
 
 export class Transform {

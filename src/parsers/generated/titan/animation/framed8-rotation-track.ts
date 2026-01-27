@@ -4,7 +4,7 @@
 
 import * as flatbuffers from 'flatbuffers';
 
-import { sVec3 } from './s-vec3.js';
+import { sVec3 } from '../../titan/animation/s-vec3.js';
 
 
 export class Framed8RotationTrack {

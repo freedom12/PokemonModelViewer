@@ -2,9 +2,12 @@
 
 /* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any, @typescript-eslint/no-non-null-assertion */
 
-export { EmbeddedTRACM } from './model/embedded-tracm.js';
-export { MMT } from './model/mmt.js';
-export { MaterialMapper } from './model/material-mapper.js';
-export { MaterialProperties } from './model/material-properties.js';
-export { MaterialSwitches } from './model/material-switches.js';
-export { TRMMT } from './model/trmmt.js';
+export { Bone } from './model/bone.js';
+export { BoneMatrix } from './model/bone-matrix.js';
+export { IKControl } from './model/ikcontrol.js';
+export { NodeType } from './model/node-type.js';
+export { TRSKL } from './model/trskl.js';
+export { Transform } from './model/transform.js';
+export { TransformNode } from './model/transform-node.js';
+export { Vec3 } from './model/vec3.js';
+export { Vec4 } from './model/vec4.js';

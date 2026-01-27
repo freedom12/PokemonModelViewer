@@ -4,7 +4,7 @@
 
 import * as flatbuffers from 'flatbuffers';
 
-import { Transform } from './transform.js';
+import { Transform } from '../../titan/animation/transform.js';
 
 
 export class BoneInit {

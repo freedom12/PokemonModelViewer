@@ -2,24 +2,63 @@
 
 /* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any, @typescript-eslint/no-non-null-assertion */
 
-export { AnimationInfo } from './animation-info.js';
-export { BoneAnimation } from './bone-animation.js';
-export { BoneInit } from './bone-init.js';
-export { BoneTrack } from './bone-track.js';
-export { DynamicRotationTrack } from './dynamic-rotation-track.js';
-export { DynamicVectorTrack } from './dynamic-vector-track.js';
-export { FixedRotationTrack } from './fixed-rotation-track.js';
-export { FixedVectorTrack } from './fixed-vector-track.js';
-export { Framed16RotationTrack } from './framed16-rotation-track.js';
-export { Framed16VectorTrack } from './framed16-vector-track.js';
-export { Framed8RotationTrack } from './framed8-rotation-track.js';
-export { Framed8VectorTrack } from './framed8-vector-track.js';
-export { RotationTrack } from './rotation-track.js';
-export { TRANM } from './tranm.js';
-export { Transform } from './transform.js';
-export { Vec2 } from './vec2.js';
-export { Vec3 } from './vec3.js';
-export { Vec4 } from './vec4.js';
-export { VectorTrack } from './vector-track.js';
-export { sVec2 } from './s-vec2.js';
-export { sVec3 } from './s-vec3.js';
+import * as flatbuffers from 'flatbuffers';
+
+import { AnimationInfo } from '../../titan/animation/animation-info.js';
+import { BoneAnimation } from '../../titan/animation/bone-animation.js';
+
+
+export class TRANM {
+  bb: flatbuffers.ByteBuffer|null = null;
+  bb_pos = 0;
+  __init(i:number, bb:flatbuffers.ByteBuffer):TRANM {
+  this.bb_pos = i;
+  this.bb = bb;
+  return this;
+}
+
+static getRootAsTRANM(bb:flatbuffers.ByteBuffer, obj?:TRANM):TRANM {
+  return (obj || new TRANM()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
+}
+
+static getSizePrefixedRootAsTRANM(bb:flatbuffers.ByteBuffer, obj?:TRANM):TRANM {
+  bb.setPosition(bb.position() + flatbuffers.SIZE_PREFIX_LENGTH);
+  return (obj || new TRANM()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
+}
+
+info(obj?:AnimationInfo):AnimationInfo|null {
+  const offset = this.bb!.__offset(this.bb_pos, 4);
+  return offset ? (obj || new AnimationInfo()).__init(this.bb!.__indirect(this.bb_pos + offset), this.bb!) : null;
+}
+
+track(obj?:BoneAnimation):BoneAnimation|null {
+  const offset = this.bb!.__offset(this.bb_pos, 6);
+  return offset ? (obj || new BoneAnimation()).__init(this.bb!.__indirect(this.bb_pos + offset), this.bb!) : null;
+}
+
+static startTRANM(builder:flatbuffers.Builder) {
+  builder.startObject(2);
+}
+
+static addInfo(builder:flatbuffers.Builder, infoOffset:flatbuffers.Offset) {
+  builder.addFieldOffset(0, infoOffset, 0);
+}
+
+static addTrack(builder:flatbuffers.Builder, trackOffset:flatbuffers.Offset) {
+  builder.addFieldOffset(1, trackOffset, 0);
+}
+
+static endTRANM(builder:flatbuffers.Builder):flatbuffers.Offset {
+  const offset = builder.endObject();
+  return offset;
+}
+
+static finishTRANMBuffer(builder:flatbuffers.Builder, offset:flatbuffers.Offset) {
+  builder.finish(offset);
+}
+
+static finishSizePrefixedTRANMBuffer(builder:flatbuffers.Builder, offset:flatbuffers.Offset) {
+  builder.finish(offset, undefined, true);
+}
+
+}

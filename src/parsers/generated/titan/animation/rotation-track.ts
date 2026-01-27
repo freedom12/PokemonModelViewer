@@ -2,10 +2,10 @@
 
 /* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any, @typescript-eslint/no-non-null-assertion */
 
-import { DynamicRotationTrack } from './dynamic-rotation-track.js';
-import { FixedRotationTrack } from './fixed-rotation-track.js';
-import { Framed16RotationTrack } from './framed16-rotation-track.js';
-import { Framed8RotationTrack } from './framed8-rotation-track.js';
+import { DynamicRotationTrack } from '../../titan/animation/dynamic-rotation-track.js';
+import { FixedRotationTrack } from '../../titan/animation/fixed-rotation-track.js';
+import { Framed16RotationTrack } from '../../titan/animation/framed16-rotation-track.js';
+import { Framed8RotationTrack } from '../../titan/animation/framed8-rotation-track.js';
 
 
 export enum RotationTrack {
