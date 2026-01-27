@@ -12,6 +12,15 @@
 import { type Ref } from 'vue'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import { TRSKL, TransformNode } from '../parsers'
+
+/**
+ * 点击结果类型
+ */
+type ClickResult = 
+  | { type: 'mesh', mesh: THREE.Mesh, faceIndex: number, vertices: Array<{ position: THREE.Vector3, normal: THREE.Vector3, uv?: THREE.Vector2 }> }
+  | { type: 'bone', boneIndex: number, boneName: string, worldPosition: THREE.Vector3, localPosition: THREE.Vector3 }
+  | null
 
 /**
  * useThreeScene 选项接口
@@ -47,17 +56,17 @@ export interface UseThreeSceneReturn {
   /** 设置线框模式 */
   setWireframeMode: (enabled: boolean, model?: THREE.Object3D) => void
   /** 处理鼠标点击事件 */
-  handleMouseClick: (event: MouseEvent, model?: THREE.Object3D) => {
-    mesh: THREE.Mesh | null
-    faceIndex: number | null
-    vertices: Array<{
-      position: THREE.Vector3
-      normal: THREE.Vector3
-      uv?: THREE.Vector2
-    }> | null
-  } | null
+  handleMouseClick: (event: MouseEvent, model?: THREE.Object3D) => ClickResult
   /** 高亮显示选中的三角形 */
   highlightSelectedTriangle: (mesh: THREE.Mesh | null, faceIndex: number | null) => void
+  /** 高亮显示选中的骨骼 */
+  highlightSelectedBone: (boneIndex: number | null) => void
+  /** 创建骨骼可视化 */
+  createSkeletonVisualization: (trskl: any) => THREE.Group | null
+  /** 设置骨骼可见性 */
+  setSkeletonVisible: (visible: boolean) => void
+  /** 设置选择模式 */
+  setSelectionMode: (mode: 'mesh' | 'bone') => void
 }
 
 /**
@@ -74,6 +83,10 @@ interface SceneState {
   animationId: number | null
   vertexNormalsGroup: THREE.Group | null
   selectedTriangleHighlight: THREE.Mesh | null
+  selectedBoneHighlight: THREE.Mesh | null
+  skeletonGroup: THREE.Group | null
+  selectionMode: 'mesh' | 'bone'
+  trskl: TRSKL | null
 }
 
 /**
@@ -152,7 +165,11 @@ export function useThreeScene(options: UseThreeSceneOptions): UseThreeSceneRetur
     directionalLight: null,
     animationId: null,
     vertexNormalsGroup: null,
-    selectedTriangleHighlight: null
+    selectedTriangleHighlight: null,
+    selectedBoneHighlight: null,
+    skeletonGroup: null,
+    selectionMode: 'mesh',
+    trskl: null
   }
 
   /**
@@ -349,6 +366,8 @@ export function useThreeScene(options: UseThreeSceneOptions): UseThreeSceneRetur
     state.directionalLight = null
     state.vertexNormalsGroup = null
     state.selectedTriangleHighlight = null
+    state.skeletonGroup = null
+    state.trskl = null
 
     console.log('useThreeScene: 资源已清理')
   }
@@ -479,16 +498,8 @@ export function useThreeScene(options: UseThreeSceneOptions): UseThreeSceneRetur
   /**
    * 处理鼠标点击事件，返回点击的三角形信息
    */
-  function handleMouseClick(event: MouseEvent, model?: THREE.Object3D): {
-    mesh: THREE.Mesh | null
-    faceIndex: number | null
-    vertices: Array<{
-      position: THREE.Vector3
-      normal: THREE.Vector3
-      uv?: THREE.Vector2
-    }> | null
-  } | null {
-    if (!state.renderer || !state.camera || !model) {
+  function handleMouseClick(event: MouseEvent, model?: THREE.Object3D): ClickResult {
+    if (!state.renderer || !state.camera) {
       return null
     }
 
@@ -505,85 +516,143 @@ export function useThreeScene(options: UseThreeSceneOptions): UseThreeSceneRetur
     const raycaster = new THREE.Raycaster()
     raycaster.setFromCamera(mouse, state.camera)
 
-    // 获取所有可点击的mesh
-    const meshes: THREE.Mesh[] = []
-    model.traverse((child) => {
-      if (child instanceof THREE.Mesh) {
-        meshes.push(child)
+    if (state.selectionMode === 'mesh' && model) {
+      // 面片选择模式
+      // 获取所有可点击的mesh
+      const meshes: THREE.Mesh[] = []
+      model.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          meshes.push(child)
+        }
+      })
+
+      // 检测射线与mesh的交点
+      const intersects = raycaster.intersectObjects(meshes)
+
+      if (intersects.length > 0) {
+        const intersect = intersects[0]
+        const mesh = intersect.object as THREE.Mesh
+        const faceIndex = intersect.faceIndex
+
+        if (faceIndex !== undefined && mesh.geometry) {
+          const geometry = mesh.geometry
+          const positionAttribute = geometry.attributes.position
+          const normalAttribute = geometry.attributes.normal
+          const uvAttribute = geometry.attributes.uv
+
+          // 获取三角形的三个顶点索引
+          const a = intersect.face!.a
+          const b = intersect.face!.b
+          const c = intersect.face!.c
+
+          // 辅助函数：安全地从buffer attribute获取向量数据
+          const getVector3FromAttribute = (attribute: THREE.BufferAttribute | THREE.InterleavedBufferAttribute, index: number): THREE.Vector3 => {
+            const vector = new THREE.Vector3()
+            if (attribute instanceof THREE.BufferAttribute) {
+              vector.fromBufferAttribute(attribute, index)
+            } else {
+              // InterleavedBufferAttribute
+              vector.set(
+                attribute.getX(index),
+                attribute.getY(index),
+                attribute.getZ(index)
+              )
+            }
+            return vector
+          }
+
+          const getVector2FromAttribute = (attribute: THREE.BufferAttribute | THREE.InterleavedBufferAttribute, index: number): THREE.Vector2 => {
+            const vector = new THREE.Vector2()
+            if (attribute instanceof THREE.BufferAttribute) {
+              vector.fromBufferAttribute(attribute, index)
+            } else {
+              // InterleavedBufferAttribute
+              vector.set(
+                attribute.getX(index),
+                attribute.getY(index)
+              )
+            }
+            return vector
+          }
+
+          const vertices = [
+            {
+              position: getVector3FromAttribute(positionAttribute, a),
+              normal: getVector3FromAttribute(normalAttribute, a),
+              uv: uvAttribute ? getVector2FromAttribute(uvAttribute, a) : undefined
+            },
+            {
+              position: getVector3FromAttribute(positionAttribute, b),
+              normal: getVector3FromAttribute(normalAttribute, b),
+              uv: uvAttribute ? getVector2FromAttribute(uvAttribute, b) : undefined
+            },
+            {
+              position: getVector3FromAttribute(positionAttribute, c),
+              normal: getVector3FromAttribute(normalAttribute, c),
+              uv: uvAttribute ? getVector2FromAttribute(uvAttribute, c) : undefined
+            }
+          ]
+
+          return {
+            type: 'mesh',
+            mesh,
+            faceIndex,
+            vertices
+          }
+        }
       }
-    })
+    } else if (state.selectionMode === 'bone' && state.skeletonGroup && state.trskl) {
+      // 骨骼选择模式
+      // 获取骨骼关节（球体）
+      const joints: THREE.Mesh[] = []
+      state.skeletonGroup.traverse((child) => {
+        if (child instanceof THREE.Mesh && child.name.startsWith('Joint_')) {
+          joints.push(child)
+        }
+      })
 
-    // 检测射线与mesh的交点
-    const intersects = raycaster.intersectObjects(meshes)
+      // 检测射线与关节的交点
+      const intersects = raycaster.intersectObjects(joints)
 
-    if (intersects.length > 0) {
-      const intersect = intersects[0]
-      const mesh = intersect.object as THREE.Mesh
-      const faceIndex = intersect.faceIndex
-
-      if (faceIndex !== undefined && mesh.geometry) {
-        const geometry = mesh.geometry
-        const positionAttribute = geometry.attributes.position
-        const normalAttribute = geometry.attributes.normal
-        const uvAttribute = geometry.attributes.uv
-
-        // 获取三角形的三个顶点索引
-        const a = intersect.face!.a
-        const b = intersect.face!.b
-        const c = intersect.face!.c
-
-        // 辅助函数：安全地从buffer attribute获取向量数据
-        const getVector3FromAttribute = (attribute: THREE.BufferAttribute | THREE.InterleavedBufferAttribute, index: number): THREE.Vector3 => {
-          const vector = new THREE.Vector3()
-          if (attribute instanceof THREE.BufferAttribute) {
-            vector.fromBufferAttribute(attribute, index)
-          } else {
-            // InterleavedBufferAttribute
-            vector.set(
-              attribute.getX(index),
-              attribute.getY(index),
-              attribute.getZ(index)
-            )
+      if (intersects.length > 0) {
+        const intersect = intersects[0]
+        const joint = intersect.object as THREE.Mesh
+        const boneName = joint.name.replace('Joint_', '')
+        
+        // 找到对应的骨骼索引
+        let boneIndex = -1
+        for (let i = 0; i < state.trskl.transformNodesLength(); i++) {
+          const node = state.trskl.transformNodes(i)
+          if (node && node.name() === boneName) {
+            boneIndex = i
+            break
           }
-          return vector
         }
 
-        const getVector2FromAttribute = (attribute: THREE.BufferAttribute | THREE.InterleavedBufferAttribute, index: number): THREE.Vector2 => {
-          const vector = new THREE.Vector2()
-          if (attribute instanceof THREE.BufferAttribute) {
-            vector.fromBufferAttribute(attribute, index)
-          } else {
-            // InterleavedBufferAttribute
-            vector.set(
-              attribute.getX(index),
-              attribute.getY(index)
-            )
-          }
-          return vector
-        }
+        if (boneIndex >= 0) {
+          // 获取世界坐标（关节位置）
+          const worldPosition = joint.position.clone()
 
-        const vertices = [
-          {
-            position: getVector3FromAttribute(positionAttribute, a),
-            normal: getVector3FromAttribute(normalAttribute, a),
-            uv: uvAttribute ? getVector2FromAttribute(uvAttribute, a) : undefined
-          },
-          {
-            position: getVector3FromAttribute(positionAttribute, b),
-            normal: getVector3FromAttribute(normalAttribute, b),
-            uv: uvAttribute ? getVector2FromAttribute(uvAttribute, b) : undefined
-          },
-          {
-            position: getVector3FromAttribute(positionAttribute, c),
-            normal: getVector3FromAttribute(normalAttribute, c),
-            uv: uvAttribute ? getVector2FromAttribute(uvAttribute, c) : undefined
+          // 获取本地坐标
+          const node = state.trskl.transformNodes(boneIndex)
+          let localPosition = new THREE.Vector3()
+          if (node) {
+            const transform = node.transform()
+            if (transform) {
+              const translate = transform.vecTranslate()
+              if (translate) {
+                localPosition.set(translate.x(), translate.y(), translate.z())
+              }
+            }
           }
-        ]
 
-        return {
-          mesh,
-          faceIndex,
-          vertices
+          return {
+            type: 'bone',
+            boneIndex,
+            boneName,
+            worldPosition,
+            localPosition
+          }
         }
       }
     }
@@ -704,6 +773,233 @@ export function useThreeScene(options: UseThreeSceneOptions): UseThreeSceneRetur
     state.selectedTriangleHighlight = highlightMesh
   }
 
+  function highlightSelectedBone(boneIndex: number | null): void {
+    // 移除现有的骨骼高亮
+    if (state.selectedBoneHighlight) {
+      removeFromScene(state.selectedBoneHighlight)
+      state.selectedBoneHighlight.geometry.dispose()
+      if (Array.isArray(state.selectedBoneHighlight.material)) {
+        state.selectedBoneHighlight.material.forEach(material => material.dispose())
+      } else {
+        state.selectedBoneHighlight.material.dispose()
+      }
+      state.selectedBoneHighlight = null
+    }
+
+    // 如果没有选中任何骨骼，返回
+    if (boneIndex === null || !state.skeletonGroup || !state.trskl) {
+      return
+    }
+
+    // 找到对应的骨骼关节
+    let selectedJoint: THREE.Mesh | null = null
+    state.skeletonGroup.traverse((child: THREE.Object3D) => {
+      if (child instanceof THREE.Mesh && child.name.startsWith('Joint_')) {
+        const jointBoneName = child.name.replace('Joint_', '')
+        // 找到对应的骨骼索引
+        for (let i = 0; i < state.trskl!.transformNodesLength(); i++) {
+          const node = state.trskl!.transformNodes(i)
+          if (node && node.name() === jointBoneName && i === boneIndex) {
+            selectedJoint = child
+            break
+          }
+        }
+      }
+    })
+
+    if (!selectedJoint) {
+      return
+    }
+
+    // 现在 selectedJoint 肯定不为 null，类型为 THREE.Mesh
+    const joint: THREE.Mesh = selectedJoint
+
+    // 创建高亮球体（比原球体稍大）
+    const highlightGeometry = new THREE.SphereGeometry(0.03, 16, 16) // 更大的球体
+    const highlightMaterial = new THREE.MeshBasicMaterial({
+      color: 0xffff00, // 黄色高亮
+      transparent: true,
+      opacity: 0.8,
+      depthTest: false // 不受深度测试影响，始终显示在最前面
+    })
+
+    // 创建高亮mesh
+    const highlightMesh = new THREE.Mesh(highlightGeometry, highlightMaterial)
+    highlightMesh.position.copy(joint.position)
+    highlightMesh.name = 'SelectedBoneHighlight'
+    highlightMesh.renderOrder = 2 // 设置更高的渲染顺序，确保在骨骼之上
+
+    // 添加到场景
+    addToScene(highlightMesh)
+    state.selectedBoneHighlight = highlightMesh
+  }
+
+  /**
+   * 创建骨骼可视化
+   */
+  function createSkeletonVisualization(trskl: TRSKL): THREE.Group | null {
+    if (!trskl) {
+      return null
+    }
+
+    state.trskl = trskl
+
+    const skeletonGroup = new THREE.Group()
+    skeletonGroup.name = 'Skeleton'
+
+    // 创建骨骼节点映射
+    const transformNodes: Map<number, TransformNode> = new Map()
+
+    // 收集所有transform nodes，使用rig_idx作为key
+    for (let i = 0; i < trskl.transformNodesLength(); i++) {
+      const node = trskl.transformNodes(i)
+      if (node) {
+        transformNodes.set(i, node)
+      }
+    }
+
+    // 计算每个骨骼的世界变换矩阵
+    const worldMatrices: Map<number, THREE.Matrix4> = new Map()
+
+    // 递归函数：计算世界变换矩阵
+    function computeWorldMatrix(index: number): THREE.Matrix4 {
+      if (worldMatrices.has(index)) {
+        return worldMatrices.get(index)!
+      }
+
+      const node = transformNodes.get(index)
+      if (!node) {
+        return new THREE.Matrix4() // 单位矩阵
+      }
+
+      // 获取局部变换矩阵
+      const localMatrix = new THREE.Matrix4()
+
+      // 从transform_nodes的transform字段构建局部变换
+      const transform = node.transform()
+      if (transform) {
+        const scale = transform.vecScale()
+        const rotation = transform.vecRot()
+        const translation = transform.vecTranslate()
+
+        if (scale && rotation && translation) {
+          // 创建缩放矩阵
+          const scaleMatrix = new THREE.Matrix4().makeScale(scale.x(), scale.y(), scale.z())
+
+          // 创建旋转矩阵 (欧拉角 -> 四元数)
+          const euler = new THREE.Euler(rotation.x(), rotation.y(), rotation.z(), 'ZYX')
+          const quat = new THREE.Quaternion().setFromEuler(euler)
+          const rotationMatrix = new THREE.Matrix4().makeRotationFromQuaternion(quat)
+
+          // 创建平移矩阵
+          const translationMatrix = new THREE.Matrix4().makeTranslation(translation.x(), translation.y(), translation.z())
+
+          // 组合变换：平移 * 旋转 * 缩放
+          localMatrix.multiplyMatrices(rotationMatrix, scaleMatrix)
+          localMatrix.multiplyMatrices(translationMatrix, localMatrix)
+        }
+      }
+
+      // 获取父骨骼的世界变换
+      const parentIdx = node.parentIdx()
+      let worldMatrix = localMatrix.clone()
+
+      if (parentIdx >= 0) {
+        // 查找父节点的rig_idx
+        const parentNode = trskl.transformNodes(parentIdx)
+        if (parentNode) {
+          const parentWorldMatrix = computeWorldMatrix(parentIdx)
+          worldMatrix.multiplyMatrices(parentWorldMatrix, localMatrix)
+        }
+      }
+
+      worldMatrices.set(index, worldMatrix)
+      return worldMatrix
+    }
+
+    // 为每个骨骼创建可视化
+    for (let index = 0; index < trskl.transformNodesLength(); index++) {
+      const transformNode = trskl.transformNodes(index)!
+      const worldMatrix = computeWorldMatrix(index)
+
+      // 从世界矩阵中提取位置
+      const position = new THREE.Vector3()
+      const rotation = new THREE.Quaternion()
+      const scale = new THREE.Vector3()
+      worldMatrix.decompose(position, rotation, scale)
+
+      const boneName = transformNode.name() || `Bone_${index}`
+
+      console.log(`Bone ${index} (${boneName}): position = (${position.x.toFixed(3)}, ${position.y.toFixed(3)}, ${position.z.toFixed(3)})`)
+
+      // 创建骨骼关节（球体）
+      const jointGeometry = new THREE.SphereGeometry(0.02, 8, 8)
+      const jointMaterial = new THREE.MeshBasicMaterial({ 
+        color: 0xff0000,
+        depthTest: false // 不受深度测试影响，始终显示在最前面
+      })
+      const joint = new THREE.Mesh(jointGeometry, jointMaterial)
+      joint.position.copy(position)
+      joint.name = `Joint_${boneName}`
+      joint.renderOrder = 1 // 设置渲染顺序，确保在模型之后渲染
+      skeletonGroup.add(joint)
+    }
+
+    // 创建骨骼连接线 - 使用transform_nodes的层次结构
+    transformNodes.forEach((node, rigIdx) => {
+      const parentIdx = node.parentIdx()
+      if (parentIdx >= 0) {
+        // 获取子骨骼和父骨骼的世界位置
+        const childWorldMatrix = worldMatrices.get(rigIdx)
+        const parentWorldMatrix = worldMatrices.get(parentIdx)
+
+        if (childWorldMatrix && parentWorldMatrix) {
+          const childPos = new THREE.Vector3()
+          const parentPos = new THREE.Vector3()
+
+          childWorldMatrix.decompose(childPos, new THREE.Quaternion(), new THREE.Vector3())
+          parentWorldMatrix.decompose(parentPos, new THREE.Quaternion(), new THREE.Vector3())
+
+          // 创建骨骼线段
+          const boneGeometry = new THREE.BufferGeometry().setFromPoints([parentPos, childPos])
+          const boneMaterial = new THREE.LineBasicMaterial({ 
+            color: 0x00ff00,
+            depthTest: false // 不受深度测试影响，始终显示在最前面
+          })
+          const boneLine = new THREE.Line(boneGeometry, boneMaterial)
+          boneLine.name = `Bone_${node.name()}`
+          boneLine.renderOrder = 1 // 设置渲染顺序，确保在模型之后渲染
+          skeletonGroup.add(boneLine)
+        }
+      }
+    })
+
+    // 清理旧的骨骼
+    if (state.skeletonGroup) {
+      removeFromScene(state.skeletonGroup)
+    }
+
+    state.skeletonGroup = skeletonGroup
+    addToScene(skeletonGroup)
+    return skeletonGroup
+  }
+
+  /**
+   * 设置骨骼可见性
+   */
+  function setSkeletonVisible(visible: boolean): void {
+    if (state.skeletonGroup) {
+      state.skeletonGroup.visible = visible
+    }
+  }
+
+  function setSelectionMode(mode: 'mesh' | 'bone'): void {
+    state.selectionMode = mode
+    // 切换模式时清除当前的选择和高亮
+    highlightSelectedTriangle(null, null)
+    highlightSelectedBone(null)
+  }
+
   return {
     init,
     dispose,
@@ -717,6 +1013,10 @@ export function useThreeScene(options: UseThreeSceneOptions): UseThreeSceneRetur
     setVertexNormalsVisible,
     setWireframeMode,
     handleMouseClick,
-    highlightSelectedTriangle
+    highlightSelectedTriangle,
+    highlightSelectedBone,
+    createSkeletonVisualization,
+    setSkeletonVisible,
+    setSelectionMode
   }
 }

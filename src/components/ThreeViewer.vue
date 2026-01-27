@@ -57,7 +57,11 @@ const {
   setVertexNormalsVisible,
   setWireframeMode,
   handleMouseClick,
-  highlightSelectedTriangle
+  highlightSelectedTriangle,
+  highlightSelectedBone,
+  createSkeletonVisualization,
+  setSkeletonVisible,
+  setSelectionMode
 } = useThreeScene({
   container: containerRef
 })
@@ -70,6 +74,7 @@ const {
   error,
   currentModel,
   currentFormId,
+  currentParsedData,
   loadModel,
   disposeModel
 } = useModelLoader()
@@ -83,6 +88,12 @@ const showVertexNormals = ref(false)
 // 是否显示网格线框
 const showWireframe = ref(false)
 
+// 是否显示骨骼
+const showSkeleton = ref(false)
+
+// 选择模式：'mesh' 或 'bone'
+const selectionMode = ref<'mesh' | 'bone'>('mesh')
+
 // 选中的三角形信息
 const selectedTriangle = ref<{
   mesh: THREE.Mesh | null
@@ -92,6 +103,14 @@ const selectedTriangle = ref<{
     normal: THREE.Vector3
     uv?: THREE.Vector2
   }> | null
+} | null>(null)
+
+// 选中的骨骼信息
+const selectedBone = ref<{
+  boneIndex: number
+  boneName: string
+  worldPosition: THREE.Vector3
+  localPosition: THREE.Vector3
 } | null>(null)
 
 // 计算属性：是否有有效的模型路径
@@ -142,6 +161,14 @@ async function loadAndDisplayModel(pokemonId: string, formId: string): Promise<v
       // 触发模型加载完成事件
       emit('model-loaded', formId)
       console.log(`[ThreeViewer] 模型加载完成: ${formId}`)
+
+      // 如果有骨骼数据，创建骨骼可视化
+      if (currentParsedData.value?.trskl) {
+        createSkeletonVisualization(currentParsedData.value.trskl)
+        // 根据当前设置设置骨骼可见性
+        setSkeletonVisible(showSkeleton.value)
+        console.log(`[ThreeViewer] 骨骼可视化创建完成`)
+      }
 
       // 根据当前设置显示顶点法线用于调试
       setVertexNormalsVisible(showVertexNormals.value, currentModel.value || undefined)
@@ -215,6 +242,19 @@ watch(showWireframe, (newShow) => {
   setWireframeMode(newShow, currentModel.value || undefined)
 })
 
+// 监听骨骼显示状态变化
+watch(showSkeleton, (newShow) => {
+  setSkeletonVisible(newShow)
+})
+
+// 监听选择模式变化
+watch(selectionMode, (newMode) => {
+  setSelectionMode(newMode)
+  // 切换模式时清除当前的选择状态
+  selectedTriangle.value = null
+  selectedBone.value = null
+})
+
 onMounted(() => {
   // 初始化 Three.js 场景
   init()
@@ -243,19 +283,24 @@ function handleContainerClick(event: MouseEvent): void {
 
   const result = handleMouseClick(event, currentModel.value)
   if (result) {
-    selectedTriangle.value = {
-      mesh: result.mesh,
-      faceIndex: result.faceIndex!,
-      vertices: result.vertices!
+    if (result.type === 'mesh') {
+      selectedTriangle.value = {
+        mesh: result.mesh,
+        faceIndex: result.faceIndex,
+        vertices: result.vertices
+      }
+      highlightSelectedTriangle(result.mesh, result.faceIndex)
+    } else if (result.type === 'bone') {
+      selectedBone.value = {
+        boneIndex: result.boneIndex,
+        boneName: result.boneName,
+        worldPosition: result.worldPosition,
+        localPosition: result.localPosition
+      }
+      highlightSelectedBone(result.boneIndex)
     }
-    // 高亮显示选中的三角形
-    highlightSelectedTriangle(result.mesh, result.faceIndex)
-    console.log('[ThreeViewer] 选中三角形:', selectedTriangle.value)
-  } else {
-    selectedTriangle.value = null
-    // 清除高亮
-    highlightSelectedTriangle(null, null)
   }
+  // 注意：点击空白区域时不清除当前选中的信息
 }
 
 onUnmounted(() => {
@@ -316,16 +361,31 @@ defineExpose({
         />
         <span class="control-label">显示网格线框</span>
       </label>
+      <label class="control-item">
+        <input 
+          type="checkbox" 
+          v-model="showSkeleton"
+          class="control-checkbox"
+        />
+        <span class="control-label">显示骨骼</span>
+      </label>
+      <div class="control-item">
+        <span class="control-label">选择模式:</span>
+        <select v-model="selectionMode" class="control-select">
+          <option value="mesh">面片</option>
+          <option value="bone">骨骼</option>
+        </select>
+      </div>
     </div>
     
     <!-- 三角形信息面板 -->
-    <div v-if="selectedTriangle" class="triangle-info-panel">
-      <h4 class="triangle-info-title">选中三角形信息</h4>
-      <div class="triangle-info-content">
-        <div class="triangle-info-item">
+    <div v-if="selectedTriangle" class="selection-info-panel">
+      <h4 class="selection-info-title">选中三角形信息</h4>
+      <div class="selection-info-content">
+        <div class="selection-info-item">
           <strong>Mesh:</strong> {{ selectedTriangle.mesh?.name || 'Unnamed' }}
         </div>
-        <div class="triangle-info-item">
+        <div class="selection-info-item">
           <strong>Face Index:</strong> {{ selectedTriangle.faceIndex }}
         </div>
         <div class="triangle-vertices">
@@ -337,6 +397,25 @@ defineExpose({
               <div v-if="vertex.uv"><strong>UV:</strong> ({{ vertex.uv.x.toFixed(3) }}, {{ vertex.uv.y.toFixed(3) }})</div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 骨骼信息面板 -->
+    <div v-if="selectedBone" class="selection-info-panel">
+      <h4 class="selection-info-title">选中骨骼信息</h4>
+      <div class="selection-info-content">
+        <div class="selection-info-item bone-info-mono">
+          <strong>骨骼名称:</strong> {{ selectedBone.boneName }}
+        </div>
+        <div class="selection-info-item bone-info-mono">
+          <strong>骨骼索引:</strong> {{ selectedBone.boneIndex }}
+        </div>
+        <div class="bone-info-item">
+          <strong>世界坐标:</strong> ({{ selectedBone.worldPosition.x.toFixed(3) }}, {{ selectedBone.worldPosition.y.toFixed(3) }}, {{ selectedBone.worldPosition.z.toFixed(3) }})
+        </div>
+        <div class="bone-info-item">
+          <strong>本地坐标:</strong> ({{ selectedBone.localPosition.x.toFixed(3) }}, {{ selectedBone.localPosition.y.toFixed(3) }}, {{ selectedBone.localPosition.z.toFixed(3) }})
         </div>
       </div>
     </div>
@@ -411,62 +490,55 @@ defineExpose({
   cursor: pointer;
 }
 
-/* 三角形信息面板 */
-.triangle-info-panel {
+.control-select {
+  margin-left: 8px;
+  padding: 2px 4px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.control-select option {
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #ffffff;
+}
+
+/* 选中信息面板 */
+.selection-info-panel {
   position: absolute;
   bottom: 10px;
   right: 10px;
   background-color: rgba(0, 0, 0, 0.8);
   padding: 15px;
   border-radius: 5px;
-  max-width: 400px;
-  max-height: 500px;
+  width: 250px;
+  max-height: 400px;
   overflow-y: auto;
   z-index: 50;
   color: #ffffff;
   font-size: 12px;
 }
 
-.triangle-info-title {
+.selection-info-title {
   margin: 0 0 10px 0;
   font-size: 14px;
   font-weight: bold;
   color: #00d4ff;
 }
 
-.triangle-info-content {
+.selection-info-content {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.triangle-info-item {
+.selection-info-item {
   margin-bottom: 5px;
 }
 
-.triangle-vertices {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.vertex-info {
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 8px;
-  border-radius: 3px;
-}
-
-.vertex-info h5 {
-  margin: 0 0 5px 0;
-  color: #00ff88;
-  font-size: 13px;
-}
-
-.vertex-detail {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+.bone-info-mono {
   font-family: monospace;
 }
 

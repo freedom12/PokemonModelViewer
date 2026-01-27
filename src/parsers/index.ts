@@ -18,6 +18,7 @@ export * as flatbuffers from 'flatbuffers'
 export { TRMDL } from './generated/titan/model/trmdl.js'
 export { trmeshes } from './generated/titan/model/trmeshes.js'
 export { trskeleton } from './generated/titan/model/trskeleton.js'
+export { TRSKL } from './generated/titan/model/trskl.js'
 export { Lod } from './generated/titan/model/lod.js'
 export { LodIndex } from './generated/titan/model/lod-index.js'
 export { Bounds } from './generated/titan/model/bounds.js'
@@ -66,6 +67,12 @@ export { MaterialSwitches } from './generated/titan/model/material-switches.js'
 export { MaterialMapper } from './generated/titan/model/material-mapper.js'
 export { MaterialProperties } from './generated/titan/model/material-properties.js'
 export { EmbeddedTRACM } from './generated/titan/model/embedded-tracm.js'
+
+// TRSKL - 骨骼文件
+export { Bone } from './generated/titan/model/bone.js'
+export { IKControl } from './generated/titan/model/ikcontrol.js'
+export { TransformNode } from './generated/titan/model/transform-node.js'
+export { BoneMatrix } from './generated/titan/model/bone-matrix.js'
 
 // ============================================
 // 枚举类型

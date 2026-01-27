@@ -6,13 +6,13 @@
  * @module services/modelLoader
  */
 
-import { flatbuffers, TRMDL, TRMSH, TRMBF, TRMTR, TRMMT } from '../parsers'
+import { flatbuffers, TRMDL, TRMSH, TRMBF, TRMTR, TRMMT, TRSKL } from '../parsers'
 import { getPokemonIdFromFormId } from '../utils/pokemonPath'
 
 /**
  * 模型文件类型
  */
-export type ModelFileType = 'trmdl' | 'trmsh' | 'trmbf' | 'trmtr' | 'trmmt'
+export type ModelFileType = 'trmdl' | 'trmsh' | 'trmbf' | 'trmtr' | 'trmmt' | 'trskl'
 
 /**
  * 解析结果接口
@@ -40,6 +40,8 @@ export interface ModelFiles {
   trmtr?: ArrayBuffer
   /** 材质映射文件数据（可选） */
   trmmt?: ArrayBuffer
+  /** 骨骼文件数据（可选） */
+  trskl?: ArrayBuffer
 }
 
 /**
@@ -56,6 +58,8 @@ export interface ParsedModelData {
   trmtr?: TRMTR
   /** 材质映射数据（可选） */
   trmmt?: TRMMT
+  /** 骨骼数据（可选） */
+  trskl?: TRSKL
   /** 基础路径（用于加载纹理） */
   basePath: string
 }
@@ -158,6 +162,7 @@ export async function loadModelFiles(formId: string): Promise<ModelFiles> {
   const trmbfPath = getModelFilePath(formId, 'trmbf')
   const trmtrPath = getModelFilePath(formId, 'trmtr')
   const trmmtPath = getModelFilePath(formId, 'trmmt')
+  const trsklPath = getModelFilePath(formId, 'trskl')
   
   // 并行加载必需文件
   const [trmdl, trmsh, trmbf] = await Promise.all([
@@ -169,6 +174,7 @@ export async function loadModelFiles(formId: string): Promise<ModelFiles> {
   // 尝试加载可选的材质文件（失败时不抛出错误）
   let trmtr: ArrayBuffer | undefined
   let trmmt: ArrayBuffer | undefined
+  let trskl: ArrayBuffer | undefined
   
   try {
     trmtr = await loadFile(trmtrPath)
@@ -184,12 +190,20 @@ export async function loadModelFiles(formId: string): Promise<ModelFiles> {
     console.warn(`材质映射文件加载失败: ${trmmtPath}`, error)
   }
   
+  try {
+    trskl = await loadFile(trsklPath)
+  } catch (error) {
+    // 骨骼文件是可选的，记录警告但不抛出错误
+    console.warn(`骨骼文件加载失败: ${trsklPath}`, error)
+  }
+  
   return {
     trmdl,
     trmsh,
     trmbf,
     trmtr,
-    trmmt
+    trmmt,
+    trskl
   }
 }
 
@@ -354,6 +368,38 @@ export function parseTRMMT(buffer: ArrayBuffer): ParseResult<TRMMT> {
 }
 
 /**
+ * 解析 TRSKL 文件
+ * 
+ * @param buffer - 文件数据
+ * @returns 解析结果
+ */
+export function parseTRSKL(buffer: ArrayBuffer): ParseResult<TRSKL> {
+  try {
+    const bytes = new Uint8Array(buffer)
+    const bb = new flatbuffers.ByteBuffer(bytes)
+    const trskl = TRSKL.getRootAsTRSKL(bb)
+    
+    // TRSKL 可能没有骨骼数据
+    if (!trskl) {
+      return {
+        success: false,
+        error: 'TRSKL 文件格式错误: 无法解析骨骼数据'
+      }
+    }
+    
+    return {
+      success: true,
+      data: trskl
+    }
+  } catch (error) {
+    return {
+      success: false,
+      error: `TRSKL 解析失败: ${error instanceof Error ? error.message : String(error)}`
+    }
+  }
+}
+
+/**
  * 解析模型数据
  * 
  * 使用 FlatBuffers 解析器解析所有模型文件的二进制数据
@@ -430,6 +476,16 @@ export function parseModelData(files: ModelFiles, formId: string): ParsedModelDa
       result.trmmt = trmmtResult.data
     } else {
       console.warn('TRMMT 解析失败:', trmmtResult.error)
+    }
+  }
+  
+  // 解析可选的 TRSKL
+  if (files.trskl) {
+    const trsklResult = parseTRSKL(files.trskl)
+    if (trsklResult.success && trsklResult.data) {
+      result.trskl = trsklResult.data
+    } else {
+      console.warn('TRSKL 解析失败:', trsklResult.error)
     }
   }
   

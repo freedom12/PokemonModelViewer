@@ -76,6 +76,8 @@ export interface UseModelLoaderReturn {
   currentModel: ShallowRef<THREE.Group | null>
   /** 当前模型的形态 ID */
   currentFormId: Ref<string | null>
+  /** 当前解析的模型数据 */
+  currentParsedData: ShallowRef<ParsedModelData | null>
   
   /**
    * 加载模型
@@ -142,6 +144,7 @@ export function useModelLoader(): UseModelLoaderReturn {
   // 使用 shallowRef 存储 Three.js 对象，避免深度响应式带来的性能问题
   const currentModel = shallowRef<THREE.Group | null>(null)
   const currentFormId = ref<string | null>(null)
+  const currentParsedData = shallowRef<ParsedModelData | null>(null)
   
   // 存储当前模型的材质引用，用于清理
   let currentMaterials: THREE.MeshStandardMaterial[] = []
@@ -209,6 +212,7 @@ export function useModelLoader(): UseModelLoaderReturn {
     }
     
     currentFormId.value = null
+    currentParsedData.value = null
   }
   
   /**
@@ -254,6 +258,9 @@ export function useModelLoader(): UseModelLoaderReturn {
       updateProgress(LoadingStage.PARSING_DATA, 0)
       
       const modelData: ParsedModelData = parseModelData(files, formId)
+      
+      // 存储解析后的数据
+      currentParsedData.value = modelData
       
       updateProgress(LoadingStage.PARSING_DATA, 1)
       
@@ -369,6 +376,7 @@ export function useModelLoader(): UseModelLoaderReturn {
     error,
     currentModel,
     currentFormId,
+    currentParsedData,
     loadModel,
     disposeModel
   }
