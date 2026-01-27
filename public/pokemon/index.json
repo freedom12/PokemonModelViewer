@@ -4,43 +4,71 @@
       "id": "pm0001",
       "number": 1,
       "forms": [
-        { "id": "pm0001_00_00", "formIndex": 0, "variantIndex": 0 }
+        {
+          "id": "pm0001_00_00",
+          "formIndex": 0,
+          "variantIndex": 0
+        }
       ]
     },
     {
       "id": "pm0002",
       "number": 2,
       "forms": [
-        { "id": "pm0002_00_00", "formIndex": 0, "variantIndex": 0 }
+        {
+          "id": "pm0002_00_00",
+          "formIndex": 0,
+          "variantIndex": 0
+        }
       ]
     },
     {
       "id": "pm0003",
       "number": 3,
       "forms": [
-        { "id": "pm0003_00_00", "formIndex": 0, "variantIndex": 0 },
-        { "id": "pm0003_01_00", "formIndex": 1, "variantIndex": 0 }
+        {
+          "id": "pm0003_00_00",
+          "formIndex": 0,
+          "variantIndex": 0
+        },
+        {
+          "id": "pm0003_01_00",
+          "formIndex": 1,
+          "variantIndex": 0
+        }
       ]
     },
     {
       "id": "pm0004",
       "number": 4,
       "forms": [
-        { "id": "pm0004_00_00", "formIndex": 0, "variantIndex": 0 }
+        {
+          "id": "pm0004_00_00",
+          "formIndex": 0,
+          "variantIndex": 0
+        }
       ]
     },
     {
       "id": "pm0005",
       "number": 5,
       "forms": [
-        { "id": "pm0005_00_00", "formIndex": 0, "variantIndex": 0 }
+        {
+          "id": "pm0005_00_00",
+          "formIndex": 0,
+          "variantIndex": 0
+        }
       ]
     },
     {
       "id": "pm0006",
       "number": 6,
       "forms": [
-        { "id": "pm0006_00_00", "formIndex": 0, "variantIndex": 0 }
+        {
+          "id": "pm0006_00_00",
+          "formIndex": 0,
+          "variantIndex": 0
+        }
       ]
     }
   ]

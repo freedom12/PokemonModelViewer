@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "genjson": "node tools/genjson.cjs"
+    "gen-json": "node tools/genjson.cjs",
+    "gen-index": "node tools/generate-index.cjs"
   },
   "dependencies": {
     "flatbuffers": "^25.9.23",
