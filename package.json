@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test-unpack": "node test-unpack.js",
     "gen-json": "node tools/gen-json.cjs",
     "gen-index": "node tools/gen-index.cjs",
     "gen-parsers": "node tools/gen-parsers.cjs"

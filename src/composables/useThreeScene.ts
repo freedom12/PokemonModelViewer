@@ -65,6 +65,8 @@ export interface UseThreeSceneReturn {
   createSkeletonVisualization: (trskl: any) => THREE.Group | null
   /** 设置骨骼可见性 */
   setSkeletonVisible: (visible: boolean) => void
+  /** 获取骨骼组 */
+  getSkeletonGroup: () => THREE.Group | null
   /** 设置选择模式 */
   setSelectionMode: (mode: 'mesh' | 'bone') => void
 }
@@ -918,19 +920,11 @@ export function useThreeScene(options: UseThreeSceneOptions): UseThreeSceneRetur
     }
 
     // 为每个骨骼创建可视化
+    const jointMap = new Map<number, THREE.Mesh>()
+
     for (let index = 0; index < trskl.transformNodesLength(); index++) {
       const transformNode = trskl.transformNodes(index)!
-      const worldMatrix = computeWorldMatrix(index)
-
-      // 从世界矩阵中提取位置
-      const position = new THREE.Vector3()
-      const rotation = new THREE.Quaternion()
-      const scale = new THREE.Vector3()
-      worldMatrix.decompose(position, rotation, scale)
-
       const boneName = transformNode.name() || `Bone_${index}`
-
-      console.log(`Bone ${index} (${boneName}): position = (${position.x.toFixed(3)}, ${position.y.toFixed(3)}, ${position.z.toFixed(3)})`)
 
       // 创建骨骼关节（球体）
       const jointGeometry = new THREE.SphereGeometry(0.02, 8, 8)
@@ -939,29 +933,62 @@ export function useThreeScene(options: UseThreeSceneOptions): UseThreeSceneRetur
         depthTest: false // 不受深度测试影响，始终显示在最前面
       })
       const joint = new THREE.Mesh(jointGeometry, jointMaterial)
-      joint.position.copy(position)
       joint.name = `Joint_${boneName}`
       joint.renderOrder = 1 // 设置渲染顺序，确保在模型之后渲染
-      skeletonGroup.add(joint)
+      
+      jointMap.set(index, joint)
+    }
+
+    // 建立层次结构并设置局部变换
+    for (let index = 0; index < trskl.transformNodesLength(); index++) {
+      const transformNode = trskl.transformNodes(index)!
+      const joint = jointMap.get(index)!
+      
+      const parentIdx = transformNode.parentIdx()
+      if (parentIdx >= 0 && jointMap.has(parentIdx)) {
+        // 添加到父关节
+        jointMap.get(parentIdx)!.add(joint)
+      } else {
+        // 根关节添加到skeletonGroup
+        skeletonGroup.add(joint)
+      }
+      
+      // 设置局部变换
+      const transform = transformNode.transform()
+      if (transform) {
+        const translate = transform.vecTranslate()
+        const rotate = transform.vecRot()
+        const scale = transform.vecScale()
+        
+        if (translate) {
+          joint.position.set(translate.x(), translate.y(), translate.z())
+        }
+        if (rotate) {
+          const euler = new THREE.Euler(rotate.x(), rotate.y(), rotate.z(), 'ZYX')
+          joint.setRotationFromEuler(euler)
+        }
+        if (scale) {
+          joint.scale.set(scale.x(), scale.y(), scale.z())
+        }
+      }
     }
 
     // 创建骨骼连接线 - 使用transform_nodes的层次结构
     transformNodes.forEach((node, rigIdx) => {
       const parentIdx = node.parentIdx()
       if (parentIdx >= 0) {
-        // 获取子骨骼和父骨骼的世界位置
-        const childWorldMatrix = worldMatrices.get(rigIdx)
-        const parentWorldMatrix = worldMatrices.get(parentIdx)
-
-        if (childWorldMatrix && parentWorldMatrix) {
-          const childPos = new THREE.Vector3()
-          const parentPos = new THREE.Vector3()
-
-          childWorldMatrix.decompose(childPos, new THREE.Quaternion(), new THREE.Vector3())
-          parentWorldMatrix.decompose(parentPos, new THREE.Quaternion(), new THREE.Vector3())
+        const parentJoint = jointMap.get(parentIdx)
+        const childJoint = jointMap.get(rigIdx)
+        
+        if (parentJoint && childJoint) {
+          // 获取世界位置
+          const parentWorldPos = new THREE.Vector3()
+          const childWorldPos = new THREE.Vector3()
+          parentJoint.getWorldPosition(parentWorldPos)
+          childJoint.getWorldPosition(childWorldPos)
 
           // 创建骨骼线段
-          const boneGeometry = new THREE.BufferGeometry().setFromPoints([parentPos, childPos])
+          const boneGeometry = new THREE.BufferGeometry().setFromPoints([parentWorldPos, childWorldPos])
           const boneMaterial = new THREE.LineBasicMaterial({ 
             color: 0x00ff00,
             depthTest: false // 不受深度测试影响，始终显示在最前面
@@ -969,6 +996,10 @@ export function useThreeScene(options: UseThreeSceneOptions): UseThreeSceneRetur
           const boneLine = new THREE.Line(boneGeometry, boneMaterial)
           boneLine.name = `Bone_${node.name()}`
           boneLine.renderOrder = 1 // 设置渲染顺序，确保在模型之后渲染
+          
+          // 存储关节引用用于动画更新
+          boneLine.userData = { parentJoint, childJoint }
+          
           skeletonGroup.add(boneLine)
         }
       }
@@ -991,6 +1022,10 @@ export function useThreeScene(options: UseThreeSceneOptions): UseThreeSceneRetur
     if (state.skeletonGroup) {
       state.skeletonGroup.visible = visible
     }
+  }
+
+  function getSkeletonGroup(): THREE.Group | null {
+    return state.skeletonGroup
   }
 
   function setSelectionMode(mode: 'mesh' | 'bone'): void {
@@ -1017,6 +1052,7 @@ export function useThreeScene(options: UseThreeSceneOptions): UseThreeSceneRetur
     highlightSelectedBone,
     createSkeletonVisualization,
     setSkeletonVisible,
+    getSkeletonGroup,
     setSelectionMode
   }
 }

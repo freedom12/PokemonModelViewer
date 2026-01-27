@@ -22,6 +22,7 @@ import { useThreeScene } from '../composables/useThreeScene'
 import { useModelLoader } from '../composables/useModelLoader'
 import { fitCameraToModel } from '../utils/cameraUtils'
 import ErrorDisplay from './ErrorDisplay.vue'
+import { AnimationPlayer } from '../services/animationPlayer'
 
 // Props 定义
 const props = defineProps<{
@@ -63,6 +64,7 @@ const {
   highlightSelectedBone,
   createSkeletonVisualization,
   setSkeletonVisible,
+  getSkeletonGroup,
   setSelectionMode
 } = useThreeScene({
   container: containerRef
@@ -101,6 +103,9 @@ const availableAnimations = ref<Record<string, string[]>>({})
 const selectedAnimation = ref<string>('')
 const isAnimationPlaying = ref(false)
 const animationLoop = ref(true)
+
+// 动画播放器实例
+const animationPlayer = new AnimationPlayer()
 
 // 选中的三角形信息
 const selectedTriangle = ref<{
@@ -190,6 +195,13 @@ async function loadAndDisplayModel(pokemonId: string, formId: string): Promise<v
         // 根据当前设置设置骨骼可见性
         setSkeletonVisible(showSkeleton.value)
         console.log(`[ThreeViewer] 骨骼可视化创建完成`)
+
+        // 设置骨骼给动画播放器
+        const skeletonGroup = getCurrentSkeletonGroup()
+        if (skeletonGroup) {
+          animationPlayer.setSkeleton(skeletonGroup)
+          console.log(`[ThreeViewer] 骨骼已设置给动画播放器`)
+        }
       }
 
       // 根据当前设置显示顶点法线用于调试
@@ -271,7 +283,7 @@ function togglePlayPause(): void {
     // 暂停动画
     console.log(`[ThreeViewer] 暂停动画播放`)
     isAnimationPlaying.value = false
-    // TODO: 实现实际的动画暂停逻辑
+    animationPlayer.pause()
   } else {
     // 播放动画
     if (!selectedAnimation.value || !availableAnimations.value[selectedAnimation.value]) {
@@ -281,7 +293,9 @@ function togglePlayPause(): void {
 
     console.log(`[ThreeViewer] 开始播放动画: ${selectedAnimation.value}`)
     isAnimationPlaying.value = true
-    // TODO: 实现实际的动画播放逻辑
+
+    // 加载并播放动画
+    loadAndPlayAnimation(selectedAnimation.value)
   }
 }
 
@@ -292,7 +306,57 @@ function stopAnimation(): void {
   console.log(`[ThreeViewer] 停止动画播放`)
   isAnimationPlaying.value = false
   selectedAnimation.value = ''
-  // TODO: 实现实际的动画停止逻辑
+  animationPlayer.stop()
+}
+
+/**
+ * 加载并播放动画
+ */
+async function loadAndPlayAnimation(animationName: string): Promise<void> {
+  try {
+    const animationFiles = availableAnimations.value[animationName]
+    if (!animationFiles || animationFiles.length === 0) {
+      throw new Error(`No animation files found for ${animationName}`)
+    }
+
+    // 选择第一个.tranm文件（骨骼动画）
+    const tranmFile = animationFiles.find(file => file.endsWith('.tranm'))
+    if (!tranmFile) {
+      throw new Error(`No .tranm file found for animation ${animationName}`)
+    }
+
+    // 构建动画文件URL
+    // formId 格式为 "pmXXXX_XX_XX"，需要从中提取 pokemonId "pmXXXX"
+    const pokemonId = props.formId ? props.formId.split('_')[0] : 'pm0004' // 从 "pm0004_00_00" 提取 "pm0004"
+    const animationUrl = `/pokemon/${pokemonId}/${props.formId}/${tranmFile}`
+
+    // 加载动画数据
+    await animationPlayer.loadAnimation(animationUrl)
+
+    // 设置循环模式
+    animationPlayer.setLoop(animationLoop.value)
+
+    // 设置骨骼（如果有骨骼可视化）
+    const skeletonGroup = getCurrentSkeletonGroup()
+    if (skeletonGroup) {
+      animationPlayer.setSkeleton(skeletonGroup)
+    }
+
+    // 开始播放
+    animationPlayer.play()
+
+  } catch (error) {
+    console.error('[ThreeViewer] Failed to load animation:', error)
+    isAnimationPlaying.value = false
+    // 可以在这里显示错误提示给用户
+  }
+}
+
+/**
+ * 获取骨骼组
+ */
+function getCurrentSkeletonGroup(): THREE.Group | null {
+  return getSkeletonGroup()
 }
 
 /**
@@ -300,6 +364,7 @@ function stopAnimation(): void {
  */
 function toggleAnimationLoop(): void {
   animationLoop.value = !animationLoop.value
+  animationPlayer.setLoop(animationLoop.value)
   console.log(`[ThreeViewer] 动画循环模式: ${animationLoop.value ? '开启' : '关闭'}`)
 }
 
@@ -383,6 +448,8 @@ onUnmounted(() => {
 
   // 清理模型资源
   disposeModel()
+  // 清理动画播放器
+  animationPlayer.dispose()
   // 清理 Three.js 资源
   dispose()
   sceneInitialized.value = false
