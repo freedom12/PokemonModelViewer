@@ -38,3 +38,6 @@ Thumbs.db
 
 refer/
 .mypy_cache/
+
+# Ignore Pokemon files with number > 10
+public/pokemon/pm[0-9][0-9][1-9][0-9]/
