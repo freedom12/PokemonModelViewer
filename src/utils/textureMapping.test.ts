@@ -30,8 +30,12 @@ describe('textureMapping', () => {
       expect(getTextureType('pm0001_00_00_msk.png')).toBe('mask')
     })
 
-    it('should return "region" for _rgn suffix', () => {
-      expect(getTextureType('pm0001_00_00_rgn.png')).toBe('region')
+    it('should return "metalness" for _mtl suffix', () => {
+      expect(getTextureType('pm0009_00_00_body_b_mtl.png')).toBe('metalness')
+    })
+
+    it('should return "roughness" for _rgn suffix', () => {
+      expect(getTextureType('pm0001_00_00_rgn.png')).toBe('roughness')
     })
 
     it('should return "unknown" for files without known suffix', () => {
@@ -74,6 +78,14 @@ describe('textureMapping', () => {
       expect(mapToMaterialProperty('emission')).toBe('emissiveMap')
     })
 
+    it('should map "roughness" to "roughnessMap"', () => {
+      expect(mapToMaterialProperty('roughness')).toBe('roughnessMap')
+    })
+
+    it('should map "metalness" to "metalnessMap"', () => {
+      expect(mapToMaterialProperty('metalness')).toBe('metalnessMap')
+    })
+
     it('should map "ao" to "aoMap"', () => {
       expect(mapToMaterialProperty('ao')).toBe('aoMap')
     })
@@ -112,8 +124,12 @@ describe('textureMapping', () => {
       expect(getPropertyFromFilename('pm0001_00_00_msk.png')).toBe('alphaMap')
     })
 
-    it('should return null for _rgn files', () => {
-      expect(getPropertyFromFilename('pm0001_00_00_rgn.png')).toBeNull()
+    it('should return "metalnessMap" for _mtl files', () => {
+      expect(getPropertyFromFilename('pm0009_00_00_body_b_mtl.png')).toBe('metalnessMap')
+    })
+
+    it('should return "roughnessMap" for _rgn files', () => {
+      expect(getPropertyFromFilename('pm0001_00_00_rgn.png')).toBe('roughnessMap')
     })
 
     it('should return null for unknown files', () => {
@@ -128,6 +144,7 @@ describe('textureMapping', () => {
       expect(isKnownTextureType('texture_lym.png')).toBe(true)
       expect(isKnownTextureType('texture_ao.png')).toBe(true)
       expect(isKnownTextureType('texture_msk.png')).toBe(true)
+      expect(isKnownTextureType('texture_mtl.png')).toBe(true)
       expect(isKnownTextureType('texture_rgn.png')).toBe(true)
     })
 
@@ -143,6 +160,8 @@ describe('textureMapping', () => {
       expect(hasMaterialProperty('albedo')).toBe(true)
       expect(hasMaterialProperty('normal')).toBe(true)
       expect(hasMaterialProperty('emission')).toBe(true)
+      expect(hasMaterialProperty('roughness')).toBe(true)
+      expect(hasMaterialProperty('metalness')).toBe(true)
       expect(hasMaterialProperty('ao')).toBe(true)
       expect(hasMaterialProperty('mask')).toBe(true)
     })
@@ -161,10 +180,11 @@ describe('textureMapping', () => {
       expect(TEXTURE_SUFFIXES).toContain('_ao')
       expect(TEXTURE_SUFFIXES).toContain('_msk')
       expect(TEXTURE_SUFFIXES).toContain('_rgn')
+      expect(TEXTURE_SUFFIXES).toContain('_mtl')
     })
 
-    it('should have exactly 6 suffixes', () => {
-      expect(TEXTURE_SUFFIXES).toHaveLength(6)
+    it('should have exactly 7 suffixes', () => {
+      expect(TEXTURE_SUFFIXES).toHaveLength(7)
     })
   })
 })

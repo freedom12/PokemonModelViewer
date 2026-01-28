@@ -82,6 +82,7 @@ interface SceneState {
   world: THREE.Group | null
   ambientLight: THREE.AmbientLight | null
   directionalLight: THREE.DirectionalLight | null
+  environmentMap: THREE.CubeTexture | null
   animationId: number | null
   vertexNormalsGroup: THREE.Group | null
   selectedTriangleHighlight: THREE.Mesh | null
@@ -144,6 +145,11 @@ const CONFIG = {
       intensity: 0.6,  // 从 0.8 降低到 0.6
       position: { x: 5, y: 10, z: 7 }
     }
+  },
+  // 环境贴图配置
+  environment: {
+    enabled: true,
+    intensity: 1.0
   }
 } as const
 
@@ -165,6 +171,7 @@ export function useThreeScene(options: UseThreeSceneOptions): UseThreeSceneRetur
     world: null,
     ambientLight: null,
     directionalLight: null,
+    environmentMap: null,
     animationId: null,
     vertexNormalsGroup: null,
     selectedTriangleHighlight: null,
@@ -207,6 +214,59 @@ export function useThreeScene(options: UseThreeSceneOptions): UseThreeSceneRetur
     world.add(axesHelper)
 
     return world
+  }
+
+  /**
+   * 创建环境贴图（用于PBR材质的反射）
+   * 为金属材质提供环境反射效果
+   */
+  function createEnvironmentMap(): THREE.CubeTexture {
+    // 创建一个简单的渐变环境贴图，适合金属材质反射
+    const size = 512
+    const canvas = document.createElement('canvas')
+    canvas.width = size
+    canvas.height = size
+    const context = canvas.getContext('2d')!
+
+    // 创建从亮到暗的渐变，模拟天空和地面
+    const gradient = context.createLinearGradient(0, 0, 0, size)
+    gradient.addColorStop(0, '#cccccc') // 顶部灰色（原来是白色，现在更暗）
+    gradient.addColorStop(0.3, '#a0d0e0') // 浅灰蓝色（原来是浅蓝色，现在更暗）
+    gradient.addColorStop(0.7, '#5a9bb8') // 中等蓝色（原来是天蓝色，现在更暗）
+    gradient.addColorStop(1, '#2f5a7a') // 深灰蓝色（原来是深蓝色，现在更暗）
+
+    context.fillStyle = gradient
+    context.fillRect(0, 0, size, size)
+
+    // 添加一些噪点来模拟更真实的反射
+    const imageData = context.getImageData(0, 0, size, size)
+    const data = imageData.data
+
+    for (let i = 0; i < data.length; i += 4) {
+      const noise = (Math.random() - 0.5) * 10
+      data[i] = Math.max(0, Math.min(255, data[i] + noise))     // R
+      data[i + 1] = Math.max(0, Math.min(255, data[i + 1] + noise)) // G
+      data[i + 2] = Math.max(0, Math.min(255, data[i + 2] + noise)) // B
+    }
+
+    context.putImageData(imageData, 0, 0)
+
+    // 创建纹理
+    const texture = new THREE.CanvasTexture(canvas)
+    texture.needsUpdate = true
+
+    // 创建CubeTexture - 使用相同的纹理作为所有面的简单实现
+    const cubeTexture = new THREE.CubeTexture([
+      texture.image, // 正X
+      texture.image, // 负X
+      texture.image, // 正Y
+      texture.image, // 负Y
+      texture.image, // 正Z
+      texture.image  // 负Z
+    ])
+
+    cubeTexture.needsUpdate = true
+    return cubeTexture
   }
 
   /**
@@ -269,6 +329,12 @@ export function useThreeScene(options: UseThreeSceneOptions): UseThreeSceneRetur
       CONFIG.lighting.directional.position.z
     )
     state.scene.add(state.directionalLight)
+
+    // 5.5. 创建环境贴图（用于PBR材质的反射）
+    if (CONFIG.environment.enabled) {
+      state.environmentMap = createEnvironmentMap()
+      state.scene.environment = state.environmentMap
+    }
 
     // 6. 初始化 OrbitControls
     state.controls = new OrbitControls(state.camera, state.renderer.domElement)
@@ -366,6 +432,7 @@ export function useThreeScene(options: UseThreeSceneOptions): UseThreeSceneRetur
     state.world = null
     state.ambientLight = null
     state.directionalLight = null
+    state.environmentMap = null
     state.vertexNormalsGroup = null
     state.selectedTriangleHighlight = null
     state.skeletonGroup = null

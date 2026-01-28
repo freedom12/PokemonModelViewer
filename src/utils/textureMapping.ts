@@ -22,6 +22,7 @@ export type TextureType =
   | 'normal'    // 法线贴图
   | 'emission'  // 自发光贴图
   | 'roughness' // 粗糙度贴图
+  | 'metalness' // 金属度贴图
   | 'ao'        // 环境光遮蔽贴图
   | 'mask'      // 遮罩贴图
   | 'region'    // 区域贴图（自定义）
@@ -35,6 +36,7 @@ export type MaterialPropertyName =
   | 'normalMap'     // 法线贴图
   | 'emissiveMap'   // 自发光贴图
   | 'roughnessMap'  // 粗糙度贴图
+  | 'metalnessMap'  // 金属度贴图
   | 'aoMap'         // 环境光遮蔽贴图
   | 'alphaMap'      // 透明度贴图
   | null            // 无对应属性（如 region 或 unknown）
@@ -48,6 +50,7 @@ const TEXTURE_NAME_MAP: Record<string, TextureType> = {
   'NormalMap1': 'normal',
   'LayerMaskMap': 'emission',
   'RoughnessMap': 'roughness',
+  'MetallicMap': 'metalness',
   'AOMap': 'ao',
   'SSSMaskMap': 'mask',
   'EmissionColorMap': 'emission'
@@ -62,7 +65,8 @@ const TEXTURE_SUFFIX_MAP: Record<string, TextureType> = {
   '_lym': 'emission',
   '_ao': 'ao',
   '_msk': 'mask',
-  '_rgn': 'roughness'  // 修正：_rgn 对应 roughness
+  '_rgn': 'roughness',
+  '_mtl': 'metalness'
 }
 
 /**
@@ -73,6 +77,7 @@ const TEXTURE_TYPE_TO_PROPERTY: Record<TextureType, MaterialPropertyName> = {
   'normal': 'normalMap',
   'emission': 'emissiveMap',
   'roughness': 'roughnessMap',
+  'metalness': 'metalnessMap',
   'ao': 'aoMap',
   'mask': 'alphaMap',
   'region': null,

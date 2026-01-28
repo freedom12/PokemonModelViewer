@@ -20,7 +20,7 @@ import {
  */
 export interface TextureReference {
   /** 纹理类型 */
-  type: "albedo" | "normal" | "emission" | "roughness" | "ao" | "mask" | "region" | "unknown";
+  type: "albedo" | "normal" | "emission" | "roughness" | "metalness" | "ao" | "mask" | "region" | "unknown";
   /** 纹理文件名 */
   filename: string;
   /** 纹理名称（着色器中的名称） */
@@ -196,8 +196,8 @@ export async function loadTextures(
     try {
       const texture = await loadTexture(fullPath);
 
-      // 对于法线贴图，使用线性颜色空间
-      if (textureRef.type === "normal") {
+      // 设置纹理颜色空间
+      if (textureRef.type === "normal" || textureRef.type === "roughness" || textureRef.type === "metalness" || textureRef.type === "ao") {
         texture.colorSpace = THREE.LinearSRGBColorSpace;
       }
 
@@ -373,9 +373,6 @@ export async function createMaterial(
   threeMaterial.roughness = roughness;
   threeMaterial.metalness = metalness;
 
-  // 应用纹理到材质
-  let hasAlbedo = false;
-
   for (const textureRef of textureRefs) {
     const texture = textureMap.get(textureRef.filename);
     if (!texture) continue;
@@ -385,13 +382,16 @@ export async function createMaterial(
 
     // 检查是否启用了相应的贴图
     let isEnabled = true;
-
-    if (textureRef.type === "normal") {
+    if (textureRef.type === "albedo") {
+      isEnabled = isMapEnabled(material, "BaseColorMap");
+    } else if (textureRef.type === "normal") {
       isEnabled = isMapEnabled(material, "NormalMap");
     } else if (textureRef.type === "emission") {
       isEnabled = isMapEnabled(material, "EmissionColorMap");
     } else if (textureRef.type === "roughness") {
       isEnabled = isMapEnabled(material, "RoughnessMap");
+    } else if (textureRef.type === "metalness") {
+      isEnabled = isMapEnabled(material, "MetallicMap");
     } else if (textureRef.type === "ao") {
       isEnabled = isMapEnabled(material, "AOMap");
     } else if (textureRef.type === "mask") {
@@ -404,15 +404,6 @@ export async function createMaterial(
 
     // 根据属性名设置纹理
     applyTextureToMaterial(threeMaterial, propertyName, texture, mergedOptions);
-
-    if (textureRef.type === "albedo") {
-      hasAlbedo = true;
-    }
-  }
-
-  // 如果没有漫反射贴图，设置默认颜色
-  if (!hasAlbedo) {
-    threeMaterial.color.setHex(0xffffff);
   }
 
   // 设置材质名称
@@ -463,6 +454,10 @@ function applyTextureToMaterial(
 
     case "roughnessMap":
       material.roughnessMap = texture;
+      break;
+
+    case "metalnessMap":
+      material.metalnessMap = texture;
       break;
 
     case "aoMap":
