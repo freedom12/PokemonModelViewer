@@ -162,6 +162,10 @@ async function loadAndDisplayModel(pokemonId: string, formId: string): Promise<v
   isAnimationPlaying.value = false
   animationPlayer.stop()
 
+  // 清除视觉高亮显示
+  highlightSelectedTriangle(null, null)
+  highlightSelectedBone(null)
+
   // 移除之前的模型
   if (currentModel.value) {
     removeFromScene(currentModel.value)
@@ -399,6 +403,9 @@ watch(selectionMode, (newMode) => {
   // 切换模式时清除当前的选择状态
   selectedTriangle.value = null
   selectedBone.value = null
+  // 清除视觉高亮显示
+  highlightSelectedTriangle(null, null)
+  highlightSelectedBone(null)
 })
 
 // 监听选中的动画变化，如果当前正在播放则立即切换到新动画

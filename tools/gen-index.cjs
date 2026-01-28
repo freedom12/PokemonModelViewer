@@ -65,25 +65,32 @@ function parseFormId(dirName) {
  */
 function getAnimationFiles(formPath) {
   const animations = {};
+  console.log(`扫描形态目录: ${formPath}`);
 
-  try {
-    const entries = fs.readdirSync(formPath, { withFileTypes: true });
+  function scanDir(dirPath) {
+    try {
+      const entries = fs.readdirSync(dirPath, { withFileTypes: true });
 
-    for (const entry of entries) {
-      if (entry.isFile() && (entry.name.endsWith('.tranm') || entry.name.endsWith('.tracm'))) {
-        // 提取动画名：去掉前缀 pmXXXX_YY_ZZ_ 和后缀 .tranm/.tracm
-        const animationName = entry.name.replace(/^pm\d{4}_\d{2}_\d{2}_/, '').replace(/\.(tranm|tracm)$/, '');
-        
-        if (!animations[animationName]) {
-          animations[animationName] = [];
+      for (const entry of entries) {
+        if (entry.isDirectory()) {
+          scanDir(path.join(dirPath, entry.name));
+        } else if (entry.isFile() && (entry.name.endsWith('.tranm') || entry.name.endsWith('.tracm'))) {
+          console.log(`Found animation file: ${entry.name} in ${dirPath}`);
+          // 提取动画名：去掉前缀 pmXXXX_YY_ZZ_ 和后缀 .tranm/.tracm
+          const animationName = entry.name.replace(/^pm\d{4}_\d{2}_\d{2}_/, '').replace(/\.(tranm|tracm)$/, '');
+          
+          if (!animations[animationName]) {
+            animations[animationName] = [];
+          }
+          animations[animationName].push(path.relative(formPath, path.join(dirPath, entry.name)));
         }
-        animations[animationName].push(entry.name);
       }
+    } catch (error) {
+      console.warn(`警告: 读取 ${dirPath} 失败:`, error.message);
     }
-  } catch (error) {
-    console.warn(`警告: 读取 ${formPath} 失败:`, error.message);
   }
 
+  scanDir(formPath);
   return animations;
 }
 
