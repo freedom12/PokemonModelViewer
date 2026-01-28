@@ -381,7 +381,7 @@ export async function createMaterial(
     if (!propertyName) continue;
 
     // 检查是否启用了相应的贴图
-    let isEnabled = true;
+    let isEnabled = false;
     if (textureRef.type === "albedo") {
       isEnabled = isMapEnabled(material, "BaseColorMap");
     } else if (textureRef.type === "normal") {
@@ -396,8 +396,8 @@ export async function createMaterial(
       isEnabled = isMapEnabled(material, "AOMap");
     } else if (textureRef.type === "mask") {
       // Alpha map通常通过alphaType来控制，这里简单检查
-      const alphaType = material.alphaType();
-      isEnabled = alphaType !== null && alphaType !== "Opaque";
+      // const alphaType = material.alphaType();
+      // isEnabled = alphaType !== null && alphaType !== "Opaque";
     }
 
     if (!isEnabled) continue;

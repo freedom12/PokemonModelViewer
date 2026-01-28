@@ -32,10 +32,9 @@ function showHelp() {
 - 宝可梦文件夹: pmXXXX (如 pm0001, pm0002)
 - 形态文件夹: pmXXXX_YY_ZZ (如 pm0001_00_00, pm0003_01_00)
 
-生成的 index.json 包含：
-- id: 宝可梦ID (pmXXXX)
-- number: 图鉴编号 (XXXX)
-- forms: 形态列表，每个形态包含 formIndex、variantIndex 和 animations (动画名到文件列表的映射)
+生成的配置文件：
+- 外层 index.json: 包含 pokemonIds 列表
+- 每个 pmXXXX/index.json: 包含该宝可梦的详细信息 (id, number, forms 等)
 `);
 }
 
@@ -146,7 +145,7 @@ function generateIndex() {
     process.exit(1);
   }
 
-  const pokemons = [];
+  const pokemonIds = [];
   const entries = fs.readdirSync(POKEMON_DIR, { withFileTypes: true });
 
   for (const entry of entries) {
@@ -168,34 +167,41 @@ function generateIndex() {
       continue;
     }
 
-    pokemons.push({
+    // 生成每个宝可梦的 index.json
+    const pokemonData = {
       id: pokemonId,
       number: number,
       icon: `icon/pm${pokemonId}_00_00_00_big.png`,
       forms: forms
-    });
+    };
+
+    const pokemonIndexFile = path.join(pokemonPath, 'index.json');
+    fs.writeFileSync(pokemonIndexFile, JSON.stringify(pokemonData, null, 2), 'utf8');
+
+    pokemonIds.push(pokemonId);
 
     console.log(`✅ 发现宝可梦: ${pokemonId} (编号: ${number}, 形态数: ${forms.length})`);
+    console.log(`💾 生成: ${pokemonIndexFile}`);
   }
 
-  if (pokemons.length === 0) {
+  if (pokemonIds.length === 0) {
     console.error('❌ 错误: 没有找到任何有效的宝可梦数据');
     process.exit(1);
   }
 
   // 按宝可梦编号排序
-  pokemons.sort((a, b) => a.number - b.number);
+  pokemonIds.sort((a, b) => parsePokemonId(a) - parsePokemonId(b));
 
   const indexData = {
-    pokemons: pokemons
+    pokemonIds: pokemonIds
   };
 
-  // 写入 index.json
+  // 写入外层 index.json
   fs.writeFileSync(INDEX_FILE, JSON.stringify(indexData, null, 2), 'utf8');
 
   console.log(`\n🎉 生成完成!`);
-  console.log(`📊 共发现 ${pokemons.length} 个宝可梦`);
-  console.log(`💾 配置文件已保存到: ${INDEX_FILE}`);
+  console.log(`📊 共发现 ${pokemonIds.length} 个宝可梦`);
+  console.log(`💾 外层配置文件已保存到: ${INDEX_FILE}`);
 }
 
 // 主函数
