@@ -10,10 +10,28 @@
  * @validates 需求 6.3: 用户点击宝可梦时加载并显示该宝可梦的 3D 模型
  * @validates 需求 6.5: 用户选择不同形态时切换显示对应形态的模型
  */
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import PokemonBrowser from './components/PokemonBrowser.vue'
 import ThreeViewer from './components/ThreeViewer.vue'
-import pokemonIndex from '../public/pokemon/index.json'
+
+// 宝可梦索引数据类型
+interface PokemonIndexData {
+  pokemons: Array<{
+    id: string
+    number: number
+    icon: string
+    forms: Array<{
+      id: string
+      formIndex: number
+      variantIndex: number
+      icon: string
+      animations?: Record<string, string[]>
+    }>
+  }>
+}
+
+// 宝可梦索引数据
+const pokemonIndex = ref<PokemonIndexData | null>(null)
 
 // 当前选中的宝可梦 ID
 const selectedPokemon = ref<string | null>(null)
@@ -34,6 +52,26 @@ const modelError = ref<string | null>(null)
 const currentAnimations = ref<Record<string, string[]> | null>(null)
 
 /**
+ * 加载宝可梦索引数据
+ */
+async function loadPokemonIndex(): Promise<void> {
+  try {
+    const response = await fetch('/pokemon/index.json')
+    if (!response.ok) {
+      throw new Error(`Failed to load pokemon index: ${response.statusText}`)
+    }
+    pokemonIndex.value = await response.json()
+  } catch (error) {
+    console.error('Failed to load pokemon index:', error)
+  }
+}
+
+// 组件挂载时加载数据
+onMounted(() => {
+  loadPokemonIndex()
+})
+
+/**
  * 处理宝可梦选择事件
  * 当用户在 PokemonBrowser 中选择宝可梦或形态时触发
  * 
@@ -50,11 +88,15 @@ function handlePokemonSelect(pokemonId: string, formId: string): void {
   modelError.value = null
   
   // 获取当前形态的动画数据
-  const pokemon = pokemonIndex.pokemons.find(p => p.id === pokemonId)
-  if (pokemon) {
-    const form = pokemon.forms.find(f => f.id === formId)
-    if (form && form.animations) {
-      currentAnimations.value = form.animations
+  if (pokemonIndex.value) {
+    const pokemon = pokemonIndex.value.pokemons.find(p => p.id === pokemonId)
+    if (pokemon) {
+      const form = pokemon.forms.find(f => f.id === formId)
+      if (form && form.animations) {
+        currentAnimations.value = form.animations as Record<string, string[]>
+      } else {
+        currentAnimations.value = null
+      }
     } else {
       currentAnimations.value = null
     }

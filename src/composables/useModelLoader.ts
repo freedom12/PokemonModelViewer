@@ -334,7 +334,19 @@ export function useModelLoader(): UseModelLoaderReturn {
         
         // 创建网格
         const mesh = createMeshWithMaterials(geometry, groups, meshMaterials, skeleton)
-        mesh.name = `${formId}_mesh_${meshIdx}`
+        
+        // 设置 mesh 名称为 mesh_shape_name，用于可见性动画
+        const meshShape = modelData.trmsh.meshes(meshIdx)
+        if (meshShape) {
+          const meshShapeName = meshShape.meshShapeName()
+          if (meshShapeName) {
+            mesh.name = meshShapeName
+          } else {
+            mesh.name = `${formId}_mesh_${meshIdx}`
+          }
+        } else {
+          mesh.name = `${formId}_mesh_${meshIdx}`
+        }
         
         modelGroup.add(mesh)
       }

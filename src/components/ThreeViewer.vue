@@ -23,6 +23,7 @@ import { useModelLoader } from '../composables/useModelLoader'
 import { fitCameraToModel } from '../utils/cameraUtils'
 import ErrorDisplay from './ErrorDisplay.vue'
 import { AnimationPlayer } from '../services/animationPlayer'
+import { VisibilityAnimationPlayer } from '../services/visibilityAnimationPlayer'
 
 // Props 定义
 const props = defineProps<{
@@ -106,6 +107,9 @@ const animationLoop = ref(true)
 
 // 动画播放器实例
 const animationPlayer = new AnimationPlayer()
+
+// 可见性动画播放器实例
+const visibilityAnimationPlayer = new VisibilityAnimationPlayer()
 
 // 选中的三角形信息
 const selectedTriangle = ref<{
@@ -219,6 +223,10 @@ async function loadAndDisplayModel(pokemonId: string, formId: string): Promise<v
         })
       }
 
+      // 设置模型组给可见性动画播放器
+      visibilityAnimationPlayer.setModelGroup(currentModel.value)
+      console.log(`[ThreeViewer] 模型已设置给可见性动画播放器`)
+
       // 根据当前设置显示顶点法线用于调试
       setVertexNormalsVisible(showVertexNormals.value, currentModel.value || undefined)
 
@@ -321,6 +329,7 @@ function stopAnimation(): void {
   console.log(`[ThreeViewer] 停止动画播放`)
   isAnimationPlaying.value = false
   animationPlayer.stop()
+  visibilityAnimationPlayer.stop()
 }
 
 /**
@@ -344,7 +353,7 @@ async function loadAndPlayAnimation(animationName: string): Promise<void> {
     const pokemonId = props.formId ? props.formId.split('_')[0] : 'pm0004' // 从 "pm0004_00_00" 提取 "pm0004"
     const animationUrl = `/pokemon/${pokemonId}/${props.formId}/${tranmFile}`
 
-    // 加载动画数据
+    // 加载骨骼动画数据
     await animationPlayer.loadAnimation(animationUrl)
 
     // 设置循环模式
@@ -356,8 +365,23 @@ async function loadAndPlayAnimation(animationName: string): Promise<void> {
       animationPlayer.setSkeleton(skeletonGroup)
     }
 
-    // 开始播放
+    // 开始播放骨骼动画
     animationPlayer.play()
+
+    // 尝试加载对应的 tracm 文件（可见性动画）
+    const tracmFile = animationFiles.find(file => file.endsWith('.tracm'))
+    if (tracmFile) {
+      try {
+        const tracmUrl = `/pokemon/${pokemonId}/${props.formId}/${tracmFile}`
+        await visibilityAnimationPlayer.loadAnimation(tracmUrl)
+        visibilityAnimationPlayer.setLoop(animationLoop.value)
+        visibilityAnimationPlayer.play()
+        console.log(`[ThreeViewer] 可见性动画已加载并开始播放: ${tracmFile}`)
+      } catch (tracmError) {
+        console.warn('[ThreeViewer] Failed to load visibility animation:', tracmError)
+        // 可见性动画失败不影响骨骼动画继续播放
+      }
+    }
 
   } catch (error) {
     console.error('[ThreeViewer] Failed to load animation:', error)
@@ -379,6 +403,7 @@ function getCurrentSkeletonGroup(): THREE.Group | null {
 function toggleAnimationLoop(): void {
   animationLoop.value = !animationLoop.value
   animationPlayer.setLoop(animationLoop.value)
+  visibilityAnimationPlayer.setLoop(animationLoop.value)
   console.log(`[ThreeViewer] 动画循环模式: ${animationLoop.value ? '开启' : '关闭'}`)
 }
 
@@ -480,6 +505,7 @@ onUnmounted(() => {
   disposeModel()
   // 清理动画播放器
   animationPlayer.dispose()
+  visibilityAnimationPlayer.dispose()
   // 清理 Three.js 资源
   dispose()
   sceneInitialized.value = false
