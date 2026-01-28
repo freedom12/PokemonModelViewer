@@ -1,0 +1,9168 @@
+{
+  transform_nodes: [
+    {
+      name: "pm1134_11_00",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      effect_node: ""
+    },
+    {
+      name: "origin",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 0,
+      effect_node: ""
+    },
+    {
+      name: "waist",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.570796
+        },
+        VecTranslate: {
+          x: -0.0,
+          y: 0.05265,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 1,
+      rig_idx: 0,
+      effect_node: ""
+    },
+    {
+      name: "waist_sub",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.00135,
+          y: -0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 2,
+      rig_idx: 1,
+      effect_node: ""
+    },
+    {
+      name: "spine_a_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 3.141593
+        },
+        VecTranslate: {
+          x: 0.00135,
+          y: 0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 3,
+      rig_idx: 2,
+      effect_node: ""
+    },
+    {
+      name: "spine_a_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: -3.141593
+        },
+        VecTranslate: {
+          x: 0.044132,
+          y: 0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 4,
+      rig_idx: 3,
+      effect_node: ""
+    },
+    {
+      name: "spine_a_03",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.072593,
+          y: -0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 5,
+      rig_idx: 4,
+      effect_node: ""
+    },
+    {
+      name: "spine_a_04",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.02927,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 6,
+      rig_idx: 5,
+      effect_node: ""
+    },
+    {
+      name: "neck_a",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.021618,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 7,
+      rig_idx: 6,
+      effect_node: ""
+    },
+    {
+      name: "head_a",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.019431,
+          y: -0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 8,
+      rig_idx: 7,
+      effect_node: ""
+    },
+    {
+      name: "hair_a_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.023625,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 9,
+      rig_idx: 8,
+      effect_node: ""
+    },
+    {
+      name: "hair_a_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0432,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 10,
+      rig_idx: 9,
+      effect_node: ""
+    },
+    {
+      name: "hair_a_03",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.00135,
+          y: -0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 11,
+      rig_idx: 10,
+      effect_node: ""
+    },
+    {
+      name: "left_hair_a",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 2.365792,
+          y: -0.328583,
+          z: -2.821004
+        },
+        VecTranslate: {
+          x: -0.04428,
+          y: -0.014039,
+          z: 0.01868
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 12,
+      rig_idx: 11,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "right_hair_a",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: -1.844898,
+          y: -0.106983,
+          z: 2.759425
+        },
+        VecTranslate: {
+          x: -0.048488,
+          y: 0.025108,
+          z: 0.009447
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 12,
+      rig_idx: 12,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "left_hair_b",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 1.695356,
+          y: -0.043013,
+          z: -2.735303
+        },
+        VecTranslate: {
+          x: -0.046971,
+          y: -0.025108,
+          z: 0.003372
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 12,
+      rig_idx: 13,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "right_hair_b",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: -1.312002,
+          y: 0.166843,
+          z: 2.63313
+        },
+        VecTranslate: {
+          x: -0.043625,
+          y: 0.021373,
+          z: -0.006184
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 12,
+      rig_idx: 14,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "left_hair_c",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 1.19244,
+          y: 0.14643,
+          z: -2.749721
+        },
+        VecTranslate: {
+          x: -0.047374,
+          y: -0.024294,
+          z: -0.007496
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 12,
+      rig_idx: 15,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "right_hair_c",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: -0.935179,
+          y: 0.222167,
+          z: 2.860377
+        },
+        VecTranslate: {
+          x: -0.048649,
+          y: 0.021422,
+          z: -0.017127
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 12,
+      rig_idx: 16,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "left_hair_d",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.438463,
+          y: 0.354973,
+          z: -2.981537
+        },
+        VecTranslate: {
+          x: -0.046677,
+          y: -0.0088,
+          z: -0.023877
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 12,
+      rig_idx: 17,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "right_hair_d",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: -0.445983,
+          y: 0.416287,
+          z: 2.942366
+        },
+        VecTranslate: {
+          x: -0.047048,
+          y: 0.011198,
+          z: -0.024782
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 12,
+      rig_idx: 18,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "root_jaw",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: -1.570796,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.011478,
+          y: -0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 8,
+      rig_idx: 19,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "upper_jaw_a",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 3.141593,
+          y: -0.006267,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.006031,
+          y: 0.0,
+          z: -0.002346
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 21,
+      rig_idx: 20,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "lower_jaw_a",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 3.141593,
+          y: -0.062784,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.005925,
+          y: 0.0,
+          z: -0.000963
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 21,
+      rig_idx: 21,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "left_jaw_a_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 2.828233,
+          y: -0.099808,
+          z: -0.161691
+        },
+        VecTranslate: {
+          x: 0.001856,
+          y: -0.00135,
+          z: -0.004515
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 21,
+      rig_idx: 22,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "left_jaw_a_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.02835,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 24,
+      rig_idx: 23,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "right_jaw_a_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: -2.828233,
+          y: -0.099808,
+          z: 0.161691
+        },
+        VecTranslate: {
+          x: 0.001856,
+          y: 0.00135,
+          z: -0.004515
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 21,
+      rig_idx: 24,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "right_jaw_a_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.02835,
+          y: 0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 26,
+      rig_idx: 25,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "left_jaw_b_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 2.791387,
+          y: -0.127446,
+          z: -0.188638
+        },
+        VecTranslate: {
+          x: 0.006039,
+          y: -0.00135,
+          z: -0.003166
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 21,
+      rig_idx: 26,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "left_jaw_b_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0243,
+          y: -0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 28,
+      rig_idx: 27,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "right_jaw_b_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: -2.791387,
+          y: -0.127446,
+          z: 0.188638
+        },
+        VecTranslate: {
+          x: 0.006039,
+          y: 0.00135,
+          z: -0.003166
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 21,
+      rig_idx: 28,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "right_jaw_b_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0243,
+          y: -0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 30,
+      rig_idx: 29,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "left_shoulder_a",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 1.331312,
+          y: -0.755571,
+          z: -1.228709
+        },
+        VecTranslate: {
+          x: 0.005521,
+          y: -0.001458,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 7,
+      rig_idx: 30,
+      effect_node: ""
+    },
+    {
+      name: "left_arm_a_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: -0.246664,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.03417,
+          y: 0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 32,
+      rig_idx: 31,
+      effect_node: ""
+    },
+    {
+      name: "left_arm_a_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.00891,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 33,
+      rig_idx: 32,
+      effect_node: ""
+    },
+    {
+      name: "left_arm_a_03",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.00891,
+          y: 0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 34,
+      rig_idx: 33,
+      effect_node: ""
+    },
+    {
+      name: "left_arm_a_04",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.00891,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 35,
+      rig_idx: 34,
+      effect_node: ""
+    },
+    {
+      name: "left_hand_a",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.00891,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 36,
+      rig_idx: 35,
+      effect_node: ""
+    },
+    {
+      name: "left_index_a_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.872665
+        },
+        VecTranslate: {
+          x: 0.003711,
+          y: 0.004012,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 37,
+      rig_idx: 36,
+      effect_node: ""
+    },
+    {
+      name: "left_index_a_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.003611,
+          y: -0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 38,
+      rig_idx: 37,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "left_middle_a_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.004958,
+          y: -0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 37,
+      rig_idx: 38,
+      effect_node: ""
+    },
+    {
+      name: "left_middle_a_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.003709,
+          y: -0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 40,
+      rig_idx: 39,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "left_ring_a_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: -0.872665
+        },
+        VecTranslate: {
+          x: 0.003711,
+          y: -0.004012,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 37,
+      rig_idx: 40,
+      effect_node: ""
+    },
+    {
+      name: "left_ring_a_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.003611,
+          y: -0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 42,
+      rig_idx: 41,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "right_shoulder_a",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: -1.331312,
+          y: -0.755571,
+          z: 1.228709
+        },
+        VecTranslate: {
+          x: 0.005521,
+          y: 0.001458,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 7,
+      rig_idx: 42,
+      effect_node: ""
+    },
+    {
+      name: "right_arm_a_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: -0.246664,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.03417,
+          y: -0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 44,
+      rig_idx: 43,
+      effect_node: ""
+    },
+    {
+      name: "right_arm_a_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.00891,
+          y: -0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 45,
+      rig_idx: 44,
+      effect_node: ""
+    },
+    {
+      name: "right_arm_a_03",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.00891,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 46,
+      rig_idx: 45,
+      effect_node: ""
+    },
+    {
+      name: "right_arm_a_04",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.00891,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 47,
+      rig_idx: 46,
+      effect_node: ""
+    },
+    {
+      name: "right_hand_a",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.00891,
+          y: 0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 48,
+      rig_idx: 47,
+      effect_node: ""
+    },
+    {
+      name: "right_index_a_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: -0.872665
+        },
+        VecTranslate: {
+          x: 0.003711,
+          y: -0.004012,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 49,
+      rig_idx: 48,
+      effect_node: ""
+    },
+    {
+      name: "right_index_a_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.003611,
+          y: 0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 50,
+      rig_idx: 49,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "right_middle_a_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.004958,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 49,
+      rig_idx: 50,
+      effect_node: ""
+    },
+    {
+      name: "right_middle_a_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.00371,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 52,
+      rig_idx: 51,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "right_ring_a_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.872665
+        },
+        VecTranslate: {
+          x: 0.003711,
+          y: 0.004012,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 49,
+      rig_idx: 52,
+      effect_node: ""
+    },
+    {
+      name: "right_ring_a_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.003611,
+          y: -0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 54,
+      rig_idx: 53,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "root_feeler",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: -3.141593
+        },
+        VecTranslate: {
+          x: -0.034445,
+          y: -0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 4,
+      rig_idx: 54,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "center_feeler",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.005386,
+          y: 0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 56,
+      rig_idx: 55,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "front_feeler",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.005386,
+          y: 0.0,
+          z: 0.061128
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 56,
+      rig_idx: 56,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "back_feeler",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: -3.141593,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.005386,
+          y: -0.0,
+          z: -0.061128
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 56,
+      rig_idx: 57,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "left_feeler_a",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.785398,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.005386,
+          y: -0.0432,
+          z: 0.0432
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 56,
+      rig_idx: 58,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "right_feeler_a",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: -0.785398,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.005386,
+          y: 0.0432,
+          z: 0.0432
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 56,
+      rig_idx: 59,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "left_feeler_b",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 1.570796,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.005386,
+          y: -0.061128,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 56,
+      rig_idx: 60,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "right_feeler_b",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: -1.570796,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.005386,
+          y: 0.061128,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 56,
+      rig_idx: 61,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "left_feeler_c",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 2.356194,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.005386,
+          y: -0.0432,
+          z: -0.0432
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 56,
+      rig_idx: 62,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "right_feeler_c",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: -2.356194,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.005386,
+          y: 0.0432,
+          z: -0.0432
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 56,
+      rig_idx: 63,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "spine_b_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 3.141593,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: -0.043505,
+          y: 0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 3,
+      rig_idx: 64,
+      effect_node: ""
+    },
+    {
+      name: "spine_b_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.00135,
+          y: 0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 66,
+      rig_idx: 65,
+      effect_node: ""
+    },
+    {
+      name: "spine_b_03",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.013656,
+          y: 0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 67,
+      rig_idx: 66,
+      effect_node: ""
+    },
+    {
+      name: "spine_b_04",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.012969,
+          y: -0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 68,
+      rig_idx: 67,
+      effect_node: ""
+    },
+    {
+      name: "neck_b",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.012749,
+          y: -0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 69,
+      rig_idx: 68,
+      effect_node: ""
+    },
+    {
+      name: "head_b",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.011338,
+          y: 0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 70,
+      rig_idx: 69,
+      effect_node: ""
+    },
+    {
+      name: "upper_jaw_b",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 3.141593,
+          y: -0.302973,
+          z: -0.0
+        },
+        VecTranslate: {
+          x: -0.005257,
+          y: 0.0,
+          z: 0.002694
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 71,
+      rig_idx: 70,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "lower_jaw_b",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 3.141593,
+          y: -0.499117,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: -0.003204,
+          y: 0.0,
+          z: 0.002535
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 71,
+      rig_idx: 71,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "left_jaw_c_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 2.83528,
+          y: -0.380092,
+          z: -0.144097
+        },
+        VecTranslate: {
+          x: -0.008694,
+          y: -0.00135,
+          z: 0.000316
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 71,
+      rig_idx: 72,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "left_jaw_c_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0216,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 74,
+      rig_idx: 73,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "right_jaw_c_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: -2.83528,
+          y: -0.380092,
+          z: 0.144097
+        },
+        VecTranslate: {
+          x: -0.008694,
+          y: 0.00135,
+          z: 0.000316
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 71,
+      rig_idx: 74,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "right_jaw_c_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0216,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 76,
+      rig_idx: 75,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "left_jaw_d_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 2.815639,
+          y: -0.444072,
+          z: -0.196039
+        },
+        VecTranslate: {
+          x: -0.003989,
+          y: -0.00135,
+          z: 0.002393
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 71,
+      rig_idx: 76,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "left_jaw_d_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0162,
+          y: -0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 78,
+      rig_idx: 77,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "right_jaw_d_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: -2.815639,
+          y: -0.444072,
+          z: 0.196039
+        },
+        VecTranslate: {
+          x: -0.003989,
+          y: 0.00135,
+          z: 0.002393
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 71,
+      rig_idx: 78,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "right_jaw_d_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0162,
+          y: -0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 80,
+      rig_idx: 79,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "left_shoulder_b",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 1.429193,
+          y: -0.775236,
+          z: -1.369859
+        },
+        VecTranslate: {
+          x: 0.003738,
+          y: -0.001377,
+          z: 0.000558
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 69,
+      rig_idx: 80,
+      effect_node: ""
+    },
+    {
+      name: "left_arm_b_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: -0.143045,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.020312,
+          y: -0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 82,
+      rig_idx: 81,
+      effect_node: ""
+    },
+    {
+      name: "left_arm_b_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.00756,
+          y: -0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 83,
+      rig_idx: 82,
+      effect_node: ""
+    },
+    {
+      name: "left_arm_b_03",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.00756,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 84,
+      rig_idx: 83,
+      effect_node: ""
+    },
+    {
+      name: "left_arm_b_04",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.00756,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 85,
+      rig_idx: 84,
+      effect_node: ""
+    },
+    {
+      name: "left_hand_b",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.00756,
+          y: 0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 86,
+      rig_idx: 85,
+      effect_node: ""
+    },
+    {
+      name: "left_index_b_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.872665
+        },
+        VecTranslate: {
+          x: 0.002938,
+          y: 0.00318,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 87,
+      rig_idx: 86,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "left_index_b_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.003366,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 88,
+      rig_idx: 87,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "left_middle_b_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.004384,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 87,
+      rig_idx: 88,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "left_middle_b_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.003366,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 90,
+      rig_idx: 89,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "left_ring_b_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: -0.872665
+        },
+        VecTranslate: {
+          x: 0.002938,
+          y: -0.00318,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 87,
+      rig_idx: 90,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "left_ring_b_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.003366,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 92,
+      rig_idx: 91,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "right_shoulder_b",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: -1.429193,
+          y: -0.775236,
+          z: 1.369858
+        },
+        VecTranslate: {
+          x: 0.003738,
+          y: 0.001377,
+          z: 0.000558
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 69,
+      rig_idx: 92,
+      effect_node: ""
+    },
+    {
+      name: "right_arm_b_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: -0.143045,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.020312,
+          y: -0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 94,
+      rig_idx: 93,
+      effect_node: ""
+    },
+    {
+      name: "right_arm_b_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.00756,
+          y: -0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 95,
+      rig_idx: 94,
+      effect_node: ""
+    },
+    {
+      name: "right_arm_b_03",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.00756,
+          y: -0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 96,
+      rig_idx: 95,
+      effect_node: ""
+    },
+    {
+      name: "right_arm_b_04",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.00756,
+          y: 0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 97,
+      rig_idx: 96,
+      effect_node: ""
+    },
+    {
+      name: "right_hand_b",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.00756,
+          y: 0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 98,
+      rig_idx: 97,
+      effect_node: ""
+    },
+    {
+      name: "right_index_b_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: -0.872665
+        },
+        VecTranslate: {
+          x: 0.002938,
+          y: -0.00318,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 99,
+      rig_idx: 98,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "right_index_b_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.003366,
+          y: -0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 100,
+      rig_idx: 99,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "right_middle_b_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.004385,
+          y: 0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 99,
+      rig_idx: 100,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "right_middle_b_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.003366,
+          y: -0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 102,
+      rig_idx: 101,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "right_ring_b_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.872665
+        },
+        VecTranslate: {
+          x: 0.002938,
+          y: 0.00318,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 99,
+      rig_idx: 102,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "right_ring_b_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.003366,
+          y: -0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 104,
+      rig_idx: 103,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "left_crotch",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 3.141593
+        },
+        VecTranslate: {
+          x: 0.027165,
+          y: -0.006465,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 3,
+      rig_idx: 104,
+      effect_node: ""
+    },
+    {
+      name: "left_leg_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.074231,
+          y: 0.00771,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 106,
+      rig_idx: 105,
+      effect_node: ""
+    },
+    {
+      name: "left_leg_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.012312,
+          y: 0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 107,
+      rig_idx: 106,
+      effect_node: ""
+    },
+    {
+      name: "left_leg_03",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.012312,
+          y: -0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 108,
+      rig_idx: 107,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "right_crotch",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 3.141593
+        },
+        VecTranslate: {
+          x: 0.027165,
+          y: 0.006465,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 3,
+      rig_idx: 108,
+      effect_node: ""
+    },
+    {
+      name: "right_leg_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.074231,
+          y: -0.00771,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 110,
+      rig_idx: 109,
+      effect_node: ""
+    },
+    {
+      name: "right_leg_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.012312,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 111,
+      rig_idx: 110,
+      effect_node: ""
+    },
+    {
+      name: "right_leg_03",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.012312,
+          y: -0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 112,
+      rig_idx: 111,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "tail",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 3.141593
+        },
+        VecTranslate: {
+          x: -0.045598,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 3,
+      rig_idx: 112,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "feeler_a",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.216,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 3,
+      rig_idx: 113,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "feeler_b",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.243,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 3,
+      rig_idx: 114,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "feeler_c",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.27,
+          y: 0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 3,
+      rig_idx: 115,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "feeler_d",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.297,
+          y: 0.0,
+          z: -0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 3,
+      rig_idx: 116,
+      effect_node: "",
+      type: "Chained"
+    },
+    {
+      name: "hair_b_01",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.125105,
+          y: -0.0,
+          z: -0.135
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 2,
+      rig_idx: 117,
+      effect_node: ""
+    },
+    {
+      name: "hair_b_02",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0432,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 119,
+      rig_idx: 118,
+      effect_node: ""
+    },
+    {
+      name: "hair_b_03",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.00135,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 120,
+      rig_idx: 119,
+      effect_node: ""
+    },
+    {
+      name: "left_hair_e",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 2.365792,
+          y: -0.328583,
+          z: -2.821004
+        },
+        VecTranslate: {
+          x: -0.04428,
+          y: -0.014039,
+          z: 0.01868
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 121,
+      rig_idx: 120,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "right_hair_e",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: -1.844898,
+          y: -0.106983,
+          z: 2.759425
+        },
+        VecTranslate: {
+          x: -0.048488,
+          y: 0.025108,
+          z: 0.009447
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 121,
+      rig_idx: 121,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "left_hair_f",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 1.695356,
+          y: -0.043013,
+          z: -2.735303
+        },
+        VecTranslate: {
+          x: -0.046971,
+          y: -0.025108,
+          z: 0.003372
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 121,
+      rig_idx: 122,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "right_hair_f",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: -1.312002,
+          y: 0.166843,
+          z: 2.63313
+        },
+        VecTranslate: {
+          x: -0.043625,
+          y: 0.021373,
+          z: -0.006184
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 121,
+      rig_idx: 123,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "left_hair_g",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 1.19244,
+          y: 0.14643,
+          z: -2.749721
+        },
+        VecTranslate: {
+          x: -0.047374,
+          y: -0.024294,
+          z: -0.007496
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 121,
+      rig_idx: 124,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "right_hair_g",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: -0.935179,
+          y: 0.222167,
+          z: 2.860377
+        },
+        VecTranslate: {
+          x: -0.048649,
+          y: 0.021422,
+          z: -0.017127
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 121,
+      rig_idx: 125,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "left_hair_h",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.438463,
+          y: 0.354973,
+          z: -2.981537
+        },
+        VecTranslate: {
+          x: -0.046677,
+          y: -0.0088,
+          z: -0.023877
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 121,
+      rig_idx: 126,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "right_hair_h",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: -0.445983,
+          y: 0.416287,
+          z: 2.942366
+        },
+        VecTranslate: {
+          x: -0.047048,
+          y: 0.011198,
+          z: -0.024782
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 121,
+      rig_idx: 127,
+      effect_node: "",
+      type: "Floating"
+    },
+    {
+      name: "lod_group",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 0,
+      effect_node: ""
+    },
+    {
+      name: "lod0",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 130,
+      effect_node: ""
+    },
+    {
+      name: "var_tex_12_00",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 131,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_cup_a_mesh",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 132,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_cup_b_mesh",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 132,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_body_a_mesh",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 132,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_body_b_mesh",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 132,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_body_c_mesh",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 132,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_body_d_mesh",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 132,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_body_e_mesh",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 132,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_hair_a_mesh",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 132,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_hair_b_mesh",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 132,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_drop_a_mesh",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 132,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_drop_b_mesh",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 132,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_drop_c_mesh",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 132,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_drop_d_mesh",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 132,
+      effect_node: ""
+    },
+    {
+      name: "lod1",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 130,
+      effect_node: ""
+    },
+    {
+      name: "var_tex_12_00_lod1",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 146,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_cup_a_mesh_lod1",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 147,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_cup_b_mesh_lod1",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 147,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_body_a_mesh_lod1",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 147,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_body_b_mesh_lod1",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 147,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_body_c_mesh_lod1",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 147,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_body_d_mesh_lod1",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 147,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_body_e_mesh_lod1",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 147,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_hair_a_mesh_lod1",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 147,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_hair_b_mesh_lod1",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 147,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_drop_a_mesh_lod1",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 147,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_drop_b_mesh_lod1",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 147,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_drop_c_mesh_lod1",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 147,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_drop_d_mesh_lod1",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 147,
+      effect_node: ""
+    },
+    {
+      name: "lod2",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 130,
+      effect_node: ""
+    },
+    {
+      name: "var_tex_12_00_lod2",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 161,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_cup_a_mesh_lod2",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 162,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_cup_b_mesh_lod2",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 162,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_body_a_mesh_lod2",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 162,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_body_b_mesh_lod2",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 162,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_body_c_mesh_lod2",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 162,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_body_d_mesh_lod2",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 162,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_body_e_mesh_lod2",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 162,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_hair_a_mesh_lod2",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 162,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_hair_b_mesh_lod2",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 162,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_drop_a_mesh_lod2",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 162,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_drop_b_mesh_lod2",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 162,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_drop_c_mesh_lod2",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 162,
+      effect_node: ""
+    },
+    {
+      name: "pm1134_12_00_drop_d_mesh_lod2",
+      transform: {
+        VecScale: {
+          x: 1.0,
+          y: 1.0,
+          z: 1.0
+        },
+        VecRot: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        },
+        VecTranslate: {
+          x: 0.0,
+          y: 0.0,
+          z: 0.0
+        }
+      },
+      scalePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      rotatePivot: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+      },
+      parent_idx: 162,
+      effect_node: ""
+    }
+  ],
+  bones: [
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.0,
+          y: -1.0,
+          z: 0.0
+        },
+        y: {
+          x: 1.0,
+          y: -0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: -0.05265,
+          y: 0.0,
+          z: -0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.0,
+          y: -1.0,
+          z: 0.0
+        },
+        y: {
+          x: 1.0,
+          y: -0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: -0.054,
+          y: 0.0,
+          z: -0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.0,
+          y: 1.0,
+          z: 0.0
+        },
+        y: {
+          x: -1.0,
+          y: 0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: 0.05535,
+          y: -0.0,
+          z: -0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.0,
+          y: -1.0,
+          z: 0.0
+        },
+        y: {
+          x: 1.0,
+          y: -0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: -0.011218,
+          y: 0.0,
+          z: -0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.0,
+          y: -1.0,
+          z: 0.0
+        },
+        y: {
+          x: 1.0,
+          y: -0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: -0.083811,
+          y: 0.0,
+          z: -0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.0,
+          y: -1.0,
+          z: 0.0
+        },
+        y: {
+          x: 1.0,
+          y: -0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: -0.113081,
+          y: 0.0,
+          z: -0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.0,
+          y: -1.0,
+          z: 0.0
+        },
+        y: {
+          x: 1.0,
+          y: -0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: -0.134699,
+          y: 0.0,
+          z: -0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.0,
+          y: -1.0,
+          z: 0.0
+        },
+        y: {
+          x: 1.0,
+          y: -0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: -0.15413,
+          y: 0.0,
+          z: -0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.0,
+          y: -1.0,
+          z: 0.0
+        },
+        y: {
+          x: 1.0,
+          y: -0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: -0.177755,
+          y: 0.0,
+          z: -0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.0,
+          y: -1.0,
+          z: 0.0
+        },
+        y: {
+          x: 1.0,
+          y: -0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: -0.220955,
+          y: 0.0,
+          z: -0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.0,
+          y: -1.0,
+          z: 0.0
+        },
+        y: {
+          x: 1.0,
+          y: -0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: -0.222305,
+          y: 0.0,
+          z: -0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.298266,
+          y: -0.748703,
+          z: -0.592015
+        },
+        y: {
+          x: -0.898276,
+          y: -0.010485,
+          z: -0.439306
+        },
+        z: {
+          x: 0.322702,
+          y: 0.662823,
+          z: -0.675669
+        },
+        w: {
+          x: 0.1497,
+          y: -0.000004,
+          z: 0.09914
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.370801,
+          y: -0.28949,
+          z: 0.882441
+        },
+        y: {
+          x: -0.922554,
+          y: 0.00557,
+          z: -0.385829
+        },
+        z: {
+          x: 0.106779,
+          y: -0.957165,
+          z: -0.269135
+        },
+        w: {
+          x: 0.150037,
+          y: 0.000805,
+          z: 0.091763
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.394838,
+          y: -0.130986,
+          z: -0.909366
+        },
+        y: {
+          x: -0.917744,
+          y: -0.009906,
+          z: -0.397049
+        },
+        z: {
+          x: 0.042999,
+          y: 0.991335,
+          z: -0.124123
+        },
+        w: {
+          x: 0.150853,
+          y: 0.001683,
+          z: 0.092867
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.480075,
+          y: 0.301697,
+          z: 0.823716
+        },
+        y: {
+          x: -0.861365,
+          y: 0.015642,
+          z: -0.507746
+        },
+        z: {
+          x: -0.16607,
+          y: -0.953276,
+          z: 0.252361
+        },
+        w: {
+          x: 0.142621,
+          y: -0.002242,
+          z: 0.10989
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.377832,
+          y: 0.393175,
+          z: -0.838246
+        },
+        y: {
+          x: -0.914305,
+          y: 0.015768,
+          z: -0.404719
+        },
+        z: {
+          x: -0.145908,
+          y: 0.919328,
+          z: 0.36544
+        },
+        w: {
+          x: 0.149668,
+          y: -0.005418,
+          z: 0.093902
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.270703,
+          y: 0.619563,
+          z: 0.736792
+        },
+        y: {
+          x: -0.937106,
+          y: 0.005588,
+          z: -0.348999
+        },
+        z: {
+          x: -0.220344,
+          y: -0.784927,
+          z: 0.579083
+        },
+        w: {
+          x: 0.153161,
+          y: -0.001141,
+          z: 0.086307
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.149437,
+          y: 0.91735,
+          z: -0.368969
+        },
+        y: {
+          x: -0.925671,
+          y: -0.001375,
+          z: -0.378327
+        },
+        z: {
+          x: -0.347565,
+          y: 0.39808,
+          z: 0.848959
+        },
+        w: {
+          x: 0.15296,
+          y: 0.001673,
+          z: 0.089963
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.181009,
+          y: 0.918862,
+          z: 0.350612
+        },
+        y: {
+          x: -0.896506,
+          y: -0.007581,
+          z: -0.442967
+        },
+        z: {
+          x: -0.404368,
+          y: -0.394507,
+          z: 0.825137
+        },
+        w: {
+          x: 0.145071,
+          y: 0.001842,
+          z: 0.102008
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.0,
+          y: -1.0,
+          z: 0.0
+        },
+        y: {
+          x: 0.0,
+          y: -0.0,
+          z: -1.0
+        },
+        z: {
+          x: 1.0,
+          y: 0.0,
+          z: 0.0
+        },
+        w: {
+          x: -0.0,
+          y: 0.0,
+          z: 0.146177
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.0,
+          y: 1.0,
+          z: -0.0
+        },
+        y: {
+          x: -0.006267,
+          y: 0.0,
+          z: 0.99998
+        },
+        z: {
+          x: 0.99998,
+          y: -0.0,
+          z: 0.006267
+        },
+        w: {
+          x: -0.0051,
+          y: -0.0,
+          z: -0.148558
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.0,
+          y: 1.0,
+          z: -0.0
+        },
+        y: {
+          x: -0.062743,
+          y: 0.0,
+          z: 0.99803
+        },
+        z: {
+          x: 0.99803,
+          y: -0.0,
+          z: 0.062743
+        },
+        w: {
+          x: 0.003318,
+          y: -0.0,
+          z: -0.147223
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.160186,
+          y: 0.93395,
+          z: 0.319496
+        },
+        y: {
+          x: -0.099642,
+          y: -0.306723,
+          z: 0.946569
+        },
+        z: {
+          x: 0.982045,
+          y: -0.183462,
+          z: 0.043928
+        },
+        w: {
+          x: 0.012976,
+          y: 0.045301,
+          z: -0.143154
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.160186,
+          y: 0.93395,
+          z: 0.319496
+        },
+        y: {
+          x: -0.099642,
+          y: -0.306723,
+          z: 0.946569
+        },
+        z: {
+          x: 0.982045,
+          y: -0.183462,
+          z: 0.043928
+        },
+        w: {
+          x: -0.015374,
+          y: 0.045301,
+          z: -0.143154
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.160186,
+          y: 0.93395,
+          z: -0.319496
+        },
+        y: {
+          x: -0.099642,
+          y: 0.306723,
+          z: 0.946569
+        },
+        z: {
+          x: 0.982045,
+          y: 0.183462,
+          z: 0.043928
+        },
+        w: {
+          x: 0.012976,
+          y: -0.045301,
+          z: -0.143154
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.160186,
+          y: 0.93395,
+          z: -0.319496
+        },
+        y: {
+          x: -0.099642,
+          y: 0.306723,
+          z: 0.946569
+        },
+        z: {
+          x: 0.982045,
+          y: 0.183462,
+          z: 0.043928
+        },
+        w: {
+          x: -0.015374,
+          y: -0.045301,
+          z: -0.143154
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.186,
+          y: 0.914462,
+          z: 0.359392
+        },
+        y: {
+          x: -0.127101,
+          y: -0.340309,
+          z: 0.931684
+        },
+        z: {
+          x: 0.974294,
+          y: -0.218972,
+          z: 0.052932
+        },
+        w: {
+          x: 0.012847,
+          y: 0.050911,
+          z: -0.139946
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.186,
+          y: 0.914462,
+          z: 0.359392
+        },
+        y: {
+          x: -0.127101,
+          y: -0.340309,
+          z: 0.931684
+        },
+        z: {
+          x: 0.974294,
+          y: -0.218972,
+          z: 0.052932
+        },
+        w: {
+          x: -0.011453,
+          y: 0.050911,
+          z: -0.139946
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.186,
+          y: 0.914462,
+          z: -0.359392
+        },
+        y: {
+          x: -0.127101,
+          y: 0.340309,
+          z: 0.931684
+        },
+        z: {
+          x: 0.974294,
+          y: 0.218972,
+          z: 0.052932
+        },
+        w: {
+          x: 0.012847,
+          y: -0.050911,
+          z: -0.139946
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.186,
+          y: 0.914462,
+          z: -0.359392
+        },
+        y: {
+          x: -0.127101,
+          y: 0.340309,
+          z: 0.931684
+        },
+        z: {
+          x: 0.974294,
+          y: 0.218972,
+          z: 0.052932
+        },
+        w: {
+          x: -0.011453,
+          y: -0.050911,
+          z: -0.139946
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.685704,
+          y: -0.707107,
+          z: 0.172655
+        },
+        y: {
+          x: 0.244171,
+          y: -0.0,
+          z: -0.969732
+        },
+        z: {
+          x: 0.685704,
+          y: 0.707107,
+          z: 0.172655
+        },
+        w: {
+          x: -0.029959,
+          y: 0.001031,
+          z: 0.114761
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.707107,
+          y: -0.707107,
+          z: 0.0
+        },
+        y: {
+          x: 0.0,
+          y: -0.0,
+          z: -1.0
+        },
+        z: {
+          x: 0.707107,
+          y: 0.707107,
+          z: -0.0
+        },
+        w: {
+          x: -0.034166,
+          y: 0.001031,
+          z: 0.126945
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.707107,
+          y: -0.707107,
+          z: 0.0
+        },
+        y: {
+          x: 0.0,
+          y: -0.0,
+          z: -1.0
+        },
+        z: {
+          x: 0.707107,
+          y: 0.707107,
+          z: -0.0
+        },
+        w: {
+          x: -0.043076,
+          y: 0.001031,
+          z: 0.126945
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.707107,
+          y: -0.707107,
+          z: 0.0
+        },
+        y: {
+          x: 0.0,
+          y: -0.0,
+          z: -1.0
+        },
+        z: {
+          x: 0.707107,
+          y: 0.707107,
+          z: -0.0
+        },
+        w: {
+          x: -0.051986,
+          y: 0.001031,
+          z: 0.126945
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.707107,
+          y: -0.707107,
+          z: 0.0
+        },
+        y: {
+          x: 0.0,
+          y: -0.0,
+          z: -1.0
+        },
+        z: {
+          x: 0.707107,
+          y: 0.707107,
+          z: -0.0
+        },
+        w: {
+          x: -0.060896,
+          y: 0.001031,
+          z: 0.126945
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.707107,
+          y: -0.707107,
+          z: 0.0
+        },
+        y: {
+          x: 0.0,
+          y: -0.0,
+          z: -1.0
+        },
+        z: {
+          x: 0.707107,
+          y: 0.707107,
+          z: -0.0
+        },
+        w: {
+          x: -0.069806,
+          y: 0.001031,
+          z: 0.126945
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.087156,
+          y: -0.996195,
+          z: 0.0
+        },
+        y: {
+          x: -0.0,
+          y: -0.0,
+          z: -1.0
+        },
+        z: {
+          x: 0.996195,
+          y: -0.087156,
+          z: -0.0
+        },
+        w: {
+          x: -0.049539,
+          y: 0.054401,
+          z: 0.126945
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.087156,
+          y: -0.996195,
+          z: 0.0
+        },
+        y: {
+          x: -0.0,
+          y: -0.0,
+          z: -1.0
+        },
+        z: {
+          x: 0.996195,
+          y: -0.087156,
+          z: -0.0
+        },
+        w: {
+          x: -0.053151,
+          y: 0.054401,
+          z: 0.126945
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.707107,
+          y: -0.707107,
+          z: 0.0
+        },
+        y: {
+          x: 0.0,
+          y: -0.0,
+          z: -1.0
+        },
+        z: {
+          x: 0.707107,
+          y: 0.707107,
+          z: -0.0
+        },
+        w: {
+          x: -0.074764,
+          y: 0.001031,
+          z: 0.126945
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.707107,
+          y: -0.707107,
+          z: 0.0
+        },
+        y: {
+          x: 0.0,
+          y: -0.0,
+          z: -1.0
+        },
+        z: {
+          x: 0.707107,
+          y: 0.707107,
+          z: -0.0
+        },
+        w: {
+          x: -0.078473,
+          y: 0.001031,
+          z: 0.126945
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.996195,
+          y: 0.087156,
+          z: 0.0
+        },
+        y: {
+          x: 0.0,
+          y: -0.0,
+          z: -1.0
+        },
+        z: {
+          x: -0.087156,
+          y: 0.996195,
+          z: -0.0
+        },
+        w: {
+          x: -0.051119,
+          y: -0.053076,
+          z: 0.126946
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.996195,
+          y: 0.087156,
+          z: 0.0
+        },
+        y: {
+          x: 0.0,
+          y: -0.0,
+          z: -1.0
+        },
+        z: {
+          x: -0.087156,
+          y: 0.996195,
+          z: -0.0
+        },
+        w: {
+          x: -0.05473,
+          y: -0.053076,
+          z: 0.126946
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.685704,
+          y: -0.707107,
+          z: -0.172655
+        },
+        y: {
+          x: 0.244171,
+          y: -0.0,
+          z: -0.969732
+        },
+        z: {
+          x: 0.685704,
+          y: -0.707107,
+          z: 0.172655
+        },
+        w: {
+          x: -0.029959,
+          y: -0.001031,
+          z: 0.11476
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.707107,
+          y: -0.707107,
+          z: 0.0
+        },
+        y: {
+          x: -0.0,
+          y: -0.0,
+          z: -1.0
+        },
+        z: {
+          x: 0.707107,
+          y: -0.707107,
+          z: -0.0
+        },
+        w: {
+          x: -0.034166,
+          y: -0.001031,
+          z: 0.126945
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.707107,
+          y: -0.707107,
+          z: 0.0
+        },
+        y: {
+          x: -0.0,
+          y: -0.0,
+          z: -1.0
+        },
+        z: {
+          x: 0.707107,
+          y: -0.707107,
+          z: -0.0
+        },
+        w: {
+          x: -0.043076,
+          y: -0.001031,
+          z: 0.126945
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.707107,
+          y: -0.707107,
+          z: 0.0
+        },
+        y: {
+          x: -0.0,
+          y: -0.0,
+          z: -1.0
+        },
+        z: {
+          x: 0.707107,
+          y: -0.707107,
+          z: -0.0
+        },
+        w: {
+          x: -0.051986,
+          y: -0.001031,
+          z: 0.126945
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.707107,
+          y: -0.707107,
+          z: 0.0
+        },
+        y: {
+          x: -0.0,
+          y: -0.0,
+          z: -1.0
+        },
+        z: {
+          x: 0.707107,
+          y: -0.707107,
+          z: -0.0
+        },
+        w: {
+          x: -0.060896,
+          y: -0.001031,
+          z: 0.126945
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.707107,
+          y: -0.707107,
+          z: 0.0
+        },
+        y: {
+          x: -0.0,
+          y: -0.0,
+          z: -1.0
+        },
+        z: {
+          x: 0.707107,
+          y: -0.707107,
+          z: -0.0
+        },
+        w: {
+          x: -0.069806,
+          y: -0.001031,
+          z: 0.126945
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.087156,
+          y: -0.996195,
+          z: 0.0
+        },
+        y: {
+          x: -0.0,
+          y: -0.0,
+          z: -1.0
+        },
+        z: {
+          x: 0.996195,
+          y: 0.087156,
+          z: -0.0
+        },
+        w: {
+          x: -0.049539,
+          y: -0.054401,
+          z: 0.126945
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.087156,
+          y: -0.996195,
+          z: 0.0
+        },
+        y: {
+          x: -0.0,
+          y: -0.0,
+          z: -1.0
+        },
+        z: {
+          x: 0.996195,
+          y: 0.087156,
+          z: -0.0
+        },
+        w: {
+          x: -0.053151,
+          y: -0.054401,
+          z: 0.126945
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.707107,
+          y: -0.707107,
+          z: 0.0
+        },
+        y: {
+          x: -0.0,
+          y: -0.0,
+          z: -1.0
+        },
+        z: {
+          x: 0.707107,
+          y: -0.707107,
+          z: -0.0
+        },
+        w: {
+          x: -0.074764,
+          y: -0.001031,
+          z: 0.126945
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.707107,
+          y: -0.707107,
+          z: 0.0
+        },
+        y: {
+          x: -0.0,
+          y: -0.0,
+          z: -1.0
+        },
+        z: {
+          x: 0.707107,
+          y: -0.707107,
+          z: -0.0
+        },
+        w: {
+          x: -0.078473,
+          y: -0.001031,
+          z: 0.126945
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.996195,
+          y: 0.087156,
+          z: 0.0
+        },
+        y: {
+          x: -0.0,
+          y: 0.0,
+          z: -1.0
+        },
+        z: {
+          x: -0.087156,
+          y: -0.996195,
+          z: -0.0
+        },
+        w: {
+          x: -0.051119,
+          y: 0.053076,
+          z: 0.126945
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.996195,
+          y: 0.087156,
+          z: 0.0
+        },
+        y: {
+          x: -0.0,
+          y: 0.0,
+          z: -1.0
+        },
+        z: {
+          x: -0.087156,
+          y: -0.996195,
+          z: -0.0
+        },
+        w: {
+          x: -0.05473,
+          y: 0.053076,
+          z: 0.126945
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.0,
+          y: -1.0,
+          z: 0.0
+        },
+        y: {
+          x: 1.0,
+          y: -0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: -0.089795,
+          y: 0.0,
+          z: -0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.0,
+          y: -1.0,
+          z: 0.0
+        },
+        y: {
+          x: 1.0,
+          y: -0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: -0.095182,
+          y: 0.0,
+          z: 0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.0,
+          y: -1.0,
+          z: -0.0
+        },
+        y: {
+          x: 1.0,
+          y: -0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: -0.095182,
+          y: 0.0,
+          z: -0.061128
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.0,
+          y: 1.0,
+          z: -0.0
+        },
+        y: {
+          x: 1.0,
+          y: 0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: -0.0,
+          z: -1.0
+        },
+        w: {
+          x: -0.095182,
+          y: -0.0,
+          z: -0.061128
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.0,
+          y: -0.707107,
+          z: 0.707107
+        },
+        y: {
+          x: 1.0,
+          y: -0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.707107,
+          z: 0.707107
+        },
+        w: {
+          x: -0.095182,
+          y: 0.0,
+          z: -0.061094
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.0,
+          y: -0.707107,
+          z: -0.707107
+        },
+        y: {
+          x: 1.0,
+          y: -0.0,
+          z: -0.0
+        },
+        z: {
+          x: 0.0,
+          y: -0.707107,
+          z: 0.707107
+        },
+        w: {
+          x: -0.095182,
+          y: 0.0,
+          z: -0.061094
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        y: {
+          x: 1.0,
+          y: 0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 1.0,
+          z: -0.0
+        },
+        w: {
+          x: -0.095182,
+          y: -0.0,
+          z: -0.061128
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.0,
+          y: 0.0,
+          z: -1.0
+        },
+        y: {
+          x: 1.0,
+          y: 0.0,
+          z: -0.0
+        },
+        z: {
+          x: 0.0,
+          y: -1.0,
+          z: -0.0
+        },
+        w: {
+          x: -0.095182,
+          y: 0.0,
+          z: -0.061128
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.0,
+          y: 0.707107,
+          z: 0.707107
+        },
+        y: {
+          x: 1.0,
+          y: 0.0,
+          z: 0.0
+        },
+        z: {
+          x: -0.0,
+          y: 0.707107,
+          z: -0.707107
+        },
+        w: {
+          x: -0.095182,
+          y: -0.0,
+          z: -0.061094
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.0,
+          y: 0.707107,
+          z: -0.707107
+        },
+        y: {
+          x: 1.0,
+          y: 0.0,
+          z: -0.0
+        },
+        z: {
+          x: 0.0,
+          y: -0.707107,
+          z: -0.707107
+        },
+        w: {
+          x: -0.095182,
+          y: -0.0,
+          z: -0.061094
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.0,
+          y: -1.0,
+          z: 0.0
+        },
+        y: {
+          x: -1.0,
+          y: -0.0,
+          z: -0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: -1.0
+        },
+        w: {
+          x: 0.010495,
+          y: -0.0,
+          z: -0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.0,
+          y: -1.0,
+          z: 0.0
+        },
+        y: {
+          x: -1.0,
+          y: -0.0,
+          z: -0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: -1.0
+        },
+        w: {
+          x: 0.009145,
+          y: -0.0,
+          z: 0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.0,
+          y: -1.0,
+          z: 0.0
+        },
+        y: {
+          x: -1.0,
+          y: -0.0,
+          z: -0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: -1.0
+        },
+        w: {
+          x: -0.004511,
+          y: -0.0,
+          z: 0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.0,
+          y: -1.0,
+          z: 0.0
+        },
+        y: {
+          x: -1.0,
+          y: -0.0,
+          z: -0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: -1.0
+        },
+        w: {
+          x: -0.017481,
+          y: -0.0,
+          z: 0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.0,
+          y: -1.0,
+          z: 0.0
+        },
+        y: {
+          x: -1.0,
+          y: -0.0,
+          z: -0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: -1.0
+        },
+        w: {
+          x: -0.030229,
+          y: -0.0,
+          z: 0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.0,
+          y: -1.0,
+          z: 0.0
+        },
+        y: {
+          x: -1.0,
+          y: -0.0,
+          z: -0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: -1.0
+        },
+        w: {
+          x: -0.041567,
+          y: -0.0,
+          z: 0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.0,
+          y: 1.0,
+          z: 0.0
+        },
+        y: {
+          x: -0.954454,
+          y: 0.0,
+          z: -0.298359
+        },
+        z: {
+          x: -0.298359,
+          y: -0.0,
+          z: 0.954454
+        },
+        w: {
+          x: -0.03546,
+          y: 0.0,
+          z: -0.008263
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.0,
+          y: 1.0,
+          z: 0.0
+        },
+        y: {
+          x: -0.878006,
+          y: 0.0,
+          z: -0.47865
+        },
+        z: {
+          x: -0.47865,
+          y: -0.0,
+          z: 0.878006
+        },
+        w: {
+          x: -0.034896,
+          y: 0.0,
+          z: -0.016137
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.13335,
+          y: 0.927505,
+          z: 0.349216
+        },
+        y: {
+          x: -0.919006,
+          y: 0.24763,
+          z: -0.306769
+        },
+        z: {
+          x: -0.371006,
+          y: -0.280024,
+          z: 0.885405
+        },
+        w: {
+          x: -0.030508,
+          y: 0.0068,
+          z: -0.010276
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.13335,
+          y: 0.927505,
+          z: 0.349216
+        },
+        y: {
+          x: -0.919006,
+          y: 0.24763,
+          z: -0.306769
+        },
+        z: {
+          x: -0.371006,
+          y: -0.280024,
+          z: 0.885405
+        },
+        w: {
+          x: -0.052108,
+          y: 0.0068,
+          z: -0.010276
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.13335,
+          y: 0.927505,
+          z: -0.349216
+        },
+        y: {
+          x: -0.919006,
+          y: -0.24763,
+          z: -0.306769
+        },
+        z: {
+          x: -0.371006,
+          y: 0.280024,
+          z: 0.885405
+        },
+        w: {
+          x: -0.030508,
+          y: -0.0068,
+          z: -0.010276
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.13335,
+          y: 0.927505,
+          z: -0.349216
+        },
+        y: {
+          x: -0.919006,
+          y: -0.24763,
+          z: -0.306769
+        },
+        z: {
+          x: -0.371006,
+          y: 0.280024,
+          z: 0.885405
+        },
+        w: {
+          x: -0.052108,
+          y: -0.0068,
+          z: -0.010276
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.175894,
+          y: 0.902403,
+          z: 0.393357
+        },
+        y: {
+          x: -0.885713,
+          y: 0.319464,
+          z: -0.33683
+        },
+        z: {
+          x: -0.42962,
+          y: -0.289155,
+          z: 0.855462
+        },
+        w: {
+          x: -0.034549,
+          y: 0.010095,
+          z: -0.011142
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.175894,
+          y: 0.902403,
+          z: 0.393357
+        },
+        y: {
+          x: -0.885713,
+          y: 0.319464,
+          z: -0.33683
+        },
+        z: {
+          x: -0.42962,
+          y: -0.289155,
+          z: 0.855462
+        },
+        w: {
+          x: -0.050749,
+          y: 0.010095,
+          z: -0.011142
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.175894,
+          y: 0.902403,
+          z: -0.393357
+        },
+        y: {
+          x: -0.885713,
+          y: -0.319464,
+          z: -0.33683
+        },
+        z: {
+          x: -0.42962,
+          y: 0.289155,
+          z: 0.855462
+        },
+        w: {
+          x: -0.034549,
+          y: -0.010095,
+          z: -0.011142
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.175894,
+          y: 0.902403,
+          z: -0.393357
+        },
+        y: {
+          x: -0.885713,
+          y: -0.319464,
+          z: -0.33683
+        },
+        z: {
+          x: -0.42962,
+          y: 0.289155,
+          z: 0.855462
+        },
+        w: {
+          x: -0.050749,
+          y: -0.010095,
+          z: -0.011142
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.699885,
+          y: -0.707107,
+          z: 0.100803
+        },
+        y: {
+          x: -0.142557,
+          y: 0.0,
+          z: 0.989787
+        },
+        z: {
+          x: -0.699885,
+          y: -0.707107,
+          z: -0.100803
+        },
+        w: {
+          x: -0.004379,
+          y: 0.000579,
+          z: 0.020807
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.707107,
+          y: -0.707107,
+          z: -0.0
+        },
+        y: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        z: {
+          x: -0.707107,
+          y: -0.707107,
+          z: 0.0
+        },
+        w: {
+          x: -0.021473,
+          y: 0.000579,
+          z: 0.024114
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.707107,
+          y: -0.707107,
+          z: -0.0
+        },
+        y: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        z: {
+          x: -0.707107,
+          y: -0.707107,
+          z: 0.0
+        },
+        w: {
+          x: -0.029033,
+          y: 0.000579,
+          z: 0.024114
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.707107,
+          y: -0.707107,
+          z: -0.0
+        },
+        y: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        z: {
+          x: -0.707107,
+          y: -0.707107,
+          z: 0.0
+        },
+        w: {
+          x: -0.036593,
+          y: 0.000579,
+          z: 0.024114
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.707107,
+          y: -0.707107,
+          z: -0.0
+        },
+        y: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        z: {
+          x: -0.707107,
+          y: -0.707107,
+          z: 0.0
+        },
+        w: {
+          x: -0.044153,
+          y: 0.000579,
+          z: 0.024114
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.707107,
+          y: -0.707107,
+          z: -0.0
+        },
+        y: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        z: {
+          x: -0.707107,
+          y: -0.707107,
+          z: 0.0
+        },
+        w: {
+          x: -0.051713,
+          y: 0.000579,
+          z: 0.024114
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.087156,
+          y: -0.996195,
+          z: -0.0
+        },
+        y: {
+          x: 0.0,
+          y: -0.0,
+          z: 1.0
+        },
+        z: {
+          x: -0.996195,
+          y: 0.087156,
+          z: 0.0
+        },
+        w: {
+          x: -0.037121,
+          y: 0.040193,
+          z: 0.024114
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.087156,
+          y: -0.996195,
+          z: -0.0
+        },
+        y: {
+          x: 0.0,
+          y: -0.0,
+          z: 1.0
+        },
+        z: {
+          x: -0.996195,
+          y: 0.087156,
+          z: 0.0
+        },
+        w: {
+          x: -0.040487,
+          y: 0.040193,
+          z: 0.024114
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.707107,
+          y: -0.707107,
+          z: -0.0
+        },
+        y: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        z: {
+          x: -0.707107,
+          y: -0.707107,
+          z: 0.0
+        },
+        w: {
+          x: -0.056097,
+          y: 0.000579,
+          z: 0.024114
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.707107,
+          y: -0.707107,
+          z: -0.0
+        },
+        y: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        z: {
+          x: -0.707107,
+          y: -0.707107,
+          z: 0.0
+        },
+        w: {
+          x: -0.059463,
+          y: 0.000579,
+          z: 0.024114
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.996195,
+          y: 0.087156,
+          z: -0.0
+        },
+        y: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        z: {
+          x: 0.087156,
+          y: -0.996195,
+          z: 0.0
+        },
+        w: {
+          x: -0.038008,
+          y: -0.039449,
+          z: 0.024114
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.996195,
+          y: 0.087156,
+          z: -0.0
+        },
+        y: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        z: {
+          x: 0.087156,
+          y: -0.996195,
+          z: 0.0
+        },
+        w: {
+          x: -0.041374,
+          y: -0.039449,
+          z: 0.024114
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.699885,
+          y: -0.707107,
+          z: -0.100803
+        },
+        y: {
+          x: -0.142557,
+          y: -0.0,
+          z: 0.989787
+        },
+        z: {
+          x: -0.699885,
+          y: 0.707107,
+          z: -0.100803
+        },
+        w: {
+          x: -0.004379,
+          y: -0.000579,
+          z: 0.020807
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.707107,
+          y: -0.707107,
+          z: -0.0
+        },
+        y: {
+          x: -0.0,
+          y: -0.0,
+          z: 1.0
+        },
+        z: {
+          x: -0.707107,
+          y: 0.707107,
+          z: 0.0
+        },
+        w: {
+          x: -0.021473,
+          y: -0.000579,
+          z: 0.024114
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.707107,
+          y: -0.707107,
+          z: -0.0
+        },
+        y: {
+          x: -0.0,
+          y: -0.0,
+          z: 1.0
+        },
+        z: {
+          x: -0.707107,
+          y: 0.707107,
+          z: 0.0
+        },
+        w: {
+          x: -0.029033,
+          y: -0.000579,
+          z: 0.024114
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.707107,
+          y: -0.707107,
+          z: -0.0
+        },
+        y: {
+          x: -0.0,
+          y: -0.0,
+          z: 1.0
+        },
+        z: {
+          x: -0.707107,
+          y: 0.707107,
+          z: 0.0
+        },
+        w: {
+          x: -0.036593,
+          y: -0.000579,
+          z: 0.024114
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.707107,
+          y: -0.707107,
+          z: -0.0
+        },
+        y: {
+          x: -0.0,
+          y: -0.0,
+          z: 1.0
+        },
+        z: {
+          x: -0.707107,
+          y: 0.707107,
+          z: 0.0
+        },
+        w: {
+          x: -0.044153,
+          y: -0.000579,
+          z: 0.024114
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.707107,
+          y: -0.707107,
+          z: -0.0
+        },
+        y: {
+          x: -0.0,
+          y: -0.0,
+          z: 1.0
+        },
+        z: {
+          x: -0.707107,
+          y: 0.707107,
+          z: 0.0
+        },
+        w: {
+          x: -0.051713,
+          y: -0.000579,
+          z: 0.024114
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.087156,
+          y: -0.996195,
+          z: -0.0
+        },
+        y: {
+          x: 0.0,
+          y: -0.0,
+          z: 1.0
+        },
+        z: {
+          x: -0.996195,
+          y: -0.087156,
+          z: 0.0
+        },
+        w: {
+          x: -0.037121,
+          y: -0.040193,
+          z: 0.024114
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.087156,
+          y: -0.996195,
+          z: -0.0
+        },
+        y: {
+          x: 0.0,
+          y: -0.0,
+          z: 1.0
+        },
+        z: {
+          x: -0.996195,
+          y: -0.087156,
+          z: -0.0
+        },
+        w: {
+          x: -0.040487,
+          y: -0.040193,
+          z: 0.024114
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.707107,
+          y: -0.707107,
+          z: -0.0
+        },
+        y: {
+          x: -0.0,
+          y: -0.0,
+          z: 1.0
+        },
+        z: {
+          x: -0.707107,
+          y: 0.707107,
+          z: 0.0
+        },
+        w: {
+          x: -0.056097,
+          y: -0.000579,
+          z: 0.024114
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.707107,
+          y: -0.707107,
+          z: -0.0
+        },
+        y: {
+          x: -0.0,
+          y: -0.0,
+          z: 1.0
+        },
+        z: {
+          x: -0.707107,
+          y: 0.707107,
+          z: 0.0
+        },
+        w: {
+          x: -0.059463,
+          y: -0.000579,
+          z: 0.024114
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.996195,
+          y: 0.087156,
+          z: -0.0
+        },
+        y: {
+          x: -0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        z: {
+          x: 0.087156,
+          y: 0.996195,
+          z: 0.0
+        },
+        w: {
+          x: -0.038008,
+          y: 0.039449,
+          z: 0.024114
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.996195,
+          y: 0.087156,
+          z: -0.0
+        },
+        y: {
+          x: -0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        z: {
+          x: 0.087156,
+          y: 0.996195,
+          z: 0.0
+        },
+        w: {
+          x: -0.041374,
+          y: 0.039449,
+          z: 0.024114
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.0,
+          y: 1.0,
+          z: 0.0
+        },
+        y: {
+          x: -1.0,
+          y: 0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: 0.081165,
+          y: -0.006465,
+          z: 0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.0,
+          y: 1.0,
+          z: 0.0
+        },
+        y: {
+          x: -1.0,
+          y: 0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: 0.006935,
+          y: -0.014175,
+          z: 0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.0,
+          y: 1.0,
+          z: 0.0
+        },
+        y: {
+          x: -1.0,
+          y: 0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: -0.005377,
+          y: -0.014175,
+          z: 0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.0,
+          y: 1.0,
+          z: 0.0
+        },
+        y: {
+          x: -1.0,
+          y: 0.0,
+          z: -0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: -0.017689,
+          y: -0.014175,
+          z: 0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.0,
+          y: 1.0,
+          z: 0.0
+        },
+        y: {
+          x: -1.0,
+          y: 0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: 0.081165,
+          y: 0.006465,
+          z: 0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.0,
+          y: 1.0,
+          z: 0.0
+        },
+        y: {
+          x: -1.0,
+          y: 0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: 0.006935,
+          y: 0.014175,
+          z: 0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.0,
+          y: 1.0,
+          z: 0.0
+        },
+        y: {
+          x: -1.0,
+          y: 0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: -0.005377,
+          y: 0.014175,
+          z: 0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.0,
+          y: 1.0,
+          z: 0.0
+        },
+        y: {
+          x: -1.0,
+          y: 0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: -0.017689,
+          y: 0.014175,
+          z: 0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.0,
+          y: 1.0,
+          z: 0.0
+        },
+        y: {
+          x: -1.0,
+          y: 0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: 0.008402,
+          y: 0.0,
+          z: -0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.0,
+          y: -1.0,
+          z: 0.0
+        },
+        y: {
+          x: 1.0,
+          y: -0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: -0.27,
+          y: 0.0,
+          z: -0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.0,
+          y: -1.0,
+          z: 0.0
+        },
+        y: {
+          x: 1.0,
+          y: -0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: -0.297,
+          y: -0.0,
+          z: -0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.0,
+          y: -1.0,
+          z: 0.0
+        },
+        y: {
+          x: 1.0,
+          y: -0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: -0.324,
+          y: -0.0,
+          z: -0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.0,
+          y: -1.0,
+          z: 0.0
+        },
+        y: {
+          x: 1.0,
+          y: -0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: -0.351,
+          y: -0.0,
+          z: -0.0
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.0,
+          y: -1.0,
+          z: 0.0
+        },
+        y: {
+          x: 1.0,
+          y: -0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: -0.177755,
+          y: 0.0,
+          z: 0.135
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.0,
+          y: -1.0,
+          z: 0.0
+        },
+        y: {
+          x: 1.0,
+          y: -0.0,
+          z: -0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: -0.220955,
+          y: 0.0,
+          z: 0.135
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.0,
+          y: -1.0,
+          z: 0.0
+        },
+        y: {
+          x: 1.0,
+          y: -0.0,
+          z: 0.0
+        },
+        z: {
+          x: 0.0,
+          y: 0.0,
+          z: 1.0
+        },
+        w: {
+          x: -0.222305,
+          y: 0.0,
+          z: 0.135
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.298266,
+          y: -0.748703,
+          z: -0.592015
+        },
+        y: {
+          x: -0.898276,
+          y: -0.010485,
+          z: -0.439306
+        },
+        z: {
+          x: 0.322702,
+          y: 0.662823,
+          z: -0.675669
+        },
+        w: {
+          x: 0.193265,
+          y: 0.089477,
+          z: 0.007925
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.370801,
+          y: -0.28949,
+          z: 0.882441
+        },
+        y: {
+          x: -0.922554,
+          y: 0.00557,
+          z: -0.385829
+        },
+        z: {
+          x: 0.106779,
+          y: -0.957165,
+          z: -0.269135
+        },
+        w: {
+          x: 0.164452,
+          y: -0.128412,
+          z: 0.055429
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.394838,
+          y: -0.130986,
+          z: -0.909366
+        },
+        y: {
+          x: -0.917744,
+          y: -0.009906,
+          z: -0.397049
+        },
+        z: {
+          x: 0.042999,
+          y: 0.991335,
+          z: -0.124123
+        },
+        w: {
+          x: 0.156658,
+          y: 0.135513,
+          z: 0.076111
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.480075,
+          y: 0.301697,
+          z: 0.823716
+        },
+        y: {
+          x: -0.861365,
+          y: 0.015642,
+          z: -0.507746
+        },
+        z: {
+          x: -0.16607,
+          y: -0.953276,
+          z: 0.252361
+        },
+        w: {
+          x: 0.120202,
+          y: -0.130934,
+          z: 0.143959
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.377832,
+          y: 0.393175,
+          z: -0.838246
+        },
+        y: {
+          x: -0.914305,
+          y: 0.015768,
+          z: -0.404719
+        },
+        z: {
+          x: -0.145908,
+          y: 0.919328,
+          z: 0.36544
+        },
+        w: {
+          x: 0.12997,
+          y: 0.118691,
+          z: 0.143236
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.270703,
+          y: 0.619563,
+          z: 0.736792
+        },
+        y: {
+          x: -0.937106,
+          y: 0.005588,
+          z: -0.348999
+        },
+        z: {
+          x: -0.220344,
+          y: -0.784927,
+          z: 0.579083
+        },
+        w: {
+          x: 0.123415,
+          y: -0.107107,
+          z: 0.164483
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: 0.149437,
+          y: 0.91735,
+          z: -0.368969
+        },
+        y: {
+          x: -0.925671,
+          y: -0.001375,
+          z: -0.378327
+        },
+        z: {
+          x: -0.347565,
+          y: 0.39808,
+          z: 0.848959
+        },
+        w: {
+          x: 0.106039,
+          y: 0.055414,
+          z: 0.204572
+        }
+      }
+    },
+    {
+      inherit_position: 1,
+      unk_bool_2: 1,
+      matrix: {
+        x: {
+          x: -0.181009,
+          y: 0.918862,
+          z: 0.350612
+        },
+        y: {
+          x: -0.896506,
+          y: -0.007581,
+          z: -0.442967
+        },
+        z: {
+          x: -0.404368,
+          y: -0.394507,
+          z: 0.825137
+        },
+        w: {
+          x: 0.090482,
+          y: -0.051417,
+          z: 0.213401
+        }
+      }
+    }
+  ],
+  iks: [
+
+  ]
+}

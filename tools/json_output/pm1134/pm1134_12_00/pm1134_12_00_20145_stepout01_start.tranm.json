@@ -1,0 +1,3293 @@
+{
+  info: {
+    animation_count: 7,
+    animation_rate: 60
+  },
+  track: {
+    tracks: [
+      {
+        bone_name: "pm1134_11_00",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 3,
+            y: 2,
+            z: 32769
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.0,
+            y: 0.0,
+            z: 0.0
+          }
+        }
+      },
+      {
+        bone_name: "origin",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 3,
+            y: 2,
+            z: 32769
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.0,
+            y: 0.0,
+            z: 0.0
+          }
+        }
+      },
+      {
+        bone_name: "waist",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 7403,
+              y: 56638,
+              z: 62022
+            },
+            {
+              x: 12531,
+              y: 53546,
+              z: 61784
+            },
+            {
+              x: 13987,
+              y: 51946,
+              z: 61608
+            },
+            {
+              x: 9163,
+              y: 53430,
+              z: 61668
+            },
+            {
+              x: 64843,
+              y: 57445,
+              z: 62010
+            },
+            {
+              x: 53986,
+              y: 62021,
+              z: 62000
+            },
+            {
+              x: 46354,
+              y: 65353,
+              z: 61762
+            }
+          ]
+        },
+        translate_type: "DynamicVectorTrack",
+        translate: {
+          co: [
+            {
+              x: 0.000111,
+              y: 0.064611,
+              z: 0.000116
+            },
+            {
+              x: -0.000989,
+              y: 0.054123,
+              z: 0.002728
+            },
+            {
+              x: -0.001995,
+              y: 0.046332,
+              z: 0.003779
+            },
+            {
+              x: -0.002889,
+              y: 0.043508,
+              z: 0.003156
+            },
+            {
+              x: -0.003656,
+              y: 0.045137,
+              z: 0.000838
+            },
+            {
+              x: -0.004278,
+              y: 0.05858,
+              z: -0.00442
+            },
+            {
+              x: -0.004739,
+              y: 0.079126,
+              z: -0.012086
+            }
+          ]
+        }
+      },
+      {
+        bone_name: "spine_a_01",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 10538,
+              y: 57618,
+              z: 34018
+            },
+            {
+              x: 10850,
+              y: 57890,
+              z: 33752
+            },
+            {
+              x: 11314,
+              y: 58970,
+              z: 33120
+            },
+            {
+              x: 11690,
+              y: 60630,
+              z: 32432
+            },
+            {
+              x: 11810,
+              y: 62650,
+              z: 31996
+            },
+            {
+              x: 10162,
+              y: 64818,
+              z: 31834
+            },
+            {
+              x: 6026,
+              y: 1422,
+              z: 31715
+            }
+          ]
+        },
+        translate_type: "DynamicVectorTrack",
+        translate: {
+          co: [
+            {
+              x: 0.00242,
+              y: 0.002542,
+              z: 0.005317
+            },
+            {
+              x: 0.002422,
+              y: 0.002086,
+              z: 0.005319
+            },
+            {
+              x: 0.002427,
+              y: 0.001022,
+              z: 0.005262
+            },
+            {
+              x: 0.002433,
+              y: -0.000172,
+              z: 0.00513
+            },
+            {
+              x: 0.002435,
+              y: -0.001019,
+              z: 0.004909
+            },
+            {
+              x: 0.002404,
+              y: -0.001492,
+              z: 0.004127
+            },
+            {
+              x: 0.002318,
+              y: -0.001884,
+              z: 0.002559
+            }
+          ]
+        }
+      },
+      {
+        bone_name: "spine_a_02",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 378,
+              y: 18,
+              z: 29175
+            },
+            {
+              x: 610,
+              y: 64510,
+              z: 29160
+            },
+            {
+              x: 1434,
+              y: 61758,
+              z: 29154
+            },
+            {
+              x: 2674,
+              y: 58158,
+              z: 29144
+            },
+            {
+              x: 4194,
+              y: 54566,
+              z: 29122
+            },
+            {
+              x: 5826,
+              y: 51834,
+              z: 29078
+            },
+            {
+              x: 7450,
+              y: 50790,
+              z: 29010
+            }
+          ]
+        },
+        translate_type: "DynamicVectorTrack",
+        translate: {
+          co: [
+            {
+              x: 0.054219,
+              y: 0.011518,
+              z: 0.008337
+            },
+            {
+              x: 0.058737,
+              y: 0.011463,
+              z: 0.007173
+            },
+            {
+              x: 0.061721,
+              y: 0.011355,
+              z: 0.006038
+            },
+            {
+              x: 0.062652,
+              y: 0.011381,
+              z: 0.006397
+            },
+            {
+              x: 0.062112,
+              y: 0.011437,
+              z: 0.007188
+            },
+            {
+              x: 0.060298,
+              y: 0.011493,
+              z: 0.007978
+            },
+            {
+              x: 0.05741,
+              y: 0.011518,
+              z: 0.008337
+            }
+          ]
+        }
+      },
+      {
+        bone_name: "spine_a_03",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 56979,
+              y: 43149,
+              z: 30666
+            },
+            {
+              x: 60379,
+              y: 42973,
+              z: 30022
+            },
+            {
+              x: 2331,
+              y: 42822,
+              z: 28716
+            },
+            {
+              x: 9843,
+              y: 43350,
+              z: 27648
+            },
+            {
+              x: 16419,
+              y: 45294,
+              z: 27100
+            },
+            {
+              x: 22803,
+              y: 48266,
+              z: 26894
+            },
+            {
+              x: 27339,
+              y: 51322,
+              z: 27016
+            }
+          ]
+        },
+        translate_type: "DynamicVectorTrack",
+        translate: {
+          co: [
+            {
+              x: 0.063822,
+              y: 0.005917,
+              z: 0.003751
+            },
+            {
+              x: 0.068088,
+              y: 0.005103,
+              z: 0.003978
+            },
+            {
+              x: 0.071143,
+              y: 0.004644,
+              z: 0.004353
+            },
+            {
+              x: 0.072766,
+              y: 0.004522,
+              z: 0.004525
+            },
+            {
+              x: 0.073,
+              y: 0.002412,
+              z: 0.003912
+            },
+            {
+              x: 0.072014,
+              y: -0.001432,
+              z: 0.0026
+            },
+            {
+              x: 0.070015,
+              y: -0.003773,
+              z: 0.001523
+            }
+          ]
+        }
+      },
+      {
+        bone_name: "spine_a_04",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 771,
+              y: 8698,
+              z: 32765
+            },
+            {
+              x: 65515,
+              y: 7753,
+              z: 32533
+            },
+            {
+              x: 65115,
+              y: 6589,
+              z: 32269
+            },
+            {
+              x: 979,
+              y: 6122,
+              z: 31961
+            },
+            {
+              x: 4171,
+              y: 5694,
+              z: 31295
+            },
+            {
+              x: 7323,
+              y: 8314,
+              z: 30877
+            },
+            {
+              x: 9427,
+              y: 11106,
+              z: 30509
+            }
+          ]
+        },
+        translate_type: "DynamicVectorTrack",
+        translate: {
+          co: [
+            {
+              x: 0.039426,
+              y: 0.000991,
+              z: -0.001487
+            },
+            {
+              x: 0.039372,
+              y: 0.001583,
+              z: -0.001128
+            },
+            {
+              x: 0.039205,
+              y: 0.002031,
+              z: -0.000966
+            },
+            {
+              x: 0.039466,
+              y: 0.001002,
+              z: -0.001446
+            },
+            {
+              x: 0.039866,
+              y: 0.000805,
+              z: -0.001342
+            },
+            {
+              x: 0.039855,
+              y: 0.002511,
+              z: -0.001021
+            },
+            {
+              x: 0.039904,
+              y: 0.003131,
+              z: -0.000959
+            }
+          ]
+        }
+      },
+      {
+        bone_name: "neck_a",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 65427,
+              y: 7517,
+              z: 34305
+            },
+            {
+              x: 64259,
+              y: 5689,
+              z: 34015
+            },
+            {
+              x: 63123,
+              y: 2049,
+              z: 33751
+            },
+            {
+              x: 63867,
+              y: 63149,
+              z: 33876
+            },
+            {
+              x: 64907,
+              y: 60585,
+              z: 34044
+            },
+            {
+              x: 65347,
+              y: 1729,
+              z: 34199
+            },
+            {
+              x: 65339,
+              y: 8757,
+              z: 34303
+            }
+          ]
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.021618,
+            y: 0.0,
+            z: 0.0
+          }
+        }
+      },
+      {
+        bone_name: "head_a",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 1395,
+              y: 60990,
+              z: 32474
+            },
+            {
+              x: 1371,
+              y: 61034,
+              z: 32480
+            },
+            {
+              x: 1363,
+              y: 61222,
+              z: 32482
+            },
+            {
+              x: 1371,
+              y: 61502,
+              z: 32482
+            },
+            {
+              x: 1387,
+              y: 61838,
+              z: 32482
+            },
+            {
+              x: 1403,
+              y: 62174,
+              z: 32480
+            },
+            {
+              x: 1411,
+              y: 62466,
+              z: 32480
+            }
+          ]
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.019431,
+            y: -0.0,
+            z: 0.0
+          }
+        }
+      },
+      {
+        bone_name: "hair_a_01",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 3,
+              y: 1182,
+              z: 32689
+            },
+            {
+              x: 3,
+              y: 382,
+              z: 32695
+            },
+            {
+              x: 65531,
+              y: 64433,
+              z: 32694
+            },
+            {
+              x: 65531,
+              y: 63637,
+              z: 32694
+            },
+            {
+              x: 65531,
+              y: 64141,
+              z: 32692
+            },
+            {
+              x: 65531,
+              y: 65077,
+              z: 32690
+            },
+            {
+              x: 3,
+              y: 42,
+              z: 32689
+            }
+          ]
+        },
+        translate_type: "Framed8VectorTrack",
+        translate: {
+          frames: [
+            0,
+            0,
+            6,
+            6
+          ],
+          co: [
+            {
+              x: 0.023625,
+              y: 0.0,
+              z: 0.0
+            },
+            {
+              x: 0.023625,
+              y: 0.0,
+              z: 0.0
+            },
+            {
+              x: 0.023697,
+              y: 0.000007,
+              z: -0.000367
+            },
+            {
+              x: 0.023697,
+              y: 0.000007,
+              z: -0.000367
+            }
+          ]
+        }
+      },
+      {
+        bone_name: "left_hair_a",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 51401,
+              y: 28721,
+              z: 24047
+            },
+            {
+              x: 49705,
+              y: 28881,
+              z: 24117
+            },
+            {
+              x: 48017,
+              y: 29037,
+              z: 24187
+            },
+            {
+              x: 48545,
+              y: 28989,
+              z: 24165
+            },
+            {
+              x: 49705,
+              y: 28881,
+              z: 24117
+            },
+            {
+              x: 50873,
+              y: 28769,
+              z: 24069
+            },
+            {
+              x: 51401,
+              y: 28721,
+              z: 24047
+            }
+          ]
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: -0.04428,
+            y: -0.014039,
+            z: 0.01868
+          }
+        }
+      },
+      {
+        bone_name: "left_jaw_a_01",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 54064,
+            y: 2065,
+            z: 32877
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.001856,
+            y: -0.00135,
+            z: -0.004515
+          }
+        }
+      },
+      {
+        bone_name: "right_jaw_a_01",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 11464,
+            y: 2066,
+            z: 32659
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.001856,
+            y: 0.00135,
+            z: -0.004515
+          }
+        }
+      },
+      {
+        bone_name: "left_jaw_b_01",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 49488,
+            y: 2721,
+            z: 32927
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.006039,
+            y: -0.00135,
+            z: -0.003166
+          }
+        }
+      },
+      {
+        bone_name: "right_jaw_b_01",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 16040,
+            y: 2722,
+            z: 32609
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.006039,
+            y: 0.00135,
+            z: -0.003166
+          }
+        }
+      },
+      {
+        bone_name: "left_shoulder_a",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 51243,
+              y: 24638,
+              z: 25254
+            },
+            {
+              x: 54987,
+              y: 25162,
+              z: 26638
+            },
+            {
+              x: 58459,
+              y: 25738,
+              z: 28068
+            },
+            {
+              x: 57035,
+              y: 24410,
+              z: 27370
+            },
+            {
+              x: 53547,
+              y: 21554,
+              z: 25890
+            },
+            {
+              x: 49579,
+              y: 18798,
+              z: 24494
+            },
+            {
+              x: 47627,
+              y: 17582,
+              z: 23890
+            }
+          ]
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.005521,
+            y: -0.001458,
+            z: 0.0
+          }
+        }
+      },
+      {
+        bone_name: "left_arm_a_01",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 21835,
+              y: 4281,
+              z: 36075
+            },
+            {
+              x: 20931,
+              y: 8837,
+              z: 35637
+            },
+            {
+              x: 20203,
+              y: 13193,
+              z: 35459
+            },
+            {
+              x: 22163,
+              y: 12369,
+              z: 36347
+            },
+            {
+              x: 26259,
+              y: 10673,
+              z: 37663
+            },
+            {
+              x: 30499,
+              y: 9017,
+              z: 38811
+            },
+            {
+              x: 32483,
+              y: 8273,
+              z: 39295
+            }
+          ]
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.03417,
+            y: 0.0,
+            z: 0.0
+          }
+        }
+      },
+      {
+        bone_name: "left_arm_a_02",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 3643,
+              y: 56070,
+              z: 41696
+            },
+            {
+              x: 60603,
+              y: 52077,
+              z: 43280
+            },
+            {
+              x: 52683,
+              y: 48077,
+              z: 44890
+            },
+            {
+              x: 56251,
+              y: 49633,
+              z: 44574
+            },
+            {
+              x: 64243,
+              y: 53085,
+              z: 43930
+            },
+            {
+              x: 6883,
+              y: 56554,
+              z: 43364
+            },
+            {
+              x: 10643,
+              y: 58130,
+              z: 43134
+            }
+          ]
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.008912,
+            y: -0.0,
+            z: -0.0
+          }
+        }
+      },
+      {
+        bone_name: "left_arm_a_03",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 59411,
+              y: 37041,
+              z: 36532
+            },
+            {
+              x: 62259,
+              y: 40945,
+              z: 33616
+            },
+            {
+              x: 659,
+              y: 44662,
+              z: 30770
+            },
+            {
+              x: 65427,
+              y: 44505,
+              z: 31170
+            },
+            {
+              x: 63771,
+              y: 44133,
+              z: 32050
+            },
+            {
+              x: 62147,
+              y: 43729,
+              z: 32936
+            },
+            {
+              x: 61419,
+              y: 43537,
+              z: 33338
+            }
+          ]
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.008922,
+            y: 0.000001,
+            z: 0.0
+          }
+        }
+      },
+      {
+        bone_name: "left_arm_a_04",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 48019,
+              y: 39777,
+              z: 36978
+            },
+            {
+              x: 44731,
+              y: 37925,
+              z: 36008
+            },
+            {
+              x: 41235,
+              y: 36185,
+              z: 35090
+            },
+            {
+              x: 43771,
+              y: 37889,
+              z: 35280
+            },
+            {
+              x: 49243,
+              y: 41857,
+              z: 35864
+            },
+            {
+              x: 54515,
+              y: 46133,
+              z: 36726
+            },
+            {
+              x: 56987,
+              y: 48285,
+              z: 37460
+            }
+          ]
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.00891,
+            y: 0.0,
+            z: 0.0
+          }
+        }
+      },
+      {
+        bone_name: "left_hand_a",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 42859,
+              y: 47497,
+              z: 34474
+            },
+            {
+              x: 46451,
+              y: 45185,
+              z: 36054
+            },
+            {
+              x: 48955,
+              y: 44381,
+              z: 37810
+            },
+            {
+              x: 46979,
+              y: 44333,
+              z: 38060
+            },
+            {
+              x: 41651,
+              y: 42185,
+              z: 38176
+            },
+            {
+              x: 32203,
+              y: 37573,
+              z: 37868
+            },
+            {
+              x: 25483,
+              y: 34581,
+              z: 37432
+            }
+          ]
+        },
+        translate_type: "DynamicVectorTrack",
+        translate: {
+          co: [
+            {
+              x: 0.009452,
+              y: 0.001165,
+              z: 0.000093
+            },
+            {
+              x: 0.009341,
+              y: 0.000366,
+              z: 0.000804
+            },
+            {
+              x: 0.008367,
+              y: -0.000876,
+              z: 0.000695
+            },
+            {
+              x: 0.006926,
+              y: 0.000758,
+              z: 0.000219
+            },
+            {
+              x: 0.005935,
+              y: 0.003791,
+              z: -0.000864
+            },
+            {
+              x: 0.008569,
+              y: 0.004785,
+              z: -0.00041
+            },
+            {
+              x: 0.011063,
+              y: 0.004342,
+              z: 0.001234
+            }
+          ]
+        }
+      },
+      {
+        bone_name: "left_index_a_01",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 65323,
+              y: 317,
+              z: 46191
+            },
+            {
+              x: 65363,
+              y: 257,
+              z: 46217
+            },
+            {
+              x: 65355,
+              y: 269,
+              z: 46213
+            },
+            {
+              x: 65323,
+              y: 317,
+              z: 46191
+            },
+            {
+              x: 65291,
+              y: 361,
+              z: 46171
+            },
+            {
+              x: 65283,
+              y: 373,
+              z: 46165
+            },
+            {
+              x: 65323,
+              y: 317,
+              z: 46191
+            }
+          ]
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.003711,
+            y: 0.004012,
+            z: -0.0
+          }
+        }
+      },
+      {
+        bone_name: "left_index_a_02",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 61899,
+              y: 50021,
+              z: 28002
+            },
+            {
+              x: 61963,
+              y: 50145,
+              z: 28044
+            },
+            {
+              x: 61955,
+              y: 50121,
+              z: 28034
+            },
+            {
+              x: 61899,
+              y: 50021,
+              z: 28002
+            },
+            {
+              x: 61851,
+              y: 49921,
+              z: 27968
+            },
+            {
+              x: 61843,
+              y: 49897,
+              z: 27960
+            },
+            {
+              x: 61899,
+              y: 50021,
+              z: 28002
+            }
+          ]
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.003611,
+            y: -0.0,
+            z: 0.0
+          }
+        }
+      },
+      {
+        bone_name: "left_middle_a_01",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 3,
+            y: 1014,
+            z: 32769
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.004958,
+            y: -0.0,
+            z: -0.0
+          }
+        }
+      },
+      {
+        bone_name: "left_middle_a_02",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 3,
+              y: 49170,
+              z: 32768
+            },
+            {
+              x: 3,
+              y: 49298,
+              z: 32768
+            },
+            {
+              x: 3,
+              y: 49274,
+              z: 32768
+            },
+            {
+              x: 3,
+              y: 49170,
+              z: 32768
+            },
+            {
+              x: 3,
+              y: 49066,
+              z: 32768
+            },
+            {
+              x: 3,
+              y: 49042,
+              z: 32768
+            },
+            {
+              x: 3,
+              y: 49170,
+              z: 32768
+            }
+          ]
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.003709,
+            y: -0.0,
+            z: -0.0
+          }
+        }
+      },
+      {
+        bone_name: "left_ring_a_01",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 60555,
+            y: 62337,
+            z: 21156
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.003711,
+            y: -0.004012,
+            z: -0.0
+          }
+        }
+      },
+      {
+        bone_name: "left_ring_a_02",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 2491,
+              y: 52266,
+              z: 36622
+            },
+            {
+              x: 2459,
+              y: 52394,
+              z: 36610
+            },
+            {
+              x: 2467,
+              y: 52366,
+              z: 36612
+            },
+            {
+              x: 2491,
+              y: 52266,
+              z: 36622
+            },
+            {
+              x: 2523,
+              y: 52162,
+              z: 36634
+            },
+            {
+              x: 2531,
+              y: 52138,
+              z: 36636
+            },
+            {
+              x: 2491,
+              y: 52266,
+              z: 36622
+            }
+          ]
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.003611,
+            y: -0.0,
+            z: 0.0
+          }
+        }
+      },
+      {
+        bone_name: "right_shoulder_a",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 13051,
+              y: 23613,
+              z: 41058
+            },
+            {
+              x: 11027,
+              y: 24565,
+              z: 41392
+            },
+            {
+              x: 9011,
+              y: 25513,
+              z: 41720
+            },
+            {
+              x: 10275,
+              y: 24077,
+              z: 41862
+            },
+            {
+              x: 13059,
+              y: 20965,
+              z: 42146
+            },
+            {
+              x: 15835,
+              y: 17929,
+              z: 42384
+            },
+            {
+              x: 17099,
+              y: 16577,
+              z: 42478
+            }
+          ]
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.005521,
+            y: 0.001458,
+            z: 0.0
+          }
+        }
+      },
+      {
+        bone_name: "right_arm_a_01",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 24603,
+              y: 6030,
+              z: 22037
+            },
+            {
+              x: 33443,
+              y: 8866,
+              z: 19639
+            },
+            {
+              x: 42899,
+              y: 11054,
+              z: 17537
+            },
+            {
+              x: 40275,
+              y: 11426,
+              z: 17779
+            },
+            {
+              x: 34283,
+              y: 12058,
+              z: 18369
+            },
+            {
+              x: 27859,
+              y: 12334,
+              z: 19069
+            },
+            {
+              x: 24195,
+              y: 11938,
+              z: 19581
+            }
+          ]
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.03417,
+            y: -0.0,
+            z: -0.0
+          }
+        }
+      },
+      {
+        bone_name: "right_arm_a_02",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 25355,
+              y: 48394,
+              z: 28926
+            },
+            {
+              x: 22515,
+              y: 48026,
+              z: 31264
+            },
+            {
+              x: 19859,
+              y: 47614,
+              z: 33656
+            },
+            {
+              x: 20795,
+              y: 47770,
+              z: 33250
+            },
+            {
+              x: 22883,
+              y: 48118,
+              z: 32370
+            },
+            {
+              x: 25003,
+              y: 48518,
+              z: 31506
+            },
+            {
+              x: 25995,
+              y: 48914,
+              z: 31134
+            }
+          ]
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.00891,
+            y: -0.0,
+            z: -0.0
+          }
+        }
+      },
+      {
+        bone_name: "right_arm_a_03",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 64539,
+              y: 39649,
+              z: 24392
+            },
+            {
+              x: 63643,
+              y: 34609,
+              z: 25074
+            },
+            {
+              x: 64723,
+              y: 29585,
+              z: 26210
+            },
+            {
+              x: 3763,
+              y: 31278,
+              z: 27222
+            },
+            {
+              x: 9379,
+              y: 35342,
+              z: 28458
+            },
+            {
+              x: 14019,
+              y: 39806,
+              z: 29584
+            },
+            {
+              x: 16427,
+              y: 42386,
+              z: 30078
+            }
+          ]
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.00891,
+            y: 0.0,
+            z: 0.0
+          }
+        }
+      },
+      {
+        bone_name: "right_arm_a_04",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 34963,
+              y: 43582,
+              z: 29158
+            },
+            {
+              x: 35155,
+              y: 43658,
+              z: 29326
+            },
+            {
+              x: 35619,
+              y: 43846,
+              z: 29746
+            },
+            {
+              x: 36219,
+              y: 44098,
+              z: 30292
+            },
+            {
+              x: 36819,
+              y: 44350,
+              z: 30840
+            },
+            {
+              x: 37267,
+              y: 44550,
+              z: 31262
+            },
+            {
+              x: 37451,
+              y: 44630,
+              z: 31430
+            }
+          ]
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.00891,
+            y: 0.0,
+            z: 0.0
+          }
+        }
+      },
+      {
+        bone_name: "right_hand_a",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 30243,
+              y: 61106,
+              z: 34204
+            },
+            {
+              x: 29035,
+              y: 63662,
+              z: 32600
+            },
+            {
+              x: 23099,
+              y: 654,
+              z: 31425
+            },
+            {
+              x: 15555,
+              y: 64098,
+              z: 32014
+            },
+            {
+              x: 7243,
+              y: 59942,
+              z: 33224
+            },
+            {
+              x: 3563,
+              y: 53842,
+              z: 34696
+            },
+            {
+              x: 2667,
+              y: 49746,
+              z: 35738
+            }
+          ]
+        },
+        translate_type: "DynamicVectorTrack",
+        translate: {
+          co: [
+            {
+              x: 0.010432,
+              y: -0.000993,
+              z: -0.001244
+            },
+            {
+              x: 0.010018,
+              y: -0.00027,
+              z: -0.003334
+            },
+            {
+              x: 0.009242,
+              y: -0.000076,
+              z: -0.005445
+            },
+            {
+              x: 0.00891,
+              y: -0.001671,
+              z: -0.004244
+            },
+            {
+              x: 0.008924,
+              y: -0.00319,
+              z: -0.002282
+            },
+            {
+              x: 0.011349,
+              y: -0.001714,
+              z: -0.0002
+            },
+            {
+              x: 0.013428,
+              y: 0.000221,
+              z: 0.001505
+            }
+          ]
+        }
+      },
+      {
+        bone_name: "right_index_a_01",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 2395,
+            y: 3526,
+            z: 19377
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.003711,
+            y: -0.004012,
+            z: 0.0
+          }
+        }
+      },
+      {
+        bone_name: "right_index_a_02",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 5627,
+              y: 46914,
+              z: 38842
+            },
+            {
+              x: 5571,
+              y: 46918,
+              z: 38782
+            },
+            {
+              x: 5579,
+              y: 46918,
+              z: 38794
+            },
+            {
+              x: 5627,
+              y: 46914,
+              z: 38842
+            },
+            {
+              x: 5675,
+              y: 46910,
+              z: 38890
+            },
+            {
+              x: 5683,
+              y: 46910,
+              z: 38902
+            },
+            {
+              x: 5627,
+              y: 46914,
+              z: 38842
+            }
+          ]
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.003611,
+            y: 0.0,
+            z: -0.0
+          }
+        }
+      },
+      {
+        bone_name: "right_middle_a_01",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 3,
+            y: 254,
+            z: 32769
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.004958,
+            y: 0.0,
+            z: 0.0
+          }
+        }
+      },
+      {
+        bone_name: "right_middle_a_02",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 3,
+            y: 49878,
+            z: 32768
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.00371,
+            y: 0.0,
+            z: 0.0
+          }
+        }
+      },
+      {
+        bone_name: "right_ring_a_01",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 6195,
+            y: 56830,
+            z: 46668
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.003711,
+            y: 0.004012,
+            z: 0.0
+          }
+        }
+      },
+      {
+        bone_name: "right_ring_a_02",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 64003,
+            y: 57785,
+            z: 28690
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.003611,
+            y: -0.0,
+            z: 0.0
+          }
+        }
+      },
+      {
+        bone_name: "root_feeler",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 63346,
+            y: 65525,
+            z: 32450
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: -0.038754,
+            y: -0.0,
+            z: -0.0
+          }
+        }
+      },
+      {
+        bone_name: "center_feeler",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 3,
+            y: 62506,
+            z: 32768
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.001731,
+            y: 0.001405,
+            z: -0.006371
+          }
+        }
+      },
+      {
+        bone_name: "front_feeler",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 3,
+            y: 2,
+            z: 32769
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.006281,
+            y: 0.0,
+            z: 0.062454
+          }
+        }
+      },
+      {
+        bone_name: "back_feeler",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 0,
+            y: 2,
+            z: 32769
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.005686,
+            y: -0.0,
+            z: -0.061128
+          }
+        }
+      },
+      {
+        bone_name: "left_feeler_a",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 63843,
+            y: 2042,
+            z: 33191
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.006686,
+            y: -0.044424,
+            z: 0.044424
+          }
+        }
+      },
+      {
+        bone_name: "right_feeler_a",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 1675,
+            y: 1,
+            z: 32769
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.005686,
+            y: 0.0432,
+            z: 0.0432
+          }
+        }
+      },
+      {
+        bone_name: "left_feeler_b",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 43915,
+            y: 23063,
+            z: 38227
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.005304,
+            y: -0.062,
+            z: -0.0
+          }
+        }
+      },
+      {
+        bone_name: "right_feeler_b",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 4,
+            y: 2,
+            z: 3267
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.005686,
+            y: 0.061128,
+            z: -0.0
+          }
+        }
+      },
+      {
+        bone_name: "left_feeler_c",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 11968,
+            y: 9026,
+            z: 49525
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.005686,
+            y: -0.0432,
+            z: -0.0432
+          }
+        }
+      },
+      {
+        bone_name: "right_feeler_c",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 0,
+            y: 2,
+            z: 16803
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.005686,
+            y: 0.0432,
+            z: -0.0432
+          }
+        }
+      },
+      {
+        bone_name: "left_jaw_c_01",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 54440,
+            y: 13701,
+            z: 35001
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: -0.008694,
+            y: -0.00135,
+            z: 0.000316
+          }
+        }
+      },
+      {
+        bone_name: "right_jaw_c_01",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 11088,
+            y: 13702,
+            z: 30535
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: -0.008694,
+            y: 0.00135,
+            z: 0.000316
+          }
+        }
+      },
+      {
+        bone_name: "left_jaw_d_01",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 49272,
+            y: 15545,
+            z: 33787
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: -0.003989,
+            y: -0.00135,
+            z: 0.002393
+          }
+        }
+      },
+      {
+        bone_name: "right_jaw_d_01",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 16256,
+            y: 15546,
+            z: 31749
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: -0.003989,
+            y: 0.00135,
+            z: 0.002393
+          }
+        }
+      },
+      {
+        bone_name: "left_crotch",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 7490,
+              y: 2,
+              z: 32767
+            },
+            {
+              x: 10962,
+              y: 2,
+              z: 32767
+            },
+            {
+              x: 14434,
+              y: 2,
+              z: 32767
+            },
+            {
+              x: 11706,
+              y: 6,
+              z: 32711
+            },
+            {
+              x: 5530,
+              y: 14,
+              z: 32587
+            },
+            {
+              x: 64490,
+              y: 65533,
+              z: 32460
+            },
+            {
+              x: 60578,
+              y: 65513,
+              z: 32404
+            }
+          ]
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.027165,
+            y: -0.006465,
+            z: -0.0
+          }
+        }
+      },
+      {
+        bone_name: "left_leg_01",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 3,
+              y: 6050,
+              z: 32769
+            },
+            {
+              x: 3,
+              y: 62858,
+              z: 32768
+            },
+            {
+              x: 3,
+              y: 54154,
+              z: 32768
+            },
+            {
+              x: 65515,
+              y: 54977,
+              z: 32734
+            },
+            {
+              x: 65507,
+              y: 56993,
+              z: 32692
+            },
+            {
+              x: 65523,
+              y: 59517,
+              z: 32726
+            },
+            {
+              x: 27,
+              y: 61862,
+              z: 32922
+            }
+          ]
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.074231,
+            y: 0.00771,
+            z: 0.0
+          }
+        }
+      },
+      {
+        bone_name: "left_leg_02",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 3,
+              y: 9942,
+              z: 32769
+            },
+            {
+              x: 3,
+              y: 64938,
+              z: 32768
+            },
+            {
+              x: 3,
+              y: 52246,
+              z: 32768
+            },
+            {
+              x: 65339,
+              y: 49865,
+              z: 32512
+            },
+            {
+              x: 64955,
+              y: 50437,
+              z: 31980
+            },
+            {
+              x: 64755,
+              y: 52645,
+              z: 31518
+            },
+            {
+              x: 64891,
+              y: 55161,
+              z: 31482
+            }
+          ]
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.012312,
+            y: 0.0,
+            z: -0.0
+          }
+        }
+      },
+      {
+        bone_name: "left_leg_03",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 59331,
+              y: 16825,
+              z: 31779
+            },
+            {
+              x: 57443,
+              y: 4361,
+              z: 32905
+            },
+            {
+              x: 58643,
+              y: 60909,
+              z: 34352
+            },
+            {
+              x: 57923,
+              y: 61453,
+              z: 34702
+            },
+            {
+              x: 55675,
+              y: 59673,
+              z: 34650
+            },
+            {
+              x: 52547,
+              y: 57985,
+              z: 34140
+            },
+            {
+              x: 50635,
+              y: 58973,
+              z: 33438
+            }
+          ]
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.012312,
+            y: -0.0,
+            z: 0.0
+          }
+        }
+      },
+      {
+        bone_name: "right_crotch",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 20866,
+              y: 2,
+              z: 32767
+            },
+            {
+              x: 15418,
+              y: 2,
+              z: 32767
+            },
+            {
+              x: 9722,
+              y: 2,
+              z: 32767
+            },
+            {
+              x: 9394,
+              y: 6,
+              z: 32727
+            },
+            {
+              x: 9234,
+              y: 14,
+              z: 32653
+            },
+            {
+              x: 9170,
+              y: 18,
+              z: 32617
+            },
+            {
+              x: 9146,
+              y: 10,
+              z: 32691
+            }
+          ]
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.027165,
+            y: 0.006465,
+            z: -0.0
+          }
+        }
+      },
+      {
+        bone_name: "right_leg_01",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 3,
+              y: 3514,
+              z: 32769
+            },
+            {
+              x: 3,
+              y: 65010,
+              z: 32768
+            },
+            {
+              x: 3,
+              y: 60974,
+              z: 32768
+            },
+            {
+              x: 27,
+              y: 61062,
+              z: 32880
+            },
+            {
+              x: 67,
+              y: 61418,
+              z: 33130
+            },
+            {
+              x: 99,
+              y: 62166,
+              z: 33380
+            },
+            {
+              x: 75,
+              y: 63442,
+              z: 33494
+            }
+          ]
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.074231,
+            y: -0.00771,
+            z: 0.0
+          }
+        }
+      },
+      {
+        bone_name: "right_leg_02",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 3,
+              y: 9994,
+              z: 32769
+            },
+            {
+              x: 3,
+              y: 822,
+              z: 32769
+            },
+            {
+              x: 3,
+              y: 52506,
+              z: 32768
+            },
+            {
+              x: 65475,
+              y: 45745,
+              z: 32702
+            },
+            {
+              x: 65371,
+              y: 43221,
+              z: 32622
+            },
+            {
+              x: 65451,
+              y: 43757,
+              z: 32688
+            },
+            {
+              x: 283,
+              y: 46266,
+              z: 33068
+            }
+          ]
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.012312,
+            y: 0.0,
+            z: 0.0
+          }
+        }
+      },
+      {
+        bone_name: "right_leg_03",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "DynamicRotationTrack",
+        rotate: {
+          co: [
+            {
+              x: 58371,
+              y: 7037,
+              z: 32353
+            },
+            {
+              x: 57507,
+              y: 60993,
+              z: 33056
+            },
+            {
+              x: 58115,
+              y: 49321,
+              z: 34198
+            },
+            {
+              x: 58355,
+              y: 48453,
+              z: 34746
+            },
+            {
+              x: 56579,
+              y: 53297,
+              z: 34766
+            },
+            {
+              x: 53707,
+              y: 60249,
+              z: 34388
+            },
+            {
+              x: 52611,
+              y: 141,
+              z: 33929
+            }
+          ]
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.012312,
+            y: -0.0,
+            z: 0.0
+          }
+        }
+      },
+      {
+        bone_name: "feeler_a",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 3,
+            y: 2,
+            z: 32769
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.035868,
+            y: 0.0,
+            z: 0.0
+          }
+        }
+      },
+      {
+        bone_name: "feeler_b",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 3,
+            y: 2,
+            z: 32769
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.035868,
+            y: 0.0,
+            z: 0.0
+          }
+        }
+      },
+      {
+        bone_name: "feeler_c",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 3,
+            y: 2,
+            z: 32769
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.035868,
+            y: 0.0,
+            z: -0.0
+          }
+        }
+      },
+      {
+        bone_name: "feeler_d",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 3,
+            y: 2,
+            z: 32769
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.035868,
+            y: 0.0,
+            z: -0.0
+          }
+        }
+      },
+      {
+        bone_name: "hair_b_01",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "Framed8RotationTrack",
+        rotate: {
+          frames: [
+            0,
+            0,
+            2,
+            6,
+            6
+          ],
+          co: [
+            {
+              x: 11723,
+              y: 59170,
+              z: 33452
+            },
+            {
+              x: 11723,
+              y: 59170,
+              z: 33452
+            },
+            {
+              x: 11635,
+              y: 59022,
+              z: 33474
+            },
+            {
+              x: 11723,
+              y: 59170,
+              z: 33452
+            },
+            {
+              x: 11723,
+              y: 59170,
+              z: 33452
+            }
+          ]
+        },
+        translate_type: "Framed8VectorTrack",
+        translate: {
+          frames: [
+            0,
+            0,
+            2,
+            6,
+            6
+          ],
+          co: [
+            {
+              x: 0.114553,
+              y: 0.001458,
+              z: 0.001353
+            },
+            {
+              x: 0.114553,
+              y: 0.001458,
+              z: 0.001353
+            },
+            {
+              x: 0.114506,
+              y: 0.001496,
+              z: 0.001498
+            },
+            {
+              x: 0.114553,
+              y: 0.001458,
+              z: 0.001353
+            },
+            {
+              x: 0.114553,
+              y: 0.001458,
+              z: 0.001353
+            }
+          ]
+        }
+      },
+      {
+        bone_name: "exp_ops_root",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 3,
+            y: 2,
+            z: 32769
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.0,
+            y: 0.0,
+            z: 0.0
+          }
+        }
+      },
+      {
+        bone_name: "exp_op_000",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 3,
+            y: 2,
+            z: 32769
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.0,
+            y: 0.0,
+            z: 0.0
+          }
+        }
+      },
+      {
+        bone_name: "exp_op_001",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 3,
+            y: 2,
+            z: 32769
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.0,
+            y: 0.0,
+            z: 0.0
+          }
+        }
+      },
+      {
+        bone_name: "exp_op_002",
+        scale_type: "FixedVectorTrack",
+        scale: {
+          co: {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0
+          }
+        },
+        rotate_type: "FixedRotationTrack",
+        rotate: {
+          co: {
+            x: 3,
+            y: 2,
+            z: 32769
+          }
+        },
+        translate_type: "FixedVectorTrack",
+        translate: {
+          co: {
+            x: 0.0,
+            y: 0.0,
+            z: 0.0
+          }
+        }
+      }
+    ]
+  }
+}

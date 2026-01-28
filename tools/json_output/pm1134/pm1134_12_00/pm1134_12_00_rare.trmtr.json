@@ -1,0 +1,2226 @@
+{
+  materials: [
+    {
+      name: "body_01",
+      shaders: [
+        {
+          shader_name: "SSS",
+          shader_values: [
+            {
+              string_name: "EnableBaseColorMap",
+              string_value: "True"
+            },
+            {
+              string_name: "EnableNormalMap",
+              string_value: "True"
+            },
+            {
+              string_name: "EnableRoughnessMap",
+              string_value: "True"
+            },
+            {
+              string_name: "EnableAOMap",
+              string_value: "True"
+            },
+            {
+              string_name: "NumMaterialLayer",
+              string_value: "1"
+            },
+            {
+              string_name: "EnableSSSMaskMap",
+              string_value: "True"
+            }
+          ]
+        }
+      ],
+      textures: [
+        {
+          texture_name: "BaseColorMap",
+          texture_file: "../pm1134_11_00/pm1134_12_00_body_rare_alb.bntx"
+        },
+        {
+          texture_name: "NormalMap",
+          texture_file: "../pm1134_11_00/pm1134_12_00_body_nrm.bntx",
+          texture_slot: 1
+        },
+        {
+          texture_name: "RoughnessMap",
+          texture_file: "../pm1134_11_00/pm1134_12_00_body_rgn.bntx",
+          texture_slot: 2
+        },
+        {
+          texture_name: "AOMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_body_ao.bntx",
+          texture_slot: 3
+        },
+        {
+          texture_name: "SSSMaskMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_body_msk.bntx",
+          texture_slot: 6
+        }
+      ],
+      samplers: [
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        }
+      ],
+      float_parameter: [
+        {
+          float_name: "NormalHeight",
+          float_value: 1.0
+        },
+        {
+          float_name: "SSSMaskScale",
+          float_value: 1.0
+        },
+        {
+          float_name: "SSSMaskOffset"
+        }
+      ],
+      unk_5: "",
+      float4_light_parameter: [
+
+      ],
+      float4_parameter: [
+        {
+          color_name: "UVScaleOffset",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 0.0,
+            a: 0.0
+          }
+        },
+        {
+          color_name: "SubsurfaceColor",
+          color_value: {
+            r: 0.3,
+            g: 0.3,
+            b: 0.3,
+            a: 1.0
+          }
+        }
+      ],
+      unk_8: "",
+      int_parameter: [
+        {
+          int_name: "CastShadow",
+          int_value: 1
+        },
+        {
+          int_name: "CategoryLabel",
+          int_value: 6
+        },
+        {
+          int_name: "EnableJewel",
+          int_value: 1
+        },
+        {
+          int_name: "EnableGlobalWeather"
+        },
+        {
+          int_name: "EnableAdditionalLight",
+          int_value: 1
+        }
+      ],
+      unk_10: "",
+      unk_11: "",
+      unk_12: "",
+      byte_extra: {
+      },
+      int_extra: {
+      },
+      alpha_type: "Opaque"
+    },
+    {
+      name: "r_eye_a",
+      shaders: [
+        {
+          shader_name: "EyeClearCoat",
+          shader_values: [
+            {
+              string_name: "EnableHighlight",
+              string_value: "False"
+            },
+            {
+              string_name: "EyelidType",
+              string_value: "Upper"
+            },
+            {
+              string_name: "EnableBaseColorMap1",
+              string_value: "False"
+            },
+            {
+              string_name: "EnableNormalMap1",
+              string_value: "True"
+            }
+          ]
+        },
+        {
+          shader_name: "Eye",
+          shader_values: [
+            {
+              string_name: "EnableNormalMap",
+              string_value: "True"
+            },
+            {
+              string_name: "EnableParallaxMap",
+              string_value: "False"
+            },
+            {
+              string_name: "EnableMetallicMap",
+              string_value: "False"
+            },
+            {
+              string_name: "EnableRoughnessMap",
+              string_value: "False"
+            },
+            {
+              string_name: "EnableEmissionColorMap",
+              string_value: "False"
+            },
+            {
+              string_name: "EnableAOMap",
+              string_value: "False"
+            },
+            {
+              string_name: "NumMaterialLayer",
+              string_value: "5"
+            },
+            {
+              string_name: "EnableHighlight",
+              string_value: "False"
+            },
+            {
+              string_name: "EyelidType",
+              string_value: "Upper"
+            },
+            {
+              string_name: "EnableEyeClearCoat",
+              string_value: "True"
+            },
+            {
+              string_name: "ShadingType",
+              string_value: "SSS"
+            }
+          ]
+        }
+      ],
+      textures: [
+        {
+          texture_name: "BaseColorMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_eye_alb.bntx"
+        },
+        {
+          texture_name: "LayerMaskMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_eye_lym.bntx",
+          texture_slot: 1
+        },
+        {
+          texture_name: "NormalMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_eye_nrm.bntx",
+          texture_slot: 2
+        },
+        {
+          texture_name: "EyelidShadowMaskMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_upper_eyelid_msk.bntx",
+          texture_slot: 3
+        },
+        {
+          texture_name: "UpperEyelidColorMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_upper_eyelid_alb.bntx",
+          texture_slot: 4
+        },
+        {
+          texture_name: "SSSMaskMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_body_msk.bntx",
+          texture_slot: 5
+        },
+        {
+          texture_name: "NormalMap1",
+          texture_file: "../pm1134_11_00/pm1134_11_00_eye_nrm.bntx",
+          texture_slot: 6
+        }
+      ],
+      samplers: [
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "MIRROR_ONCE",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "MIRROR_ONCE",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        }
+      ],
+      float_parameter: [
+        {
+          float_name: "UVRotation"
+        },
+        {
+          float_name: "RoughnessLayer3",
+          float_value: 0.5
+        },
+        {
+          float_name: "RoughnessLayer4",
+          float_value: 0.5
+        },
+        {
+          float_name: "SSSMaskScale",
+          float_value: 1.0
+        },
+        {
+          float_name: "NormalHeight",
+          float_value: 1.0
+        },
+        {
+          float_name: "SSSMaskOffset"
+        },
+        {
+          float_name: "RoughnessLayer2",
+          float_value: 0.1
+        },
+        {
+          float_name: "EmissionIntensityLayer3"
+        },
+        {
+          float_name: "EmissionIntensityLayer4"
+        },
+        {
+          float_name: "RoughnessLayer1",
+          float_value: 0.33
+        },
+        {
+          float_name: "LayerMaskScale3",
+          float_value: 1.0
+        },
+        {
+          float_name: "LayerMaskScale4",
+          float_value: 1.0
+        },
+        {
+          float_name: "EmissionIntensityLayer2"
+        },
+        {
+          float_name: "UVRotation2"
+        },
+        {
+          float_name: "UVRotation3"
+        },
+        {
+          float_name: "Roughness",
+          float_value: 0.1
+        },
+        {
+          float_name: "EmissionIntensityLayer1"
+        },
+        {
+          float_name: "RoughnessLayer7",
+          float_value: 0.33
+        },
+        {
+          float_name: "NormalHeight1"
+        },
+        {
+          float_name: "LayerMaskScale2",
+          float_value: 1.0
+        },
+        {
+          float_name: "MetallicClearCoat"
+        },
+        {
+          float_name: "EmissionIntensity"
+        },
+        {
+          float_name: "LayerMaskScale1",
+          float_value: 1.0
+        },
+        {
+          float_name: "RoughnessClearCoat",
+          float_value: 0.1
+        }
+      ],
+      unk_5: "",
+      float4_light_parameter: [
+
+      ],
+      float4_parameter: [
+        {
+          color_name: "UVScaleOffset",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 0.0,
+            a: 0.0
+          }
+        },
+        {
+          color_name: "BaseColorLayer1",
+          color_value: {
+            r: 0.982,
+            g: 0.896,
+            b: 0.238,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "BaseColorLayer2",
+          color_value: {
+            r: 0.0,
+            g: 0.0,
+            b: 0.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "BaseColorLayer3",
+          color_value: {
+            r: 0.0,
+            g: 0.0,
+            b: 0.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "BaseColorLayer4",
+          color_value: {
+            r: 0.0,
+            g: 0.0,
+            b: 0.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "BaseColorClearCoat",
+          color_value: {
+            r: 0.0,
+            g: 0.0,
+            b: 0.0,
+            a: 0.0
+          }
+        },
+        {
+          color_name: "SubsurfaceColor",
+          color_value: {
+            r: 0.3,
+            g: 0.3,
+            b: 0.3,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "BaseColorLayer6",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "EmissionColorLayer3",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "EmissionColorLayer4",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "BaseColorLayer7",
+          color_value: {
+            r: 0.15,
+            g: 0.423,
+            b: 0.15,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "EmissionColorLayer2",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "UVScaleOffset2",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 0.0,
+            a: 0.0
+          }
+        },
+        {
+          color_name: "UVScaleOffset3",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 0.0,
+            a: 0.0
+          }
+        },
+        {
+          color_name: "EmissionColorLayer1",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "EmissionColor",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        }
+      ],
+      unk_8: "",
+      int_parameter: [
+        {
+          int_name: "CastShadow",
+          int_value: 1
+        },
+        {
+          int_name: "CategoryLabel",
+          int_value: 6
+        },
+        {
+          int_name: "EnableGlobalWeather"
+        }
+      ],
+      unk_10: "",
+      unk_11: "",
+      unk_12: "",
+      byte_extra: {
+      },
+      int_extra: {
+      },
+      alpha_type: "Blend"
+    },
+    {
+      name: "l_eye_a",
+      shaders: [
+        {
+          shader_name: "EyeClearCoat",
+          shader_values: [
+            {
+              string_name: "EnableHighlight",
+              string_value: "False"
+            },
+            {
+              string_name: "EyelidType",
+              string_value: "Upper"
+            },
+            {
+              string_name: "EnableBaseColorMap1",
+              string_value: "False"
+            },
+            {
+              string_name: "EnableNormalMap1",
+              string_value: "True"
+            }
+          ]
+        },
+        {
+          shader_name: "Eye",
+          shader_values: [
+            {
+              string_name: "EnableNormalMap",
+              string_value: "True"
+            },
+            {
+              string_name: "EnableParallaxMap",
+              string_value: "False"
+            },
+            {
+              string_name: "EnableMetallicMap",
+              string_value: "False"
+            },
+            {
+              string_name: "EnableRoughnessMap",
+              string_value: "False"
+            },
+            {
+              string_name: "EnableEmissionColorMap",
+              string_value: "False"
+            },
+            {
+              string_name: "EnableAOMap",
+              string_value: "False"
+            },
+            {
+              string_name: "NumMaterialLayer",
+              string_value: "5"
+            },
+            {
+              string_name: "EnableHighlight",
+              string_value: "False"
+            },
+            {
+              string_name: "EyelidType",
+              string_value: "Upper"
+            },
+            {
+              string_name: "EnableEyeClearCoat",
+              string_value: "True"
+            },
+            {
+              string_name: "ShadingType",
+              string_value: "SSS"
+            }
+          ]
+        }
+      ],
+      textures: [
+        {
+          texture_name: "BaseColorMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_eye_alb.bntx"
+        },
+        {
+          texture_name: "LayerMaskMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_eye_lym.bntx",
+          texture_slot: 1
+        },
+        {
+          texture_name: "NormalMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_eye_nrm.bntx",
+          texture_slot: 2
+        },
+        {
+          texture_name: "EyelidShadowMaskMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_upper_eyelid_msk.bntx",
+          texture_slot: 3
+        },
+        {
+          texture_name: "UpperEyelidColorMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_upper_eyelid_alb.bntx",
+          texture_slot: 4
+        },
+        {
+          texture_name: "SSSMaskMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_body_msk.bntx",
+          texture_slot: 5
+        },
+        {
+          texture_name: "NormalMap1",
+          texture_file: "../pm1134_11_00/pm1134_11_00_eye_nrm.bntx",
+          texture_slot: 6
+        }
+      ],
+      samplers: [
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "MIRROR_ONCE",
+          repeat_v: "MIRROR_ONCE",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "MIRROR_ONCE",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        }
+      ],
+      float_parameter: [
+        {
+          float_name: "UVRotation"
+        },
+        {
+          float_name: "RoughnessLayer3",
+          float_value: 0.1
+        },
+        {
+          float_name: "RoughnessLayer4",
+          float_value: 0.1
+        },
+        {
+          float_name: "SSSMaskScale",
+          float_value: 1.0
+        },
+        {
+          float_name: "NormalHeight",
+          float_value: 1.0
+        },
+        {
+          float_name: "SSSMaskOffset"
+        },
+        {
+          float_name: "RoughnessLayer2",
+          float_value: 0.1
+        },
+        {
+          float_name: "EmissionIntensityLayer3"
+        },
+        {
+          float_name: "EmissionIntensityLayer4"
+        },
+        {
+          float_name: "RoughnessLayer1",
+          float_value: 0.33
+        },
+        {
+          float_name: "LayerMaskScale3",
+          float_value: 1.0
+        },
+        {
+          float_name: "LayerMaskScale4",
+          float_value: 1.0
+        },
+        {
+          float_name: "EmissionIntensityLayer2"
+        },
+        {
+          float_name: "UVRotation2"
+        },
+        {
+          float_name: "UVRotation3"
+        },
+        {
+          float_name: "Roughness",
+          float_value: 0.1
+        },
+        {
+          float_name: "EmissionIntensityLayer1"
+        },
+        {
+          float_name: "RoughnessLayer7",
+          float_value: 0.33
+        },
+        {
+          float_name: "NormalHeight1"
+        },
+        {
+          float_name: "LayerMaskScale2",
+          float_value: 1.0
+        },
+        {
+          float_name: "MetallicClearCoat"
+        },
+        {
+          float_name: "EmissionIntensity"
+        },
+        {
+          float_name: "LayerMaskScale1",
+          float_value: 1.0
+        },
+        {
+          float_name: "RoughnessClearCoat",
+          float_value: 0.1
+        }
+      ],
+      unk_5: "",
+      float4_light_parameter: [
+
+      ],
+      float4_parameter: [
+        {
+          color_name: "UVScaleOffset",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 0.0,
+            a: 0.0
+          }
+        },
+        {
+          color_name: "BaseColorLayer1",
+          color_value: {
+            r: 0.982,
+            g: 0.896,
+            b: 0.238,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "BaseColorLayer2",
+          color_value: {
+            r: 0.0,
+            g: 0.0,
+            b: 0.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "BaseColorLayer3",
+          color_value: {
+            r: 0.0,
+            g: 0.0,
+            b: 0.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "BaseColorLayer4",
+          color_value: {
+            r: 0.0,
+            g: 0.0,
+            b: 0.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "BaseColorClearCoat",
+          color_value: {
+            r: 0.0,
+            g: 0.0,
+            b: 0.0,
+            a: 0.0
+          }
+        },
+        {
+          color_name: "SubsurfaceColor",
+          color_value: {
+            r: 0.3,
+            g: 0.3,
+            b: 0.3,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "BaseColorLayer6",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "EmissionColorLayer3",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "EmissionColorLayer4",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "BaseColorLayer7",
+          color_value: {
+            r: 0.15,
+            g: 0.423,
+            b: 0.15,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "EmissionColorLayer2",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "UVScaleOffset2",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 0.0,
+            a: 0.0
+          }
+        },
+        {
+          color_name: "UVScaleOffset3",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 0.0,
+            a: 0.0
+          }
+        },
+        {
+          color_name: "EmissionColorLayer1",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "EmissionColor",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        }
+      ],
+      unk_8: "",
+      int_parameter: [
+        {
+          int_name: "CastShadow",
+          int_value: 1
+        },
+        {
+          int_name: "CategoryLabel",
+          int_value: 6
+        },
+        {
+          int_name: "EnableGlobalWeather"
+        }
+      ],
+      unk_10: "",
+      unk_11: "",
+      unk_12: "",
+      byte_extra: {
+      },
+      int_extra: {
+      },
+      alpha_type: "Blend"
+    },
+    {
+      name: "l_eye_b",
+      shaders: [
+        {
+          shader_name: "EyeClearCoat",
+          shader_values: [
+            {
+              string_name: "EnableHighlight",
+              string_value: "False"
+            },
+            {
+              string_name: "EyelidType",
+              string_value: "Upper"
+            },
+            {
+              string_name: "EnableBaseColorMap1",
+              string_value: "False"
+            },
+            {
+              string_name: "EnableNormalMap1",
+              string_value: "True"
+            }
+          ]
+        },
+        {
+          shader_name: "Eye",
+          shader_values: [
+            {
+              string_name: "EnableNormalMap",
+              string_value: "True"
+            },
+            {
+              string_name: "EnableParallaxMap",
+              string_value: "False"
+            },
+            {
+              string_name: "EnableMetallicMap",
+              string_value: "False"
+            },
+            {
+              string_name: "EnableRoughnessMap",
+              string_value: "False"
+            },
+            {
+              string_name: "EnableEmissionColorMap",
+              string_value: "False"
+            },
+            {
+              string_name: "EnableAOMap",
+              string_value: "False"
+            },
+            {
+              string_name: "NumMaterialLayer",
+              string_value: "5"
+            },
+            {
+              string_name: "EnableHighlight",
+              string_value: "False"
+            },
+            {
+              string_name: "EyelidType",
+              string_value: "Upper"
+            },
+            {
+              string_name: "EnableEyeClearCoat",
+              string_value: "True"
+            },
+            {
+              string_name: "ShadingType",
+              string_value: "SSS"
+            }
+          ]
+        }
+      ],
+      textures: [
+        {
+          texture_name: "BaseColorMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_eye_alb.bntx"
+        },
+        {
+          texture_name: "LayerMaskMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_eye_lym.bntx",
+          texture_slot: 1
+        },
+        {
+          texture_name: "NormalMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_eye_nrm.bntx",
+          texture_slot: 2
+        },
+        {
+          texture_name: "EyelidShadowMaskMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_upper_eyelid_msk.bntx",
+          texture_slot: 3
+        },
+        {
+          texture_name: "UpperEyelidColorMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_upper_eyelid_alb.bntx",
+          texture_slot: 4
+        },
+        {
+          texture_name: "SSSMaskMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_body_msk.bntx",
+          texture_slot: 5
+        },
+        {
+          texture_name: "NormalMap1",
+          texture_file: "../pm1134_11_00/pm1134_11_00_eye_nrm.bntx",
+          texture_slot: 6
+        }
+      ],
+      samplers: [
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "MIRROR_ONCE",
+          repeat_v: "MIRROR_ONCE",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "MIRROR_ONCE",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        }
+      ],
+      float_parameter: [
+        {
+          float_name: "UVRotation"
+        },
+        {
+          float_name: "RoughnessLayer3",
+          float_value: 0.1
+        },
+        {
+          float_name: "RoughnessLayer4",
+          float_value: 0.1
+        },
+        {
+          float_name: "SSSMaskScale",
+          float_value: 1.0
+        },
+        {
+          float_name: "NormalHeight",
+          float_value: 1.0
+        },
+        {
+          float_name: "SSSMaskOffset"
+        },
+        {
+          float_name: "RoughnessLayer2",
+          float_value: 0.1
+        },
+        {
+          float_name: "EmissionIntensityLayer3"
+        },
+        {
+          float_name: "EmissionIntensityLayer4"
+        },
+        {
+          float_name: "RoughnessLayer1",
+          float_value: 0.33
+        },
+        {
+          float_name: "LayerMaskScale3",
+          float_value: 1.0
+        },
+        {
+          float_name: "LayerMaskScale4",
+          float_value: 1.0
+        },
+        {
+          float_name: "EmissionIntensityLayer2"
+        },
+        {
+          float_name: "UVRotation2"
+        },
+        {
+          float_name: "UVRotation3"
+        },
+        {
+          float_name: "Roughness",
+          float_value: 0.1
+        },
+        {
+          float_name: "EmissionIntensityLayer1"
+        },
+        {
+          float_name: "RoughnessLayer7",
+          float_value: 0.33
+        },
+        {
+          float_name: "NormalHeight1"
+        },
+        {
+          float_name: "LayerMaskScale2",
+          float_value: 1.0
+        },
+        {
+          float_name: "MetallicClearCoat"
+        },
+        {
+          float_name: "EmissionIntensity"
+        },
+        {
+          float_name: "LayerMaskScale1",
+          float_value: 1.0
+        },
+        {
+          float_name: "RoughnessClearCoat",
+          float_value: 0.1
+        }
+      ],
+      unk_5: "",
+      float4_light_parameter: [
+
+      ],
+      float4_parameter: [
+        {
+          color_name: "UVScaleOffset",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 0.0,
+            a: 0.0
+          }
+        },
+        {
+          color_name: "BaseColorLayer1",
+          color_value: {
+            r: 0.982,
+            g: 0.896,
+            b: 0.238,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "BaseColorLayer2",
+          color_value: {
+            r: 0.0,
+            g: 0.0,
+            b: 0.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "BaseColorLayer3",
+          color_value: {
+            r: 0.0,
+            g: 0.0,
+            b: 0.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "BaseColorLayer4",
+          color_value: {
+            r: 0.0,
+            g: 0.0,
+            b: 0.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "BaseColorClearCoat",
+          color_value: {
+            r: 0.0,
+            g: 0.0,
+            b: 0.0,
+            a: 0.0
+          }
+        },
+        {
+          color_name: "SubsurfaceColor",
+          color_value: {
+            r: 0.3,
+            g: 0.3,
+            b: 0.3,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "BaseColorLayer6",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "EmissionColorLayer3",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "EmissionColorLayer4",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "BaseColorLayer7",
+          color_value: {
+            r: 0.15,
+            g: 0.423,
+            b: 0.15,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "EmissionColorLayer2",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "UVScaleOffset2",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 0.0,
+            a: 0.0
+          }
+        },
+        {
+          color_name: "UVScaleOffset3",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 0.0,
+            a: 0.0
+          }
+        },
+        {
+          color_name: "EmissionColorLayer1",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "EmissionColor",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        }
+      ],
+      unk_8: "",
+      int_parameter: [
+        {
+          int_name: "CastShadow",
+          int_value: 1
+        },
+        {
+          int_name: "CategoryLabel",
+          int_value: 6
+        },
+        {
+          int_name: "EnableGlobalWeather"
+        }
+      ],
+      unk_10: "",
+      unk_11: "",
+      unk_12: "",
+      byte_extra: {
+      },
+      int_extra: {
+      },
+      alpha_type: "Blend"
+    },
+    {
+      name: "r_eye_b",
+      shaders: [
+        {
+          shader_name: "EyeClearCoat",
+          shader_values: [
+            {
+              string_name: "EnableHighlight",
+              string_value: "False"
+            },
+            {
+              string_name: "EyelidType",
+              string_value: "Upper"
+            },
+            {
+              string_name: "EnableBaseColorMap1",
+              string_value: "False"
+            },
+            {
+              string_name: "EnableNormalMap1",
+              string_value: "True"
+            }
+          ]
+        },
+        {
+          shader_name: "Eye",
+          shader_values: [
+            {
+              string_name: "EnableNormalMap",
+              string_value: "True"
+            },
+            {
+              string_name: "EnableParallaxMap",
+              string_value: "False"
+            },
+            {
+              string_name: "EnableMetallicMap",
+              string_value: "False"
+            },
+            {
+              string_name: "EnableRoughnessMap",
+              string_value: "False"
+            },
+            {
+              string_name: "EnableEmissionColorMap",
+              string_value: "False"
+            },
+            {
+              string_name: "EnableAOMap",
+              string_value: "False"
+            },
+            {
+              string_name: "NumMaterialLayer",
+              string_value: "5"
+            },
+            {
+              string_name: "EnableHighlight",
+              string_value: "False"
+            },
+            {
+              string_name: "EyelidType",
+              string_value: "Upper"
+            },
+            {
+              string_name: "EnableEyeClearCoat",
+              string_value: "True"
+            },
+            {
+              string_name: "ShadingType",
+              string_value: "SSS"
+            }
+          ]
+        }
+      ],
+      textures: [
+        {
+          texture_name: "BaseColorMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_eye_alb.bntx"
+        },
+        {
+          texture_name: "LayerMaskMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_eye_lym.bntx",
+          texture_slot: 1
+        },
+        {
+          texture_name: "NormalMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_eye_nrm.bntx",
+          texture_slot: 2
+        },
+        {
+          texture_name: "EyelidShadowMaskMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_upper_eyelid_msk.bntx",
+          texture_slot: 3
+        },
+        {
+          texture_name: "UpperEyelidColorMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_upper_eyelid_alb.bntx",
+          texture_slot: 4
+        },
+        {
+          texture_name: "SSSMaskMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_body_msk.bntx",
+          texture_slot: 5
+        },
+        {
+          texture_name: "NormalMap1",
+          texture_file: "../pm1134_11_00/pm1134_11_00_eye_nrm.bntx",
+          texture_slot: 6
+        }
+      ],
+      samplers: [
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "MIRROR_ONCE",
+          repeat_v: "MIRROR_ONCE",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "MIRROR_ONCE",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        }
+      ],
+      float_parameter: [
+        {
+          float_name: "UVRotation"
+        },
+        {
+          float_name: "RoughnessLayer3",
+          float_value: 0.5
+        },
+        {
+          float_name: "RoughnessLayer4",
+          float_value: 0.1
+        },
+        {
+          float_name: "SSSMaskScale",
+          float_value: 1.0
+        },
+        {
+          float_name: "NormalHeight",
+          float_value: 1.0
+        },
+        {
+          float_name: "SSSMaskOffset"
+        },
+        {
+          float_name: "RoughnessLayer2",
+          float_value: 0.1
+        },
+        {
+          float_name: "EmissionIntensityLayer3"
+        },
+        {
+          float_name: "EmissionIntensityLayer4"
+        },
+        {
+          float_name: "RoughnessLayer1",
+          float_value: 0.33
+        },
+        {
+          float_name: "LayerMaskScale3",
+          float_value: 1.0
+        },
+        {
+          float_name: "LayerMaskScale4",
+          float_value: 1.0
+        },
+        {
+          float_name: "EmissionIntensityLayer2"
+        },
+        {
+          float_name: "UVRotation2"
+        },
+        {
+          float_name: "UVRotation3"
+        },
+        {
+          float_name: "Roughness",
+          float_value: 0.1
+        },
+        {
+          float_name: "EmissionIntensityLayer1"
+        },
+        {
+          float_name: "RoughnessLayer7",
+          float_value: 0.33
+        },
+        {
+          float_name: "NormalHeight1"
+        },
+        {
+          float_name: "LayerMaskScale2",
+          float_value: 1.0
+        },
+        {
+          float_name: "MetallicClearCoat"
+        },
+        {
+          float_name: "EmissionIntensity"
+        },
+        {
+          float_name: "LayerMaskScale1",
+          float_value: 1.0
+        },
+        {
+          float_name: "RoughnessClearCoat",
+          float_value: 0.1
+        }
+      ],
+      unk_5: "",
+      float4_light_parameter: [
+
+      ],
+      float4_parameter: [
+        {
+          color_name: "UVScaleOffset",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 0.0,
+            a: 0.0
+          }
+        },
+        {
+          color_name: "BaseColorLayer1",
+          color_value: {
+            r: 0.982,
+            g: 0.896,
+            b: 0.238,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "BaseColorLayer2",
+          color_value: {
+            r: 0.0,
+            g: 0.0,
+            b: 0.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "BaseColorLayer3",
+          color_value: {
+            r: 0.0,
+            g: 0.0,
+            b: 0.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "BaseColorLayer4",
+          color_value: {
+            r: 0.0,
+            g: 0.0,
+            b: 0.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "BaseColorClearCoat",
+          color_value: {
+            r: 0.0,
+            g: 0.0,
+            b: 0.0,
+            a: 0.0
+          }
+        },
+        {
+          color_name: "SubsurfaceColor",
+          color_value: {
+            r: 0.3,
+            g: 0.3,
+            b: 0.3,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "BaseColorLayer6",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "EmissionColorLayer3",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "EmissionColorLayer4",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "BaseColorLayer7",
+          color_value: {
+            r: 0.15,
+            g: 0.423,
+            b: 0.15,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "EmissionColorLayer2",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "UVScaleOffset2",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 0.0,
+            a: 0.0
+          }
+        },
+        {
+          color_name: "UVScaleOffset3",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 0.0,
+            a: 0.0
+          }
+        },
+        {
+          color_name: "EmissionColorLayer1",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          color_name: "EmissionColor",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        }
+      ],
+      unk_8: "",
+      int_parameter: [
+        {
+          int_name: "CastShadow",
+          int_value: 1
+        },
+        {
+          int_name: "CategoryLabel",
+          int_value: 6
+        },
+        {
+          int_name: "EnableGlobalWeather"
+        }
+      ],
+      unk_10: "",
+      unk_11: "",
+      unk_12: "",
+      byte_extra: {
+      },
+      int_extra: {
+      },
+      alpha_type: "Blend"
+    },
+    {
+      name: "body_00",
+      shaders: [
+        {
+          shader_name: "SSS",
+          shader_values: [
+            {
+              string_name: "EnableBaseColorMap",
+              string_value: "True"
+            },
+            {
+              string_name: "EnableNormalMap",
+              string_value: "True"
+            },
+            {
+              string_name: "EnableRoughnessMap",
+              string_value: "True"
+            },
+            {
+              string_name: "EnableAOMap",
+              string_value: "True"
+            },
+            {
+              string_name: "NumMaterialLayer",
+              string_value: "1"
+            },
+            {
+              string_name: "EnableSSSMaskMap",
+              string_value: "True"
+            }
+          ]
+        }
+      ],
+      textures: [
+        {
+          texture_name: "BaseColorMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_body_rare_alb.bntx"
+        },
+        {
+          texture_name: "NormalMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_body_nrm.bntx",
+          texture_slot: 1
+        },
+        {
+          texture_name: "RoughnessMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_body_rgn.bntx",
+          texture_slot: 2
+        },
+        {
+          texture_name: "AOMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_body_ao.bntx",
+          texture_slot: 3
+        },
+        {
+          texture_name: "SSSMaskMap",
+          texture_file: "../pm1134_11_00/pm1134_11_00_body_msk.bntx",
+          texture_slot: 6
+        }
+      ],
+      samplers: [
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        },
+        {
+          repeat_u: "CLAMP",
+          repeat_v: "CLAMP",
+          border_color: {
+            r: 1.0,
+            g: 1.0,
+            b: 1.0,
+            a: 1.0
+          }
+        }
+      ],
+      float_parameter: [
+        {
+          float_name: "NormalHeight",
+          float_value: 1.0
+        },
+        {
+          float_name: "SSSMaskScale",
+          float_value: 1.0
+        },
+        {
+          float_name: "SSSMaskOffset"
+        }
+      ],
+      unk_5: "",
+      float4_light_parameter: [
+
+      ],
+      float4_parameter: [
+        {
+          color_name: "UVScaleOffset",
+          color_value: {
+            r: 1.0,
+            g: 1.0,
+            b: 0.0,
+            a: 0.0
+          }
+        },
+        {
+          color_name: "SubsurfaceColor",
+          color_value: {
+            r: 0.3,
+            g: 0.3,
+            b: 0.3,
+            a: 1.0
+          }
+        }
+      ],
+      unk_8: "",
+      int_parameter: [
+        {
+          int_name: "CastShadow",
+          int_value: 1
+        },
+        {
+          int_name: "CategoryLabel",
+          int_value: 6
+        },
+        {
+          int_name: "EnableJewel",
+          int_value: 1
+        },
+        {
+          int_name: "EnableGlobalWeather"
+        },
+        {
+          int_name: "EnableAdditionalLight",
+          int_value: 1
+        }
+      ],
+      unk_10: "",
+      unk_11: "",
+      unk_12: "",
+      byte_extra: {
+      },
+      int_extra: {
+      },
+      alpha_type: "Opaque"
+    }
+  ]
+}

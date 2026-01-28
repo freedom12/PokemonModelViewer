@@ -1,0 +1,1024 @@
+{
+  config: {
+    duration: 201,
+    framerate: 60
+  },
+  tracks: [
+    {
+      track_path: "pm1134_11_00_cup_a_mesh_shape",
+      visibility_animation: {
+        info: {
+          values_type: "FixedBoolTrack",
+          values: {
+            value: true
+          }
+        }
+      }
+    },
+    {
+      track_path: "pm1134_11_00_cup_b_mesh_shape",
+      visibility_animation: {
+        info: {
+          values_type: "FixedBoolTrack",
+          values: {
+            value: true
+          }
+        }
+      }
+    },
+    {
+      track_path: "pm1134_11_00_body_a_mesh_shape",
+      material_animation: {
+        material_track: [
+          {
+            name: "r_eye_a",
+            init_values: [
+
+            ],
+            anim_values: [
+              {
+                name: "UVScaleOffset3",
+                list: {
+                  red: {
+                    values: [
+                      {
+                        value: 1.0
+                      },
+                      {
+                        time: 200.0,
+                        value: 1.0
+                      }
+                    ]
+                  },
+                  green: {
+                    values: [
+                      {
+                        value: 1.0
+                      },
+                      {
+                        time: 200.0,
+                        value: 1.0
+                      }
+                    ]
+                  },
+                  blue: {
+                    values: [
+                      {
+                      },
+                      {
+                        time: 200.0
+                      }
+                    ]
+                  },
+                  alpha: {
+                    values: [
+                      {
+                      },
+                      {
+                        time: 10.0,
+                        value: 0.5
+                      },
+                      {
+                        time: 15.0,
+                        value: 0.25
+                      },
+                      {
+                        time: 17.0
+                      },
+                      {
+                        time: 44.0,
+                        value: 0.5
+                      },
+                      {
+                        time: 160.0,
+                        value: 0.25
+                      },
+                      {
+                        time: 163.0
+                      },
+                      {
+                        time: 200.0
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            name: "l_eye_a",
+            init_values: [
+
+            ],
+            anim_values: [
+              {
+                name: "UVScaleOffset3",
+                list: {
+                  red: {
+                    values: [
+                      {
+                        value: 1.0
+                      },
+                      {
+                        time: 200.0,
+                        value: 1.0
+                      }
+                    ]
+                  },
+                  green: {
+                    values: [
+                      {
+                        value: 1.0
+                      },
+                      {
+                        time: 200.0,
+                        value: 1.0
+                      }
+                    ]
+                  },
+                  blue: {
+                    values: [
+                      {
+                      },
+                      {
+                        time: 200.0
+                      }
+                    ]
+                  },
+                  alpha: {
+                    values: [
+                      {
+                      },
+                      {
+                        time: 10.0,
+                        value: 0.5
+                      },
+                      {
+                        time: 15.0,
+                        value: 0.25
+                      },
+                      {
+                        time: 17.0
+                      },
+                      {
+                        time: 44.0,
+                        value: 0.5
+                      },
+                      {
+                        time: 160.0,
+                        value: 0.25
+                      },
+                      {
+                        time: 163.0
+                      },
+                      {
+                        time: 200.0
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        unk_4: 2
+      },
+      visibility_animation: {
+        info: {
+          values_type: "Framed8BoolTrack",
+          values: {
+            frames: [
+              0,
+              51,
+              156
+            ],
+            value: [
+              true
+            ]
+          }
+        }
+      }
+    },
+    {
+      track_path: "pm1134_11_00_body_b_mesh_shape",
+      material_animation: {
+        material_track: [
+          {
+            name: "r_eye_b",
+            init_values: [
+
+            ],
+            anim_values: [
+              {
+                name: "UVScaleOffset3",
+                list: {
+                  red: {
+                    values: [
+                      {
+                        value: 1.0
+                      },
+                      {
+                        time: 200.0,
+                        value: 1.0
+                      }
+                    ]
+                  },
+                  green: {
+                    values: [
+                      {
+                        value: 1.0
+                      },
+                      {
+                        time: 200.0,
+                        value: 1.0
+                      }
+                    ]
+                  },
+                  blue: {
+                    values: [
+                      {
+                      },
+                      {
+                        time: 200.0
+                      }
+                    ]
+                  },
+                  alpha: {
+                    values: [
+                      {
+                      },
+                      {
+                        time: 10.0,
+                        value: 0.5
+                      },
+                      {
+                        time: 15.0,
+                        value: 0.25
+                      },
+                      {
+                        time: 17.0
+                      },
+                      {
+                        time: 44.0,
+                        value: 0.5
+                      },
+                      {
+                        time: 160.0,
+                        value: 0.25
+                      },
+                      {
+                        time: 163.0
+                      },
+                      {
+                        time: 200.0
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            name: "l_eye_b",
+            init_values: [
+
+            ],
+            anim_values: [
+              {
+                name: "UVScaleOffset3",
+                list: {
+                  red: {
+                    values: [
+                      {
+                        value: 1.0
+                      },
+                      {
+                        time: 200.0,
+                        value: 1.0
+                      }
+                    ]
+                  },
+                  green: {
+                    values: [
+                      {
+                        value: 1.0
+                      },
+                      {
+                        time: 200.0,
+                        value: 1.0
+                      }
+                    ]
+                  },
+                  blue: {
+                    values: [
+                      {
+                      },
+                      {
+                        time: 200.0
+                      }
+                    ]
+                  },
+                  alpha: {
+                    values: [
+                      {
+                      },
+                      {
+                        time: 10.0,
+                        value: 0.5
+                      },
+                      {
+                        time: 15.0,
+                        value: 0.25
+                      },
+                      {
+                        time: 17.0
+                      },
+                      {
+                        time: 44.0,
+                        value: 0.5
+                      },
+                      {
+                        time: 160.0,
+                        value: 0.25
+                      },
+                      {
+                        time: 163.0
+                      },
+                      {
+                        time: 200.0
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        unk_4: 2
+      },
+      visibility_animation: {
+        info: {
+          values_type: "FixedBoolTrack",
+          values: {
+          }
+        }
+      }
+    },
+    {
+      track_path: "pm1134_11_00_body_c_mesh_shape",
+      visibility_animation: {
+        info: {
+          values_type: "Framed8BoolTrack",
+          values: {
+            frames: [
+              0,
+              51,
+              156
+            ],
+            value: [
+              true
+            ]
+          }
+        }
+      }
+    },
+    {
+      track_path: "pm1134_11_00_body_d_mesh_shape",
+      visibility_animation: {
+        info: {
+          values_type: "Framed8BoolTrack",
+          values: {
+            frames: [
+              0,
+              35,
+              150
+            ],
+            value: [
+              true
+            ]
+          }
+        }
+      }
+    },
+    {
+      track_path: "pm1134_11_00_body_e_mesh_shape",
+      visibility_animation: {
+        info: {
+          values_type: "Framed8BoolTrack",
+          values: {
+            frames: [
+              0,
+              35,
+              150
+            ],
+            value: [
+              true
+            ]
+          }
+        }
+      }
+    },
+    {
+      track_path: "pm1134_11_00_hair_a_mesh_shape",
+      visibility_animation: {
+        info: {
+          values_type: "FixedBoolTrack",
+          values: {
+            value: true
+          }
+        }
+      }
+    },
+    {
+      track_path: "pm1134_11_00_hair_b_mesh_shape",
+      visibility_animation: {
+        info: {
+          values_type: "FixedBoolTrack",
+          values: {
+          }
+        }
+      }
+    },
+    {
+      track_path: "pm1134_11_00_drop_a_mesh_shape",
+      visibility_animation: {
+        info: {
+          values_type: "Framed8BoolTrack",
+          values: {
+            frames: [
+              0,
+              52,
+              73
+            ],
+            value: [
+              true
+            ]
+          }
+        }
+      }
+    },
+    {
+      track_path: "pm1134_11_00_drop_b_mesh_shape",
+      visibility_animation: {
+        info: {
+          values_type: "Framed8BoolTrack",
+          values: {
+            frames: [
+              0,
+              55,
+              77
+            ],
+            value: [
+              true
+            ]
+          }
+        }
+      }
+    },
+    {
+      track_path: "pm1134_11_00_drop_c_mesh_shape",
+      visibility_animation: {
+        info: {
+          values_type: "Framed8BoolTrack",
+          values: {
+            frames: [
+              0,
+              55,
+              76
+            ],
+            value: [
+              true
+            ]
+          }
+        }
+      }
+    },
+    {
+      track_path: "pm1134_11_00_drop_d_mesh_shape",
+      visibility_animation: {
+        info: {
+          values_type: "Framed8BoolTrack",
+          values: {
+            frames: [
+              0,
+              58,
+              79
+            ],
+            value: [
+              true
+            ]
+          }
+        }
+      }
+    },
+    {
+      track_path: "pm1134_12_00_cup_a_mesh_shape",
+      visibility_animation: {
+        info: {
+          values_type: "FixedBoolTrack",
+          values: {
+            value: true
+          }
+        }
+      }
+    },
+    {
+      track_path: "pm1134_12_00_cup_b_mesh_shape",
+      visibility_animation: {
+        info: {
+          values_type: "FixedBoolTrack",
+          values: {
+            value: true
+          }
+        }
+      }
+    },
+    {
+      track_path: "pm1134_12_00_body_a_mesh_shape",
+      material_animation: {
+        material_track: [
+          {
+            name: "r_eye_a",
+            init_values: [
+
+            ],
+            anim_values: [
+              {
+                name: "UVScaleOffset3",
+                list: {
+                  red: {
+                    values: [
+                      {
+                        value: 1.0
+                      },
+                      {
+                        time: 200.0,
+                        value: 1.0
+                      }
+                    ]
+                  },
+                  green: {
+                    values: [
+                      {
+                        value: 1.0
+                      },
+                      {
+                        time: 200.0,
+                        value: 1.0
+                      }
+                    ]
+                  },
+                  blue: {
+                    values: [
+                      {
+                      },
+                      {
+                        time: 200.0
+                      }
+                    ]
+                  },
+                  alpha: {
+                    values: [
+                      {
+                      },
+                      {
+                        time: 10.0,
+                        value: 0.5
+                      },
+                      {
+                        time: 15.0,
+                        value: 0.25
+                      },
+                      {
+                        time: 17.0
+                      },
+                      {
+                        time: 44.0,
+                        value: 0.5
+                      },
+                      {
+                        time: 160.0,
+                        value: 0.25
+                      },
+                      {
+                        time: 163.0
+                      },
+                      {
+                        time: 200.0
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            name: "l_eye_a",
+            init_values: [
+
+            ],
+            anim_values: [
+              {
+                name: "UVScaleOffset3",
+                list: {
+                  red: {
+                    values: [
+                      {
+                        value: 1.0
+                      },
+                      {
+                        time: 200.0,
+                        value: 1.0
+                      }
+                    ]
+                  },
+                  green: {
+                    values: [
+                      {
+                        value: 1.0
+                      },
+                      {
+                        time: 200.0,
+                        value: 1.0
+                      }
+                    ]
+                  },
+                  blue: {
+                    values: [
+                      {
+                      },
+                      {
+                        time: 200.0
+                      }
+                    ]
+                  },
+                  alpha: {
+                    values: [
+                      {
+                      },
+                      {
+                        time: 10.0,
+                        value: 0.5
+                      },
+                      {
+                        time: 15.0,
+                        value: 0.25
+                      },
+                      {
+                        time: 17.0
+                      },
+                      {
+                        time: 44.0,
+                        value: 0.5
+                      },
+                      {
+                        time: 160.0,
+                        value: 0.25
+                      },
+                      {
+                        time: 163.0
+                      },
+                      {
+                        time: 200.0
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        unk_4: 2
+      },
+      visibility_animation: {
+        info: {
+          values_type: "Framed8BoolTrack",
+          values: {
+            frames: [
+              0,
+              51,
+              156
+            ],
+            value: [
+              true
+            ]
+          }
+        }
+      }
+    },
+    {
+      track_path: "pm1134_12_00_body_b_mesh_shape",
+      material_animation: {
+        material_track: [
+          {
+            name: "l_eye_b",
+            init_values: [
+
+            ],
+            anim_values: [
+              {
+                name: "UVScaleOffset3",
+                list: {
+                  red: {
+                    values: [
+                      {
+                        value: 1.0
+                      },
+                      {
+                        time: 200.0,
+                        value: 1.0
+                      }
+                    ]
+                  },
+                  green: {
+                    values: [
+                      {
+                        value: 1.0
+                      },
+                      {
+                        time: 200.0,
+                        value: 1.0
+                      }
+                    ]
+                  },
+                  blue: {
+                    values: [
+                      {
+                      },
+                      {
+                        time: 200.0
+                      }
+                    ]
+                  },
+                  alpha: {
+                    values: [
+                      {
+                      },
+                      {
+                        time: 10.0,
+                        value: 0.5
+                      },
+                      {
+                        time: 15.0,
+                        value: 0.25
+                      },
+                      {
+                        time: 17.0
+                      },
+                      {
+                        time: 44.0,
+                        value: 0.5
+                      },
+                      {
+                        time: 160.0,
+                        value: 0.25
+                      },
+                      {
+                        time: 163.0
+                      },
+                      {
+                        time: 200.0
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            name: "r_eye_b",
+            init_values: [
+
+            ],
+            anim_values: [
+              {
+                name: "UVScaleOffset3",
+                list: {
+                  red: {
+                    values: [
+                      {
+                        value: 1.0
+                      },
+                      {
+                        time: 200.0,
+                        value: 1.0
+                      }
+                    ]
+                  },
+                  green: {
+                    values: [
+                      {
+                        value: 1.0
+                      },
+                      {
+                        time: 200.0,
+                        value: 1.0
+                      }
+                    ]
+                  },
+                  blue: {
+                    values: [
+                      {
+                      },
+                      {
+                        time: 200.0
+                      }
+                    ]
+                  },
+                  alpha: {
+                    values: [
+                      {
+                      },
+                      {
+                        time: 10.0,
+                        value: 0.5
+                      },
+                      {
+                        time: 15.0,
+                        value: 0.25
+                      },
+                      {
+                        time: 17.0
+                      },
+                      {
+                        time: 44.0,
+                        value: 0.5
+                      },
+                      {
+                        time: 160.0,
+                        value: 0.25
+                      },
+                      {
+                        time: 163.0
+                      },
+                      {
+                        time: 200.0
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        unk_4: 2
+      },
+      visibility_animation: {
+        info: {
+          values_type: "FixedBoolTrack",
+          values: {
+          }
+        }
+      }
+    },
+    {
+      track_path: "pm1134_12_00_body_c_mesh_shape",
+      visibility_animation: {
+        info: {
+          values_type: "Framed8BoolTrack",
+          values: {
+            frames: [
+              0,
+              51,
+              156
+            ],
+            value: [
+              true
+            ]
+          }
+        }
+      }
+    },
+    {
+      track_path: "pm1134_12_00_body_d_mesh_shape",
+      visibility_animation: {
+        info: {
+          values_type: "Framed8BoolTrack",
+          values: {
+            frames: [
+              0,
+              35,
+              150
+            ],
+            value: [
+              true
+            ]
+          }
+        }
+      }
+    },
+    {
+      track_path: "pm1134_12_00_body_e_mesh_shape",
+      visibility_animation: {
+        info: {
+          values_type: "Framed8BoolTrack",
+          values: {
+            frames: [
+              0,
+              35,
+              150
+            ],
+            value: [
+              true
+            ]
+          }
+        }
+      }
+    },
+    {
+      track_path: "pm1134_12_00_hair_a_mesh_shape",
+      visibility_animation: {
+        info: {
+          values_type: "FixedBoolTrack",
+          values: {
+            value: true
+          }
+        }
+      }
+    },
+    {
+      track_path: "pm1134_12_00_hair_b_mesh_shape",
+      visibility_animation: {
+        info: {
+          values_type: "FixedBoolTrack",
+          values: {
+          }
+        }
+      }
+    },
+    {
+      track_path: "pm1134_12_00_drop_a_mesh_shape",
+      visibility_animation: {
+        info: {
+          values_type: "Framed8BoolTrack",
+          values: {
+            frames: [
+              0,
+              52,
+              73
+            ],
+            value: [
+              true
+            ]
+          }
+        }
+      }
+    },
+    {
+      track_path: "pm1134_12_00_drop_b_mesh_shape",
+      visibility_animation: {
+        info: {
+          values_type: "Framed8BoolTrack",
+          values: {
+            frames: [
+              0,
+              55,
+              77
+            ],
+            value: [
+              true
+            ]
+          }
+        }
+      }
+    },
+    {
+      track_path: "pm1134_12_00_drop_c_mesh_shape",
+      visibility_animation: {
+        info: {
+          values_type: "Framed8BoolTrack",
+          values: {
+            frames: [
+              0,
+              55,
+              76
+            ],
+            value: [
+              true
+            ]
+          }
+        }
+      }
+    },
+    {
+      track_path: "pm1134_12_00_drop_d_mesh_shape",
+      visibility_animation: {
+        info: {
+          values_type: "Framed8BoolTrack",
+          values: {
+            frames: [
+              0,
+              58,
+              79
+            ],
+            value: [
+              true
+            ]
+          }
+        }
+      }
+    }
+  ],
+  material_frame_multiplier: 4,
+  visibility_frame_multiplier: 26
+}

@@ -1,0 +1,67 @@
+{
+  material: [
+    {
+      name: "rare",
+      material_name: [
+        "pm1134_12_00_rare.trmtr"
+      ],
+      material_switches: [
+        {
+          material_name: "pm1134_12_00_cup_b_mesh_shape",
+          material_flag: 1
+        },
+        {
+          material_name: "pm1134_12_00_body_a_mesh_shape",
+          material_flag: 1
+        },
+        {
+          material_name: "pm1134_12_00_body_b_mesh_shape",
+          material_flag: 1
+        },
+        {
+          material_name: "pm1134_12_00_body_c_mesh_shape",
+          material_flag: 1
+        },
+        {
+          material_name: "pm1134_12_00_body_d_mesh_shape",
+          material_flag: 1
+        },
+        {
+          material_name: "pm1134_12_00_body_e_mesh_shape",
+          material_flag: 1
+        },
+        {
+          material_name: "pm1134_12_00_hair_a_mesh_shape",
+          material_flag: 1
+        },
+        {
+          material_name: "pm1134_12_00_hair_b_mesh_shape",
+          material_flag: 1
+        },
+        {
+          material_name: "pm1134_12_00_drop_a_mesh_shape",
+          material_flag: 1
+        },
+        {
+          material_name: "pm1134_12_00_drop_b_mesh_shape",
+          material_flag: 1
+        },
+        {
+          material_name: "pm1134_12_00_drop_c_mesh_shape",
+          material_flag: 1
+        },
+        {
+          material_name: "pm1134_12_00_drop_d_mesh_shape",
+          material_flag: 1
+        },
+        {
+          material_name: "pm1134_12_00_cup_a_mesh_shape",
+          material_flag: 1
+        }
+      ],
+      material_properties: [
+
+      ]
+    }
+  ]
+}

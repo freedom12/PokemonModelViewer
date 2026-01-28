@@ -1,0 +1,12 @@
+{
+  size_index: "Size_S",
+  min_size: 1.66,
+  max_size: 2.5,
+  unk_3: 6.9,
+  inframe_vertical_rot_y_origin: -0.983,
+  inframe_bottom_y_offset: 1.676,
+  inframe_center_y_offset: 1.965,
+  inframe_left_rotation: -20.0,
+  inframe_right_rotation: 20.0,
+  unk_12_y_offset: 1.0
+}
