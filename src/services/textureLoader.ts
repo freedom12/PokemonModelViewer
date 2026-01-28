@@ -351,7 +351,6 @@ export async function createMaterial(
 
     if (textureRef.type === "normal") {
       isEnabled = isMapEnabled(material, "NormalMap");
-      isEnabled = false; // 临时禁用法线贴图以避免错误
     } else if (textureRef.type === "emission") {
       isEnabled = isMapEnabled(material, "EmissionColorMap");
     } else if (textureRef.type === "ao") {

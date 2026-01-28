@@ -120,10 +120,6 @@ export function createGeometryFromMeshShape(
     const expectedLength4 = vertexCount * 4;
     const expectedLength3 = vertexCount * 3;
 
-    console.log(
-      `[Debug] Normals: length=${vertexData.normals.length}, vertexCount=${vertexCount}, expected4=${expectedLength4}, expected3=${expectedLength3}`,
-    );
-
     if (vertexData.normals.length === expectedLength4) {
       // 4 分量数据，提取前 3 个分量
       normals3 = new Float32Array(vertexCount * 3);
@@ -173,10 +169,6 @@ export function createGeometryFromMeshShape(
       ? vertexData.positions.length / 3
       : 0;
     const expectedLength4 = vertexCount * 4;
-
-    console.log(
-      `[Debug] Tangents: length=${vertexData.tangents.length}, vertexCount=${vertexCount}, expected4=${expectedLength4}`,
-    );
 
     if (vertexData.tangents.length === expectedLength4) {
       tangents3 = new Float32Array(vertexCount * 3);
