@@ -281,12 +281,10 @@ export class AnimationPlayer {
     const animationRate = info.animationRate();
     const doesLoop = info.doesLoop() !== 0;
 
-    const deltaTime = 1 / 60; // 假设60fps
-    this.state.currentTime += deltaTime;
-
     // 计算当前帧
     const frameTime = 1 / animationRate;
-    this.state.currentFrame = Math.floor(this.state.currentTime / frameTime);
+    this.state.currentTime += frameTime;
+    this.state.currentFrame++;
 
     // 检查是否到达动画末尾
     if (this.state.currentFrame >= animationCount) {
@@ -329,7 +327,10 @@ export class AnimationPlayer {
       // 只处理可视化骨骼
       const boneObject = this.boneMap.get(`Joint_${boneName}`);
       if (boneObject && !(boneObject instanceof THREE.Bone)) {
-        const transform = this.getBoneTransformAtFrame(track, this.state.currentFrame);
+        const transform = this.getBoneTransformAtFrame(
+          track,
+          this.state.currentFrame,
+        );
         this.applyTransformToBone(boneObject, transform);
       }
     }
@@ -340,7 +341,7 @@ export class AnimationPlayer {
    */
   private updateSkeletonBones(boneAnimation: any): void {
     if (!this.threeSkeleton) {
-      console.warn('No threeSkeleton to update');
+      console.warn("No threeSkeleton to update");
       return;
     }
 
@@ -359,13 +360,25 @@ export class AnimationPlayer {
     this.threeSkeleton.bones.forEach((bone, index) => {
       const boneName = bone.name;
       const track = trackMap.get(boneName);
-      
+
       if (track) {
-        const transform = this.getBoneTransformAtFrame(track, this.state.currentFrame);
-        
+        const transform = this.getBoneTransformAtFrame(
+          track,
+          this.state.currentFrame,
+        );
+
         // 直接设置骨骼的局部变换
-        bone.position.set(transform.position.x, transform.position.y, transform.position.z);
-        bone.quaternion.set(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w);
+        bone.position.set(
+          transform.position.x,
+          transform.position.y,
+          transform.position.z,
+        );
+        bone.quaternion.set(
+          transform.rotation.x,
+          transform.rotation.y,
+          transform.rotation.z,
+          transform.rotation.w,
+        );
         bone.scale.set(transform.scale.x, transform.scale.y, transform.scale.z);
       }
     });
@@ -422,11 +435,15 @@ export class AnimationPlayer {
           const frameIndex = Math.floor(frame);
           if (frameIndex >= 0 && frameIndex < track.coLength()) {
             const vec = track.co(frameIndex);
-            return vec ? { x: vec.x(), y: vec.y(), z: vec.z() } : { x: 0, y: 0, z: 0 };
+            return vec
+              ? { x: vec.x(), y: vec.y(), z: vec.z() }
+              : { x: 0, y: 0, z: 0 };
           } else if (track.coLength() > 0) {
             // 帧超出范围，返回最后一个值
             const vec = track.co(track.coLength() - 1);
-            return vec ? { x: vec.x(), y: vec.y(), z: vec.z() } : { x: 0, y: 0, z: 0 };
+            return vec
+              ? { x: vec.x(), y: vec.y(), z: vec.z() }
+              : { x: 0, y: 0, z: 0 };
           }
           return { x: 0, y: 0, z: 0 };
         }
@@ -471,11 +488,15 @@ export class AnimationPlayer {
           const frameIndex = Math.floor(frame);
           if (frameIndex >= 0 && frameIndex < track.coLength()) {
             const vec = track.co(frameIndex);
-            return vec ? this.unpackQuaternion(vec.x(), vec.y(), vec.z()) : { x: 0, y: 0, z: 0, w: 1 };
+            return vec
+              ? this.unpackQuaternion(vec.x(), vec.y(), vec.z())
+              : { x: 0, y: 0, z: 0, w: 1 };
           } else if (track.coLength() > 0) {
             // 帧超出范围，返回最后一个值
             const vec = track.co(track.coLength() - 1);
-            return vec ? this.unpackQuaternion(vec.x(), vec.y(), vec.z()) : { x: 0, y: 0, z: 0, w: 1 };
+            return vec
+              ? this.unpackQuaternion(vec.x(), vec.y(), vec.z())
+              : { x: 0, y: 0, z: 0, w: 1 };
           }
           return { x: 0, y: 0, z: 0, w: 1 };
         }
@@ -510,7 +531,9 @@ export class AnimationPlayer {
     // 如果只有一个帧，直接返回
     if (framesLength === 1) {
       const vec = track.co(0);
-      return vec ? { x: vec.x(), y: vec.y(), z: vec.z() } : { x: 0, y: 0, z: 0 };
+      return vec
+        ? { x: vec.x(), y: vec.y(), z: vec.z() }
+        : { x: 0, y: 0, z: 0 };
     }
 
     // 找到当前帧所在的两个关键帧
@@ -520,7 +543,12 @@ export class AnimationPlayer {
     for (let i = 0; i < framesLength - 1; i++) {
       const currentFrame = track.frames(i);
       const nextFrame = track.frames(i + 1);
-      if (currentFrame !== null && nextFrame !== null && frame >= currentFrame && frame <= nextFrame) {
+      if (
+        currentFrame !== null &&
+        nextFrame !== null &&
+        frame >= currentFrame &&
+        frame <= nextFrame
+      ) {
         prevIndex = i;
         nextIndex = i + 1;
         break;
@@ -530,7 +558,9 @@ export class AnimationPlayer {
     // 如果帧超出范围，返回最后一个值
     if (frame >= track.frames(framesLength - 1)!) {
       const vec = track.co(framesLength - 1);
-      return vec ? { x: vec.x(), y: vec.y(), z: vec.z() } : { x: 0, y: 0, z: 0 };
+      return vec
+        ? { x: vec.x(), y: vec.y(), z: vec.z() }
+        : { x: 0, y: 0, z: 0 };
     }
 
     const prevFrame = track.frames(prevIndex)!;
@@ -579,7 +609,12 @@ export class AnimationPlayer {
     for (let i = 0; i < framesLength - 1; i++) {
       const currentFrame = track.frames(i);
       const nextFrame = track.frames(i + 1);
-      if (currentFrame !== null && nextFrame !== null && frame >= currentFrame && frame <= nextFrame) {
+      if (
+        currentFrame !== null &&
+        nextFrame !== null &&
+        frame >= currentFrame &&
+        frame <= nextFrame
+      ) {
         prevIndex = i;
         nextIndex = i + 1;
         break;
@@ -740,12 +775,24 @@ export class AnimationPlayer {
   /**
    * 应用变换到THREE.Skeleton骨骼
    */
-  private applyTransformToSkeletonBone(bone: THREE.Bone, transform: BoneTransform): void {
+  private applyTransformToSkeletonBone(
+    bone: THREE.Bone,
+    transform: BoneTransform,
+  ): void {
     // 设置骨骼的局部变换
-    bone.position.set(transform.position.x, transform.position.y, transform.position.z);
-    bone.quaternion.set(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w);
+    bone.position.set(
+      transform.position.x,
+      transform.position.y,
+      transform.position.z,
+    );
+    bone.quaternion.set(
+      transform.rotation.x,
+      transform.rotation.y,
+      transform.rotation.z,
+      transform.rotation.w,
+    );
     bone.scale.set(transform.scale.x, transform.scale.y, transform.scale.z);
-    
+
     // 更新骨骼的矩阵
     bone.updateMatrix();
   }
@@ -753,22 +800,25 @@ export class AnimationPlayer {
   /**
    * 获取插值变换
    */
-  private getInterpolatedTransform(track: any, time: number): BoneTransform | null {
+  private getInterpolatedTransform(
+    track: any,
+    time: number,
+  ): BoneTransform | null {
     // 使用现有的插值方法
     const position = this.interpolateVectorTrack(
       track.translateType(),
       track.translate.bind(track),
-      Math.floor(time * 30) // 假设30fps
+      Math.floor(time * 30), // 假设30fps
     );
     const rotation = this.interpolateRotationTrack(
       track.rotateType(),
       track.rotate.bind(track),
-      Math.floor(time * 30)
+      Math.floor(time * 30),
     );
     const scale = this.interpolateVectorTrack(
       track.scaleType(),
       track.scale.bind(track),
-      Math.floor(time * 30)
+      Math.floor(time * 30),
     );
 
     return { position, rotation, scale };
@@ -780,7 +830,7 @@ export class AnimationPlayer {
   private resetBonesToInitialPose(): void {
     // 重置到存储的初始变换（T-pose）
     if (this.threeSkeleton) {
-      this.threeSkeleton.bones.forEach(bone => {
+      this.threeSkeleton.bones.forEach((bone) => {
         const boneName = bone.name;
         const initialTransform = this.initialTransforms.get(boneName);
 
@@ -789,18 +839,18 @@ export class AnimationPlayer {
           bone.position.set(
             initialTransform.position.x,
             initialTransform.position.y,
-            initialTransform.position.z
+            initialTransform.position.z,
           );
           bone.quaternion.set(
             initialTransform.rotation.x,
             initialTransform.rotation.y,
             initialTransform.rotation.z,
-            initialTransform.rotation.w
+            initialTransform.rotation.w,
           );
           bone.scale.set(
             initialTransform.scale.x,
             initialTransform.scale.y,
-            initialTransform.scale.z
+            initialTransform.scale.z,
           );
         } else {
           // 如果没有存储的初始变换，使用默认值
@@ -822,18 +872,18 @@ export class AnimationPlayer {
             object.position.set(
               initialTransform.position.x,
               initialTransform.position.y,
-              initialTransform.position.z
+              initialTransform.position.z,
             );
             object.quaternion.set(
               initialTransform.rotation.x,
               initialTransform.rotation.y,
               initialTransform.rotation.z,
-              initialTransform.rotation.w
+              initialTransform.rotation.w,
             );
             object.scale.set(
               initialTransform.scale.x,
               initialTransform.scale.y,
-              initialTransform.scale.z
+              initialTransform.scale.z,
             );
           }
         }
