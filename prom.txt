@@ -1,6 +1,0 @@
-这是一个加载宝可梦模型并渲染的项目，宝可梦模型文件是经过flatbuf处理后的二进制文件
-protobuf的scheme文件存储在tools/scheme下，并自动生成了对应的ts解析文件再parsers/generated中
-同时也将模型文件输出成json格式放在tools/json_output下，方便你对具体字段的内容进行参考和分析
-
-参考分析pm0092_00_00.trmtr.json中的smoke材质，帮我实现对应的NonDirectional shader代码
-shader的实现参考createEyeClearCoatMaterial函数，使用onBeforeCompile钩子进行修改

@@ -1,0 +1,37 @@
+{
+  "name": "3d-model-viewer",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -n \"assets,vite\" -c \"blue,green\" \"npm run serve:assets\" \"vite\"",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test-unpack": "node test-unpack.js",
+    "gen-json": "node tools/gen-json.cjs",
+    "gen-index": "node tools/gen-index.cjs",
+    "gen-parsers": "node tools/gen-parsers.cjs",
+    "copy-anim": "node tools/copy-anim.js",
+    "serve:assets": "http-server ../assets -p 5002 --cors -c-1 -d false"
+  },
+  "dependencies": {
+    "three": "^0.162.0",
+    "vue": "^3.4.21"
+  },
+  "devDependencies": {
+    "@types/three": "^0.162.0",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "@vue/test-utils": "^2.4.6",
+    "concurrently": "^9.2.1",
+    "flatbuffers": "^25.9.23",
+    "http-server": "^14.1.1",
+    "jsdom": "^27.4.0",
+    "typescript": "^5.4.2",
+    "vite": "^5.1.6",
+    "vite-plugin-static-copy": "^3.2.0",
+    "vitest": "^4.0.18",
+    "vue-tsc": "^2.0.6"
+  }
+}
