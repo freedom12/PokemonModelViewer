@@ -29,7 +29,10 @@ const isModelLoading = ref(false)
 // 模型加载错误信息
 const modelError = ref<string | null>(null)
 
-// 当前选中形态的动画数据
+// 当前选择的目录
+const selectedDirectory = ref<string>('SCVI')
+
+// 当前宝可梦的动画数据
 const currentAnimations = ref<Record<string, string[]> | null>(null)
 
 // 组件挂载时不需要额外加载数据，PokemonBrowser 会处理
@@ -52,7 +55,7 @@ async function handlePokemonSelect(pokemonId: string, formId: string): Promise<v
   
   // 获取当前形态的动画数据
   try {
-    const response = await fetch(`/SCVI/${pokemonId}/index.json`)
+    const response = await fetch(`/${selectedDirectory.value}/${pokemonId}/index.json`)
     if (response.ok) {
       const pokemonData = await response.json()
       const form = pokemonData.forms.find((f: any) => f.id === formId)
@@ -88,14 +91,12 @@ function handleProgressChange(progress: number): void {
 }
 
 /**
- * 处理模型加载错误
- * @param error - 错误信息
+ * 处理目录切换事件
+ * @param directory - 新的目录名
  */
-function handleError(error: string | null): void {
-  modelError.value = error
-  if (error) {
-    console.error('App: 模型加载错误:', error)
-  }
+function handleDirectoryChange(directory: string): void {
+  console.log(`App: 切换目录到 ${directory}`)
+  selectedDirectory.value = directory
 }
 
 /**
@@ -114,7 +115,9 @@ function handleModelLoaded(formId: string): void {
       <PokemonBrowser
         :selected-pokemon="selectedPokemon"
         :selected-form="selectedForm"
+        :directory="selectedDirectory"
         @select="handlePokemonSelect"
+        @directory-change="handleDirectoryChange"
       />
     </aside>
     
@@ -124,6 +127,7 @@ function handleModelLoaded(formId: string): void {
         :pokemon-id="selectedPokemon"
         :form-id="selectedForm"
         :animations="currentAnimations"
+        :directory="selectedDirectory"
         @loading-change="handleLoadingChange"
         @progress-change="handleProgressChange"
         @error="handleError"

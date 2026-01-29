@@ -1,11 +1,14 @@
 #!/usr/bin/env node
 /**
- * generate-index.js - 根据 public/SCVI 目录结构生成 index.json 配置
+ * generate-index.js - 根据 public/[directory] 目录结构生成 index.json 配置
  *
- * 用法: npm run generate-index
+ * 用法: node tools/gen-index.cjs [directory]
+ *
+ * 参数:
+ *   directory: 宝可梦数据目录名 (默认: SCVI)
  *
  * 这个脚本会：
- * 1. 扫描 public/SCVI 目录下的所有 pmXXXX 文件夹
+ * 1. 扫描 public/[directory] 目录下的所有 pmXXXX 文件夹
  * 2. 解析每个宝可梦的形态文件夹 (pmXXXX_YY_ZZ)
  * 3. 生成 index.json 配置文件
  */
@@ -14,7 +17,9 @@ const fs = require('fs');
 const path = require('path');
 
 // 配置
-const POKEMON_DIR = path.join(__dirname, '..', 'public', 'SCVI');
+const args = process.argv.slice(2);
+const targetDir = args.length > 0 && !args[0].startsWith('--') ? args[0] : 'SCVI';
+const POKEMON_DIR = path.join(__dirname, '..', 'public', targetDir);
 const INDEX_FILE = path.join(POKEMON_DIR, 'index.json');
 
 /**
@@ -24,9 +29,12 @@ function showHelp() {
   console.log(`
 宝可梦索引生成器
 
-用法: npm run generate-index
+用法: node tools/gen-index.cjs [directory]
 
-这个脚本会自动扫描 public/SCVI 目录结构并生成 index.json 配置文件。
+参数:
+  directory: 宝可梦数据目录名 (默认: SCVI)
+
+这个脚本会自动扫描 public/[directory] 目录结构并生成 index.json 配置文件。
 
 目录结构要求：
 - 宝可梦文件夹: pmXXXX (如 pm0001, pm0002)
@@ -112,11 +120,38 @@ function getPokemonForms(pokemonId, pokemonPath) {
         const formPath = path.join(pokemonPath, formId);
         const animations = getAnimationFiles(formPath);
 
+        // 查找实际存在的icon文件
+        let iconPath = null;
+        const iconDir = path.join(formPath, 'icon');
+        if (fs.existsSync(iconDir)) {
+          try {
+            const iconFiles = fs.readdirSync(iconDir);
+            // 优先选择_big.png文件，如果没有则选择第一个.png文件
+            const bigIcon = iconFiles.find(f => f.endsWith('_big.png'));
+            if (bigIcon) {
+              iconPath = `icon/${bigIcon}`;
+            } else {
+              const pngFile = iconFiles.find(f => f.endsWith('.png'));
+              if (pngFile) {
+                iconPath = `icon/${pngFile}`;
+              }
+            }
+          } catch (error) {
+            console.warn(`警告: 读取icon目录失败 ${iconDir}:`, error.message);
+          }
+        }
+
+        // 如果找不到icon文件，使用默认路径
+        if (!iconPath) {
+          iconPath = `icon/${pokemonId}_${formInfo.formIndex.toString().padStart(2,'0')}_${formInfo.variantIndex.toString().padStart(2,'0')}_00_big.png`;
+          console.warn(`⚠️  警告: ${formId} 找不到icon文件，使用默认路径: ${iconPath}`);
+        }
+
         forms.push({
           id: formId,
           formIndex: formInfo.formIndex,
           variantIndex: formInfo.variantIndex,
-          icon: `icon/${pokemonId}_${formInfo.formIndex.toString().padStart(2,'0')}_${formInfo.variantIndex.toString().padStart(2,'0')}_00_big.png`,
+          icon: iconPath,
           animations: animations
         });
       }

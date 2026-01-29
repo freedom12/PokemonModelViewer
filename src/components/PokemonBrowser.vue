@@ -29,11 +29,14 @@ interface Props {
   selectedPokemon?: string | null
   /** 当前选中的形态 ID */
   selectedForm?: string | null
+  /** 当前选择的目录 */
+  directory?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
   selectedPokemon: null,
-  selectedForm: null
+  selectedForm: null,
+  directory: 'SCVI'
 })
 
 /**
@@ -42,10 +45,15 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits<{
   /** 选择宝可梦和形态时触发 */
   select: [pokemonId: string, formId: string]
+  /** 目录切换时触发 */
+  directoryChange: [directory: string]
 }>()
 
+// 当前选择的目录
+const selectedDirectory = ref<string>(props.directory)
+
 // 使用宝可梦列表 composable
-const { pokemons, loading, error, loadPokemonList } = usePokemonList()
+const { pokemons, loading, error, loadPokemonList } = usePokemonList(selectedDirectory)
 
 // 宝可梦名字映射
 const pokemonNames = ref<Record<string, string>>({})
@@ -187,6 +195,27 @@ function handleThumbnailError(event: Event): void {
   img.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96"><rect fill="%23333" width="96" height="96"/><text fill="%23666" font-size="12" x="50%" y="50%" text-anchor="middle" dy=".3em">?</text></svg>'
 }
 
+// 监听 props.directory 变化
+watch(() => props.directory, (newDirectory) => {
+  if (newDirectory && newDirectory !== selectedDirectory.value) {
+    selectedDirectory.value = newDirectory
+  }
+})
+
+// 监听 selectedDirectory 变化，重新加载列表
+watch(selectedDirectory, async (newDirectory, oldDirectory) => {
+  if (newDirectory !== oldDirectory) {
+    console.log(`[PokemonBrowser] 目录切换: ${oldDirectory} -> ${newDirectory}`)
+    emit('directoryChange', newDirectory)
+    try {
+      await loadPokemonList()
+      console.log(`[PokemonBrowser] ${newDirectory} 列表加载成功，共 ${pokemons.value.length} 个宝可梦`)
+    } catch (err) {
+      console.error(`[PokemonBrowser] ${newDirectory} 列表加载失败:`, err)
+    }
+  }
+})
+
 // 组件挂载时加载宝可梦列表和名字数据
 onMounted(async () => {
   console.log('[PokemonBrowser] 组件已挂载，开始加载数据')
@@ -213,6 +242,10 @@ onMounted(async () => {
     <!-- 头部区域 -->
     <div class="browser-header">
       <h2 class="browser-title">宝可梦图鉴</h2>
+      <select v-model="selectedDirectory" class="directory-selector">
+        <option value="SCVI">SCVI</option>
+        <option value="LZA">LZA</option>
+      </select>
     </div>
     
     <!-- 列表加载状态 -->
@@ -303,6 +336,23 @@ onMounted(async () => {
   font-weight: 600;
   margin: 0;
   color: #e94560;
+}
+
+.directory-selector {
+  padding: 4px 8px;
+  font-size: 0.875rem;
+  background-color: #1a1a2e;
+  color: #fff;
+  border: 1px solid #333;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.directory-selector:hover,
+.directory-selector:focus {
+  border-color: #e94560;
 }
 
 /* 形态选择器 */

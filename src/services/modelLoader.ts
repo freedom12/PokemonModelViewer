@@ -92,9 +92,9 @@ export class ModelLoadError extends Error {
  * @param fileType - 文件类型
  * @returns 文件路径
  */
-export function getModelFilePath(formId: string, fileType: ModelFileType): string {
+export function getModelFilePath(formId: string, fileType: ModelFileType, directory: string = 'SCVI'): string {
   const pokemonId = getPokemonIdFromFormId(formId)
-  return `/SCVI/${pokemonId}/${formId}/${formId}.${fileType}`
+  return `/${directory}/${pokemonId}/${formId}/${formId}.${fileType}`
 }
 
 /**
@@ -155,14 +155,14 @@ async function loadFile(path: string): Promise<ArrayBuffer> {
  * @example
  * const files = await loadModelFiles("pm0001_00_00")
  */
-export async function loadModelFiles(formId: string): Promise<ModelFiles> {
+export async function loadModelFiles(formId: string, directory: string = 'SCVI'): Promise<ModelFiles> {
   // 生成文件路径
-  const trmdlPath = getModelFilePath(formId, 'trmdl')
-  const trmshPath = getModelFilePath(formId, 'trmsh')
-  const trmbfPath = getModelFilePath(formId, 'trmbf')
-  const trmtrPath = getModelFilePath(formId, 'trmtr')
-  const trmmtPath = getModelFilePath(formId, 'trmmt')
-  const trsklPath = getModelFilePath(formId, 'trskl')
+  const trmdlPath = getModelFilePath(formId, 'trmdl', directory)
+  const trmshPath = getModelFilePath(formId, 'trmsh', directory)
+  const trmbfPath = getModelFilePath(formId, 'trmbf', directory)
+  const trmtrPath = getModelFilePath(formId, 'trmtr', directory)
+  const trmmtPath = getModelFilePath(formId, 'trmmt', directory)
+  const trsklPath = getModelFilePath(formId, 'trskl', directory)
   
   // 并行加载必需文件
   const [trmdl, trmsh, trmbf] = await Promise.all([
@@ -419,7 +419,7 @@ export function parseTRSKL(buffer: ArrayBuffer): ParseResult<TRSKL> {
  * const files = await loadModelFiles("pm0001_00_00")
  * const modelData = parseModelData(files, "pm0001_00_00")
  */
-export function parseModelData(files: ModelFiles, formId: string): ParsedModelData {
+export function parseModelData(files: ModelFiles, formId: string, directory: string = 'SCVI'): ParsedModelData {
   // 解析 TRMDL
   const trmdlResult = parseTRMDL(files.trmdl)
   if (!trmdlResult.success || !trmdlResult.data) {
@@ -449,7 +449,7 @@ export function parseModelData(files: ModelFiles, formId: string): ParsedModelDa
   
   // 生成基础路径
   const pokemonId = getPokemonIdFromFormId(formId)
-  const basePath = `/SCVI/${pokemonId}/${formId}/`
+  const basePath = `/${directory}/${pokemonId}/${formId}/`
   
   // 构建结果
   const result: ParsedModelData = {
@@ -504,9 +504,9 @@ export function parseModelData(files: ModelFiles, formId: string): ParsedModelDa
  * @example
  * const modelData = await loadAndParseModel("pm0001_00_00")
  */
-export async function loadAndParseModel(formId: string): Promise<ParsedModelData> {
-  const files = await loadModelFiles(formId)
-  return parseModelData(files, formId)
+export async function loadAndParseModel(formId: string, directory: string = 'SCVI'): Promise<ParsedModelData> {
+  const files = await loadModelFiles(formId, directory)
+  return parseModelData(files, formId, directory)
 }
 
 /**

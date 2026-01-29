@@ -131,7 +131,7 @@ const STAGE_PROGRESS: Record<LoadingStage, { start: number; end: number; message
  * </script>
  * ```
  */
-export function useModelLoader(): UseModelLoaderReturn {
+export function useModelLoader(directory: Ref<string> = ref('SCVI')): UseModelLoaderReturn {
   // 响应式状态
   const loading = ref<boolean>(false)
   const progress = ref<number>(0)
@@ -251,14 +251,14 @@ export function useModelLoader(): UseModelLoaderReturn {
       // 阶段 1: 加载模型文件
       updateProgress(LoadingStage.LOADING_FILES, 0)
       
-      const files = await loadModelFiles(formId)
+      const files = await loadModelFiles(formId, directory.value)
       
       updateProgress(LoadingStage.LOADING_FILES, 1)
       
       // 阶段 2: 解析模型数据
       updateProgress(LoadingStage.PARSING_DATA, 0)
       
-      const modelData: ParsedModelData = parseModelData(files, formId)
+      const modelData: ParsedModelData = parseModelData(files, formId, directory.value)
       
       // 存储解析后的数据
       currentParsedData.value = modelData

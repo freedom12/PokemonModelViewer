@@ -5,7 +5,7 @@
  * 
  * @module composables/usePokemonList
  * 
- * @validates 需求 6.1: 应用启动时扫描 public/SCVI 目录获取可用宝可梦列表
+ * @validates 需求 6.1: 应用启动时扫描 public/[directory] 目录获取可用宝可梦列表
  * @validates 需求 6.4: 宝可梦有多个形态时显示形态选择器
  */
 
@@ -46,6 +46,11 @@ interface PokemonIndexData {
   /** 宝可梦 ID 列表 */
   pokemonIds: string[]
 }
+
+/**
+ * 创建宝可梦列表 composable
+ * @param directory - 数据目录名，如 'SCVI' 或 'LZA'
+ */
 
 /**
  * 单个宝可梦的 index.json 数据格式
@@ -92,6 +97,7 @@ export interface UsePokemonListReturn {
  * 
  * 提供宝可梦列表的加载和管理功能
  * 
+ * @param directory - 数据目录名，默认为 'SCVI'
  * @returns UsePokemonListReturn 包含状态和方法的对象
  * 
  * @example
@@ -114,7 +120,7 @@ export interface UsePokemonListReturn {
  * @validates 需求 6.1: 应用启动时扫描 public/SCVI 目录获取可用宝可梦列表
  * @validates 需求 6.4: 宝可梦有多个形态时显示形态选择器
  */
-export function usePokemonList(): UsePokemonListReturn {
+export function usePokemonList(directory: Ref<string> = ref('SCVI')): UsePokemonListReturn {
   // 响应式状态
   const pokemons = ref<PokemonEntry[]>([])
   const loading = ref<boolean>(false)
@@ -141,7 +147,7 @@ export function usePokemonList(): UsePokemonListReturn {
     
     try {
       // 从 index.json 加载宝可梦 ID 列表
-      const response = await fetch('/SCVI/index.json')
+      const response = await fetch(`/${directory.value}/index.json`)
       
       if (!response.ok) {
         throw new Error(`加载宝可梦列表失败: HTTP ${response.status}`)
@@ -152,7 +158,7 @@ export function usePokemonList(): UsePokemonListReturn {
       // 并行加载每个宝可梦的详细信息
       const pokemonPromises = data.pokemonIds.map(async (pokemonId) => {
         try {
-          const detailResponse = await fetch(`/SCVI/${pokemonId}/index.json`)
+          const detailResponse = await fetch(`/${directory.value}/${pokemonId}/index.json`)
           
           if (!detailResponse.ok) {
             console.warn(`[usePokemonList] 无法加载 ${pokemonId} 的详细信息: HTTP ${detailResponse.status}`)
@@ -166,7 +172,7 @@ export function usePokemonList(): UsePokemonListReturn {
             id: form.id,
             formIndex: form.formIndex,
             variantIndex: form.variantIndex,
-            thumbnail: `/SCVI/${detailData.id}/${form.id}/${form.icon}`
+            thumbnail: `/${directory.value}/${detailData.id}/${form.id}/${form.icon}`
           }))
           
           // 使用第一个形态的缩略图作为宝可梦的缩略图

@@ -2,12 +2,19 @@
 /**
  * gen-json.js - 将宝可梦模型数据转换为 JSON 格式
  * 
- * 用法: npm run gen-json -- <pokemon_id> [form_id] [--with-animation]
+ * 用法: node tools/gen-json.cjs [directory] <pokemon_id> [form_id] [--with-animation]
+ * 
+ * 参数:
+ *   directory: 宝可梦数据目录名 (默认: SCVI)
+ *   pokemon_id: 宝可梦 ID (如 pm0001)
+ *   form_id: 形态 ID (可选，如 pm0001_00_00)
+ *   --with-animation: 包含动画数据 (可选)
  * 
  * 示例:
- *   npm run gen-json -- pm0001              # 转换 pm0001 的默认形态（不包含动画）
- *   npm run gen-json -- pm0001 pm0001_00_00 # 转换指定形态（不包含动画）
- *   npm run gen-json -- pm0004 --with-animation # 转换 pm0004（包含动画数据）
+ *   node tools/gen-json.cjs pm0001              # 转换 SCVI/pm0001 的默认形态（不包含动画）
+ *   node tools/gen-json.cjs LZA pm0001          # 转换 LZA/pm0001 的所有形态（不包含动画）
+ *   node tools/gen-json.cjs pm0001 pm0001_00_00 # 转换指定形态（不包含动画）
+ *   node tools/gen-json.cjs pm0004 --with-animation # 转换 pm0004（包含动画数据）
  */
 
 const { execSync } = require('child_process');
@@ -17,8 +24,8 @@ const path = require('path');
 // 配置
 const FLATC_PATH = path.join(__dirname, process.platform === 'win32' ? 'flatc.exe' : 'flatc');
 const SCHEMA_DIR = path.join(__dirname, 'scheme', 'model');
-const POKEMON_DIR = path.join(__dirname, '..', 'public', 'SVCI');
-const OUTPUT_DIR = path.join(__dirname, 'json_output');
+let POKEMON_DIR;
+let OUTPUT_DIR;
 
 // 模型文件类型和对应的 schema
 const MODEL_FILE_TYPES = [
@@ -178,17 +185,25 @@ function main() {
   const args = process.argv.slice(2);
   
   if (args.length === 0) {
-    console.log('用法: npm run genjson -- <pokemon_id> [form_id] [--with-animation]');
+    console.log('用法: node tools/gen-json.cjs [directory] <pokemon_id> [form_id] [--with-animation]');
+    console.log('');
+    console.log('参数:');
+    console.log('  directory: 宝可梦数据目录名 (默认: SCVI)');
+    console.log('  pokemon_id: 宝可梦 ID (如 pm0001)');
+    console.log('  form_id: 形态 ID (可选，如 pm0001_00_00)');
+    console.log('  --with-animation: 包含动画数据 (可选)');
     console.log('');
     console.log('示例:');
-    console.log('  npm run genjson -- pm0001              # 转换 pm0001 的所有形态（不包含动画）');
-    console.log('  npm run genjson -- pm0001 pm0001_00_00 # 转换指定形态（不包含动画）');
-    console.log('  npm run genjson -- pm0004 --with-animation # 转换 pm0004（包含动画数据）');
-    console.log('  npm run genjson -- pm0001 --with-animation # 转换 pm0001（包含动画文件）');
+    console.log('  node tools/gen-json.cjs pm0001              # 转换 SCVI/pm0001 的所有形态（不包含动画）');
+    console.log('  node tools/gen-json.cjs LZA pm0001          # 转换 LZA/pm0001 的所有形态（不包含动画）');
+    console.log('  node tools/gen-json.cjs pm0001 pm0001_00_00 # 转换指定形态（不包含动画）');
+    console.log('  node tools/gen-json.cjs pm0004 --with-animation # 转换 pm0004（包含动画数据）');
+    console.log('  node tools/gen-json.cjs LZA pm0001 --with-animation # 转换 LZA/pm0001（包含动画文件）');
     process.exit(0);
   }
   
   // 解析参数
+  let pokemonDirArg = 'SCVI'; // 默认
   let pokemonId = null;
   let formId = null;
   let withAnimation = false;
@@ -197,15 +212,21 @@ function main() {
     const arg = args[i];
     if (arg === '--with-animation') {
       withAnimation = true;
-    } else if (!pokemonId) {
+    } else if (!pokemonId && arg.startsWith('pm')) {
       pokemonId = arg;
-    } else if (!formId) {
+    } else if (!formId && pokemonId && arg.startsWith('pm')) {
       formId = arg;
+    } else if (!pokemonId && !arg.startsWith('pm') && !arg.startsWith('--')) {
+      pokemonDirArg = arg;
     }
   }
   
+  // 设置 POKEMON_DIR
+  POKEMON_DIR = path.join(__dirname, '..', 'public', pokemonDirArg);
+  OUTPUT_DIR = path.join(__dirname, 'json_output', pokemonDirArg);
+  
   if (!pokemonId) {
-    console.log('用法: npm run genjson -- <pokemon_id> [form_id] [--with-animation]');
+    console.log('用法: node tools/gen-json.cjs [directory] <pokemon_id> [form_id] [--with-animation]');
     process.exit(1);
   }
   

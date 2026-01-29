@@ -33,6 +33,8 @@ const props = defineProps<{
   formId?: string | null
   /** 可用的动画数据 */
   animations?: Record<string, string[]> | null
+  /** 数据目录 */
+  directory?: string
 }>()
 
 // Emits 定义
@@ -71,6 +73,9 @@ const {
   container: containerRef
 })
 
+// 响应式的目录参数
+const directoryRef = ref(props.directory || 'SCVI')
+
 // 使用模型加载器 composable
 const {
   loading,
@@ -82,7 +87,7 @@ const {
   currentParsedData,
   loadModel,
   disposeModel
-} = useModelLoader()
+} = useModelLoader(directoryRef)
 
 // 场景是否已初始化
 const sceneInitialized = ref(false)
@@ -269,14 +274,17 @@ function handleRetry(): void {
   }
 }
 
-// 监听 props 变化，加载对应模型
+// 监听 directory props 变化
+watch(() => props.directory, (newDirectory) => {
+  directoryRef.value = newDirectory || 'SCVI'
+})
 watch(
-  () => [props.pokemonId, props.formId] as const,
-  ([newPokemonId, newFormId], [oldPokemonId, oldFormId]) => {
+  () => [props.pokemonId, props.formId, props.directory] as const,
+  ([newPokemonId, newFormId, newDirectory], [oldPokemonId, oldFormId, oldDirectory]) => {
     // 只有当 pokemonId 和 formId 都有效且发生变化时才加载
     if (newPokemonId && newFormId) {
       // 检查是否真的发生了变化
-      if (newPokemonId !== oldPokemonId || newFormId !== oldFormId) {
+      if (newPokemonId !== oldPokemonId || newFormId !== oldFormId || newDirectory !== oldDirectory) {
         loadAndDisplayModel(newPokemonId, newFormId)
       }
     }
@@ -376,7 +384,7 @@ async function loadAndPlayAnimation(animationName: string): Promise<void> {
     // 构建动画文件URL
     // formId 格式为 "pmXXXX_XX_XX"，需要从中提取 pokemonId "pmXXXX"
     const pokemonId = props.formId ? props.formId.split('_')[0] : 'pm0004' // 从 "pm0004_00_00" 提取 "pm0004"
-    const animationUrl = `/SCVI/${pokemonId}/${props.formId}/${tranmFile}`
+    const animationUrl = `/${directoryRef.value}/${pokemonId}/${props.formId}/${tranmFile}`
 
     // 加载骨骼动画数据
     await animationPlayer.loadAnimation(animationUrl)
@@ -397,7 +405,7 @@ async function loadAndPlayAnimation(animationName: string): Promise<void> {
     const tracmFile = animationFiles.find(file => file.endsWith('.tracm'))
     if (tracmFile) {
       try {
-        const tracmUrl = `/SCVI/${pokemonId}/${props.formId}/${tracmFile}`
+        const tracmUrl = `/${directoryRef.value}/${pokemonId}/${props.formId}/${tracmFile}`
         await visibilityAnimationPlayer.loadAnimation(tracmUrl)
         visibilityAnimationPlayer.setLoop(animationLoop.value)
         visibilityAnimationPlayer.play()
