@@ -10,12 +10,8 @@ export default defineConfig(({ mode }) => ({
       viteStaticCopy({
         targets: [
           {
-            src: 'public/pokemon/pm0001/**/*',
-            dest: 'pokemon/pm0001'
-          },
-          {
-            src: 'public/pokemon/index.json',
-            dest: 'pokemon'
+            src: 'public/SCVI/**/*',
+            dest: 'SCVI'
           },
           {
             src: 'public/pokemon_name.json',

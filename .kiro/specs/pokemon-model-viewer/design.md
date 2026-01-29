@@ -290,7 +290,7 @@ const props = defineProps<{
 ### 目录结构解析规则
 
 ```
-public/pokemon/
+public/SCVI/
 ├── pm{XXXX}/                    # 宝可梦类型目录 (XXXX = 4位编号)
 │   ├── pm{XXXX}_{YY}_{ZZ}/      # 形态目录 (YY=形态, ZZ=变体)
 │   │   ├── pm{XXXX}_{YY}_{ZZ}.trmdl    # 模型定义

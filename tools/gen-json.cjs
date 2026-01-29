@@ -17,7 +17,7 @@ const path = require('path');
 // 配置
 const FLATC_PATH = path.join(__dirname, process.platform === 'win32' ? 'flatc.exe' : 'flatc');
 const SCHEMA_DIR = path.join(__dirname, 'scheme', 'model');
-const POKEMON_DIR = path.join(__dirname, '..', 'public', 'pokemon');
+const POKEMON_DIR = path.join(__dirname, '..', 'public', 'SVCI');
 const OUTPUT_DIR = path.join(__dirname, 'json_output');
 
 // 模型文件类型和对应的 schema

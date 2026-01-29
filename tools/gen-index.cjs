@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 /**
- * generate-index.js - 根据 public/pokemon 目录结构生成 index.json 配置
+ * generate-index.js - 根据 public/SCVI 目录结构生成 index.json 配置
  *
  * 用法: npm run generate-index
  *
  * 这个脚本会：
- * 1. 扫描 public/pokemon 目录下的所有 pmXXXX 文件夹
+ * 1. 扫描 public/SCVI 目录下的所有 pmXXXX 文件夹
  * 2. 解析每个宝可梦的形态文件夹 (pmXXXX_YY_ZZ)
  * 3. 生成 index.json 配置文件
  */
@@ -14,7 +14,7 @@ const fs = require('fs');
 const path = require('path');
 
 // 配置
-const POKEMON_DIR = path.join(__dirname, '..', 'public', 'pokemon');
+const POKEMON_DIR = path.join(__dirname, '..', 'public', 'SCVI');
 const INDEX_FILE = path.join(POKEMON_DIR, 'index.json');
 
 /**
@@ -26,7 +26,7 @@ function showHelp() {
 
 用法: npm run generate-index
 
-这个脚本会自动扫描 public/pokemon 目录结构并生成 index.json 配置文件。
+这个脚本会自动扫描 public/SCVI 目录结构并生成 index.json 配置文件。
 
 目录结构要求：
 - 宝可梦文件夹: pmXXXX (如 pm0001, pm0002)
@@ -116,7 +116,7 @@ function getPokemonForms(pokemonId, pokemonPath) {
           id: formId,
           formIndex: formInfo.formIndex,
           variantIndex: formInfo.variantIndex,
-          icon: `icon/pm${pokemonId}_${formInfo.formIndex.toString().padStart(2,'0')}_${formInfo.variantIndex.toString().padStart(2,'0')}_00_big.png`,
+          icon: `icon/${pokemonId}_${formInfo.formIndex.toString().padStart(2,'0')}_${formInfo.variantIndex.toString().padStart(2,'0')}_00_big.png`,
           animations: animations
         });
       }
@@ -171,7 +171,6 @@ function generateIndex() {
     const pokemonData = {
       id: pokemonId,
       number: number,
-      icon: `icon/pm${pokemonId}_00_00_00_big.png`,
       forms: forms
     };
 

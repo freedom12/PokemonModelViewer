@@ -190,7 +190,7 @@ function getTextureLoader(): THREE.TextureLoader {
  * @validates 需求 4.2: 纹理文件加载完成后创建 Three.js Texture 对象
  *
  * @example
- * const texture = await loadTexture('/pokemon/pm0001/pm0001_00_00/pm0001_00_00_alb.png')
+ * const texture = await loadTexture('/SCVI/pm0001/pm0001_00_00/pm0001_00_00_alb.png')
  */
 export async function loadTexture(path: string): Promise<THREE.Texture> {
   const loader = getTextureLoader();
@@ -229,7 +229,7 @@ export async function loadTexture(path: string): Promise<THREE.Texture> {
  * @example
  * const textures = await loadTextures(
  *   [{ type: 'albedo', filename: 'pm0001_00_00_alb.png', name: 'BaseColor', slot: 0 }],
- *   '/pokemon/pm0001/pm0001_00_00/'
+ *   '/SCVI/pm0001/pm0001_00_00/'
  * )
  */
 export async function loadTextures(
@@ -402,7 +402,7 @@ export function createDefaultMaterial(
  * @validates 需求 4.7: 纹理文件加载失败时使用默认材质并记录警告信息
  *
  * @example
- * const material = await createMaterial(trmtrMaterial, '/pokemon/pm0001/pm0001_00_00/')
+ * const material = await createMaterial(trmtrMaterial, '/SCVI/pm0001/pm0001_00_00/')
  */
 export async function createMaterial(
   material: TRMTRMaterial,
@@ -579,7 +579,7 @@ function applyTextureToMaterial(
  * @returns Promise<THREE.MeshStandardMaterial[]> 材质数组
  *
  * @example
- * const materials = await createAllMaterials(trmtr, '/pokemon/pm0001/pm0001_00_00/')
+ * const materials = await createAllMaterials(trmtr, '/SCVI/pm0001/pm0001_00_00/')
  */
 export async function createAllMaterials(
   trmtr: TRMTR,

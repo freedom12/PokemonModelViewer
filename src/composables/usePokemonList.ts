@@ -5,12 +5,11 @@
  * 
  * @module composables/usePokemonList
  * 
- * @validates 需求 6.1: 应用启动时扫描 public/pokemon 目录获取可用宝可梦列表
+ * @validates 需求 6.1: 应用启动时扫描 public/SCVI 目录获取可用宝可梦列表
  * @validates 需求 6.4: 宝可梦有多个形态时显示形态选择器
  */
 
 import { ref, type Ref } from 'vue'
-import { getThumbnailPath } from '../utils/pokemonPath'
 
 /**
  * 形态条目
@@ -54,7 +53,6 @@ interface PokemonIndexData {
 interface PokemonDetailData {
   id: string
   number: number
-  icon: string
   forms: Array<{
     id: string
     formIndex: number
@@ -77,7 +75,7 @@ export interface UsePokemonListReturn {
   
   /**
    * 加载宝可梦列表
-   * 从 public/pokemon/index.json 加载预生成的宝可梦列表数据
+   * 从 public/SCVI/index.json 加载预生成的宝可梦列表数据
    */
   loadPokemonList: () => Promise<void>
   
@@ -113,7 +111,7 @@ export interface UsePokemonListReturn {
  * </script>
  * ```
  * 
- * @validates 需求 6.1: 应用启动时扫描 public/pokemon 目录获取可用宝可梦列表
+ * @validates 需求 6.1: 应用启动时扫描 public/SCVI 目录获取可用宝可梦列表
  * @validates 需求 6.4: 宝可梦有多个形态时显示形态选择器
  */
 export function usePokemonList(): UsePokemonListReturn {
@@ -125,10 +123,10 @@ export function usePokemonList(): UsePokemonListReturn {
   /**
    * 加载宝可梦列表
    * 
-   * 从 public/pokemon/index.json 加载宝可梦 ID 列表，然后为每个宝可梦加载详细信息
+   * 从 public/SCVI/index.json 加载宝可梦 ID 列表，然后为每个宝可梦加载详细信息
    * 由于浏览器无法直接扫描目录，需要依赖预生成的索引文件
    * 
-   * @validates 需求 6.1: 应用启动时扫描 public/pokemon 目录获取可用宝可梦列表
+   * @validates 需求 6.1: 应用启动时扫描 public/SCVI 目录获取可用宝可梦列表
    */
   async function loadPokemonList(): Promise<void> {
     // 如果正在加载，忽略重复请求
@@ -143,7 +141,7 @@ export function usePokemonList(): UsePokemonListReturn {
     
     try {
       // 从 index.json 加载宝可梦 ID 列表
-      const response = await fetch('/pokemon/index.json')
+      const response = await fetch('/SCVI/index.json')
       
       if (!response.ok) {
         throw new Error(`加载宝可梦列表失败: HTTP ${response.status}`)
@@ -154,7 +152,7 @@ export function usePokemonList(): UsePokemonListReturn {
       // 并行加载每个宝可梦的详细信息
       const pokemonPromises = data.pokemonIds.map(async (pokemonId) => {
         try {
-          const detailResponse = await fetch(`/pokemon/${pokemonId}/index.json`)
+          const detailResponse = await fetch(`/SCVI/${pokemonId}/index.json`)
           
           if (!detailResponse.ok) {
             console.warn(`[usePokemonList] 无法加载 ${pokemonId} 的详细信息: HTTP ${detailResponse.status}`)
@@ -163,12 +161,12 @@ export function usePokemonList(): UsePokemonListReturn {
           
           const detailData: PokemonDetailData = await detailResponse.json()
           
-          // 转换数据格式，添加缩略图路径
+          // 转换数据格式，使用index.json中的icon字段
           const forms: FormEntry[] = detailData.forms.map((form) => ({
             id: form.id,
             formIndex: form.formIndex,
             variantIndex: form.variantIndex,
-            thumbnail: getThumbnailPath(form.id)
+            thumbnail: `/SCVI/${detailData.id}/${form.id}/${form.icon}`
           }))
           
           // 使用第一个形态的缩略图作为宝可梦的缩略图

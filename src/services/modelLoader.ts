@@ -94,7 +94,7 @@ export class ModelLoadError extends Error {
  */
 export function getModelFilePath(formId: string, fileType: ModelFileType): string {
   const pokemonId = getPokemonIdFromFormId(formId)
-  return `/pokemon/${pokemonId}/${formId}/${formId}.${fileType}`
+  return `/SCVI/${pokemonId}/${formId}/${formId}.${fileType}`
 }
 
 /**
@@ -449,7 +449,7 @@ export function parseModelData(files: ModelFiles, formId: string): ParsedModelDa
   
   // 生成基础路径
   const pokemonId = getPokemonIdFromFormId(formId)
-  const basePath = `/pokemon/${pokemonId}/${formId}/`
+  const basePath = `/SCVI/${pokemonId}/${formId}/`
   
   // 构建结果
   const result: ParsedModelData = {

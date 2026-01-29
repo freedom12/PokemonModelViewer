@@ -52,7 +52,7 @@ async function handlePokemonSelect(pokemonId: string, formId: string): Promise<v
   
   // 获取当前形态的动画数据
   try {
-    const response = await fetch(`/pokemon/${pokemonId}/index.json`)
+    const response = await fetch(`/SCVI/${pokemonId}/index.json`)
     if (response.ok) {
       const pokemonData = await response.json()
       const form = pokemonData.forms.find((f: any) => f.id === formId)

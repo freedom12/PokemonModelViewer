@@ -376,7 +376,7 @@ async function loadAndPlayAnimation(animationName: string): Promise<void> {
     // 构建动画文件URL
     // formId 格式为 "pmXXXX_XX_XX"，需要从中提取 pokemonId "pmXXXX"
     const pokemonId = props.formId ? props.formId.split('_')[0] : 'pm0004' // 从 "pm0004_00_00" 提取 "pm0004"
-    const animationUrl = `/pokemon/${pokemonId}/${props.formId}/${tranmFile}`
+    const animationUrl = `/SCVI/${pokemonId}/${props.formId}/${tranmFile}`
 
     // 加载骨骼动画数据
     await animationPlayer.loadAnimation(animationUrl)
@@ -397,7 +397,7 @@ async function loadAndPlayAnimation(animationName: string): Promise<void> {
     const tracmFile = animationFiles.find(file => file.endsWith('.tracm'))
     if (tracmFile) {
       try {
-        const tracmUrl = `/pokemon/${pokemonId}/${props.formId}/${tracmFile}`
+        const tracmUrl = `/SCVI/${pokemonId}/${props.formId}/${tracmFile}`
         await visibilityAnimationPlayer.loadAnimation(tracmUrl)
         visibilityAnimationPlayer.setLoop(animationLoop.value)
         visibilityAnimationPlayer.play()

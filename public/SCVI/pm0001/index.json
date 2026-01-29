@@ -1,13 +1,12 @@
 {
   "id": "pm0001",
   "number": 1,
-  "icon": "icon/pmpm0001_00_00_00_big.png",
   "forms": [
     {
       "id": "pm0001_00_00",
       "formIndex": 0,
       "variantIndex": 0,
-      "icon": "icon/pmpm0001_00_00_00_big.png",
+      "icon": "icon/pm0001_00_00_00_big.png",
       "animations": {
         "00000_defaultwait01_loop": [
           "pm0001_00_00_00000_defaultwait01_loop.tracm",

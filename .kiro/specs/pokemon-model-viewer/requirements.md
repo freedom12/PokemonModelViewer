@@ -93,7 +93,7 @@
 
 #### 验收标准
 
-1. WHEN 应用启动 THEN THE Pokemon_Browser SHALL 扫描 public/pokemon 目录获取可用宝可梦列表
+1. WHEN 应用启动 THEN THE Pokemon_Browser SHALL 扫描 public/SCVI 目录获取可用宝可梦列表
 2. WHEN 宝可梦列表加载完成 THEN THE Pokemon_Browser SHALL 显示宝可梦缩略图和编号
 3. WHEN 用户点击宝可梦 THEN THE Pokemon_Browser SHALL 加载并显示该宝可梦的 3D 模型
 4. WHEN 宝可梦有多个形态 THEN THE Pokemon_Browser SHALL 显示形态选择器

@@ -106,7 +106,7 @@
     - 管理 pokemons, loading, error 响应式状态
     - _需求: 6.1, 6.4_
   
-  - [x] 11.2 创建宝可梦列表数据文件 public/pokemon/index.json
+  - [x] 11.2 创建宝可梦列表数据文件 public/SCVI/index.json
     - 预生成宝可梦列表数据避免运行时目录扫描
     - 包含所有宝可梦 ID、形态和缩略图路径
     - _需求: 6.1, 6.2_
