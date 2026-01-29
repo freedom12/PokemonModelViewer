@@ -915,10 +915,17 @@ export async function createEyeClearCoatMaterial(
           float weight3 = layerMask.b;
           float weight4 = layerMask.a;
 
-          vec4 baseColor = baseColorLayer1 * weight1 +
-                          baseColorLayer2 * weight2 +
-                          baseColorLayer3 * weight3 +
-                          baseColorLayer4 * weight4;
+          vec4 albedo = vec4(1.0);
+          vec4 baseColor = (albedo * baseColorLayer1) * weight1 + albedo * (1.0 - weight1);
+          baseColor = (albedo * baseColorLayer2) * weight2 + baseColor * (1.0 - weight2);
+          baseColor = (albedo * baseColorLayer3) * weight3 + baseColor * (1.0 - weight3);
+          baseColor = (albedo * baseColorLayer4) * weight4 + baseColor * (1.0 - weight4);
+          diffuseColor = baseColor;
+
+          // vec4 baseColor = baseColorLayer1 * weight1 +
+          //                 baseColorLayer2 * weight2 +
+          //                 baseColorLayer3 * weight3 +
+          //                 baseColorLayer4 * weight4;
 
           vec4 highlightMask = vec4(0.0);
           ${highlightMaskTexture ? "vec4 highlightSample = texture(highlightMaskMap, vUv); highlightMask = highlightSample;" : ""}
