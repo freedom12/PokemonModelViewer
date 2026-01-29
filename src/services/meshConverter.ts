@@ -390,8 +390,6 @@ function parseVertexAttributes(
             stride,
             vertexCount,
           );
-          // 调试：检查 BLEND_INDICES 的值范围
-          console.log('BLEND_INDICES sample:', result.skinIndices.slice(0, 20));
           break;
 
         case VertexAttribute.BLEND_WEIGHTS:
