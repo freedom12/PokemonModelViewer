@@ -25,5 +25,8 @@ export default defineConfig(({ mode }) => ({
       })
     ] : [])
   ],
-  publicDir: mode === 'production' ? false : 'public'
+  publicDir: mode === 'production' ? false : 'public',
+  server: {
+    host: '0.0.0.0'
+  }
 }))
