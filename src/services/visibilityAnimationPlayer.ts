@@ -144,7 +144,7 @@ export class VisibilityAnimationPlayer {
     this.pause();
     this.state.currentTime = 0;
     this.state.currentFrame = 0;
-    this.updateVisibility();
+    this.resetVisibility();
   }
 
   /**
@@ -170,6 +170,20 @@ export class VisibilityAnimationPlayer {
    */
   getState(): VisibilityAnimationState {
     return { ...this.state };
+  }
+
+  /**
+   * 重置所有网格为可见状态
+   */
+  resetVisibility(): void {
+    if (!this.modelGroup) return;
+
+    // 递归设置所有mesh为可见
+    this.modelGroup.traverse((object) => {
+      if (object instanceof THREE.Mesh) {
+        object.visible = true;
+      }
+    });
   }
 
   /**
