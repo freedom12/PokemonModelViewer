@@ -124,12 +124,17 @@ function handleFormChangeForItem(event: Event, pokemon: PokemonEntry): void {
  */
 async function loadPokemonNames(): Promise<void> {
   try {
-    const response = await fetch('/pokemon_name.json')
+    const response = await fetch('/pokemon.json')
     if (!response.ok) {
       throw new Error(`加载宝可梦名字失败: HTTP ${response.status}`)
     }
     const data = await response.json()
-    pokemonNames.value = data
+    const names: Record<string, string> = {}
+    for (const pokemon of data) {
+      const number = parseInt(pokemon.resource_id, 10)
+      names[number.toString()] = pokemon.name_zh
+    }
+    pokemonNames.value = names
     console.log('[PokemonBrowser] 宝可梦名字加载成功')
   } catch (err) {
     console.error('[PokemonBrowser] 宝可梦名字加载失败:', err)

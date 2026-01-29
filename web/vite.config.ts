@@ -17,7 +17,7 @@ export default defineConfig(({ mode }) => ({
         target: 'http://localhost:5002',
         changeOrigin: true,
       },
-      '/pokemon_name.json': {
+      '/pokemon.json': {
         target: 'http://localhost:5002',
         changeOrigin: true,
       },

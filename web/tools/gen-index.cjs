@@ -73,7 +73,7 @@ function parseFormId(dirName) {
  */
 function getAnimationFiles(formPath) {
   const animations = {};
-  console.log(`扫描形态目录: ${formPath}`);
+  // console.log(`扫描形态目录: ${formPath}`);
 
   function scanDir(dirPath) {
     try {
@@ -86,7 +86,7 @@ function getAnimationFiles(formPath) {
           entry.isFile() &&
           (entry.name.endsWith(".tranm") || entry.name.endsWith(".tracm"))
         ) {
-          console.log(`Found animation file: ${entry.name} in ${dirPath}`);
+          // console.log(`Found animation file: ${entry.name} in ${dirPath}`);
           // 提取动画名：去掉前缀 pmXXXX_YY_ZZ_ 和后缀 .tranm/.tracm
           const animationName = entry.name
             .replace(/^pm\d{4}_\d{2}_\d{2}_/, "")
@@ -127,6 +127,10 @@ function getPokemonForms(pokemonId, pokemonPath) {
       if (formInfo) {
         const formPath = path.join(pokemonPath, formId);
         const animations = getAnimationFiles(formPath);
+
+        if (formInfo.formIndex !== 0 || formInfo.variantIndex !== 0) {
+          console.log(`🔍 发现形态 宝可梦: ${pokemonId}, 形态索引: ${formInfo.formIndex}, 变体索引: ${formInfo.variantIndex}`);
+        }
 
         // 查找实际存在的icon文件
         let iconPath = null;
@@ -228,10 +232,10 @@ function generateIndex() {
 
     pokemonIds.push(pokemonId);
 
-    console.log(
-      `✅ 发现宝可梦: ${pokemonId} (编号: ${number}, 形态数: ${forms.length})`,
-    );
-    console.log(`💾 生成: ${pokemonIndexFile}`);
+    // console.log(
+    //   `✅ 发现宝可梦: ${pokemonId} (编号: ${number}, 形态数: ${forms.length})`,
+    // );
+    // console.log(`💾 生成: ${pokemonIndexFile}`);
   }
 
   if (pokemonIds.length === 0) {
