@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently -n \"assets,vite\" -c \"blue,green\" \"npm run serve:assets\" \"vite\"",
+    "serve:assets": "http-server ../assets -p 5002 --cors -c-1 -d false",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "test": "vitest run",
