@@ -177,7 +177,7 @@ export function useThreeScene(options: UseThreeSceneOptions): UseThreeSceneRetur
     selectedTriangleHighlight: null,
     selectedBoneHighlight: null,
     skeletonGroup: null,
-    selectionMode: 'mesh',
+    selectionMode: 'none',
     trskl: null
   }
 

@@ -456,7 +456,7 @@ watch(selectionMode, (newMode) => {
   // 清除视觉高亮显示
   highlightSelectedTriangle(null, null)
   highlightSelectedBone(null)
-})
+}, { immediate: true })
 
 // 监听选中的动画变化，如果当前正在播放则立即切换到新动画
 watch(selectedAnimation, (newAnimation, oldAnimation) => {
