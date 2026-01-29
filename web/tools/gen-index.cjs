@@ -13,14 +13,15 @@
  * 3. 生成 index.json 配置文件
  */
 
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 // 配置
 const args = process.argv.slice(2);
-const targetDir = args.length > 0 && !args[0].startsWith('--') ? args[0] : 'SCVI';
-const POKEMON_DIR = path.join(__dirname, '..', 'public', targetDir);
-const INDEX_FILE = path.join(POKEMON_DIR, 'index.json');
+const targetDir =
+  args.length > 0 && !args[0].startsWith("--") ? args[0] : "SCVI";
+const POKEMON_DIR = path.join(__dirname, "..", "..", "assets", targetDir);
+const INDEX_FILE = path.join(POKEMON_DIR, "index.json");
 
 /**
  * 显示帮助信息
@@ -63,7 +64,7 @@ function parseFormId(dirName) {
 
   return {
     formIndex: parseInt(match[1], 10),
-    variantIndex: parseInt(match[2], 10)
+    variantIndex: parseInt(match[2], 10),
   };
 }
 
@@ -81,15 +82,22 @@ function getAnimationFiles(formPath) {
       for (const entry of entries) {
         if (entry.isDirectory()) {
           scanDir(path.join(dirPath, entry.name));
-        } else if (entry.isFile() && (entry.name.endsWith('.tranm') || entry.name.endsWith('.tracm'))) {
+        } else if (
+          entry.isFile() &&
+          (entry.name.endsWith(".tranm") || entry.name.endsWith(".tracm"))
+        ) {
           console.log(`Found animation file: ${entry.name} in ${dirPath}`);
           // 提取动画名：去掉前缀 pmXXXX_YY_ZZ_ 和后缀 .tranm/.tracm
-          const animationName = entry.name.replace(/^pm\d{4}_\d{2}_\d{2}_/, '').replace(/\.(tranm|tracm)$/, '');
-          
+          const animationName = entry.name
+            .replace(/^pm\d{4}_\d{2}_\d{2}_/, "")
+            .replace(/\.(tranm|tracm)$/, "");
+
           if (!animations[animationName]) {
             animations[animationName] = [];
           }
-          animations[animationName].push(path.relative(formPath, path.join(dirPath, entry.name)));
+          animations[animationName].push(
+            path.relative(formPath, path.join(dirPath, entry.name)),
+          );
         }
       }
     } catch (error) {
@@ -122,16 +130,16 @@ function getPokemonForms(pokemonId, pokemonPath) {
 
         // 查找实际存在的icon文件
         let iconPath = null;
-        const iconDir = path.join(formPath, 'icon');
+        const iconDir = path.join(formPath, "icon");
         if (fs.existsSync(iconDir)) {
           try {
             const iconFiles = fs.readdirSync(iconDir);
             // 优先选择_big.png文件，如果没有则选择第一个.png文件
-            const bigIcon = iconFiles.find(f => f.endsWith('_big.png'));
+            const bigIcon = iconFiles.find((f) => f.endsWith("_big.png"));
             if (bigIcon) {
               iconPath = `icon/${bigIcon}`;
             } else {
-              const pngFile = iconFiles.find(f => f.endsWith('.png'));
+              const pngFile = iconFiles.find((f) => f.endsWith(".png"));
               if (pngFile) {
                 iconPath = `icon/${pngFile}`;
               }
@@ -143,8 +151,10 @@ function getPokemonForms(pokemonId, pokemonPath) {
 
         // 如果找不到icon文件，使用默认路径
         if (!iconPath) {
-          iconPath = `icon/${pokemonId}_${formInfo.formIndex.toString().padStart(2,'0')}_${formInfo.variantIndex.toString().padStart(2,'0')}_00_big.png`;
-          console.warn(`⚠️  警告: ${formId} 找不到icon文件，使用默认路径: ${iconPath}`);
+          iconPath = `icon/${pokemonId}_${formInfo.formIndex.toString().padStart(2, "0")}_${formInfo.variantIndex.toString().padStart(2, "0")}_00_big.png`;
+          console.warn(
+            `⚠️  警告: ${formId} 找不到icon文件，使用默认路径: ${iconPath}`,
+          );
         }
 
         forms.push({
@@ -152,7 +162,7 @@ function getPokemonForms(pokemonId, pokemonPath) {
           formIndex: formInfo.formIndex,
           variantIndex: formInfo.variantIndex,
           icon: iconPath,
-          animations: animations
+          animations: animations,
         });
       }
     }
@@ -173,7 +183,7 @@ function getPokemonForms(pokemonId, pokemonPath) {
  * 生成 index.json
  */
 function generateIndex() {
-  console.log('🔍 开始扫描宝可梦目录...\n');
+  console.log("🔍 开始扫描宝可梦目录...\n");
 
   if (!fs.existsSync(POKEMON_DIR)) {
     console.error(`❌ 错误: 找不到宝可梦目录 ${POKEMON_DIR}`);
@@ -206,20 +216,26 @@ function generateIndex() {
     const pokemonData = {
       id: pokemonId,
       number: number,
-      forms: forms
+      forms: forms,
     };
 
-    const pokemonIndexFile = path.join(pokemonPath, 'index.json');
-    fs.writeFileSync(pokemonIndexFile, JSON.stringify(pokemonData, null, 2), 'utf8');
+    const pokemonIndexFile = path.join(pokemonPath, "index.json");
+    fs.writeFileSync(
+      pokemonIndexFile,
+      JSON.stringify(pokemonData, null, 2),
+      "utf8",
+    );
 
     pokemonIds.push(pokemonId);
 
-    console.log(`✅ 发现宝可梦: ${pokemonId} (编号: ${number}, 形态数: ${forms.length})`);
+    console.log(
+      `✅ 发现宝可梦: ${pokemonId} (编号: ${number}, 形态数: ${forms.length})`,
+    );
     console.log(`💾 生成: ${pokemonIndexFile}`);
   }
 
   if (pokemonIds.length === 0) {
-    console.error('❌ 错误: 没有找到任何有效的宝可梦数据');
+    console.error("❌ 错误: 没有找到任何有效的宝可梦数据");
     process.exit(1);
   }
 
@@ -230,24 +246,28 @@ function generateIndex() {
   const allPokemonData = [];
   for (const pokemonId of pokemonIds) {
     const pokemonPath = path.join(POKEMON_DIR, pokemonId);
-    const pokemonIndexFile = path.join(pokemonPath, 'index.json');
-    
+    const pokemonIndexFile = path.join(pokemonPath, "index.json");
+
     if (fs.existsSync(pokemonIndexFile)) {
       try {
-        const pokemonData = JSON.parse(fs.readFileSync(pokemonIndexFile, 'utf8'));
+        const pokemonData = JSON.parse(
+          fs.readFileSync(pokemonIndexFile, "utf8"),
+        );
         allPokemonData.push(pokemonData);
       } catch (error) {
-        console.warn(`⚠️  警告: 无法读取 ${pokemonIndexFile}: ${error.message}`);
+        console.warn(
+          `⚠️  警告: 无法读取 ${pokemonIndexFile}: ${error.message}`,
+        );
       }
     }
   }
 
   const indexData = {
-    pokemonIds: pokemonIds
+    pokemonIds: pokemonIds,
   };
 
   // 写入外层 index.json
-  fs.writeFileSync(INDEX_FILE, JSON.stringify(indexData, null, 2), 'utf8');
+  fs.writeFileSync(INDEX_FILE, JSON.stringify(indexData, null, 2), "utf8");
 
   console.log(`\n🎉 生成完成!`);
   console.log(`📊 共发现 ${pokemonIds.length} 个宝可梦`);
@@ -259,7 +279,7 @@ if (require.main === module) {
   // 检查命令行参数
   const args = process.argv.slice(2);
 
-  if (args.includes('--help') || args.includes('-h')) {
+  if (args.includes("--help") || args.includes("-h")) {
     showHelp();
     process.exit(0);
   }
@@ -267,8 +287,8 @@ if (require.main === module) {
   try {
     generateIndex();
   } catch (error) {
-    console.error('❌ 生成失败:', error.message);
-    console.error('\n运行 npm run generate-index -- --help 查看帮助信息');
+    console.error("❌ 生成失败:", error.message);
+    console.error("\n运行 npm run generate-index -- --help 查看帮助信息");
     process.exit(1);
   }
 }

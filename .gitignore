@@ -40,7 +40,7 @@ refer/
 .mypy_cache/
 
 
-tools/json_output/
+web/tools/json_output/
 # Ignore Pokemon files with number > 10
 assets/SCVI/*
 !assets/SCVI/pm0000/

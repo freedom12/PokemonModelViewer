@@ -222,7 +222,7 @@ function main() {
   }
   
   // 设置 POKEMON_DIR
-  POKEMON_DIR = path.join(__dirname, '..', 'public', pokemonDirArg);
+  POKEMON_DIR = path.join(__dirname, "..", "..", "assets", pokemonDirArg);
   OUTPUT_DIR = path.join(__dirname, 'json_output', pokemonDirArg);
   
   if (!pokemonId) {
