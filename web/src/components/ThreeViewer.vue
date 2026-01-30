@@ -323,12 +323,7 @@ watch([() => props.pokemonId, () => props.formId], ([newPokemonId, newFormId]) =
     loadAndDisplayModel(newPokemonId, newFormId)
   } else {
     // 宝可梦或形态被清空，移除当前模型
-    if (currentModel.value) {
-      removeFromScene(currentModel.value)
-      currentModel.value = null
-      currentFormId.value = null
-      currentParsedData.value = null
-    }
+    disposeModel()
     // 停止动画播放
     animationPlayer.stop()
     visibilityAnimationPlayer.stop()
