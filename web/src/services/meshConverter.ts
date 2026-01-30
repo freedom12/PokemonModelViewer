@@ -564,9 +564,6 @@ export function createSkeleton(trskl: TRSKL): THREE.Skeleton {
   // 获取数据
   const boneCount = trskl.bonesLength();
   const transformNodeCount = trskl.transformNodesLength();
-
-  console.log(`TRSKL has ${boneCount} bones and ${transformNodeCount} transform nodes`);
-
   // 创建骨骼数组，大小等于 bones.length
   for (let i = 0; i < boneCount; i++) {
     const bone = new THREE.Bone();
@@ -655,8 +652,5 @@ export function createSkeleton(trskl: TRSKL): THREE.Skeleton {
     const worldMatrix = bone.matrixWorld.clone();
     boneInverses[index] = worldMatrix.invert();
   });
-
-  console.log(`Created skeleton with ${bones.length} bones`);
-
   return new THREE.Skeleton(bones, boneInverses);
 }

@@ -275,7 +275,6 @@ export async function loadTextures(
         if (sampler) {
           texture.wrapS = getThreeWrapMode(sampler.repeatU());
           texture.wrapT = getThreeWrapMode(sampler.repeatV());
-          console.log(`[TextureLoader] 设置纹理包装模式: ${textureRef.filename}, wrapS: ${texture.wrapS}, wrapT: ${texture.wrapT}`);
         }
       }
 

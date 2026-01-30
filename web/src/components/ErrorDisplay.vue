@@ -1,12 +1,12 @@
 <script setup lang="ts">
 /**
  * ErrorDisplay.vue - 错误显示组件
- * 
+ *
  * 负责：
  * - 显示友好的错误提示信息
  * - 提供重试按钮
  * - 支持自定义标题
- * 
+ *
  * @validates 需求 8.1: FlatBuffers 解析失败时显示具体的解析错误信息
  * @validates 需求 8.2: 模型文件缺失时显示文件未找到的提示
  * @validates 需求 8.4: 网络请求失败时显示重试选项
@@ -17,58 +17,64 @@
  */
 interface Props {
   /** 错误信息 */
-  error: string
+  error: string;
   /** 可选标题，默认为 "出错了" */
-  title?: string
+  title?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  title: '出错了'
-})
+  title: "出错了",
+});
 
 /**
  * Emits 定义
  */
 const emit = defineEmits<{
   /** 重试按钮点击事件 */
-  retry: []
-}>()
+  retry: [];
+}>();
 
 /**
  * 根据错误信息判断错误类型
  * @returns 错误类型图标
  */
 function getErrorIcon(): string {
-  const errorLower = props.error.toLowerCase()
-  
+  const errorLower = props.error.toLowerCase();
+
   // 文件未找到错误
-  if (errorLower.includes('not found') || 
-      errorLower.includes('未找到') || 
-      errorLower.includes('404') ||
-      errorLower.includes('缺失')) {
-    return '📁'
+  if (
+    errorLower.includes("not found") ||
+    errorLower.includes("未找到") ||
+    errorLower.includes("404") ||
+    errorLower.includes("缺失")
+  ) {
+    return "📁";
   }
-  
+
   // 网络错误
-  if (errorLower.includes('network') || 
-      errorLower.includes('网络') || 
-      errorLower.includes('fetch') ||
-      errorLower.includes('timeout') ||
-      errorLower.includes('超时')) {
-    return '🌐'
+  if (
+    errorLower.includes("network") ||
+    errorLower.includes("网络") ||
+    errorLower.includes("fetch") ||
+    errorLower.includes("timeout") ||
+    errorLower.includes("超时")
+  ) {
+    return "🌐";
   }
-  
+
   // 解析错误
-  if (errorLower.includes('parse') || 
-      errorLower.includes('解析') || 
-      errorLower.includes('flatbuffers') ||
-      errorLower.includes('format') ||
-      errorLower.includes('格式')) {
-    return '⚙️'
+  if (
+    errorLower.includes("parse") ||
+    errorLower.includes("解析") ||
+    errorLower.includes("flatbuffers") ||
+    errorLower.includes("format") ||
+    errorLower.includes("格式")
+  ) {
+    return "⚙️";
   }
-  
+
   // 默认警告图标
-  return '⚠️'
+  return "⚠️";
 }
 
 /**
@@ -76,7 +82,7 @@ function getErrorIcon(): string {
  * @validates 需求 8.4: 网络请求失败时显示重试选项
  */
 function handleRetry(): void {
-  emit('retry')
+  emit("retry");
 }
 </script>
 
@@ -87,19 +93,15 @@ function handleRetry(): void {
       <div class="error-icon">
         {{ getErrorIcon() }}
       </div>
-      
+
       <!-- 错误标题 -->
       <h3 class="error-title">{{ title }}</h3>
-      
+
       <!-- 错误信息 -->
       <p class="error-message">{{ error }}</p>
-      
+
       <!-- 重试按钮 -->
-      <button 
-        class="retry-button" 
-        type="button"
-        @click="handleRetry"
-      >
+      <button class="retry-button" type="button" @click="handleRetry">
         <span class="retry-icon">🔄</span>
         <span class="retry-text">重试</span>
       </button>

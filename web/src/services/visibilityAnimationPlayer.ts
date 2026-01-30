@@ -92,12 +92,6 @@ export class VisibilityAnimationPlayer {
           });
         }
       }
-
-      console.log("Visibility animation loaded:", {
-        duration: this.state.duration,
-        tracksCount: this.tracks.length,
-        frameMultiplier: this.visibilityFrameMultiplier,
-      });
     } catch (error) {
       console.error("Error loading visibility animation:", error);
       throw error;

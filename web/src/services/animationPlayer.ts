@@ -96,18 +96,7 @@ export class AnimationPlayer {
       const bb = new flatbuffers.ByteBuffer(bytes);
 
       this.animationData = TRANM.getRootAsTRANM(bb);
-
-      console.log("Animation data parsed:", this.animationData);
-      console.log("Animation info:", this.animationData.info());
-      console.log("Animation track:", this.animationData.track());
-
       this.calculateDuration();
-      console.log("Animation loaded:", {
-        doesLoop: this.animationData.info()?.doesLoop(),
-        animationCount: this.animationData.info()?.animationCount(),
-        animationRate: this.animationData.info()?.animationRate(),
-        trackCount: this.animationData.track()?.tracksLength(),
-      });
     } catch (error) {
       console.error("Failed to load animation:", error);
       throw error;

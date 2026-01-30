@@ -11,7 +11,10 @@
  * @validates 需求 6.5: 用户选择不同形态时切换显示对应形态的模型
  */
 import { ref, defineAsyncComponent } from "vue";
-import { loadJsonResource, setResourceLoaderConfig } from "./services/resourceLoader";
+import {
+  loadJsonResource,
+  setResourceLoaderConfig,
+} from "./services/resourceLoader";
 
 // 异步加载组件以优化初始加载性能
 const PokemonBrowser = defineAsyncComponent(
@@ -43,7 +46,7 @@ const selectedDirectory = ref<string>("SCVI");
 const currentAnimations = ref<Record<string, string[]> | null>(null);
 
 // 资源加载模式：本地或远程
-const useRemoteAssets = ref(import.meta.env.VITE_USE_REMOTE_ASSETS === 'true');
+const useRemoteAssets = ref(import.meta.env.VITE_USE_REMOTE_ASSETS === "true");
 
 // 组件挂载时不需要额外加载数据，PokemonBrowser 会处理
 
@@ -68,7 +71,9 @@ async function handlePokemonSelect(
 
   // 获取当前形态的动画数据
   try {
-    const pokemonData = await loadJsonResource(`${selectedDirectory.value}/${pokemonId}.json`);
+    const pokemonData = await loadJsonResource(
+      `${selectedDirectory.value}/${pokemonId}.json`,
+    );
     const form = pokemonData.forms.find((f: any) => f.id === formId);
     if (form && form.animations) {
       currentAnimations.value = form.animations;
@@ -102,10 +107,8 @@ function handleProgressChange(progress: number): void {
  * @param directory - 新的目录名
  */
 function handleDirectoryChange(directory: string): void {
-  console.log(directory)
-  console.log(`App: 切换目录到 ${directory}`);
   selectedDirectory.value = directory;
-  
+
   // 清空当前选择的宝可梦和形态
   selectedPokemon.value = null;
   selectedForm.value = null;
@@ -150,7 +153,11 @@ function handleError(error: string | null): void {
           <input
             type="checkbox"
             :checked="useRemoteAssets"
-            @change="handleResourceModeChange(($event.target as HTMLInputElement).checked)"
+            @change="
+              handleResourceModeChange(
+                ($event.target as HTMLInputElement).checked,
+              )
+            "
           />
           使用远程资源
         </label>

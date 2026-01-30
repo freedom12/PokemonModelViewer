@@ -20,8 +20,23 @@ const path = require("path");
 const args = process.argv.slice(2);
 const targetDir =
   args.length > 0 && !args[0].startsWith("--") ? args[0] : "SCVI";
-const POKEMON_DIR = path.join(__dirname, "..", "..", "assets", "models", targetDir);
-const INDEX_FILE = path.join(__dirname, "..", "..", "assets", "model-index", targetDir, "index.json");
+const POKEMON_DIR = path.join(
+  __dirname,
+  "..",
+  "..",
+  "assets",
+  "models",
+  targetDir,
+);
+const INDEX_FILE = path.join(
+  __dirname,
+  "..",
+  "..",
+  "assets",
+  "model-index",
+  targetDir,
+  "index.json",
+);
 
 /**
  * 显示帮助信息
@@ -129,7 +144,9 @@ function getPokemonForms(pokemonId, pokemonPath) {
         const animations = getAnimationFiles(formPath);
 
         if (formInfo.formIndex !== 0 || formInfo.variantIndex !== 0) {
-          console.log(`🔍 发现形态 宝可梦: ${pokemonId}, 形态索引: ${formInfo.formIndex}, 变体索引: ${formInfo.variantIndex}`);
+          console.log(
+            `🔍 发现形态 宝可梦: ${pokemonId}, 形态索引: ${formInfo.formIndex}, 变体索引: ${formInfo.variantIndex}`,
+          );
         }
 
         // 查找实际存在的icon文件
@@ -195,7 +212,14 @@ function generateIndex() {
   }
 
   // 确保输出目录存在
-  const modelIndexDir = path.join(__dirname, "..", "..", "assets", "model-index", targetDir);
+  const modelIndexDir = path.join(
+    __dirname,
+    "..",
+    "..",
+    "assets",
+    "model-index",
+    targetDir,
+  );
   if (!fs.existsSync(modelIndexDir)) {
     fs.mkdirSync(modelIndexDir, { recursive: true });
   }
@@ -229,7 +253,15 @@ function generateIndex() {
       forms: forms,
     };
 
-    const pokemonIndexFile = path.join(__dirname, "..", "..", "assets", "model-index", targetDir, `${pokemonId}.json`);
+    const pokemonIndexFile = path.join(
+      __dirname,
+      "..",
+      "..",
+      "assets",
+      "model-index",
+      targetDir,
+      `${pokemonId}.json`,
+    );
     fs.writeFileSync(
       pokemonIndexFile,
       JSON.stringify(pokemonData, null, 2),
@@ -255,7 +287,15 @@ function generateIndex() {
   // 收集所有宝可梦的详细信息
   const allPokemonData = [];
   for (const pokemonId of pokemonIds) {
-    const pokemonIndexFile = path.join(__dirname, "..", "..", "assets", "model-index", targetDir, `${pokemonId}.json`);
+    const pokemonIndexFile = path.join(
+      __dirname,
+      "..",
+      "..",
+      "assets",
+      "model-index",
+      targetDir,
+      `${pokemonId}.json`,
+    );
 
     if (fs.existsSync(pokemonIndexFile)) {
       try {

@@ -1,14 +1,14 @@
 <script setup lang="ts">
 /**
  * PokemonBrowser.vue - 宝可梦浏览器组件
- * 
+ *
  * 负责：
  * - 显示宝可梦网格列表，包含缩略图和编号
  * - 实现形态选择下拉框
  * - 显示加载进度指示器
  * - 触发 select 事件通知父组件
  * - 显示列表加载错误并提供重试功能
- * 
+ *
  * @validates 需求 6.2: 宝可梦列表加载完成后显示宝可梦缩略图和编号
  * @validates 需求 6.3: 用户点击宝可梦时加载并显示该宝可梦的 3D 模型
  * @validates 需求 6.4: 宝可梦有多个形态时显示形态选择器
@@ -17,52 +17,57 @@
  * @validates 需求 8.4: 网络请求失败时显示重试选项
  * @validates 需求 8.5: 发生错误时在控制台记录详细错误信息用于调试
  */
-import { ref, onMounted, watch } from 'vue'
-import { usePokemonList, type PokemonEntry, type FormEntry } from '../composables/usePokemonList'
-import ErrorDisplay from './ErrorDisplay.vue'
+import { ref, onMounted, watch } from "vue";
+import {
+  usePokemonList,
+  type PokemonEntry,
+  type FormEntry,
+} from "../composables/usePokemonList";
+import ErrorDisplay from "./ErrorDisplay.vue";
 
 /**
  * Props 定义
  */
 interface Props {
   /** 当前选中的宝可梦 ID */
-  selectedPokemon?: string | null
+  selectedPokemon?: string | null;
   /** 当前选中的形态 ID */
-  selectedForm?: string | null
+  selectedForm?: string | null;
   /** 当前选择的目录 */
-  directory?: string
+  directory?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   selectedPokemon: null,
   selectedForm: null,
-  directory: 'SCVI'
-})
+  directory: "SCVI",
+});
 
 /**
  * Emits 定义
  */
 const emit = defineEmits<{
   /** 选择宝可梦和形态时触发 */
-  select: [pokemonId: string, formId: string]
+  select: [pokemonId: string, formId: string];
   /** 目录切换时触发 */
-  directoryChange: [directory: string]
-}>()
+  directoryChange: [directory: string];
+}>();
 
 // 当前选择的目录
-const selectedDirectory = ref<string>(props.directory)
+const selectedDirectory = ref<string>(props.directory);
 
 // 使用宝可梦列表 composable
-const { pokemons, loading, error, loadPokemonList } = usePokemonList(selectedDirectory)
+const { pokemons, loading, error, loadPokemonList, loadPokemonDetails } =
+  usePokemonList(selectedDirectory);
 
 // 宝可梦名字映射
-const pokemonNames = ref<Record<string, string>>({})
+const pokemonNames = ref<Record<string, string>>({});
 
 // 当前选中的宝可梦（用于显示形态选择器）
-const currentPokemon = ref<PokemonEntry | null>(null)
+const currentPokemon = ref<PokemonEntry | null>(null);
 
 // 当前选中的形态 ID
-const currentFormId = ref<string | null>(null)
+const currentFormId = ref<string | null>(null);
 
 /**
  * 获取宝可梦名字
@@ -74,7 +79,7 @@ function getPokemonName(number: number): string {
   if (name === undefined) {
     return `宝可梦 ${number}`;
   }
-  return `${name}(#${number.toString().padStart(4, '0')})`;
+  return `${name}(#${number.toString().padStart(4, "0")})`;
 }
 
 /**
@@ -84,9 +89,9 @@ function getPokemonName(number: number): string {
  */
 function formatFormName(form: FormEntry): string {
   if (form.formIndex === 0 && form.variantIndex === 0) {
-    return '默认形态'
+    return "默认形态";
   }
-  return `形态 ${form.formIndex}-${form.variantIndex}`
+  return `形态 ${form.formIndex}-${form.variantIndex}`;
 }
 
 /**
@@ -94,20 +99,38 @@ function formatFormName(form: FormEntry): string {
  * @param pokemon - 被点击的宝可梦
  * @validates 需求 6.3: 用户点击宝可梦时加载并显示该宝可梦的 3D 模型
  */
-function handlePokemonClick(pokemon: PokemonEntry): void {
-  // 如果宝可梦信息还未加载完成，忽略点击
-  if (!pokemon.loaded || pokemon.forms.length === 0) {
-    console.log(`[PokemonBrowser] ${pokemon.id} 信息还未加载完成，忽略点击`)
-    return
+async function handlePokemonClick(pokemon: PokemonEntry): Promise<void> {
+  // 如果宝可梦信息还未加载完成，先加载详细信息
+  if (!pokemon.loaded) {
+    console.log(`[PokemonBrowser] 宝可梦 ${pokemon.id} 信息未加载，开始加载...`);
+    try {
+      await loadPokemonDetails(pokemon.id);
+      // 重新获取更新后的宝可梦数据
+      const updatedPokemon = pokemons.value.find(p => p.id === pokemon.id);
+      if (!updatedPokemon || !updatedPokemon.loaded) {
+        console.warn(`[PokemonBrowser] 宝可梦 ${pokemon.id} 加载失败`);
+        return;
+      }
+      pokemon = updatedPokemon;
+    } catch (err) {
+      console.error(`[PokemonBrowser] 加载宝可梦 ${pokemon.id} 详细信息失败:`, err);
+      return;
+    }
   }
-  
-  currentPokemon.value = pokemon
-  
+
+  // 现在宝可梦信息已加载完成
+  if (pokemon.forms.length === 0) {
+    console.warn(`[PokemonBrowser] 宝可梦 ${pokemon.id} 没有可用形态`);
+    return;
+  }
+
+  currentPokemon.value = pokemon;
+
   // 默认选择第一个形态
-  const defaultForm = pokemon.forms[0]
+  const defaultForm = pokemon.forms[0];
   if (defaultForm) {
-    currentFormId.value = defaultForm.id
-    emit('select', pokemon.id, defaultForm.id)
+    currentFormId.value = defaultForm.id;
+    emit("select", pokemon.id, defaultForm.id);
   }
 }
 
@@ -118,13 +141,18 @@ function handlePokemonClick(pokemon: PokemonEntry): void {
  * @validates 需求 6.5: 用户选择不同形态时切换显示对应形态的模型
  */
 function handleFormChangeForItem(event: Event, pokemon: PokemonEntry): void {
-  const target = event.target as HTMLSelectElement
-  const formId = target.value
-  
+  // 确保宝可梦信息已加载
+  if (!pokemon.loaded || pokemon.forms.length === 0) {
+    return;
+  }
+
+  const target = event.target as HTMLSelectElement;
+  const formId = target.value;
+
   if (formId) {
-    currentPokemon.value = pokemon
-    currentFormId.value = formId
-    emit('select', pokemon.id, formId)
+    currentPokemon.value = pokemon;
+    currentFormId.value = formId;
+    emit("select", pokemon.id, formId);
   }
 }
 
@@ -133,38 +161,45 @@ function handleFormChangeForItem(event: Event, pokemon: PokemonEntry): void {
  */
 async function loadPokemonNames(): Promise<void> {
   try {
-    const response = await fetch('/model-index/pokemon.json')
+    const response = await fetch("/model-index/pokemon.json");
     if (!response.ok) {
-      throw new Error(`加载宝可梦名字失败: HTTP ${response.status}`)
+      throw new Error(`加载宝可梦名字失败: HTTP ${response.status}`);
     }
-    const data = await response.json()
-    const names: Record<string, string> = {}
+    const data = await response.json();
+    const names: Record<string, string> = {};
     for (const pokemon of data) {
-      const number = parseInt(pokemon.resource_id, 10)
-      names[number.toString()] = pokemon.name_zh
+      const number = parseInt(pokemon.resource_id, 10);
+      names[number.toString()] = pokemon.name_zh;
     }
-    pokemonNames.value = names
-    console.log('[PokemonBrowser] 宝可梦名字加载成功')
+    pokemonNames.value = names;
   } catch (err) {
-    console.error('[PokemonBrowser] 宝可梦名字加载失败:', err)
+    console.error("[PokemonBrowser] 宝可梦名字加载失败:", err);
   }
 }
 
 // 监听 props 变化，同步内部状态
-watch(() => props.selectedPokemon, (newPokemonId) => {
-  if (newPokemonId) {
-    const pokemon = pokemons.value.find(p => p.id === newPokemonId)
-    if (pokemon) {
-      currentPokemon.value = pokemon
+watch(
+  () => props.selectedPokemon,
+  (newPokemonId) => {
+    if (newPokemonId) {
+      const pokemon = pokemons.value.find((p) => p.id === newPokemonId);
+      if (pokemon) {
+        currentPokemon.value = pokemon;
+      }
     }
-  }
-}, { immediate: true })
+  },
+  { immediate: true },
+);
 
-watch(() => props.selectedForm, (newFormId) => {
-  if (newFormId) {
-    currentFormId.value = newFormId
-  }
-}, { immediate: true })
+watch(
+  () => props.selectedForm,
+  (newFormId) => {
+    if (newFormId) {
+      currentFormId.value = newFormId;
+    }
+  },
+  { immediate: true },
+);
 
 /**
  * 处理重试按钮点击
@@ -172,21 +207,16 @@ watch(() => props.selectedForm, (newFormId) => {
  * @validates 需求 8.5: 发生错误时在控制台记录详细错误信息用于调试
  */
 async function handleRetry(): Promise<void> {
-  console.log('[PokemonBrowser] 用户点击重试，重新加载数据')
   try {
-    await Promise.all([
-      loadPokemonList(),
-      loadPokemonNames()
-    ])
-    console.log('[PokemonBrowser] 数据重新加载成功')
+    await Promise.all([loadPokemonList(), loadPokemonNames()]);
   } catch (err) {
     // @validates 需求 8.5: 在控制台记录详细错误信息用于调试
-    console.error('[PokemonBrowser] 数据重新加载失败:', {
+    console.error("[PokemonBrowser] 数据重新加载失败:", {
       error: err,
       errorMessage: err instanceof Error ? err.message : String(err),
       errorStack: err instanceof Error ? err.stack : undefined,
-      timestamp: new Date().toISOString()
-    })
+      timestamp: new Date().toISOString(),
+    });
   }
 }
 
@@ -196,59 +226,56 @@ async function handleRetry(): Promise<void> {
  * @validates 需求 8.5: 发生错误时在控制台记录详细错误信息用于调试
  */
 function handleThumbnailError(event: Event): void {
-  const img = event.target as HTMLImageElement
-  const originalSrc = img.src
-  
+  const img = event.target as HTMLImageElement;
+  const originalSrc = img.src;
+
   // @validates 需求 8.5: 在控制台记录详细错误信息用于调试
-  console.warn('[PokemonBrowser] 缩略图加载失败:', {
+  console.warn("[PokemonBrowser] 缩略图加载失败:", {
     originalSrc,
-    timestamp: new Date().toISOString()
-  })
-  
+    timestamp: new Date().toISOString(),
+  });
+
   // 使用占位图片
-  img.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96"><rect fill="%23333" width="96" height="96"/><text fill="%23666" font-size="12" x="50%" y="50%" text-anchor="middle" dy=".3em">?</text></svg>'
+  img.src =
+    'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96"><rect fill="%23333" width="96" height="96"/><text fill="%23666" font-size="12" x="50%" y="50%" text-anchor="middle" dy=".3em">?</text></svg>';
 }
 
 // 监听 props.directory 变化
-watch(() => props.directory, (newDirectory) => {
-  if (newDirectory && newDirectory !== selectedDirectory.value) {
-    selectedDirectory.value = newDirectory
-  }
-})
+watch(
+  () => props.directory,
+  (newDirectory) => {
+    if (newDirectory && newDirectory !== selectedDirectory.value) {
+      selectedDirectory.value = newDirectory;
+    }
+  },
+);
 
 // 监听 selectedDirectory 变化，重新加载列表
 watch(selectedDirectory, async (newDirectory, oldDirectory) => {
   if (newDirectory !== oldDirectory) {
-    console.log(`[PokemonBrowser] 目录切换: ${oldDirectory} -> ${newDirectory}`)
-    emit('directoryChange', newDirectory)
+    emit("directoryChange", newDirectory);
     try {
-      await loadPokemonList()
-      console.log(`[PokemonBrowser] ${newDirectory} 列表加载成功，共 ${pokemons.value.length} 个宝可梦`)
+      await loadPokemonList();
     } catch (err) {
-      console.error(`[PokemonBrowser] ${newDirectory} 列表加载失败:`, err)
+      console.error(`[PokemonBrowser] ${newDirectory} 列表加载失败:`, err);
     }
   }
-})
+});
 
 // 组件挂载时加载宝可梦列表和名字数据
 onMounted(async () => {
-  console.log('[PokemonBrowser] 组件已挂载，开始加载数据')
   try {
-    await Promise.all([
-      loadPokemonList(),
-      loadPokemonNames()
-    ])
-    console.log(`[PokemonBrowser] 数据加载成功，共 ${pokemons.value.length} 个宝可梦`)
+    await Promise.all([loadPokemonList(), loadPokemonNames()]);
   } catch (err) {
     // @validates 需求 8.5: 在控制台记录详细错误信息用于调试
-    console.error('[PokemonBrowser] 数据加载失败:', {
+    console.error("[PokemonBrowser] 数据加载失败:", {
       error: err,
       errorMessage: err instanceof Error ? err.message : String(err),
       errorStack: err instanceof Error ? err.stack : undefined,
-      timestamp: new Date().toISOString()
-    })
+      timestamp: new Date().toISOString(),
+    });
   }
-})
+});
 </script>
 
 <template>
@@ -261,30 +288,26 @@ onMounted(async () => {
         <option value="LZA">LZA</option>
       </select>
     </div>
-    
+
     <!-- 列表加载状态 -->
     <div v-if="loading" class="list-loading">
       <div class="spinner"></div>
       <span>加载宝可梦列表...</span>
     </div>
-    
+
     <!-- 错误提示 - 使用 ErrorDisplay 组件 -->
     <!-- @validates 需求 8.4: 网络请求失败时显示重试选项 -->
     <div v-else-if="error" class="error-wrapper">
-      <ErrorDisplay
-        :error="error"
-        title="列表加载失败"
-        @retry="handleRetry"
-      />
+      <ErrorDisplay :error="error" title="列表加载失败" @retry="handleRetry" />
     </div>
-    
+
     <!-- 宝可梦列表 -->
     <div v-else class="pokemon-list">
       <div
         v-for="pokemon in pokemons"
         :key="pokemon.id"
         class="pokemon-item"
-        :class="{ 'selected': pokemon.id === currentPokemon?.id }"
+        :class="{ selected: pokemon.id === currentPokemon?.id }"
         @click="handlePokemonClick(pokemon)"
       >
         <!-- 左侧图标 -->
@@ -301,18 +324,25 @@ onMounted(async () => {
             <span v-else>?</span>
           </div>
         </div>
-        
+
         <!-- 右侧信息 -->
         <div class="pokemon-info">
           <!-- 中间名字 -->
           <div class="pokemon-name">
             {{ getPokemonName(pokemon.number) }}
           </div>
-          
+
           <!-- 形态选择器 -->
-          <div v-if="pokemon.loaded && pokemon.forms.length > 1" class="pokemon-form-selector">
+          <div
+            v-if="pokemon.loaded && pokemon.forms.length > 1"
+            class="pokemon-form-selector"
+          >
             <select
-              :value="currentPokemon?.id === pokemon.id ? currentFormId : pokemon.forms[0].id"
+              :value="
+                currentPokemon?.id === pokemon.id
+                  ? currentFormId
+                  : pokemon.forms[0].id
+              "
               class="form-select"
               @change="handleFormChangeForItem($event, pokemon)"
               @click.stop

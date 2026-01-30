@@ -1,4 +1,4 @@
-import * as flatbuffers from 'flatbuffers';
+import * as flatbuffers from "flatbuffers";
 
 class SlotMapping {
   bb = null;
@@ -36,7 +36,14 @@ class SlotMap {
 
   slotValues(index, obj) {
     const offset = this.bb.__offset(this.bb_pos, 6);
-    return offset ? (obj || new SlotMapping()).__init(this.bb.__indirect(this.bb.__vector(this.bb_pos + offset) + index * 4), this.bb) : null;
+    return offset
+      ? (obj || new SlotMapping()).__init(
+          this.bb.__indirect(
+            this.bb.__vector(this.bb_pos + offset) + index * 4,
+          ),
+          this.bb,
+        )
+      : null;
   }
 
   slotValuesLength() {
@@ -80,7 +87,10 @@ class TRSHA {
   }
 
   static getRootAsTRSHA(bb, obj) {
-    return (obj || new TRSHA()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
+    return (obj || new TRSHA()).__init(
+      bb.readInt32(bb.position()) + bb.position(),
+      bb,
+    );
   }
 
   name() {
@@ -95,7 +105,14 @@ class TRSHA {
 
   shaderParam(index, obj) {
     const offset = this.bb.__offset(this.bb_pos, 8);
-    return offset ? (obj || new SlotMap()).__init(this.bb.__indirect(this.bb.__vector(this.bb_pos + offset) + index * 4), this.bb) : null;
+    return offset
+      ? (obj || new SlotMap()).__init(
+          this.bb.__indirect(
+            this.bb.__vector(this.bb_pos + offset) + index * 4,
+          ),
+          this.bb,
+        )
+      : null;
   }
 
   shaderParamLength() {
@@ -105,7 +122,14 @@ class TRSHA {
 
   globalParam(index, obj) {
     const offset = this.bb.__offset(this.bb_pos, 10);
-    return offset ? (obj || new SlotMap()).__init(this.bb.__indirect(this.bb.__vector(this.bb_pos + offset) + index * 4), this.bb) : null;
+    return offset
+      ? (obj || new SlotMap()).__init(
+          this.bb.__indirect(
+            this.bb.__vector(this.bb_pos + offset) + index * 4,
+          ),
+          this.bb,
+        )
+      : null;
   }
 
   globalParamLength() {
@@ -115,7 +139,9 @@ class TRSHA {
 
   paramBuffer(index) {
     const offset = this.bb.__offset(this.bb_pos, 12);
-    return offset ? this.bb.readUint32(this.bb.__vector(this.bb_pos + offset) + index * 4) : 0;
+    return offset
+      ? this.bb.readUint32(this.bb.__vector(this.bb_pos + offset) + index * 4)
+      : 0;
   }
 
   paramBufferLength() {
@@ -189,14 +215,14 @@ function trshaToJson(trsha) {
   return result;
 }
 
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
 
 const filePath = process.argv[2];
 const outputPath = process.argv[3];
 
 if (!filePath || !outputPath) {
-  console.error('Usage: node parse-trsha.mjs <input.trsha> <output.json>');
+  console.error("Usage: node parse-trsha.mjs <input.trsha> <output.json>");
   process.exit(1);
 }
 
@@ -205,4 +231,4 @@ const bb = new flatbuffers.ByteBuffer(buffer);
 const trsha = TRSHA.getRootAsTRSHA(bb);
 const json = trshaToJson(trsha);
 fs.writeFileSync(outputPath, JSON.stringify(json, null, 2));
-console.log('Converted to JSON');
+console.log("Converted to JSON");
