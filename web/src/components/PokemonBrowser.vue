@@ -313,16 +313,11 @@ onMounted(async () => {
         <!-- 左侧图标 -->
         <div class="pokemon-icon">
           <img
-            v-if="pokemon.loaded && pokemon.thumbnail"
-            :src="pokemon.thumbnail"
+            :src="`/icons/icon${pokemon.number.toString().padStart(4, '0')}_f00_s0.png`"
             :alt="`Pokemon ${pokemon.number}`"
             loading="lazy"
             @error="handleThumbnailError"
           />
-          <div v-else class="pokemon-icon-placeholder">
-            <div v-if="!pokemon.loaded" class="loading-spinner"></div>
-            <span v-else>?</span>
-          </div>
         </div>
 
         <!-- 右侧信息 -->

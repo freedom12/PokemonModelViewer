@@ -14,6 +14,10 @@ export default defineConfig(({ mode }) => ({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/remote-assets/, ""),
       },
+      "/icons": {
+        target: "http://localhost:5002",
+        changeOrigin: true,
+      },
       "/model-index": {
         target: "http://localhost:5002",
         changeOrigin: true,
