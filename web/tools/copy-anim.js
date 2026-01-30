@@ -1,8 +1,8 @@
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
 
-const sourceBase = 'E:\\hack\\ns\\Pokemon Scarlet\\pokemon\\data';
-const targetBase = 'public\\pokemon';
+const sourceBase = "E:\\hack\\ns\\Pokemon Scarlet\\pokemon\\data";
+const targetBase = "..\\assets\\SCVI";
 
 function copyFiles(srcDir, destDir, extensions) {
   if (!fs.existsSync(srcDir)) {
@@ -15,13 +15,13 @@ function copyFiles(srcDir, destDir, extensions) {
   }
 
   const items = fs.readdirSync(srcDir);
-  items.forEach(item => {
+  items.forEach((item) => {
     const srcPath = path.join(srcDir, item);
     const stat = fs.statSync(srcPath);
 
     if (stat.isDirectory()) {
       copyFiles(srcPath, destDir, extensions);
-    } else if (stat.isFile() && extensions.some(ext => item.endsWith(ext))) {
+    } else if (stat.isFile() && extensions.some((ext) => item.endsWith(ext))) {
       const destPath = path.join(destDir, item);
       fs.copyFileSync(srcPath, destPath);
       console.log(`Copied ${srcPath} to ${destPath}`);
@@ -30,23 +30,29 @@ function copyFiles(srcDir, destDir, extensions) {
 }
 
 function main() {
-  const pokemonDirs = fs.readdirSync(targetBase).filter(dir => {
-    return fs.statSync(path.join(targetBase, dir)).isDirectory() && dir.startsWith('pm');
+  const pokemonDirs = fs.readdirSync(targetBase).filter((dir) => {
+    return (
+      fs.statSync(path.join(targetBase, dir)).isDirectory() &&
+      dir.startsWith("pm")
+    );
   });
 
-  pokemonDirs.forEach(dir => {
+  pokemonDirs.forEach((dir) => {
     const srcDir = path.join(sourceBase, dir);
     if (!fs.existsSync(srcDir)) {
       console.log(`Source directory ${srcDir} does not exist.`);
       return;
     }
-    const subDirs = fs.readdirSync(srcDir).filter(sub => {
-      return fs.statSync(path.join(srcDir, sub)).isDirectory() && sub.match(/^pm\d{4}_\d{2}_\d{2}$/);
+    const subDirs = fs.readdirSync(srcDir).filter((sub) => {
+      return (
+        fs.statSync(path.join(srcDir, sub)).isDirectory() &&
+        sub.match(/^pm\d{4}_\d{2}_\d{2}$/)
+      );
     });
-    subDirs.forEach(sub => {
+    subDirs.forEach((sub) => {
       const subSrcDir = path.join(srcDir, sub);
       const subDestDir = path.join(targetBase, dir, sub);
-      copyFiles(subSrcDir, subDestDir, ['.tranm', '.tracm']);
+      copyFiles(subSrcDir, subDestDir, [".tranm", ".tracm"]);
     });
   });
 }
