@@ -70,8 +70,11 @@ const currentFormId = ref<string | null>(null)
  * @returns 宝可梦名字
  */
 function getPokemonName(number: number): string {
-  const name = pokemonNames.value[number.toString()]
-  return name ? `${number.toString().padStart(3, '0')} ${name}` : `宝可梦 ${number}`
+  const name = pokemonNames.value[number.toString()];
+  if (name === undefined) {
+    return `宝可梦 ${number}`;
+  }
+  return `${name}(#${number.toString().padStart(4, '0')})`;
 }
 
 /**
@@ -288,27 +291,30 @@ onMounted(async () => {
           />
         </div>
         
-        <!-- 中间名字 -->
-        <div class="pokemon-name">
-          {{ getPokemonName(pokemon.number) }}
-        </div>
-        
-        <!-- 右侧形态选择器 -->
-        <div v-if="pokemon.forms.length > 1" class="pokemon-form-selector">
-          <select
-            :value="currentPokemon?.id === pokemon.id ? currentFormId : pokemon.forms[0].id"
-            class="form-select"
-            @change="handleFormChangeForItem($event, pokemon)"
-            @click.stop
-          >
-            <option
-              v-for="form in pokemon.forms"
-              :key="form.id"
-              :value="form.id"
+        <!-- 右侧信息 -->
+        <div class="pokemon-info">
+          <!-- 中间名字 -->
+          <div class="pokemon-name">
+            {{ getPokemonName(pokemon.number) }}
+          </div>
+          
+          <!-- 形态选择器 -->
+          <div v-if="pokemon.forms.length > 1" class="pokemon-form-selector">
+            <select
+              :value="currentPokemon?.id === pokemon.id ? currentFormId : pokemon.forms[0].id"
+              class="form-select"
+              @change="handleFormChangeForItem($event, pokemon)"
+              @click.stop
             >
-              {{ formatFormName(form) }}
-            </option>
-          </select>
+              <option
+                v-for="form in pokemon.forms"
+                :key="form.id"
+                :value="form.id"
+              >
+                {{ formatFormName(form) }}
+              </option>
+            </select>
+          </div>
         </div>
       </div>
     </div>
@@ -437,7 +443,7 @@ onMounted(async () => {
 /* 宝可梦条目 */
 .pokemon-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   padding: 12px;
   background-color: #16213e;
   border: 2px solid transparent;
@@ -475,9 +481,16 @@ onMounted(async () => {
   image-rendering: pixelated;
 }
 
+/* 右侧信息 */
+.pokemon-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 /* 中间名字 */
 .pokemon-name {
-  flex: 1;
   font-size: 1rem;
   font-weight: 500;
   color: #fff;
@@ -487,9 +500,8 @@ onMounted(async () => {
   color: #e94560;
 }
 
-/* 右侧形态选择器 */
+/* 形态选择器 */
 .pokemon-form-selector {
-  margin-left: 12px;
   flex-shrink: 0;
 }
 
