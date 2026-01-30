@@ -285,8 +285,8 @@ export class AnimationPlayer {
     // 检查是否到达动画末尾
     if (this.state.currentFrame >= animationCount) {
       if (doesLoop && this.state.loop) {
-        this.state.currentTime = 0;
-        this.state.currentFrame = 0;
+        this.state.currentTime = frameTime;
+        this.state.currentFrame = 1;
       } else {
         // 动画播放完成且不循环时，直接暂停，保持最后一帧状态
         this.pause();
