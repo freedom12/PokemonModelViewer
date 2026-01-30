@@ -18,7 +18,7 @@ export default defineConfig(({ mode }) => ({
         target: "http://localhost:5002",
         changeOrigin: true,
       },
-      "/model-index": {
+      "/configs": {
         target: "http://localhost:5002",
         changeOrigin: true,
       },

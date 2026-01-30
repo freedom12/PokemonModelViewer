@@ -63,6 +63,9 @@ const { pokemons, loading, error, loadPokemonList, loadPokemonDetails } =
 // 宝可梦名字映射
 const pokemonNames = ref<Record<string, string>>({});
 
+// 形态名映射
+const formNames = ref<Record<string, string>>({});
+
 // 当前选中的宝可梦（用于显示形态选择器）
 const currentPokemon = ref<PokemonEntry | null>(null);
 
@@ -85,13 +88,33 @@ function getPokemonName(number: number): string {
 /**
  * 格式化形态名称显示
  * @param form - 形态条目
+ * @param pokemonNumber - 宝可梦编号
  * @returns 格式化后的形态名称
  */
-function formatFormName(form: FormEntry): string {
-  if (form.formIndex === 0 && form.variantIndex === 0) {
-    return "默认形态";
+function formatFormName(form: FormEntry, pokemonNumber: number): string {
+  const key = `pm${pokemonNumber.toString().padStart(4, "0")}_${form.formIndex.toString().padStart(2, "0")}`;
+  let name = "普通的样子";
+  if (form.formIndex === 1) {
+    name = '雌性的样子';
+  } else if (formNames.value[key]) {
+    name = formNames.value[key];
+  } else if (form.formIndex > 0) {
+    name = `形态 ${form.formIndex}`;
   }
-  return `形态 ${form.formIndex}-${form.variantIndex}`;
+
+  const variantIndex = form.variantIndex;
+  if (variantIndex === 11) {
+    name = `${name} 阿罗拉的样子`;
+  } else if (variantIndex === 31) {
+    name = `${name} 伽勒尔的样子`;
+  } else if (variantIndex === 41) {
+    name = `${name} 洗翠的样子`;
+  } else if (variantIndex === 51) {
+    name = `${name} 帕底亚的样子`;
+  } else if (variantIndex > 0) {
+    name = `${name} ${variantIndex}`;
+  }
+  return name;
 }
 
 /**
@@ -161,7 +184,7 @@ function handleFormChangeForItem(event: Event, pokemon: PokemonEntry): void {
  */
 async function loadPokemonNames(): Promise<void> {
   try {
-    const response = await fetch("/model-index/pokemon.json");
+    const response = await fetch("/configs/pokemon_species.json");
     if (!response.ok) {
       throw new Error(`加载宝可梦名字失败: HTTP ${response.status}`);
     }
@@ -176,7 +199,21 @@ async function loadPokemonNames(): Promise<void> {
     console.error("[PokemonBrowser] 宝可梦名字加载失败:", err);
   }
 }
-
+/**
+ * 加载形态名数据
+ */
+async function loadFormNames(): Promise<void> {
+  try {
+    const response = await fetch("/configs/pokemon_forms.json");
+    if (!response.ok) {
+      throw new Error(`加载形态名失败: HTTP ${response.status}`);
+    }
+    const data = await response.json();
+    formNames.value = data;
+  } catch (err) {
+    console.error("[PokemonBrowser] 形态名加载失败:", err);
+  }
+}
 // 监听 props 变化，同步内部状态
 watch(
   () => props.selectedPokemon,
@@ -208,7 +245,7 @@ watch(
  */
 async function handleRetry(): Promise<void> {
   try {
-    await Promise.all([loadPokemonList(), loadPokemonNames()]);
+    await Promise.all([loadPokemonList(), loadPokemonNames(), loadFormNames()]);
   } catch (err) {
     // @validates 需求 8.5: 在控制台记录详细错误信息用于调试
     console.error("[PokemonBrowser] 数据重新加载失败:", {
@@ -265,7 +302,7 @@ watch(selectedDirectory, async (newDirectory, oldDirectory) => {
 // 组件挂载时加载宝可梦列表和名字数据
 onMounted(async () => {
   try {
-    await Promise.all([loadPokemonList(), loadPokemonNames()]);
+    await Promise.all([loadPokemonList(), loadPokemonNames(), loadFormNames()]);
   } catch (err) {
     // @validates 需求 8.5: 在控制台记录详细错误信息用于调试
     console.error("[PokemonBrowser] 数据加载失败:", {
@@ -347,7 +384,7 @@ onMounted(async () => {
                 :key="form.id"
                 :value="form.id"
               >
-                {{ formatFormName(form) }}
+                {{ formatFormName(form, pokemon.number) }}
               </option>
             </select>
           </div>
