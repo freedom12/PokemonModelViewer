@@ -1,19 +1,18 @@
 import { Game } from "../types";
 
 
-interface PokemonModelFormResourceData {
-  id: string;
+interface PokemonFormResourceData {
   formIndex: number;
   variantIndex: number;
   icon: string;
   animations: Record<string, string[]>;
 }
-interface PokemonModelResourceData {
-  forms: Array<PokemonModelFormResourceData>;
+interface PokemonResourceData {
+  forms: Array<PokemonFormResourceData>;
 }
 
 export class PokemonModel {
-  private resourceDataMap: Record<string, PokemonModelResourceData> = {};
+  private resourceDataMap: Record<string, PokemonResourceData> = {};
 
   constructor(
     public readonly index: number,
@@ -29,7 +28,7 @@ export class PokemonModel {
     return this.nameZh;
   }
 
-  async loadResourceData(game: Game): Promise<PokemonModelResourceData> {
+  async loadResourceData(game: Game): Promise<PokemonResourceData> {
     if (this.resourceDataMap[game]) {
       return this.resourceDataMap[game];
     }
@@ -44,11 +43,11 @@ export class PokemonModel {
     return this.resourceDataMap[game];
   }
 
-  getResourceData(game: Game): PokemonModelResourceData | null {
+  getResourceData(game: Game): PokemonResourceData | null {
     return this.resourceDataMap[game] || null;
   }
 
-  getFormResourceData(game: Game, form: [number, number]): PokemonModelFormResourceData | null {
+  getFormResourceData(game: Game, form: [number, number]): PokemonFormResourceData | null {
     const resourceData = this.getResourceData(game);
     if (!resourceData) {
       return null;
@@ -59,7 +58,7 @@ export class PokemonModel {
     ) || null;
   }
 
-  getResourceForms(game: Game): [number, number][] {
+  getFromResourceId(game: Game): [number, number][] {
     if (!this.resourceDataMap[game]) {
       return [];
     }
@@ -69,7 +68,7 @@ export class PokemonModel {
     ]);
   }
 
-  getResourceFormStr(form: [number, number]): string {
+  getFormResourceName(form: [number, number]): string {
     const [formIndex, variantIndex] = form;
     return `${this.resourceId}_f${formIndex
       .toString()

@@ -107,7 +107,7 @@ async function handlePokemonClick(pokemon: PokemonModel): Promise<void> {
   currentPokemon.value = pokemon;
 
   // 默认选择第一个形态
-  const defaultForm = pokemon.getResourceForms(currentGame.value)[0];
+  const defaultForm = pokemon.getFromResourceId(currentGame.value)[0];
   if (defaultForm) {
     currentForm.value = defaultForm;
     emit("selectPokemon", pokemon, defaultForm);
@@ -121,7 +121,7 @@ async function handlePokemonClick(pokemon: PokemonModel): Promise<void> {
  * @validates 需求 6.5: 用户选择不同形态时切换显示对应形态的模型
  */
 function handleFormChangeForItem(event: Event, pokemon: PokemonModel): void {
-  const forms = pokemon.getResourceForms(currentGame.value);
+  const forms = pokemon.getFromResourceId(currentGame.value);
   if (forms.length === 0) {
     return;
   }
