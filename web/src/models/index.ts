@@ -1,0 +1,1 @@
+export { PokemonModel } from "./PokemonModel";

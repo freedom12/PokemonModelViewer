@@ -24,17 +24,16 @@ import { fitCameraToModel } from "../utils/cameraUtils";
 import ErrorDisplay from "./ErrorDisplay.vue";
 import { AnimationPlayer } from "../services/animationPlayer";
 import { VisibilityAnimationPlayer } from "../services/visibilityAnimationPlayer";
+import { PokemonModel } from "../models";
+import { Game } from "../types";
 
 // Props 定义
 const props = defineProps<{
-  /** 宝可梦 ID，如 "pm0001" */
-  pokemonId?: string | null;
+  /** 宝可梦 */
+  pokemon?: PokemonModel | null;
   /** 形态 ID，如 "pm0001_00_00" */
-  formId?: string | null;
-  /** 可用的动画数据 */
-  animations?: Record<string, string[]> | null;
-  /** 数据目录 */
-  directory?: string;
+  form?: [number, number] | null;
+  game: Game;
 }>();
 
 // Emits 定义
@@ -73,11 +72,8 @@ const {
   container: containerRef,
 });
 
-// 响应式的目录参数
-const directoryRef = ref(props.directory || "SCVI");
-
 // 使用模型加载器 composable
-const {
+let {
   loading,
   progress,
   progressInfo,
@@ -87,7 +83,7 @@ const {
   currentParsedData,
   loadModel,
   disposeModel,
-} = useModelLoader(directoryRef);
+} = useModelLoader();
 
 // 场景是否已初始化
 const sceneInitialized = ref(false);
@@ -137,7 +133,7 @@ const selectedBone = ref<{
 
 // 计算属性：是否有有效的模型路径
 const hasValidModelPath = computed(() => {
-  return props.pokemonId && props.formId;
+  return props.pokemon && props.form;
 });
 
 // 计算属性：是否有动画可用
@@ -158,8 +154,8 @@ const animationOptions = computed(() => {
  * @validates 需求 8.5: 发生错误时在控制台记录详细错误信息用于调试
  */
 async function loadAndDisplayModel(
-  pokemonId: string,
-  formId: string,
+  pokemon: PokemonModel,
+  form: [number, number],
 ): Promise<void> {
   // 确保场景已初始化
   if (!sceneInitialized.value) {
@@ -186,10 +182,12 @@ async function loadAndDisplayModel(
     removeFromScene(currentModel.value);
   }
 
+  const pokemonId = `pm${pokemon.resourceId}`;
+  const formId = `${pokemonId}_${form[0].toString().padStart(2, "0")}_${form[1].toString().padStart(2, "0")}`;
   try {
     // 加载模型
     // @validates 需求 8.5: 记录加载开始信息
-    await loadModel(pokemonId, formId);
+    await loadModel(pokemonId, formId, props.game);
 
     // 如果加载成功，将模型添加到场景
     if (currentModel.value) {
@@ -265,33 +263,23 @@ async function loadAndDisplayModel(
  * @validates 需求 8.4: 网络请求失败时显示重试选项
  */
 function handleRetry(): void {
-  if (props.pokemonId && props.formId) {
-    loadAndDisplayModel(props.pokemonId, props.formId);
+  if (props.pokemon && props.form) {
+    loadAndDisplayModel(props.pokemon, props.form);
   }
 }
 
-// 监听 directory props 变化
 watch(
-  () => props.directory,
-  (newDirectory) => {
-    directoryRef.value = newDirectory || "SCVI";
-  },
-);
-watch(
-  () => [props.pokemonId, props.formId, props.directory] as const,
-  (
-    [newPokemonId, newFormId, newDirectory],
-    [oldPokemonId, oldFormId, oldDirectory],
-  ) => {
-    // 只有当 pokemonId 和 formId 都有效且发生变化时才加载
-    if (newPokemonId && newFormId) {
+  () => [props.pokemon, props.form] as const,
+  ([newPokemon, newForm], [oldPokemon, oldForm]) => {
+    // 只有当 pokemon 和 form 都有效且发生变化时才加载
+    if (newPokemon && newForm) {
       // 检查是否真的发生了变化
       if (
-        newPokemonId !== oldPokemonId ||
-        newFormId !== oldFormId ||
-        newDirectory !== oldDirectory
+        newPokemon.resourceId !== oldPokemon?.resourceId ||
+        newForm[0] !== oldForm?.[0] ||
+        newForm[1] !== oldForm?.[1]
       ) {
-        loadAndDisplayModel(newPokemonId, newFormId);
+        loadAndDisplayModel(newPokemon, newForm);
       }
     }
   },
@@ -313,29 +301,26 @@ watch(error, (newError) => {
   emit("error", newError);
 });
 
-// 监听动画数据变化
-watch(
-  () => props.animations,
-  (newAnimations) => {
-    availableAnimations.value = newAnimations || {};
-    // 如果当前没有选中动画且有可用动画，选择第一个
-    if (
-      !selectedAnimation.value &&
-      Object.keys(availableAnimations.value).length > 0
-    ) {
-      selectedAnimation.value = Object.keys(availableAnimations.value)[0];
-    }
-  },
-  { immediate: true },
-);
-
 // 监听宝可梦ID和形态ID变化
 watch(
-  [() => props.pokemonId, () => props.formId],
-  ([newPokemonId, newFormId]) => {
-    if (newPokemonId && newFormId) {
+  [() => props.pokemon, () => props.form],
+  ([newPokemon, newForm]) => {
+    if (newPokemon && newForm) {
       // 有新的宝可梦和形态，加载模型
-      loadAndDisplayModel(newPokemonId, newFormId);
+      loadAndDisplayModel(newPokemon, newForm);
+
+      const formResourceData = newPokemon.getFormResourceData(
+        props.game,
+        newForm,
+      );
+      availableAnimations.value = formResourceData?.animations || {};
+      // 如果当前没有选中动画且有可用动画，选择第一个
+      if (
+        !selectedAnimation.value &&
+        Object.keys(availableAnimations.value).length > 0
+      ) {
+        selectedAnimation.value = Object.keys(availableAnimations.value)[0];
+      }
     } else {
       // 宝可梦或形态被清空，移除当前模型
       disposeModel();
@@ -420,10 +405,14 @@ async function loadAndPlayAnimation(animationName: string): Promise<void> {
       throw new Error(`No .tranm file found for animation ${animationName}`);
     }
 
+    if (!props.pokemon || !props.form) {
+      throw new Error("Cannot load animation without valid pokemon and form");
+    }
+
     // 构建动画文件URL
-    // formId 格式为 "pmXXXX_XX_XX"，需要从中提取 pokemonId "pmXXXX"
-    const pokemonId = props.formId ? props.formId.split("_")[0] : "pm0004"; // 从 "pm0004_00_00" 提取 "pm0004"
-    const animationUrl = `/${directoryRef.value}/${pokemonId}/${props.formId}/${tranmFile}`;
+    const pokemonId = `pm${props.pokemon.resourceId}`;
+    const formId = `${pokemonId}_${props.form[0].toString().padStart(2, "0")}_${props.form[1].toString().padStart(2, "0")}`;
+    const animationUrl = `/${props.game}/${pokemonId}/${formId}/${tranmFile}`;
 
     // 加载骨骼动画数据
     await animationPlayer.loadAnimation(animationUrl);
@@ -444,7 +433,7 @@ async function loadAndPlayAnimation(animationName: string): Promise<void> {
     const tracmFile = animationFiles.find((file) => file.endsWith(".tracm"));
     if (tracmFile) {
       try {
-        const tracmUrl = `/${directoryRef.value}/${pokemonId}/${props.formId}/${tracmFile}`;
+        const tracmUrl = `/${props.game}/${pokemonId}/${formId}/${tracmFile}`;
         await visibilityAnimationPlayer.loadAnimation(tracmUrl);
         visibilityAnimationPlayer.setLoop(animationLoop.value);
         visibilityAnimationPlayer.play();
@@ -531,8 +520,8 @@ onMounted(() => {
   }
 
   // 如果已有有效的模型路径，立即加载
-  if (hasValidModelPath.value && props.pokemonId && props.formId) {
-    loadAndDisplayModel(props.pokemonId, props.formId);
+  if (hasValidModelPath.value && props.pokemon && props.form) {
+    loadAndDisplayModel(props.pokemon, props.form);
   }
 });
 
@@ -597,8 +586,8 @@ defineExpose({
   currentFormId,
   /** 重新加载当前模型 */
   reload: () => {
-    if (props.pokemonId && props.formId) {
-      loadAndDisplayModel(props.pokemonId, props.formId);
+    if (props.pokemon && props.form) {
+      loadAndDisplayModel(props.pokemon, props.form);
     }
   },
 });

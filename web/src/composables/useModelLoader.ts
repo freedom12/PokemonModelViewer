@@ -28,6 +28,7 @@ import {
   disposeAllMaterials,
   findMaterialByName,
 } from "../services/textureLoader";
+import { Game } from "../types";
 
 /**
  * 加载进度阶段
@@ -84,8 +85,9 @@ export interface UseModelLoaderReturn {
    * 加载模型
    * @param pokemonId - 宝可梦 ID，如 "pm0001"
    * @param formId - 形态 ID，如 "pm0001_00_00"
+   * @param game - 游戏版本，如 "SCVI" 或 "LZA"
    */
-  loadModel: (pokemonId: string, formId: string) => Promise<void>;
+  loadModel: (pokemonId: string, formId: string, game: Game) => Promise<void>;
 
   /**
    * 清理当前模型资源
@@ -154,9 +156,7 @@ const STAGE_PROGRESS: Record<
  * </script>
  * ```
  */
-export function useModelLoader(
-  directory: Ref<string> = ref("SCVI"),
-): UseModelLoaderReturn {
+export function useModelLoader(): UseModelLoaderReturn {
   // 响应式状态
   const loading = ref<boolean>(false);
   const progress = ref<number>(0);
@@ -258,11 +258,12 @@ export function useModelLoader(
    *
    * @param _pokemonId - 宝可梦 ID，如 "pm0001"（保留用于 API 一致性，实际路径从 formId 推导）
    * @param formId - 形态 ID，如 "pm0001_00_00"
+   * @param game - 游戏版本，如 "SCVI" 或 "LZA"
    *
    * @validates 需求 2.1: 用户选择宝可梦时从对应目录加载模型
    * @validates 需求 6.6: 模型加载中显示加载进度指示器
    */
-  async function loadModel(_pokemonId: string, formId: string): Promise<void> {
+  async function loadModel(_pokemonId: string, formId: string, game: Game): Promise<void> {
     // 如果正在加载，忽略新的加载请求
     if (loading.value) {
       return;
@@ -280,7 +281,7 @@ export function useModelLoader(
       // 阶段 1: 加载模型文件
       updateProgress(LoadingStage.LOADING_FILES, 0);
 
-      const files = await loadModelFiles(formId, directory.value);
+      const files = await loadModelFiles(formId, game);
 
       updateProgress(LoadingStage.LOADING_FILES, 1);
 
@@ -290,7 +291,7 @@ export function useModelLoader(
       const modelData: ParsedModelData = parseModelData(
         files,
         formId,
-        directory.value,
+        game,
       );
 
       // 存储解析后的数据
