@@ -1,0 +1,27 @@
+{
+  "id": "pm0026",
+  "number": 26,
+  "forms": [
+    {
+      "id": "pm0026_00_00",
+      "formIndex": 0,
+      "variantIndex": 0,
+      "icon": "icon/pm0026_00_00_00_big.png",
+      "animations": {}
+    },
+    {
+      "id": "pm0026_00_11",
+      "formIndex": 0,
+      "variantIndex": 11,
+      "icon": "icon/pm0026_00_11_00_big.png",
+      "animations": {}
+    },
+    {
+      "id": "pm0026_01_00",
+      "formIndex": 1,
+      "variantIndex": 0,
+      "icon": "icon/pm0026_01_00_00_big.png",
+      "animations": {}
+    }
+  ]
+}

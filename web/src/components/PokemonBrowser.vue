@@ -17,7 +17,7 @@
  * @validates 需求 8.4: 网络请求失败时显示重试选项
  * @validates 需求 8.5: 发生错误时在控制台记录详细错误信息用于调试
  */
-import { ref, onMounted, watch, Ref } from "vue";
+import { ref, watch, Ref } from "vue";
 import ErrorDisplay from "./ErrorDisplay.vue";
 import { PokemonModel } from "../models";
 import { usePokemonDatas } from "../composables/usePokemonDatas";
@@ -61,6 +61,8 @@ const currentPokemon = ref<PokemonModel | null>(null);
 
 // 当前选中的形态 ID
 const currentForm = ref<[number, number] | null>(null);
+
+const error = ref<string | null>(null);
 
 /**
  * 格式化形态名称显示
@@ -162,17 +164,17 @@ watch(
  * @validates 需求 8.5: 发生错误时在控制台记录详细错误信息用于调试
  */
 async function handleRetry(): Promise<void> {
-  // try {
-  //   await loadPokemonList();
-  // } catch (err) {
-  //   // @validates 需求 8.5: 在控制台记录详细错误信息用于调试
-  //   console.error("[PokemonBrowser] 数据重新加载失败:", {
-  //     error: err,
-  //     errorMessage: err instanceof Error ? err.message : String(err),
-  //     errorStack: err instanceof Error ? err.stack : undefined,
-  //     timestamp: new Date().toISOString(),
-  //   });
-  // }
+  try {
+    await loadPokemonListInGame(currentGame.value);
+  } catch (err) {
+    // @validates 需求 8.5: 在控制台记录详细错误信息用于调试
+    console.error("[PokemonBrowser] 数据重新加载失败:", {
+      error: err,
+      errorMessage: err instanceof Error ? err.message : String(err),
+      errorStack: err instanceof Error ? err.stack : undefined,
+      timestamp: new Date().toISOString(),
+    });
+  }
 }
 
 /**
@@ -241,9 +243,9 @@ watch(currentGame, async (newGame, oldGame) => {
 
     <!-- 错误提示 - 使用 ErrorDisplay 组件 -->
     <!-- @validates 需求 8.4: 网络请求失败时显示重试选项 -->
-    <!-- <div v-else-if="error" class="error-wrapper">
+    <div v-else-if="error" class="error-wrapper">
       <ErrorDisplay :error="error" title="列表加载失败" @retry="handleRetry" />
-    </div> -->
+    </div>
 
     <!-- 宝可梦列表 -->
     <div v-else class="pokemon-list">
