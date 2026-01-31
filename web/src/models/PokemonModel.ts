@@ -1,6 +1,5 @@
 import { Game } from "../types";
 
-
 interface PokemonFormResourceData {
   formIndex: number;
   variantIndex: number;
@@ -47,18 +46,23 @@ export class PokemonModel {
     return this.resourceDataMap[game] || null;
   }
 
-  getFormResourceData(game: Game, form: [number, number]): PokemonFormResourceData | null {
+  getFormResourceData(
+    game: Game,
+    form: [number, number],
+  ): PokemonFormResourceData | null {
     const resourceData = this.getResourceData(game);
     if (!resourceData) {
       return null;
     }
     const [formIndex, variantIndex] = form;
-    return resourceData.forms.find(
-      (f) => f.formIndex === formIndex && f.variantIndex === variantIndex,
-    ) || null;
+    return (
+      resourceData.forms.find(
+        (f) => f.formIndex === formIndex && f.variantIndex === variantIndex,
+      ) || null
+    );
   }
 
-  getFromResourceId(game: Game): [number, number][] {
+  getFromResourceIds(game: Game): [number, number][] {
     if (!this.resourceDataMap[game]) {
       return [];
     }
@@ -70,8 +74,6 @@ export class PokemonModel {
 
   getFormResourceName(form: [number, number]): string {
     const [formIndex, variantIndex] = form;
-    return `${this.resourceId}_f${formIndex
-      .toString()
-      .padStart(2, "0")}_${variantIndex.toString().padStart(2, "0")}`;
+    return `${formIndex.toString().padStart(2, "0")}_${variantIndex.toString().padStart(2, "0")}`;
   }
 }

@@ -72,29 +72,7 @@ const error = ref<string | null>(null);
  * @returns 格式化后的形态名称
  */
 function formatFormName(pokemon: PokemonModel, form: [number, number]): string {
-  const [formId, variantId] = form;
-  const key = `${pokemon.resourceId}_${formId.toString().padStart(2, "0")}`;
-  let name = "普通的样子";
-  if (formId === 1) {
-    name = "雌性的样子";
-  } else if (formNames.value[key]) {
-    name = formNames.value[key];
-  } else if (formId > 0) {
-    name = `形态 ${formId}`;
-  }
-
-  if (variantId === 11) {
-    name = `${name} 阿罗拉的样子`;
-  } else if (variantId === 31) {
-    name = `${name} 伽勒尔的样子`;
-  } else if (variantId === 41) {
-    name = `${name} 洗翠的样子`;
-  } else if (variantId === 51) {
-    name = `${name} 帕底亚的样子`;
-  } else if (variantId > 0) {
-    name = `${name} ${variantId}`;
-  }
-  return name;
+  return pokemon.getFormResourceName(form);
 }
 
 /**
@@ -103,11 +81,14 @@ function formatFormName(pokemon: PokemonModel, form: [number, number]): string {
  * @validates 需求 6.3: 用户点击宝可梦时加载并显示该宝可梦的 3D 模型
  */
 async function handlePokemonClick(pokemon: PokemonModel): Promise<void> {
+  if (currentPokemon.value?.index === pokemon.index) {
+    return; // 已选中，忽略
+  }
   await pokemon.loadResourceData(currentGame.value);
   currentPokemon.value = pokemon;
 
   // 默认选择第一个形态
-  const defaultForm = pokemon.getFromResourceId(currentGame.value)[0];
+  const defaultForm = pokemon.getFromResourceIds(currentGame.value)[0];
   if (defaultForm) {
     currentForm.value = defaultForm;
     emit("selectPokemon", pokemon, defaultForm);
@@ -121,7 +102,7 @@ async function handlePokemonClick(pokemon: PokemonModel): Promise<void> {
  * @validates 需求 6.5: 用户选择不同形态时切换显示对应形态的模型
  */
 function handleFormChangeForItem(event: Event, pokemon: PokemonModel): void {
-  const forms = pokemon.getFromResourceId(currentGame.value);
+  const forms = pokemon.getFromResourceIds(currentGame.value);
   if (forms.length === 0) {
     return;
   }
@@ -280,21 +261,21 @@ watch(currentGame, async (newGame, oldGame) => {
 
             <!-- 形态选择器 -->
             <div
-              v-if="pokemon.getResourceForms(currentGame).length > 1"
+              v-if="pokemon.getFromResourceIds(currentGame).length > 1"
               class="pokemon-form-selector"
             >
               <select
                 :value="
                   currentPokemon?.index === pokemon.index
                     ? currentForm
-                    : pokemon.getResourceForms(currentGame)[0]
+                    : pokemon.getFromResourceIds(currentGame)[0]
                 "
                 class="form-select"
                 @change="handleFormChangeForItem($event, pokemon)"
                 @click.stop
               >
                 <option
-                  v-for="form in pokemon.getResourceForms(currentGame)"
+                  v-for="form in pokemon.getFromResourceIds(currentGame)"
                   :key="`${form[0]}-${form[1]}`"
                   :value="form"
                 >
