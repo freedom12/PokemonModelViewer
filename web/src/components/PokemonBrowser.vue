@@ -22,6 +22,7 @@ import ErrorDisplay from "./ErrorDisplay.vue";
 import { PokemonModel } from "../models";
 import { usePokemonDatas } from "../composables/usePokemonDatas";
 import { Game } from "../types";
+import { RecycleScroller } from 'vue-virtual-scroller'
 
 /**
  * Props 定义
@@ -248,58 +249,63 @@ watch(currentGame, async (newGame, oldGame) => {
     </div>
 
     <!-- 宝可梦列表 -->
-    <div v-else class="pokemon-list">
-      <div
-        v-for="pokemon in pokemons"
-        :key="pokemon.index"
-        class="pokemon-item"
-        :class="{ selected: pokemon.index === currentPokemon?.index }"
-        @click="handlePokemonClick(pokemon)"
-      >
-        <!-- 左侧图标 -->
-        <div class="pokemon-icon">
-          <img
-            :src="`/icons/icon${pokemon.index.toString().padStart(4, '0')}_f00_s0.png`"
-            :alt="`Pokemon ${pokemon.index} Icon`"
-            loading="lazy"
-            @error="handleThumbnailError"
-          />
-        </div>
-
-        <!-- 右侧信息 -->
-        <div class="pokemon-info">
-          <!-- 中间名字 -->
-          <div class="pokemon-name">
-            {{ pokemon.name }} ({{ pokemon.resourceId }})
+    <RecycleScroller
+      class="pokemon-list"
+      :items="pokemons"
+      :item-size="80"
+      key-field="index"
+    >
+      <template #default="{ item: pokemon }">
+        <div
+          class="pokemon-item"
+          :class="{ selected: pokemon.index === currentPokemon?.index }"
+          @click="handlePokemonClick(pokemon)"
+        >
+          <!-- 左侧图标 -->
+          <div class="pokemon-icon">
+            <img
+              :src="`/icons/icon${pokemon.index.toString().padStart(4, '0')}_f00_s0.png`"
+              :alt="`Pokemon ${pokemon.index} Icon`"
+              loading="lazy"
+              @error="handleThumbnailError"
+            />
           </div>
 
-          <!-- 形态选择器 -->
-          <div
-            v-if="pokemon.getResourceForms(currentGame).length > 1"
-            class="pokemon-form-selector"
-          >
-            <select
-              :value="
-                currentPokemon?.index === pokemon.index
-                  ? currentForm
-                  : pokemon.getResourceForms(currentGame)[0]
-              "
-              class="form-select"
-              @change="handleFormChangeForItem($event, pokemon)"
-              @click.stop
+          <!-- 右侧信息 -->
+          <div class="pokemon-info">
+            <!-- 中间名字 -->
+            <div class="pokemon-name">
+              {{ pokemon.name }} ({{ pokemon.resourceId }})
+            </div>
+
+            <!-- 形态选择器 -->
+            <div
+              v-if="pokemon.getResourceForms(currentGame).length > 1"
+              class="pokemon-form-selector"
             >
-              <option
-                v-for="form in pokemon.getResourceForms(currentGame)"
-                :key="`${form[0]}-${form[1]}`"
-                :value="form"
+              <select
+                :value="
+                  currentPokemon?.index === pokemon.index
+                    ? currentForm
+                    : pokemon.getResourceForms(currentGame)[0]
+                "
+                class="form-select"
+                @change="handleFormChangeForItem($event, pokemon)"
+                @click.stop
               >
-                {{ formatFormName(pokemon, form) }}
-              </option>
-            </select>
+                <option
+                  v-for="form in pokemon.getResourceForms(currentGame)"
+                  :key="`${form[0]}-${form[1]}`"
+                  :value="form"
+                >
+                  {{ formatFormName(pokemon, form) }}
+                </option>
+              </select>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      </template>
+    </RecycleScroller>
   </div>
 </template>
 
