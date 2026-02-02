@@ -99,6 +99,9 @@ const showSkeleton = ref(false);
 // 是否显示网格辅助线
 const showGridHelper = ref(true);
 
+// 是否显示阴影（默认启用）
+const showShadow = ref(true);
+
 // 选择模式：'none' | 'mesh' | 'bone'
 const selectionMode = ref<"none" | "mesh" | "bone">("none");
 
@@ -375,6 +378,17 @@ function applyDisplaySettings(): void {
   // 应用网格辅助线可见性
   if (world) {
     world.setGridVisible(showGridHelper.value);
+  }
+
+  // 应用阴影设置
+  if (world) {
+    world.setShadowEnabled(showShadow.value);
+  }
+
+  // 设置模型投射和接收阴影
+  if (currentModel.value) {
+    currentModel.value.setCastShadow(showShadow.value);
+    currentModel.value.setReceiveShadow(showShadow.value);
   }
 
   // 应用顶点法线显示
@@ -715,6 +729,21 @@ function handleGridHelperChange(value: boolean): void {
   showGridHelper.value = value;
   if (world) {
     world.setGridVisible(value);
+  }
+}
+
+/**
+ * 处理阴影显示切换
+ */
+function handleShadowChange(value: boolean): void {
+  showShadow.value = value;
+  if (world) {
+    world.setShadowEnabled(value);
+  }
+  // 更新模型的阴影设置
+  if (currentModel.value) {
+    currentModel.value.setCastShadow(value);
+    currentModel.value.setReceiveShadow(value);
   }
 }
 
@@ -1316,12 +1345,14 @@ defineExpose({
         :show-wireframe="showWireframe"
         :show-skeleton="showSkeleton"
         :show-grid-helper="showGridHelper"
+        :show-shadow="showShadow"
         :selection-mode="selectionMode"
         :has-model="!!currentModel"
         @update:show-vertex-normals="handleVertexNormalsChange"
         @update:show-wireframe="handleWireframeChange"
         @update:show-skeleton="handleSkeletonChange"
         @update:show-grid-helper="handleGridHelperChange"
+        @update:show-shadow="handleShadowChange"
         @update:selection-mode="handleSelectionModeChange"
         @fit-camera="handleFitCamera"
       />

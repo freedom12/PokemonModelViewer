@@ -16,7 +16,15 @@ async function loadPokemonModels(): Promise<void> {
       throw new Error(`加载宝可梦名字失败: HTTP ${response.status}`)
     }
     let data = await response.json()
-    data.map((p: any) => {
+    interface PokemonSpeciesData {
+      index: number;
+      name: string;
+      name_jp: string;
+      name_en: string;
+      name_zh: string;
+      resource_id: string;
+    }
+    data.map((p: PokemonSpeciesData) => {
       const pokemonModel = new PokemonModel(
         p.index,
         p.name,

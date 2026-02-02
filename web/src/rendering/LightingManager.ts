@@ -22,6 +22,22 @@ const LIGHTING_CONFIG = {
     color: 0xffffff,
     intensity: 0.6,
     position: { x: 5, y: 10, z: 7 },
+    // 阴影配置
+    shadow: {
+      enabled: true,
+      mapSize: 2048, // 阴影贴图分辨率
+      bias: -0.0001, // 阴影偏移，减少阴影失真
+      normalBias: 0.02, // 法线偏移，减少自阴影失真
+      // 阴影相机范围
+      camera: {
+        near: 0.1,
+        far: 50,
+        left: -10,
+        right: 10,
+        top: 10,
+        bottom: -10,
+      },
+    },
   },
   // 环境贴图配置
   environment: {
@@ -85,6 +101,21 @@ export class LightingManager {
       LIGHTING_CONFIG.directional.position.y,
       LIGHTING_CONFIG.directional.position.z
     )
+
+    // 配置方向光阴影
+    const shadowConfig = LIGHTING_CONFIG.directional.shadow
+    this.directionalLight.castShadow = shadowConfig.enabled
+    this.directionalLight.shadow.mapSize.width = shadowConfig.mapSize
+    this.directionalLight.shadow.mapSize.height = shadowConfig.mapSize
+    this.directionalLight.shadow.bias = shadowConfig.bias
+    this.directionalLight.shadow.normalBias = shadowConfig.normalBias
+    this.directionalLight.shadow.camera.near = shadowConfig.camera.near
+    this.directionalLight.shadow.camera.far = shadowConfig.camera.far
+    this.directionalLight.shadow.camera.left = shadowConfig.camera.left
+    this.directionalLight.shadow.camera.right = shadowConfig.camera.right
+    this.directionalLight.shadow.camera.top = shadowConfig.camera.top
+    this.directionalLight.shadow.camera.bottom = shadowConfig.camera.bottom
+
     scene.add(this.directionalLight)
 
     // 创建环境贴图
@@ -273,8 +304,29 @@ export class LightingManager {
       LIGHTING_CONFIG.directional.position.z
     )
 
+    // 重置阴影
+    this.directionalLight.castShadow = LIGHTING_CONFIG.directional.shadow.enabled
+
     // 重置环境强度
     this.setEnvironmentIntensity(LIGHTING_CONFIG.environment.intensity)
+  }
+
+  /**
+   * 设置方向光是否投射阴影
+   *
+   * @param enabled - 是否启用阴影
+   */
+  setDirectionalShadow(enabled: boolean): void {
+    this.directionalLight.castShadow = enabled
+  }
+
+  /**
+   * 获取方向光是否投射阴影
+   *
+   * @returns 是否启用阴影
+   */
+  isDirectionalShadowEnabled(): boolean {
+    return this.directionalLight.castShadow
   }
 
   /**

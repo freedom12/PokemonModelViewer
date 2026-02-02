@@ -15,7 +15,7 @@ import { Camera } from '@element-plus/icons-vue';
 type SelectionMode = 'none' | 'mesh' | 'bone';
 
 // Props 定义 - 接收当前状态
-const props = defineProps<{
+defineProps<{
   /** 是否显示顶点法线 */
   showVertexNormals: boolean;
   /** 是否显示网格线框 */
@@ -24,6 +24,8 @@ const props = defineProps<{
   showSkeleton: boolean;
   /** 是否显示网格辅助线 */
   showGridHelper?: boolean;
+  /** 是否显示阴影 */
+  showShadow?: boolean;
   /** 当前选择模式 */
   selectionMode: SelectionMode;
   /** 是否有模型加载（用于控制摄像机按钮状态） */
@@ -40,6 +42,8 @@ const emit = defineEmits<{
   (e: 'update:showSkeleton', value: boolean): void;
   /** 网格辅助线显示状态变更 */
   (e: 'update:showGridHelper', value: boolean): void;
+  /** 阴影显示状态变更 */
+  (e: 'update:showShadow', value: boolean): void;
   /** 选择模式变更 */
   (e: 'update:selectionMode', value: SelectionMode): void;
   /** 调整摄像机按钮点击 */
@@ -72,6 +76,13 @@ function handleSkeletonChange(value: boolean): void {
  */
 function handleGridHelperChange(value: boolean): void {
   emit('update:showGridHelper', value);
+}
+
+/**
+ * 处理阴影显示切换
+ */
+function handleShadowChange(value: boolean): void {
+  emit('update:showShadow', value);
 }
 
 /**
@@ -126,6 +137,17 @@ function handleFitCamera(): void {
           @update:model-value="handleGridHelperChange"
         >
           显示网格辅助线
+        </el-checkbox>
+      </div>
+      <div
+        v-if="showShadow !== undefined"
+        class="control-item"
+      >
+        <el-checkbox
+          :model-value="showShadow"
+          @update:model-value="handleShadowChange"
+        >
+          显示阴影
         </el-checkbox>
       </div>
     </div>

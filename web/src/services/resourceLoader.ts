@@ -113,9 +113,9 @@ export async function loadBinaryResource(path: string): Promise<ArrayBuffer> {
  * 加载JSON资源
  *
  * @param path - 资源路径
- * @returns Promise<any> 解析后的JSON对象
+ * @returns Promise<unknown> 解析后的JSON对象
  */
-export async function loadJsonResource(path: string): Promise<any> {
+export async function loadJsonResource(path: string): Promise<unknown> {
   const resolvedPath = resolveResourcePath(path)
   const text = await loadTextResource(resolvedPath)
   try {

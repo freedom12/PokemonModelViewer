@@ -26,6 +26,11 @@ const RENDERER_CONFIG = {
   outputColorSpace: THREE.SRGBColorSpace,
   // 像素比例（限制最大值以提高性能）
   maxPixelRatio: 2,
+  // 阴影配置
+  shadow: {
+    enabled: true,
+    type: THREE.PCFSoftShadowMap,
+  },
 } as const
 
 /**
@@ -115,7 +120,31 @@ export class RenderLoop {
     )
     renderer.setPixelRatio(pixelRatio)
 
+    // 配置阴影
+    renderer.shadowMap.enabled = RENDERER_CONFIG.shadow.enabled
+    renderer.shadowMap.type = RENDERER_CONFIG.shadow.type
+
     return renderer
+  }
+
+  /**
+   * 设置阴影是否启用
+   *
+   * @param enabled - 是否启用阴影
+   */
+  setShadowEnabled(enabled: boolean): void {
+    this.renderer.shadowMap.enabled = enabled
+    // 需要更新所有材质以应用阴影变化
+    this.renderer.shadowMap.needsUpdate = true
+  }
+
+  /**
+   * 获取阴影是否启用
+   *
+   * @returns 是否启用阴影
+   */
+  isShadowEnabled(): boolean {
+    return this.renderer.shadowMap.enabled
   }
 
   /**

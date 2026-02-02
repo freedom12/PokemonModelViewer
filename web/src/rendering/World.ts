@@ -26,6 +26,13 @@ const HELPERS_CONFIG = {
   axes: {
     size: 1, // 坐标轴长度
   },
+  // 地面平面配置（用于接收阴影）
+  groundPlane: {
+    size: 20, // 地面大小
+    color: 0x2a2a2a, // 地面颜色（与背景色一致）
+    opacity: 1.0, // 不透明度
+    yOffset: 0, // Y 轴偏移
+  },
 } as const
 
 /**
@@ -68,6 +75,9 @@ export class World {
   /** 场景辅助对象组（网格、坐标轴） */
   private helpers: THREE.Group
 
+  /** 地面平面（用于接收阴影） */
+  private groundPlane: THREE.Mesh
+
   /** 射线检测器 */
   private raycaster: THREE.Raycaster
 
@@ -102,6 +112,10 @@ export class World {
     // 创建场景辅助对象
     this.helpers = this.createHelpers()
     this.scene.add(this.helpers)
+
+    // 创建地面平面（用于接收阴影）
+    this.groundPlane = this.createGroundPlane()
+    this.scene.add(this.groundPlane)
 
     // 创建射线检测器
     this.raycaster = new THREE.Raycaster()
@@ -173,6 +187,29 @@ export class World {
   }
 
   /**
+   * 创建地面平面
+   *
+   * 用于接收模型投射的阴影
+   *
+   * @returns 地面平面 Mesh
+   */
+  private createGroundPlane(): THREE.Mesh {
+    const config = HELPERS_CONFIG.groundPlane
+    const geometry = new THREE.PlaneGeometry(config.size, config.size)
+    const material = new THREE.ShadowMaterial({
+      opacity: 0.3, // 阴影透明度
+    })
+
+    const plane = new THREE.Mesh(geometry, material)
+    plane.name = 'GroundPlane'
+    plane.rotation.x = -Math.PI / 2 // 旋转为水平
+    plane.position.y = config.yOffset
+    plane.receiveShadow = true
+
+    return plane
+  }
+
+  /**
    * 向场景添加对象
    *
    * @param object - 要添加的 3D 对象
@@ -230,6 +267,29 @@ export class World {
     if (axesHelper) {
       axesHelper.visible = visible
     }
+  }
+
+  /**
+   * 设置阴影是否启用
+   *
+   * @param enabled - 是否启用阴影
+   */
+  setShadowEnabled(enabled: boolean): void {
+    // 设置渲染器阴影
+    this.renderLoop.setShadowEnabled(enabled)
+    // 设置方向光阴影
+    this.lighting.setDirectionalShadow(enabled)
+    // 设置地面平面可见性
+    this.groundPlane.visible = enabled
+  }
+
+  /**
+   * 获取阴影是否启用
+   *
+   * @returns 是否启用阴影
+   */
+  isShadowEnabled(): boolean {
+    return this.renderLoop.isShadowEnabled()
   }
 
   /**
@@ -385,6 +445,13 @@ export class World {
 
     // 移除辅助对象
     this.scene.remove(this.helpers)
+
+    // 移除地面平面
+    this.scene.remove(this.groundPlane)
+    this.groundPlane.geometry.dispose()
+    if (this.groundPlane.material instanceof THREE.Material) {
+      this.groundPlane.material.dispose()
+    }
 
     // 释放各组件资源
     this.camera.dispose()

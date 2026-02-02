@@ -43,7 +43,7 @@ const props = withDefaults(defineProps<Props>(), {
   selectedGame: "SCVI",
 });
 
-const { loadPokemonListInGame, formNames } = usePokemonDatas();
+const { loadPokemonListInGame } = usePokemonDatas();
 let pokemons: Ref<PokemonModel[]> = ref([]);
 /**
  * Emits 定义

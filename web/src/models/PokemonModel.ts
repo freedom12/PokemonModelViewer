@@ -31,7 +31,7 @@ export class PokemonModel {
     if (this.resourceDataMap[game]) {
       return this.resourceDataMap[game]
     }
-    console.log(`[usePokemonList] 加载宝可梦资源信息: ${this.resourceId}`)
+    // 加载宝可梦资源信息
     const data = await fetch(`/configs/${game}/pm${this.resourceId}.json`)
     if (!data.ok) {
       throw new Error(
