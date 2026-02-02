@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 
 const sourceBase = "E:\\hack\\ns\\Pokemon Scarlet\\pokemon\\data";
-const targetBase = "..\\assets\\SCVI";
+const targetBase = "..\\assets\\models\\SCVI";
 
 function copyFiles(srcDir, destDir, extensions) {
   if (!fs.existsSync(srcDir)) {

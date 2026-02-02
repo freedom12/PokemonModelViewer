@@ -84,11 +84,26 @@ function parseFormId(dirName) {
 }
 
 /**
+ * 检测目录类型 (LA风格还是SCVI/LZA风格)
+ * LA风格: 动画在 anm/ 子目录，模型在 mdl/ 子目录
+ * SCVI/LZA风格: 动画和模型直接在形态目录下
+ */
+function detectDirectoryStyle(formPath) {
+  const anmDir = path.join(formPath, "anm");
+  const mdlDir = path.join(formPath, "mdl");
+  if (fs.existsSync(anmDir) && fs.existsSync(mdlDir)) {
+    return "LA";
+  }
+  return "SCVI";
+}
+
+/**
  * 获取形态文件夹中的动画文件
  */
 function getAnimationFiles(formPath) {
   const animations = {};
-  // console.log(`扫描形态目录: ${formPath}`);
+  const dirStyle = detectDirectoryStyle(formPath);
+  // console.log(`扫描形态目录: ${formPath}, 风格: ${dirStyle}`);
 
   function scanDir(dirPath) {
     try {
@@ -96,7 +111,14 @@ function getAnimationFiles(formPath) {
 
       for (const entry of entries) {
         if (entry.isDirectory()) {
-          scanDir(path.join(dirPath, entry.name));
+          // 对于LA风格，只扫描anm目录；对于SCVI风格，扫描所有子目录
+          if (dirStyle === "LA") {
+            if (entry.name === "anm") {
+              scanDir(path.join(dirPath, entry.name));
+            }
+          } else {
+            scanDir(path.join(dirPath, entry.name));
+          }
         } else if (
           entry.isFile() &&
           (entry.name.endsWith(".tranm") || entry.name.endsWith(".tracm"))
@@ -110,9 +132,9 @@ function getAnimationFiles(formPath) {
           if (!animations[animationName]) {
             animations[animationName] = [];
           }
-          animations[animationName].push(
-            path.relative(formPath, path.join(dirPath, entry.name)),
-          );
+          // 统一使用正斜杠作为路径分隔符
+          const relativePath = path.relative(formPath, path.join(dirPath, entry.name)).replace(/\\/g, '/');
+          animations[animationName].push(relativePath);
         }
       }
     } catch (error) {
@@ -149,42 +171,53 @@ function getPokemonForms(pokemonId, pokemonPath) {
           );
         }
 
-        // 查找实际存在的icon文件
+        const dirStyle = detectDirectoryStyle(formPath);
+        
+        // LA风格不需要icon
         let iconPath = null;
-        const iconDir = path.join(formPath, "icon");
-        if (fs.existsSync(iconDir)) {
-          try {
-            const iconFiles = fs.readdirSync(iconDir);
-            // 优先选择_big.png文件，如果没有则选择第一个.png文件
-            const bigIcon = iconFiles.find((f) => f.endsWith("_big.png"));
-            if (bigIcon) {
-              iconPath = `icon/${bigIcon}`;
-            } else {
-              const pngFile = iconFiles.find((f) => f.endsWith(".png"));
-              if (pngFile) {
-                iconPath = `icon/${pngFile}`;
+        if (dirStyle !== "LA") {
+          // 查找实际存在的icon文件
+          const iconDir = path.join(formPath, "icon");
+          if (fs.existsSync(iconDir)) {
+            try {
+              const iconFiles = fs.readdirSync(iconDir);
+              // 优先选择_big.png文件，如果没有则选择第一个.png文件
+              const bigIcon = iconFiles.find((f) => f.endsWith("_big.png"));
+              if (bigIcon) {
+                iconPath = `icon/${bigIcon}`;
+              } else {
+                const pngFile = iconFiles.find((f) => f.endsWith(".png"));
+                if (pngFile) {
+                  iconPath = `icon/${pngFile}`;
+                }
               }
+            } catch (error) {
+              console.warn(`警告: 读取icon目录失败 ${iconDir}:`, error.message);
             }
-          } catch (error) {
-            console.warn(`警告: 读取icon目录失败 ${iconDir}:`, error.message);
+          }
+
+          // 如果找不到icon文件，使用默认路径
+          if (!iconPath) {
+            iconPath = `icon/${pokemonId}_${formInfo.formIndex.toString().padStart(2, "0")}_${formInfo.variantIndex.toString().padStart(2, "0")}_00_big.png`;
+            console.warn(
+              `⚠️  警告: ${formId} 找不到icon文件，使用默认路径: ${iconPath}`,
+            );
           }
         }
 
-        // 如果找不到icon文件，使用默认路径
-        if (!iconPath) {
-          iconPath = `icon/${pokemonId}_${formInfo.formIndex.toString().padStart(2, "0")}_${formInfo.variantIndex.toString().padStart(2, "0")}_00_big.png`;
-          console.warn(
-            `⚠️  警告: ${formId} 找不到icon文件，使用默认路径: ${iconPath}`,
-          );
-        }
-
-        forms.push({
+        const formData = {
           id: formId,
           formIndex: formInfo.formIndex,
           variantIndex: formInfo.variantIndex,
-          icon: iconPath,
           animations: animations,
-        });
+        };
+        
+        // 只有非LA风格才添加icon字段
+        if (iconPath) {
+          formData.icon = iconPath;
+        }
+
+        forms.push(formData);
       }
     }
   } catch (error) {

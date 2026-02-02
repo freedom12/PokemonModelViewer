@@ -6,85 +6,1637 @@
       "id": "pm1120_11_00",
       "formIndex": 11,
       "variantIndex": 0,
-      "icon": "icon/pm1120_11_00_00_big.png",
-      "animations": {}
+      "animations": {
+        "00000_defaultwait01_loop": [
+          "pm1120_11_00_00000_defaultwait01_loop.tracm",
+          "pm1120_11_00_00000_defaultwait01_loop.tranm"
+        ],
+        "00001_battlewait01_loop": [
+          "pm1120_11_00_00001_battlewait01_loop.tracm",
+          "pm1120_11_00_00001_battlewait01_loop.tranm"
+        ],
+        "00010_defaultidle01": [
+          "pm1120_11_00_00010_defaultidle01.tracm",
+          "pm1120_11_00_00010_defaultidle01.tranm"
+        ],
+        "00011_defaultidle02": [
+          "pm1120_11_00_00011_defaultidle02.tracm",
+          "pm1120_11_00_00011_defaultidle02.tranm"
+        ],
+        "00021_turn_r090": [
+          "pm1120_11_00_00021_turn_r090.tracm",
+          "pm1120_11_00_00021_turn_r090.tranm"
+        ],
+        "00024_turn_l090": [
+          "pm1120_11_00_00024_turn_l090.tracm",
+          "pm1120_11_00_00024_turn_l090.tranm"
+        ],
+        "00030_walk01_loop": [
+          "pm1120_11_00_00030_walk01_loop.tracm",
+          "pm1120_11_00_00030_walk01_loop.tranm"
+        ],
+        "00100_run01_loop": [
+          "pm1120_11_00_00100_run01_loop.tracm",
+          "pm1120_11_00_00100_run01_loop.tranm"
+        ],
+        "00145_stepout01_start": [
+          "pm1120_11_00_00145_stepout01_start.tracm",
+          "pm1120_11_00_00145_stepout01_start.tranm"
+        ],
+        "00146_stepout01": [
+          "pm1120_11_00_00146_stepout01.tracm",
+          "pm1120_11_00_00146_stepout01.tranm"
+        ],
+        "00147_stepout01_end": [
+          "pm1120_11_00_00147_stepout01_end.tracm",
+          "pm1120_11_00_00147_stepout01_end.tranm"
+        ],
+        "00150_jumpup01_start": [
+          "pm1120_11_00_00150_jumpup01_start.tracm",
+          "pm1120_11_00_00150_jumpup01_start.tranm"
+        ],
+        "00151_jumpup01_loop": [
+          "pm1120_11_00_00151_jumpup01_loop.tracm",
+          "pm1120_11_00_00151_jumpup01_loop.tranm"
+        ],
+        "00152_jumpdown01_start": [
+          "pm1120_11_00_00152_jumpdown01_start.tracm",
+          "pm1120_11_00_00152_jumpdown01_start.tranm"
+        ],
+        "00153_jumpdown01_loop": [
+          "pm1120_11_00_00153_jumpdown01_loop.tracm",
+          "pm1120_11_00_00153_jumpdown01_loop.tranm"
+        ],
+        "00155_land02": [
+          "pm1120_11_00_00155_land02.tracm",
+          "pm1120_11_00_00155_land02.tranm"
+        ],
+        "00270_rest01_start": [
+          "pm1120_11_00_00270_rest01_start.tracm",
+          "pm1120_11_00_00270_rest01_start.tranm"
+        ],
+        "00271_rest01_loop": [
+          "pm1120_11_00_00271_rest01_loop.tracm",
+          "pm1120_11_00_00271_rest01_loop.tranm"
+        ],
+        "00272_rest01_end": [
+          "pm1120_11_00_00272_rest01_end.tracm",
+          "pm1120_11_00_00272_rest01_end.tranm"
+        ],
+        "00280_sleep01_start": [
+          "pm1120_11_00_00280_sleep01_start.tracm",
+          "pm1120_11_00_00280_sleep01_start.tranm"
+        ],
+        "00281_sleep01_loop": [
+          "pm1120_11_00_00281_sleep01_loop.tracm",
+          "pm1120_11_00_00281_sleep01_loop.tranm"
+        ],
+        "00282_sleep01_end": [
+          "pm1120_11_00_00282_sleep01_end.tracm",
+          "pm1120_11_00_00282_sleep01_end.tranm"
+        ],
+        "00290_eat01_start": [
+          "pm1120_11_00_00290_eat01_start.tracm",
+          "pm1120_11_00_00290_eat01_start.tranm"
+        ],
+        "00291_eat01_loop": [
+          "pm1120_11_00_00291_eat01_loop.tracm",
+          "pm1120_11_00_00291_eat01_loop.tranm"
+        ],
+        "00292_eat01_end": [
+          "pm1120_11_00_00292_eat01_end.tracm",
+          "pm1120_11_00_00292_eat01_end.tranm"
+        ],
+        "00293_eat02_start": [
+          "pm1120_11_00_00293_eat02_start.tracm",
+          "pm1120_11_00_00293_eat02_start.tranm"
+        ],
+        "00294_eat02_loop": [
+          "pm1120_11_00_00294_eat02_loop.tracm",
+          "pm1120_11_00_00294_eat02_loop.tranm"
+        ],
+        "00295_eat02_end": [
+          "pm1120_11_00_00295_eat02_end.tracm",
+          "pm1120_11_00_00295_eat02_end.tranm"
+        ],
+        "00300_roar01": [
+          "pm1120_11_00_00300_roar01.tracm",
+          "pm1120_11_00_00300_roar01.tranm"
+        ],
+        "00310_getpass01_start": [
+          "pm1120_11_00_00310_getpass01_start.tracm",
+          "pm1120_11_00_00310_getpass01_start.tranm"
+        ],
+        "00311_getpass01_loop": [
+          "pm1120_11_00_00311_getpass01_loop.tracm",
+          "pm1120_11_00_00311_getpass01_loop.tranm"
+        ],
+        "00312_getpass01_end": [
+          "pm1120_11_00_00312_getpass01_end.tracm",
+          "pm1120_11_00_00312_getpass01_end.tranm"
+        ],
+        "00320_refresh01": [
+          "pm1120_11_00_00320_refresh01.tracm",
+          "pm1120_11_00_00320_refresh01.tranm"
+        ],
+        "00400_attack01": [
+          "pm1120_11_00_00400_attack01.tracm",
+          "pm1120_11_00_00400_attack01.tranm"
+        ],
+        "00410_attack02": [
+          "pm1120_11_00_00410_attack02.tracm",
+          "pm1120_11_00_00410_attack02.tranm"
+        ],
+        "00450_rangeattack01": [
+          "pm1120_11_00_00450_rangeattack01.tracm",
+          "pm1120_11_00_00450_rangeattack01.tranm"
+        ],
+        "00460_rangeattack02_start": [
+          "pm1120_11_00_00460_rangeattack02_start.tracm",
+          "pm1120_11_00_00460_rangeattack02_start.tranm"
+        ],
+        "00461_rangeattack02_loop": [
+          "pm1120_11_00_00461_rangeattack02_loop.tracm",
+          "pm1120_11_00_00461_rangeattack02_loop.tranm"
+        ],
+        "00462_rangeattack02_end": [
+          "pm1120_11_00_00462_rangeattack02_end.tracm",
+          "pm1120_11_00_00462_rangeattack02_end.tranm"
+        ],
+        "00500_damage01": [
+          "pm1120_11_00_00500_damage01.tracm",
+          "pm1120_11_00_00500_damage01.tranm"
+        ],
+        "00501_damage02": [
+          "pm1120_11_00_00501_damage02.tracm",
+          "pm1120_11_00_00501_damage02.tranm"
+        ],
+        "00510_stun01_start": [
+          "pm1120_11_00_00510_stun01_start.tracm",
+          "pm1120_11_00_00510_stun01_start.tranm"
+        ],
+        "00511_stun01_loop": [
+          "pm1120_11_00_00511_stun01_loop.tracm",
+          "pm1120_11_00_00511_stun01_loop.tranm"
+        ],
+        "00512_stun01_end": [
+          "pm1120_11_00_00512_stun01_end.tracm",
+          "pm1120_11_00_00512_stun01_end.tranm"
+        ],
+        "00520_down01_start": [
+          "pm1120_11_00_00520_down01_start.tracm",
+          "pm1120_11_00_00520_down01_start.tranm"
+        ],
+        "00521_down01_loop": [
+          "pm1120_11_00_00521_down01_loop.tracm",
+          "pm1120_11_00_00521_down01_loop.tranm"
+        ],
+        "00522_down01_end": [
+          "pm1120_11_00_00522_down01_end.tracm",
+          "pm1120_11_00_00522_down01_end.tranm"
+        ],
+        "00550_glad01": [
+          "pm1120_11_00_00550_glad01.tracm",
+          "pm1120_11_00_00550_glad01.tranm"
+        ],
+        "00560_notice01": [
+          "pm1120_11_00_00560_notice01.tracm",
+          "pm1120_11_00_00560_notice01.tranm"
+        ],
+        "00563_hate01": [
+          "pm1120_11_00_00563_hate01.tracm",
+          "pm1120_11_00_00563_hate01.tranm"
+        ],
+        "00571_yes01": [
+          "pm1120_11_00_00571_yes01.tracm",
+          "pm1120_11_00_00571_yes01.tranm"
+        ],
+        "00572_no01": [
+          "pm1120_11_00_00572_no01.tracm",
+          "pm1120_11_00_00572_no01.tranm"
+        ],
+        "00580_sad01_start": [
+          "pm1120_11_00_00580_sad01_start.tracm",
+          "pm1120_11_00_00580_sad01_start.tranm"
+        ],
+        "00581_sad01_loop": [
+          "pm1120_11_00_00581_sad01_loop.tracm",
+          "pm1120_11_00_00581_sad01_loop.tranm"
+        ],
+        "00582_sad01_end": [
+          "pm1120_11_00_00582_sad01_end.tracm",
+          "pm1120_11_00_00582_sad01_end.tranm"
+        ],
+        "00583_fear01_start": [
+          "pm1120_11_00_00583_fear01_start.tracm",
+          "pm1120_11_00_00583_fear01_start.tranm"
+        ],
+        "00584_fear01_loop": [
+          "pm1120_11_00_00584_fear01_loop.tracm",
+          "pm1120_11_00_00584_fear01_loop.tranm"
+        ],
+        "00585_fear01_end": [
+          "pm1120_11_00_00585_fear01_end.tracm",
+          "pm1120_11_00_00585_fear01_end.tranm"
+        ],
+        "00586_cheer01_start": [
+          "pm1120_11_00_00586_cheer01_start.tracm",
+          "pm1120_11_00_00586_cheer01_start.tranm"
+        ],
+        "00587_cheer01_loop": [
+          "pm1120_11_00_00587_cheer01_loop.tracm",
+          "pm1120_11_00_00587_cheer01_loop.tranm"
+        ],
+        "00588_cheer01_end": [
+          "pm1120_11_00_00588_cheer01_end.tracm",
+          "pm1120_11_00_00588_cheer01_end.tranm"
+        ],
+        "00600_lookaround02_start": [
+          "pm1120_11_00_00600_lookaround02_start.tracm",
+          "pm1120_11_00_00600_lookaround02_start.tranm"
+        ],
+        "00601_lookaround02_loop": [
+          "pm1120_11_00_00601_lookaround02_loop.tracm",
+          "pm1120_11_00_00601_lookaround02_loop.tranm"
+        ],
+        "00602_lookaround02_end": [
+          "pm1120_11_00_00602_lookaround02_end.tracm",
+          "pm1120_11_00_00602_lookaround02_end.tranm"
+        ],
+        "00603_happy01_start": [
+          "pm1120_11_00_00603_happy01_start.tracm",
+          "pm1120_11_00_00603_happy01_start.tranm"
+        ],
+        "00604_happy01_loop": [
+          "pm1120_11_00_00604_happy01_loop.tracm",
+          "pm1120_11_00_00604_happy01_loop.tranm"
+        ],
+        "00605_happy01_end": [
+          "pm1120_11_00_00605_happy01_end.tracm",
+          "pm1120_11_00_00605_happy01_end.tranm"
+        ],
+        "00606_angry01_start": [
+          "pm1120_11_00_00606_angry01_start.tracm",
+          "pm1120_11_00_00606_angry01_start.tranm"
+        ],
+        "00607_angry01_loop": [
+          "pm1120_11_00_00607_angry01_loop.tracm",
+          "pm1120_11_00_00607_angry01_loop.tranm"
+        ],
+        "00608_angry01_end": [
+          "pm1120_11_00_00608_angry01_end.tracm",
+          "pm1120_11_00_00608_angry01_end.tranm"
+        ],
+        "00630_directionattack01": [
+          "pm1120_11_00_00630_directionattack01.tracm",
+          "pm1120_11_00_00630_directionattack01.tranm"
+        ],
+        "00800_merge_default_battle01": [
+          "pm1120_11_00_00800_merge_default_battle01.tracm",
+          "pm1120_11_00_00800_merge_default_battle01.tranm"
+        ],
+        "00810_merge_battle_default01": [
+          "pm1120_11_00_00810_merge_battle_default01.tracm",
+          "pm1120_11_00_00810_merge_battle_default01.tranm"
+        ],
+        "00820_merge_battle_battle01": [
+          "pm1120_11_00_00820_merge_battle_battle01.tracm",
+          "pm1120_11_00_00820_merge_battle_battle01.tranm"
+        ],
+        "00821_merge_default_default01": [
+          "pm1120_11_00_00821_merge_default_default01.tracm",
+          "pm1120_11_00_00821_merge_default_default01.tranm"
+        ],
+        "00822_merge_default_default02": [
+          "pm1120_11_00_00822_merge_default_default02.tracm",
+          "pm1120_11_00_00822_merge_default_default02.tranm"
+        ],
+        "05100_mopey01_loop": [
+          "pm1120_11_00_05100_mopey01_loop.tracm",
+          "pm1120_11_00_05100_mopey01_loop.tranm"
+        ],
+        "05101_mopey01_end": [
+          "pm1120_11_00_05101_mopey01_end.tracm",
+          "pm1120_11_00_05101_mopey01_end.tranm"
+        ],
+        "05143_campose43_all": [
+          "pm1120_11_00_05143_campose43_all.tracm",
+          "pm1120_11_00_05143_campose43_all.tranm"
+        ],
+        "05144_campose44_all": [
+          "pm1120_11_00_05144_campose44_all.tracm",
+          "pm1120_11_00_05144_campose44_all.tranm"
+        ],
+        "05145_campose45_all": [
+          "pm1120_11_00_05145_campose45_all.tracm",
+          "pm1120_11_00_05145_campose45_all.tranm"
+        ],
+        "08000_eye01": [
+          "pm1120_11_00_08000_eye01.tracm",
+          "pm1120_11_00_08000_eye01.tranm"
+        ],
+        "08100_mouth01": [
+          "pm1120_11_00_08100_mouth01.tracm",
+          "pm1120_11_00_08100_mouth01.tranm"
+        ],
+        "08200_face01": [
+          "pm1120_11_00_08200_face01.tracm",
+          "pm1120_11_00_08200_face01.tranm"
+        ],
+        "08200_loop01_start": [
+          "pm1120_11_00_08200_loop01_start.tracm",
+          "pm1120_11_00_08200_loop01_start.tranm"
+        ],
+        "08201_face02": [
+          "pm1120_11_00_08201_face02.tracm",
+          "pm1120_11_00_08201_face02.tranm"
+        ],
+        "08201_loop01_loop": [
+          "pm1120_11_00_08201_loop01_loop.tracm",
+          "pm1120_11_00_08201_loop01_loop.tranm"
+        ],
+        "08202_face03": [
+          "pm1120_11_00_08202_face03.tracm",
+          "pm1120_11_00_08202_face03.tranm"
+        ],
+        "08202_loop01_end": [
+          "pm1120_11_00_08202_loop01_end.tracm",
+          "pm1120_11_00_08202_loop01_end.tranm"
+        ],
+        "08203_face04": [
+          "pm1120_11_00_08203_face04.tracm",
+          "pm1120_11_00_08203_face04.tranm"
+        ],
+        "08204_face05": [
+          "pm1120_11_00_08204_face05.tracm",
+          "pm1120_11_00_08204_face05.tranm"
+        ],
+        "08205_face06": [
+          "pm1120_11_00_08205_face06.tracm",
+          "pm1120_11_00_08205_face06.tranm"
+        ],
+        "08206_face07": [
+          "pm1120_11_00_08206_face07.tracm",
+          "pm1120_11_00_08206_face07.tranm"
+        ],
+        "08207_face08": [
+          "pm1120_11_00_08207_face08.tracm",
+          "pm1120_11_00_08207_face08.tranm"
+        ],
+        "08208_face09": [
+          "pm1120_11_00_08208_face09.tracm",
+          "pm1120_11_00_08208_face09.tranm"
+        ],
+        "08209_face10": [
+          "pm1120_11_00_08209_face10.tracm",
+          "pm1120_11_00_08209_face10.tranm"
+        ]
+      },
+      "icon": "icon/pm1120_11_00_00_big.png"
     },
     {
       "id": "pm1120_11_99",
       "formIndex": 11,
       "variantIndex": 99,
-      "icon": "icon/pm1120_11_99_00_big.png",
-      "animations": {}
+      "animations": {
+        "08330_battle_loop01": [
+          "pm1120_11_99_08330_battle_loop01.tracm",
+          "pm1120_11_99_08330_battle_loop01.tranm"
+        ],
+        "08331_loop02_loop": [
+          "pm1120_11_99_08331_loop02_loop.tracm",
+          "pm1120_11_99_08331_loop02_loop.tranm"
+        ],
+        "08500_damage01": [
+          "pm1120_11_99_08500_damage01.tranm"
+        ]
+      },
+      "icon": "icon/pm1120_11_99_00_big.png"
     },
     {
       "id": "pm1120_12_00",
       "formIndex": 12,
       "variantIndex": 0,
-      "icon": "icon/pm1120_12_00_01_big.png",
-      "animations": {}
+      "animations": {
+        "00000_defaultwait01_loop": [
+          "pm1120_12_00_00000_defaultwait01_loop.tracm",
+          "pm1120_12_00_00000_defaultwait01_loop.tranm"
+        ],
+        "00001_battlewait01_loop": [
+          "pm1120_12_00_00001_battlewait01_loop.tracm",
+          "pm1120_12_00_00001_battlewait01_loop.tranm"
+        ],
+        "00010_defaultidle01": [
+          "pm1120_12_00_00010_defaultidle01.tracm",
+          "pm1120_12_00_00010_defaultidle01.tranm"
+        ],
+        "00011_defaultidle02": [
+          "pm1120_12_00_00011_defaultidle02.tracm",
+          "pm1120_12_00_00011_defaultidle02.tranm"
+        ],
+        "00021_turn_r090": [
+          "pm1120_12_00_00021_turn_r090.tracm",
+          "pm1120_12_00_00021_turn_r090.tranm"
+        ],
+        "00024_turn_l090": [
+          "pm1120_12_00_00024_turn_l090.tracm",
+          "pm1120_12_00_00024_turn_l090.tranm"
+        ],
+        "00030_walk01_loop": [
+          "pm1120_12_00_00030_walk01_loop.tracm",
+          "pm1120_12_00_00030_walk01_loop.tranm"
+        ],
+        "00100_run01_loop": [
+          "pm1120_12_00_00100_run01_loop.tracm",
+          "pm1120_12_00_00100_run01_loop.tranm"
+        ],
+        "00145_stepout01_start": [
+          "pm1120_12_00_00145_stepout01_start.tracm",
+          "pm1120_12_00_00145_stepout01_start.tranm"
+        ],
+        "00146_stepout01": [
+          "pm1120_12_00_00146_stepout01.tracm",
+          "pm1120_12_00_00146_stepout01.tranm"
+        ],
+        "00147_stepout01_end": [
+          "pm1120_12_00_00147_stepout01_end.tracm",
+          "pm1120_12_00_00147_stepout01_end.tranm"
+        ],
+        "00150_jumpup01_start": [
+          "pm1120_12_00_00150_jumpup01_start.tracm",
+          "pm1120_12_00_00150_jumpup01_start.tranm"
+        ],
+        "00151_jumpup01_loop": [
+          "pm1120_12_00_00151_jumpup01_loop.tracm",
+          "pm1120_12_00_00151_jumpup01_loop.tranm"
+        ],
+        "00152_jumpdown01_start": [
+          "pm1120_12_00_00152_jumpdown01_start.tracm",
+          "pm1120_12_00_00152_jumpdown01_start.tranm"
+        ],
+        "00153_jumpdown01_loop": [
+          "pm1120_12_00_00153_jumpdown01_loop.tracm",
+          "pm1120_12_00_00153_jumpdown01_loop.tranm"
+        ],
+        "00155_land02": [
+          "pm1120_12_00_00155_land02.tracm",
+          "pm1120_12_00_00155_land02.tranm"
+        ],
+        "00270_rest01_start": [
+          "pm1120_12_00_00270_rest01_start.tracm",
+          "pm1120_12_00_00270_rest01_start.tranm"
+        ],
+        "00271_rest01_loop": [
+          "pm1120_12_00_00271_rest01_loop.tracm",
+          "pm1120_12_00_00271_rest01_loop.tranm"
+        ],
+        "00272_rest01_end": [
+          "pm1120_12_00_00272_rest01_end.tracm",
+          "pm1120_12_00_00272_rest01_end.tranm"
+        ],
+        "00280_sleep01_start": [
+          "pm1120_12_00_00280_sleep01_start.tracm",
+          "pm1120_12_00_00280_sleep01_start.tranm"
+        ],
+        "00281_sleep01_loop": [
+          "pm1120_12_00_00281_sleep01_loop.tracm",
+          "pm1120_12_00_00281_sleep01_loop.tranm"
+        ],
+        "00282_sleep01_end": [
+          "pm1120_12_00_00282_sleep01_end.tracm",
+          "pm1120_12_00_00282_sleep01_end.tranm"
+        ],
+        "00290_eat01_start": [
+          "pm1120_12_00_00290_eat01_start.tracm",
+          "pm1120_12_00_00290_eat01_start.tranm"
+        ],
+        "00291_eat01_loop": [
+          "pm1120_12_00_00291_eat01_loop.tracm",
+          "pm1120_12_00_00291_eat01_loop.tranm"
+        ],
+        "00292_eat01_end": [
+          "pm1120_12_00_00292_eat01_end.tracm",
+          "pm1120_12_00_00292_eat01_end.tranm"
+        ],
+        "00293_eat02_start": [
+          "pm1120_12_00_00293_eat02_start.tracm",
+          "pm1120_12_00_00293_eat02_start.tranm"
+        ],
+        "00294_eat02_loop": [
+          "pm1120_12_00_00294_eat02_loop.tracm",
+          "pm1120_12_00_00294_eat02_loop.tranm"
+        ],
+        "00295_eat02_end": [
+          "pm1120_12_00_00295_eat02_end.tracm",
+          "pm1120_12_00_00295_eat02_end.tranm"
+        ],
+        "00300_roar01": [
+          "pm1120_12_00_00300_roar01.tracm",
+          "pm1120_12_00_00300_roar01.tranm"
+        ],
+        "00310_getpass01_start": [
+          "pm1120_12_00_00310_getpass01_start.tracm",
+          "pm1120_12_00_00310_getpass01_start.tranm"
+        ],
+        "00311_getpass01_loop": [
+          "pm1120_12_00_00311_getpass01_loop.tracm",
+          "pm1120_12_00_00311_getpass01_loop.tranm"
+        ],
+        "00312_getpass01_end": [
+          "pm1120_12_00_00312_getpass01_end.tracm",
+          "pm1120_12_00_00312_getpass01_end.tranm"
+        ],
+        "00320_refresh01": [
+          "pm1120_12_00_00320_refresh01.tracm",
+          "pm1120_12_00_00320_refresh01.tranm"
+        ],
+        "00400_attack01": [
+          "pm1120_12_00_00400_attack01.tracm",
+          "pm1120_12_00_00400_attack01.tranm"
+        ],
+        "00410_attack02": [
+          "pm1120_12_00_00410_attack02.tracm",
+          "pm1120_12_00_00410_attack02.tranm"
+        ],
+        "00450_rangeattack01": [
+          "pm1120_12_00_00450_rangeattack01.tracm",
+          "pm1120_12_00_00450_rangeattack01.tranm"
+        ],
+        "00460_rangeattack02_start": [
+          "pm1120_12_00_00460_rangeattack02_start.tracm",
+          "pm1120_12_00_00460_rangeattack02_start.tranm"
+        ],
+        "00461_rangeattack02_loop": [
+          "pm1120_12_00_00461_rangeattack02_loop.tracm",
+          "pm1120_12_00_00461_rangeattack02_loop.tranm"
+        ],
+        "00462_rangeattack02_end": [
+          "pm1120_12_00_00462_rangeattack02_end.tracm",
+          "pm1120_12_00_00462_rangeattack02_end.tranm"
+        ],
+        "00500_damage01": [
+          "pm1120_12_00_00500_damage01.tracm",
+          "pm1120_12_00_00500_damage01.tranm"
+        ],
+        "00501_damage02": [
+          "pm1120_12_00_00501_damage02.tracm",
+          "pm1120_12_00_00501_damage02.tranm"
+        ],
+        "00510_stun01_start": [
+          "pm1120_12_00_00510_stun01_start.tracm",
+          "pm1120_12_00_00510_stun01_start.tranm"
+        ],
+        "00511_stun01_loop": [
+          "pm1120_12_00_00511_stun01_loop.tracm",
+          "pm1120_12_00_00511_stun01_loop.tranm"
+        ],
+        "00512_stun01_end": [
+          "pm1120_12_00_00512_stun01_end.tracm",
+          "pm1120_12_00_00512_stun01_end.tranm"
+        ],
+        "00520_down01_start": [
+          "pm1120_12_00_00520_down01_start.tracm",
+          "pm1120_12_00_00520_down01_start.tranm"
+        ],
+        "00521_down01_loop": [
+          "pm1120_12_00_00521_down01_loop.tracm",
+          "pm1120_12_00_00521_down01_loop.tranm"
+        ],
+        "00522_down01_end": [
+          "pm1120_12_00_00522_down01_end.tracm",
+          "pm1120_12_00_00522_down01_end.tranm"
+        ],
+        "00550_glad01": [
+          "pm1120_12_00_00550_glad01.tracm",
+          "pm1120_12_00_00550_glad01.tranm"
+        ],
+        "00560_notice01": [
+          "pm1120_12_00_00560_notice01.tracm",
+          "pm1120_12_00_00560_notice01.tranm"
+        ],
+        "00563_hate01": [
+          "pm1120_12_00_00563_hate01.tracm",
+          "pm1120_12_00_00563_hate01.tranm"
+        ],
+        "00571_yes01": [
+          "pm1120_12_00_00571_yes01.tracm",
+          "pm1120_12_00_00571_yes01.tranm"
+        ],
+        "00572_no01": [
+          "pm1120_12_00_00572_no01.tracm",
+          "pm1120_12_00_00572_no01.tranm"
+        ],
+        "00580_sad01_start": [
+          "pm1120_12_00_00580_sad01_start.tracm",
+          "pm1120_12_00_00580_sad01_start.tranm"
+        ],
+        "00581_sad01_loop": [
+          "pm1120_12_00_00581_sad01_loop.tracm",
+          "pm1120_12_00_00581_sad01_loop.tranm"
+        ],
+        "00582_sad01_end": [
+          "pm1120_12_00_00582_sad01_end.tracm",
+          "pm1120_12_00_00582_sad01_end.tranm"
+        ],
+        "00583_fear01_start": [
+          "pm1120_12_00_00583_fear01_start.tracm",
+          "pm1120_12_00_00583_fear01_start.tranm"
+        ],
+        "00584_fear01_loop": [
+          "pm1120_12_00_00584_fear01_loop.tracm",
+          "pm1120_12_00_00584_fear01_loop.tranm"
+        ],
+        "00585_fear01_end": [
+          "pm1120_12_00_00585_fear01_end.tracm",
+          "pm1120_12_00_00585_fear01_end.tranm"
+        ],
+        "00586_cheer01_start": [
+          "pm1120_12_00_00586_cheer01_start.tracm",
+          "pm1120_12_00_00586_cheer01_start.tranm"
+        ],
+        "00587_cheer01_loop": [
+          "pm1120_12_00_00587_cheer01_loop.tracm",
+          "pm1120_12_00_00587_cheer01_loop.tranm"
+        ],
+        "00588_cheer01_end": [
+          "pm1120_12_00_00588_cheer01_end.tracm",
+          "pm1120_12_00_00588_cheer01_end.tranm"
+        ],
+        "00600_lookaround02_start": [
+          "pm1120_12_00_00600_lookaround02_start.tracm",
+          "pm1120_12_00_00600_lookaround02_start.tranm"
+        ],
+        "00601_lookaround02_loop": [
+          "pm1120_12_00_00601_lookaround02_loop.tracm",
+          "pm1120_12_00_00601_lookaround02_loop.tranm"
+        ],
+        "00602_lookaround02_end": [
+          "pm1120_12_00_00602_lookaround02_end.tracm",
+          "pm1120_12_00_00602_lookaround02_end.tranm"
+        ],
+        "00603_happy01_start": [
+          "pm1120_12_00_00603_happy01_start.tracm",
+          "pm1120_12_00_00603_happy01_start.tranm"
+        ],
+        "00604_happy01_loop": [
+          "pm1120_12_00_00604_happy01_loop.tracm",
+          "pm1120_12_00_00604_happy01_loop.tranm"
+        ],
+        "00605_happy01_end": [
+          "pm1120_12_00_00605_happy01_end.tracm",
+          "pm1120_12_00_00605_happy01_end.tranm"
+        ],
+        "00606_angry01_start": [
+          "pm1120_12_00_00606_angry01_start.tracm",
+          "pm1120_12_00_00606_angry01_start.tranm"
+        ],
+        "00607_angry01_loop": [
+          "pm1120_12_00_00607_angry01_loop.tracm",
+          "pm1120_12_00_00607_angry01_loop.tranm"
+        ],
+        "00608_angry01_end": [
+          "pm1120_12_00_00608_angry01_end.tracm",
+          "pm1120_12_00_00608_angry01_end.tranm"
+        ],
+        "00630_directionattack01": [
+          "pm1120_12_00_00630_directionattack01.tracm",
+          "pm1120_12_00_00630_directionattack01.tranm"
+        ],
+        "00800_merge_default_battle01": [
+          "pm1120_12_00_00800_merge_default_battle01.tracm",
+          "pm1120_12_00_00800_merge_default_battle01.tranm"
+        ],
+        "00810_merge_battle_default01": [
+          "pm1120_12_00_00810_merge_battle_default01.tracm",
+          "pm1120_12_00_00810_merge_battle_default01.tranm"
+        ],
+        "00820_merge_battle_battle01": [
+          "pm1120_12_00_00820_merge_battle_battle01.tracm",
+          "pm1120_12_00_00820_merge_battle_battle01.tranm"
+        ],
+        "00821_merge_default_default01": [
+          "pm1120_12_00_00821_merge_default_default01.tracm",
+          "pm1120_12_00_00821_merge_default_default01.tranm"
+        ],
+        "00822_merge_default_default02": [
+          "pm1120_12_00_00822_merge_default_default02.tracm",
+          "pm1120_12_00_00822_merge_default_default02.tranm"
+        ],
+        "05100_mopey01_loop": [
+          "pm1120_12_00_05100_mopey01_loop.tracm",
+          "pm1120_12_00_05100_mopey01_loop.tranm"
+        ],
+        "05101_mopey01_end": [
+          "pm1120_12_00_05101_mopey01_end.tracm",
+          "pm1120_12_00_05101_mopey01_end.tranm"
+        ],
+        "08000_eye01": [
+          "pm1120_12_00_08000_eye01.tracm",
+          "pm1120_12_00_08000_eye01.tranm"
+        ],
+        "08100_mouth01": [
+          "pm1120_12_00_08100_mouth01.tracm",
+          "pm1120_12_00_08100_mouth01.tranm"
+        ],
+        "08200_face01": [
+          "pm1120_12_00_08200_face01.tracm",
+          "pm1120_12_00_08200_face01.tranm"
+        ],
+        "08200_loop01_start": [
+          "pm1120_12_00_08200_loop01_start.tracm",
+          "pm1120_12_00_08200_loop01_start.tranm"
+        ],
+        "08201_face02": [
+          "pm1120_12_00_08201_face02.tracm",
+          "pm1120_12_00_08201_face02.tranm"
+        ],
+        "08201_loop01_loop": [
+          "pm1120_12_00_08201_loop01_loop.tracm",
+          "pm1120_12_00_08201_loop01_loop.tranm"
+        ],
+        "08202_face03": [
+          "pm1120_12_00_08202_face03.tracm",
+          "pm1120_12_00_08202_face03.tranm"
+        ],
+        "08202_loop01_end": [
+          "pm1120_12_00_08202_loop01_end.tracm",
+          "pm1120_12_00_08202_loop01_end.tranm"
+        ],
+        "08203_face04": [
+          "pm1120_12_00_08203_face04.tracm",
+          "pm1120_12_00_08203_face04.tranm"
+        ],
+        "08204_face05": [
+          "pm1120_12_00_08204_face05.tracm",
+          "pm1120_12_00_08204_face05.tranm"
+        ],
+        "08205_face06": [
+          "pm1120_12_00_08205_face06.tracm",
+          "pm1120_12_00_08205_face06.tranm"
+        ],
+        "08206_face07": [
+          "pm1120_12_00_08206_face07.tracm",
+          "pm1120_12_00_08206_face07.tranm"
+        ],
+        "08207_face08": [
+          "pm1120_12_00_08207_face08.tracm",
+          "pm1120_12_00_08207_face08.tranm"
+        ],
+        "08208_face09": [
+          "pm1120_12_00_08208_face09.tracm",
+          "pm1120_12_00_08208_face09.tranm"
+        ],
+        "08209_face10": [
+          "pm1120_12_00_08209_face10.tracm",
+          "pm1120_12_00_08209_face10.tranm"
+        ]
+      },
+      "icon": "icon/pm1120_12_00_01_big.png"
     },
     {
       "id": "pm1120_12_99",
       "formIndex": 12,
       "variantIndex": 99,
-      "icon": "icon/pm1120_12_99_01_big.png",
-      "animations": {}
+      "animations": {
+        "08330_battle_loop01_loop": [
+          "pm1120_12_99_08330_battle_loop01_loop.tracm",
+          "pm1120_12_99_08330_battle_loop01_loop.tranm"
+        ],
+        "08331_loop02_loop": [
+          "pm1120_12_99_08331_loop02_loop.tracm",
+          "pm1120_12_99_08331_loop02_loop.tranm"
+        ],
+        "08500_damage01": [
+          "pm1120_12_99_08500_damage01.tranm"
+        ]
+      },
+      "icon": "icon/pm1120_12_99_01_big.png"
     },
     {
       "id": "pm1120_13_00",
       "formIndex": 13,
       "variantIndex": 0,
-      "icon": "icon/pm1120_13_00_02_big.png",
-      "animations": {}
+      "animations": {
+        "00000_defaultwait01_loop": [
+          "pm1120_13_00_00000_defaultwait01_loop.tracm",
+          "pm1120_13_00_00000_defaultwait01_loop.tranm"
+        ],
+        "00001_battlewait01_loop": [
+          "pm1120_13_00_00001_battlewait01_loop.tracm",
+          "pm1120_13_00_00001_battlewait01_loop.tranm"
+        ],
+        "00010_defaultidle01": [
+          "pm1120_13_00_00010_defaultidle01.tracm",
+          "pm1120_13_00_00010_defaultidle01.tranm"
+        ],
+        "00011_defaultidle02": [
+          "pm1120_13_00_00011_defaultidle02.tracm",
+          "pm1120_13_00_00011_defaultidle02.tranm"
+        ],
+        "00021_turn_r090": [
+          "pm1120_13_00_00021_turn_r090.tracm",
+          "pm1120_13_00_00021_turn_r090.tranm"
+        ],
+        "00024_turn_l090": [
+          "pm1120_13_00_00024_turn_l090.tracm",
+          "pm1120_13_00_00024_turn_l090.tranm"
+        ],
+        "00030_walk01_loop": [
+          "pm1120_13_00_00030_walk01_loop.tracm",
+          "pm1120_13_00_00030_walk01_loop.tranm"
+        ],
+        "00100_run01_loop": [
+          "pm1120_13_00_00100_run01_loop.tracm",
+          "pm1120_13_00_00100_run01_loop.tranm"
+        ],
+        "00145_stepout01_start": [
+          "pm1120_13_00_00145_stepout01_start.tracm",
+          "pm1120_13_00_00145_stepout01_start.tranm"
+        ],
+        "00146_stepout01": [
+          "pm1120_13_00_00146_stepout01.tracm",
+          "pm1120_13_00_00146_stepout01.tranm"
+        ],
+        "00147_stepout01_end": [
+          "pm1120_13_00_00147_stepout01_end.tracm",
+          "pm1120_13_00_00147_stepout01_end.tranm"
+        ],
+        "00150_jumpup01_start": [
+          "pm1120_13_00_00150_jumpup01_start.tracm",
+          "pm1120_13_00_00150_jumpup01_start.tranm"
+        ],
+        "00151_jumpup01_loop": [
+          "pm1120_13_00_00151_jumpup01_loop.tracm",
+          "pm1120_13_00_00151_jumpup01_loop.tranm"
+        ],
+        "00152_jumpdown01_start": [
+          "pm1120_13_00_00152_jumpdown01_start.tracm",
+          "pm1120_13_00_00152_jumpdown01_start.tranm"
+        ],
+        "00153_jumpdown01_loop": [
+          "pm1120_13_00_00153_jumpdown01_loop.tracm",
+          "pm1120_13_00_00153_jumpdown01_loop.tranm"
+        ],
+        "00155_land02": [
+          "pm1120_13_00_00155_land02.tracm",
+          "pm1120_13_00_00155_land02.tranm"
+        ],
+        "00270_rest01_start": [
+          "pm1120_13_00_00270_rest01_start.tracm",
+          "pm1120_13_00_00270_rest01_start.tranm"
+        ],
+        "00271_rest01_loop": [
+          "pm1120_13_00_00271_rest01_loop.tracm",
+          "pm1120_13_00_00271_rest01_loop.tranm"
+        ],
+        "00272_rest01_end": [
+          "pm1120_13_00_00272_rest01_end.tracm",
+          "pm1120_13_00_00272_rest01_end.tranm"
+        ],
+        "00280_sleep01_start": [
+          "pm1120_13_00_00280_sleep01_start.tracm",
+          "pm1120_13_00_00280_sleep01_start.tranm"
+        ],
+        "00281_sleep01_loop": [
+          "pm1120_13_00_00281_sleep01_loop.tracm",
+          "pm1120_13_00_00281_sleep01_loop.tranm"
+        ],
+        "00282_sleep01_end": [
+          "pm1120_13_00_00282_sleep01_end.tracm",
+          "pm1120_13_00_00282_sleep01_end.tranm"
+        ],
+        "00290_eat01_start": [
+          "pm1120_13_00_00290_eat01_start.tracm",
+          "pm1120_13_00_00290_eat01_start.tranm"
+        ],
+        "00291_eat01_loop": [
+          "pm1120_13_00_00291_eat01_loop.tracm",
+          "pm1120_13_00_00291_eat01_loop.tranm"
+        ],
+        "00292_eat01_end": [
+          "pm1120_13_00_00292_eat01_end.tracm",
+          "pm1120_13_00_00292_eat01_end.tranm"
+        ],
+        "00293_eat02_start": [
+          "pm1120_13_00_00293_eat02_start.tracm",
+          "pm1120_13_00_00293_eat02_start.tranm"
+        ],
+        "00294_eat02_loop": [
+          "pm1120_13_00_00294_eat02_loop.tracm",
+          "pm1120_13_00_00294_eat02_loop.tranm"
+        ],
+        "00295_eat02_end": [
+          "pm1120_13_00_00295_eat02_end.tracm",
+          "pm1120_13_00_00295_eat02_end.tranm"
+        ],
+        "00300_roar01": [
+          "pm1120_13_00_00300_roar01.tracm",
+          "pm1120_13_00_00300_roar01.tranm"
+        ],
+        "00310_getpass01_start": [
+          "pm1120_13_00_00310_getpass01_start.tracm",
+          "pm1120_13_00_00310_getpass01_start.tranm"
+        ],
+        "00311_getpass01_loop": [
+          "pm1120_13_00_00311_getpass01_loop.tracm",
+          "pm1120_13_00_00311_getpass01_loop.tranm"
+        ],
+        "00312_getpass01_end": [
+          "pm1120_13_00_00312_getpass01_end.tracm",
+          "pm1120_13_00_00312_getpass01_end.tranm"
+        ],
+        "00320_refresh01": [
+          "pm1120_13_00_00320_refresh01.tracm",
+          "pm1120_13_00_00320_refresh01.tranm"
+        ],
+        "00400_attack01": [
+          "pm1120_13_00_00400_attack01.tracm",
+          "pm1120_13_00_00400_attack01.tranm"
+        ],
+        "00410_attack02": [
+          "pm1120_13_00_00410_attack02.tracm",
+          "pm1120_13_00_00410_attack02.tranm"
+        ],
+        "00450_rangeattack01": [
+          "pm1120_13_00_00450_rangeattack01.tracm",
+          "pm1120_13_00_00450_rangeattack01.tranm"
+        ],
+        "00460_rangeattack02_start": [
+          "pm1120_13_00_00460_rangeattack02_start.tracm",
+          "pm1120_13_00_00460_rangeattack02_start.tranm"
+        ],
+        "00461_rangeattack02_loop": [
+          "pm1120_13_00_00461_rangeattack02_loop.tracm",
+          "pm1120_13_00_00461_rangeattack02_loop.tranm"
+        ],
+        "00462_rangeattack02_end": [
+          "pm1120_13_00_00462_rangeattack02_end.tracm",
+          "pm1120_13_00_00462_rangeattack02_end.tranm"
+        ],
+        "00500_damage01": [
+          "pm1120_13_00_00500_damage01.tracm",
+          "pm1120_13_00_00500_damage01.tranm"
+        ],
+        "00501_damage02": [
+          "pm1120_13_00_00501_damage02.tracm",
+          "pm1120_13_00_00501_damage02.tranm"
+        ],
+        "00510_stun01_start": [
+          "pm1120_13_00_00510_stun01_start.tracm",
+          "pm1120_13_00_00510_stun01_start.tranm"
+        ],
+        "00511_stun01_loop": [
+          "pm1120_13_00_00511_stun01_loop.tracm",
+          "pm1120_13_00_00511_stun01_loop.tranm"
+        ],
+        "00512_stun01_end": [
+          "pm1120_13_00_00512_stun01_end.tracm",
+          "pm1120_13_00_00512_stun01_end.tranm"
+        ],
+        "00520_down01_start": [
+          "pm1120_13_00_00520_down01_start.tracm",
+          "pm1120_13_00_00520_down01_start.tranm"
+        ],
+        "00521_down01_loop": [
+          "pm1120_13_00_00521_down01_loop.tracm",
+          "pm1120_13_00_00521_down01_loop.tranm"
+        ],
+        "00522_down01_end": [
+          "pm1120_13_00_00522_down01_end.tracm",
+          "pm1120_13_00_00522_down01_end.tranm"
+        ],
+        "00550_glad01": [
+          "pm1120_13_00_00550_glad01.tracm",
+          "pm1120_13_00_00550_glad01.tranm"
+        ],
+        "00560_notice01": [
+          "pm1120_13_00_00560_notice01.tracm",
+          "pm1120_13_00_00560_notice01.tranm"
+        ],
+        "00563_hate01": [
+          "pm1120_13_00_00563_hate01.tracm",
+          "pm1120_13_00_00563_hate01.tranm"
+        ],
+        "00571_yes01": [
+          "pm1120_13_00_00571_yes01.tracm",
+          "pm1120_13_00_00571_yes01.tranm"
+        ],
+        "00572_no01": [
+          "pm1120_13_00_00572_no01.tracm",
+          "pm1120_13_00_00572_no01.tranm"
+        ],
+        "00580_sad01_start": [
+          "pm1120_13_00_00580_sad01_start.tracm",
+          "pm1120_13_00_00580_sad01_start.tranm"
+        ],
+        "00581_sad01_loop": [
+          "pm1120_13_00_00581_sad01_loop.tracm",
+          "pm1120_13_00_00581_sad01_loop.tranm"
+        ],
+        "00582_sad01_end": [
+          "pm1120_13_00_00582_sad01_end.tracm",
+          "pm1120_13_00_00582_sad01_end.tranm"
+        ],
+        "00583_fear01_start": [
+          "pm1120_13_00_00583_fear01_start.tracm",
+          "pm1120_13_00_00583_fear01_start.tranm"
+        ],
+        "00584_fear01_loop": [
+          "pm1120_13_00_00584_fear01_loop.tracm",
+          "pm1120_13_00_00584_fear01_loop.tranm"
+        ],
+        "00585_fear01_end": [
+          "pm1120_13_00_00585_fear01_end.tracm",
+          "pm1120_13_00_00585_fear01_end.tranm"
+        ],
+        "00586_cheer01_start": [
+          "pm1120_13_00_00586_cheer01_start.tracm",
+          "pm1120_13_00_00586_cheer01_start.tranm"
+        ],
+        "00587_cheer01_loop": [
+          "pm1120_13_00_00587_cheer01_loop.tracm",
+          "pm1120_13_00_00587_cheer01_loop.tranm"
+        ],
+        "00588_cheer01_end": [
+          "pm1120_13_00_00588_cheer01_end.tracm",
+          "pm1120_13_00_00588_cheer01_end.tranm"
+        ],
+        "00600_lookaround02_start": [
+          "pm1120_13_00_00600_lookaround02_start.tracm",
+          "pm1120_13_00_00600_lookaround02_start.tranm"
+        ],
+        "00601_lookaround02_loop": [
+          "pm1120_13_00_00601_lookaround02_loop.tracm",
+          "pm1120_13_00_00601_lookaround02_loop.tranm"
+        ],
+        "00602_lookaround02_end": [
+          "pm1120_13_00_00602_lookaround02_end.tracm",
+          "pm1120_13_00_00602_lookaround02_end.tranm"
+        ],
+        "00603_happy01_start": [
+          "pm1120_13_00_00603_happy01_start.tracm",
+          "pm1120_13_00_00603_happy01_start.tranm"
+        ],
+        "00604_happy01_loop": [
+          "pm1120_13_00_00604_happy01_loop.tracm",
+          "pm1120_13_00_00604_happy01_loop.tranm"
+        ],
+        "00605_happy01_end": [
+          "pm1120_13_00_00605_happy01_end.tracm",
+          "pm1120_13_00_00605_happy01_end.tranm"
+        ],
+        "00606_angry01_start": [
+          "pm1120_13_00_00606_angry01_start.tracm",
+          "pm1120_13_00_00606_angry01_start.tranm"
+        ],
+        "00607_angry01_loop": [
+          "pm1120_13_00_00607_angry01_loop.tracm",
+          "pm1120_13_00_00607_angry01_loop.tranm"
+        ],
+        "00608_angry01_end": [
+          "pm1120_13_00_00608_angry01_end.tracm",
+          "pm1120_13_00_00608_angry01_end.tranm"
+        ],
+        "00630_directionattack01": [
+          "pm1120_13_00_00630_directionattack01.tracm",
+          "pm1120_13_00_00630_directionattack01.tranm"
+        ],
+        "00800_merge_default_battle01": [
+          "pm1120_13_00_00800_merge_default_battle01.tracm",
+          "pm1120_13_00_00800_merge_default_battle01.tranm"
+        ],
+        "00810_merge_battle_default01": [
+          "pm1120_13_00_00810_merge_battle_default01.tracm",
+          "pm1120_13_00_00810_merge_battle_default01.tranm"
+        ],
+        "00820_merge_battle_battle01": [
+          "pm1120_13_00_00820_merge_battle_battle01.tracm",
+          "pm1120_13_00_00820_merge_battle_battle01.tranm"
+        ],
+        "00821_merge_default_default01": [
+          "pm1120_13_00_00821_merge_default_default01.tracm",
+          "pm1120_13_00_00821_merge_default_default01.tranm"
+        ],
+        "00822_merge_default_default02": [
+          "pm1120_13_00_00822_merge_default_default02.tracm",
+          "pm1120_13_00_00822_merge_default_default02.tranm"
+        ],
+        "05100_mopey01_loop": [
+          "pm1120_13_00_05100_mopey01_loop.tracm",
+          "pm1120_13_00_05100_mopey01_loop.tranm"
+        ],
+        "05101_mopey01_end": [
+          "pm1120_13_00_05101_mopey01_end.tracm",
+          "pm1120_13_00_05101_mopey01_end.tranm"
+        ],
+        "08000_eye01": [
+          "pm1120_13_00_08000_eye01.tracm",
+          "pm1120_13_00_08000_eye01.tranm"
+        ],
+        "08100_mouth01": [
+          "pm1120_13_00_08100_mouth01.tracm",
+          "pm1120_13_00_08100_mouth01.tranm"
+        ],
+        "08200_face01": [
+          "pm1120_13_00_08200_face01.tracm",
+          "pm1120_13_00_08200_face01.tranm"
+        ],
+        "08200_loop01_start": [
+          "pm1120_13_00_08200_loop01_start.tracm",
+          "pm1120_13_00_08200_loop01_start.tranm"
+        ],
+        "08201_face02": [
+          "pm1120_13_00_08201_face02.tracm",
+          "pm1120_13_00_08201_face02.tranm"
+        ],
+        "08201_loop01_loop": [
+          "pm1120_13_00_08201_loop01_loop.tracm",
+          "pm1120_13_00_08201_loop01_loop.tranm"
+        ],
+        "08202_face03": [
+          "pm1120_13_00_08202_face03.tracm",
+          "pm1120_13_00_08202_face03.tranm"
+        ],
+        "08202_loop01_end": [
+          "pm1120_13_00_08202_loop01_end.tracm",
+          "pm1120_13_00_08202_loop01_end.tranm"
+        ],
+        "08203_face04": [
+          "pm1120_13_00_08203_face04.tracm",
+          "pm1120_13_00_08203_face04.tranm"
+        ],
+        "08204_face05": [
+          "pm1120_13_00_08204_face05.tracm",
+          "pm1120_13_00_08204_face05.tranm"
+        ],
+        "08205_face06": [
+          "pm1120_13_00_08205_face06.tracm",
+          "pm1120_13_00_08205_face06.tranm"
+        ],
+        "08206_face07": [
+          "pm1120_13_00_08206_face07.tracm",
+          "pm1120_13_00_08206_face07.tranm"
+        ],
+        "08207_face08": [
+          "pm1120_13_00_08207_face08.tracm",
+          "pm1120_13_00_08207_face08.tranm"
+        ],
+        "08208_face09": [
+          "pm1120_13_00_08208_face09.tracm",
+          "pm1120_13_00_08208_face09.tranm"
+        ],
+        "08209_face10": [
+          "pm1120_13_00_08209_face10.tracm",
+          "pm1120_13_00_08209_face10.tranm"
+        ]
+      },
+      "icon": "icon/pm1120_13_00_02_big.png"
     },
     {
       "id": "pm1120_13_99",
       "formIndex": 13,
       "variantIndex": 99,
-      "icon": "icon/pm1120_13_99_02_big.png",
-      "animations": {}
+      "animations": {
+        "08330_battle_loop01_loop": [
+          "pm1120_13_99_08330_battle_loop01_loop.tracm",
+          "pm1120_13_99_08330_battle_loop01_loop.tranm"
+        ],
+        "08331_loop02_loop": [
+          "pm1120_13_99_08331_loop02_loop.tracm",
+          "pm1120_13_99_08331_loop02_loop.tranm"
+        ],
+        "08500_damage01": [
+          "pm1120_13_99_08500_damage01.tranm"
+        ]
+      },
+      "icon": "icon/pm1120_13_99_02_big.png"
     },
     {
       "id": "pm1120_14_00",
       "formIndex": 14,
       "variantIndex": 0,
-      "icon": "icon/pm1120_14_00_03_big.png",
-      "animations": {}
+      "animations": {
+        "00000_defaultwait01_loop": [
+          "pm1120_14_00_00000_defaultwait01_loop.tracm",
+          "pm1120_14_00_00000_defaultwait01_loop.tranm"
+        ],
+        "00001_battlewait01_loop": [
+          "pm1120_14_00_00001_battlewait01_loop.tracm",
+          "pm1120_14_00_00001_battlewait01_loop.tranm"
+        ],
+        "00010_defaultidle01": [
+          "pm1120_14_00_00010_defaultidle01.tracm",
+          "pm1120_14_00_00010_defaultidle01.tranm"
+        ],
+        "00011_defaultidle02": [
+          "pm1120_14_00_00011_defaultidle02.tracm",
+          "pm1120_14_00_00011_defaultidle02.tranm"
+        ],
+        "00021_turn_r090": [
+          "pm1120_14_00_00021_turn_r090.tracm",
+          "pm1120_14_00_00021_turn_r090.tranm"
+        ],
+        "00024_turn_l090": [
+          "pm1120_14_00_00024_turn_l090.tracm",
+          "pm1120_14_00_00024_turn_l090.tranm"
+        ],
+        "00030_walk01_loop": [
+          "pm1120_14_00_00030_walk01_loop.tracm",
+          "pm1120_14_00_00030_walk01_loop.tranm"
+        ],
+        "00100_run01_loop": [
+          "pm1120_14_00_00100_run01_loop.tracm",
+          "pm1120_14_00_00100_run01_loop.tranm"
+        ],
+        "00145_stepout01_start": [
+          "pm1120_14_00_00145_stepout01_start.tracm",
+          "pm1120_14_00_00145_stepout01_start.tranm"
+        ],
+        "00146_stepout01": [
+          "pm1120_14_00_00146_stepout01.tracm",
+          "pm1120_14_00_00146_stepout01.tranm"
+        ],
+        "00147_stepout01_end": [
+          "pm1120_14_00_00147_stepout01_end.tracm",
+          "pm1120_14_00_00147_stepout01_end.tranm"
+        ],
+        "00150_jumpup01_start": [
+          "pm1120_14_00_00150_jumpup01_start.tracm",
+          "pm1120_14_00_00150_jumpup01_start.tranm"
+        ],
+        "00151_jumpup01_loop": [
+          "pm1120_14_00_00151_jumpup01_loop.tracm",
+          "pm1120_14_00_00151_jumpup01_loop.tranm"
+        ],
+        "00152_jumpdown01_start": [
+          "pm1120_14_00_00152_jumpdown01_start.tracm",
+          "pm1120_14_00_00152_jumpdown01_start.tranm"
+        ],
+        "00153_jumpdown01_loop": [
+          "pm1120_14_00_00153_jumpdown01_loop.tracm",
+          "pm1120_14_00_00153_jumpdown01_loop.tranm"
+        ],
+        "00155_land02": [
+          "pm1120_14_00_00155_land02.tracm",
+          "pm1120_14_00_00155_land02.tranm"
+        ],
+        "00270_rest01_start": [
+          "pm1120_14_00_00270_rest01_start.tracm",
+          "pm1120_14_00_00270_rest01_start.tranm"
+        ],
+        "00271_rest01_loop": [
+          "pm1120_14_00_00271_rest01_loop.tracm",
+          "pm1120_14_00_00271_rest01_loop.tranm"
+        ],
+        "00272_rest01_end": [
+          "pm1120_14_00_00272_rest01_end.tracm",
+          "pm1120_14_00_00272_rest01_end.tranm"
+        ],
+        "00280_sleep01_start": [
+          "pm1120_14_00_00280_sleep01_start.tracm",
+          "pm1120_14_00_00280_sleep01_start.tranm"
+        ],
+        "00281_sleep01_loop": [
+          "pm1120_14_00_00281_sleep01_loop.tracm",
+          "pm1120_14_00_00281_sleep01_loop.tranm"
+        ],
+        "00282_sleep01_end": [
+          "pm1120_14_00_00282_sleep01_end.tracm",
+          "pm1120_14_00_00282_sleep01_end.tranm"
+        ],
+        "00290_eat01_start": [
+          "pm1120_14_00_00290_eat01_start.tracm",
+          "pm1120_14_00_00290_eat01_start.tranm"
+        ],
+        "00291_eat01_loop": [
+          "pm1120_14_00_00291_eat01_loop.tracm",
+          "pm1120_14_00_00291_eat01_loop.tranm"
+        ],
+        "00292_eat01_end": [
+          "pm1120_14_00_00292_eat01_end.tracm",
+          "pm1120_14_00_00292_eat01_end.tranm"
+        ],
+        "00293_eat02_start": [
+          "pm1120_14_00_00293_eat02_start.tracm",
+          "pm1120_14_00_00293_eat02_start.tranm"
+        ],
+        "00294_eat02_loop": [
+          "pm1120_14_00_00294_eat02_loop.tracm",
+          "pm1120_14_00_00294_eat02_loop.tranm"
+        ],
+        "00295_eat02_end": [
+          "pm1120_14_00_00295_eat02_end.tracm",
+          "pm1120_14_00_00295_eat02_end.tranm"
+        ],
+        "00300_roar01": [
+          "pm1120_14_00_00300_roar01.tracm",
+          "pm1120_14_00_00300_roar01.tranm"
+        ],
+        "00310_getpass01_start": [
+          "pm1120_14_00_00310_getpass01_start.tracm",
+          "pm1120_14_00_00310_getpass01_start.tranm"
+        ],
+        "00311_getpass01_loop": [
+          "pm1120_14_00_00311_getpass01_loop.tracm",
+          "pm1120_14_00_00311_getpass01_loop.tranm"
+        ],
+        "00312_getpass01_end": [
+          "pm1120_14_00_00312_getpass01_end.tracm",
+          "pm1120_14_00_00312_getpass01_end.tranm"
+        ],
+        "00320_refresh01": [
+          "pm1120_14_00_00320_refresh01.tracm",
+          "pm1120_14_00_00320_refresh01.tranm"
+        ],
+        "00400_attack01": [
+          "pm1120_14_00_00400_attack01.tracm",
+          "pm1120_14_00_00400_attack01.tranm"
+        ],
+        "00410_attack02": [
+          "pm1120_14_00_00410_attack02.tracm",
+          "pm1120_14_00_00410_attack02.tranm"
+        ],
+        "00450_rangeattack01": [
+          "pm1120_14_00_00450_rangeattack01.tracm",
+          "pm1120_14_00_00450_rangeattack01.tranm"
+        ],
+        "00460_rangeattack02_start": [
+          "pm1120_14_00_00460_rangeattack02_start.tracm",
+          "pm1120_14_00_00460_rangeattack02_start.tranm"
+        ],
+        "00461_rangeattack02_loop": [
+          "pm1120_14_00_00461_rangeattack02_loop.tracm",
+          "pm1120_14_00_00461_rangeattack02_loop.tranm"
+        ],
+        "00462_rangeattack02_end": [
+          "pm1120_14_00_00462_rangeattack02_end.tracm",
+          "pm1120_14_00_00462_rangeattack02_end.tranm"
+        ],
+        "00500_damage01": [
+          "pm1120_14_00_00500_damage01.tracm",
+          "pm1120_14_00_00500_damage01.tranm"
+        ],
+        "00501_damage02": [
+          "pm1120_14_00_00501_damage02.tracm",
+          "pm1120_14_00_00501_damage02.tranm"
+        ],
+        "00510_stun01_start": [
+          "pm1120_14_00_00510_stun01_start.tracm",
+          "pm1120_14_00_00510_stun01_start.tranm"
+        ],
+        "00511_stun01_loop": [
+          "pm1120_14_00_00511_stun01_loop.tracm",
+          "pm1120_14_00_00511_stun01_loop.tranm"
+        ],
+        "00512_stun01_end": [
+          "pm1120_14_00_00512_stun01_end.tracm",
+          "pm1120_14_00_00512_stun01_end.tranm"
+        ],
+        "00520_down01_start": [
+          "pm1120_14_00_00520_down01_start.tracm",
+          "pm1120_14_00_00520_down01_start.tranm"
+        ],
+        "00521_down01_loop": [
+          "pm1120_14_00_00521_down01_loop.tracm",
+          "pm1120_14_00_00521_down01_loop.tranm"
+        ],
+        "00522_down01_end": [
+          "pm1120_14_00_00522_down01_end.tracm",
+          "pm1120_14_00_00522_down01_end.tranm"
+        ],
+        "00550_glad01": [
+          "pm1120_14_00_00550_glad01.tracm",
+          "pm1120_14_00_00550_glad01.tranm"
+        ],
+        "00560_notice01": [
+          "pm1120_14_00_00560_notice01.tracm",
+          "pm1120_14_00_00560_notice01.tranm"
+        ],
+        "00563_hate01": [
+          "pm1120_14_00_00563_hate01.tracm",
+          "pm1120_14_00_00563_hate01.tranm"
+        ],
+        "00571_yes01": [
+          "pm1120_14_00_00571_yes01.tracm",
+          "pm1120_14_00_00571_yes01.tranm"
+        ],
+        "00572_no01": [
+          "pm1120_14_00_00572_no01.tracm",
+          "pm1120_14_00_00572_no01.tranm"
+        ],
+        "00580_sad01_start": [
+          "pm1120_14_00_00580_sad01_start.tracm",
+          "pm1120_14_00_00580_sad01_start.tranm"
+        ],
+        "00581_sad01_loop": [
+          "pm1120_14_00_00581_sad01_loop.tracm",
+          "pm1120_14_00_00581_sad01_loop.tranm"
+        ],
+        "00582_sad01_end": [
+          "pm1120_14_00_00582_sad01_end.tracm",
+          "pm1120_14_00_00582_sad01_end.tranm"
+        ],
+        "00583_fear01_start": [
+          "pm1120_14_00_00583_fear01_start.tracm",
+          "pm1120_14_00_00583_fear01_start.tranm"
+        ],
+        "00584_fear01_loop": [
+          "pm1120_14_00_00584_fear01_loop.tracm",
+          "pm1120_14_00_00584_fear01_loop.tranm"
+        ],
+        "00585_fear01_end": [
+          "pm1120_14_00_00585_fear01_end.tracm",
+          "pm1120_14_00_00585_fear01_end.tranm"
+        ],
+        "00586_cheer01_start": [
+          "pm1120_14_00_00586_cheer01_start.tracm",
+          "pm1120_14_00_00586_cheer01_start.tranm"
+        ],
+        "00587_cheer01_loop": [
+          "pm1120_14_00_00587_cheer01_loop.tracm",
+          "pm1120_14_00_00587_cheer01_loop.tranm"
+        ],
+        "00588_cheer01_end": [
+          "pm1120_14_00_00588_cheer01_end.tracm",
+          "pm1120_14_00_00588_cheer01_end.tranm"
+        ],
+        "00600_lookaround02_start": [
+          "pm1120_14_00_00600_lookaround02_start.tracm",
+          "pm1120_14_00_00600_lookaround02_start.tranm"
+        ],
+        "00601_lookaround02_loop": [
+          "pm1120_14_00_00601_lookaround02_loop.tracm",
+          "pm1120_14_00_00601_lookaround02_loop.tranm"
+        ],
+        "00602_lookaround02_end": [
+          "pm1120_14_00_00602_lookaround02_end.tracm",
+          "pm1120_14_00_00602_lookaround02_end.tranm"
+        ],
+        "00603_happy01_start": [
+          "pm1120_14_00_00603_happy01_start.tracm",
+          "pm1120_14_00_00603_happy01_start.tranm"
+        ],
+        "00604_happy01_loop": [
+          "pm1120_14_00_00604_happy01_loop.tracm",
+          "pm1120_14_00_00604_happy01_loop.tranm"
+        ],
+        "00605_happy01_end": [
+          "pm1120_14_00_00605_happy01_end.tracm",
+          "pm1120_14_00_00605_happy01_end.tranm"
+        ],
+        "00606_angry01_start": [
+          "pm1120_14_00_00606_angry01_start.tracm",
+          "pm1120_14_00_00606_angry01_start.tranm"
+        ],
+        "00607_angry01_loop": [
+          "pm1120_14_00_00607_angry01_loop.tracm",
+          "pm1120_14_00_00607_angry01_loop.tranm"
+        ],
+        "00608_angry01_end": [
+          "pm1120_14_00_00608_angry01_end.tracm",
+          "pm1120_14_00_00608_angry01_end.tranm"
+        ],
+        "00630_directionattack01": [
+          "pm1120_14_00_00630_directionattack01.tracm",
+          "pm1120_14_00_00630_directionattack01.tranm"
+        ],
+        "00800_merge_default_battle01": [
+          "pm1120_14_00_00800_merge_default_battle01.tracm",
+          "pm1120_14_00_00800_merge_default_battle01.tranm"
+        ],
+        "00810_merge_battle_default01": [
+          "pm1120_14_00_00810_merge_battle_default01.tracm",
+          "pm1120_14_00_00810_merge_battle_default01.tranm"
+        ],
+        "00820_merge_battle_battle01": [
+          "pm1120_14_00_00820_merge_battle_battle01.tracm",
+          "pm1120_14_00_00820_merge_battle_battle01.tranm"
+        ],
+        "00821_merge_default_default01": [
+          "pm1120_14_00_00821_merge_default_default01.tracm",
+          "pm1120_14_00_00821_merge_default_default01.tranm"
+        ],
+        "00822_merge_default_default02": [
+          "pm1120_14_00_00822_merge_default_default02.tracm",
+          "pm1120_14_00_00822_merge_default_default02.tranm"
+        ],
+        "05100_mopey01_loop": [
+          "pm1120_14_00_05100_mopey01_loop.tracm",
+          "pm1120_14_00_05100_mopey01_loop.tranm"
+        ],
+        "05101_mopey01_end": [
+          "pm1120_14_00_05101_mopey01_end.tracm",
+          "pm1120_14_00_05101_mopey01_end.tranm"
+        ],
+        "08000_eye01": [
+          "pm1120_14_00_08000_eye01.tracm",
+          "pm1120_14_00_08000_eye01.tranm"
+        ],
+        "08100_mouth01": [
+          "pm1120_14_00_08100_mouth01.tracm",
+          "pm1120_14_00_08100_mouth01.tranm"
+        ],
+        "08200_face01": [
+          "pm1120_14_00_08200_face01.tracm",
+          "pm1120_14_00_08200_face01.tranm"
+        ],
+        "08200_loop01_start": [
+          "pm1120_14_00_08200_loop01_start.tracm",
+          "pm1120_14_00_08200_loop01_start.tranm"
+        ],
+        "08201_face02": [
+          "pm1120_14_00_08201_face02.tracm",
+          "pm1120_14_00_08201_face02.tranm"
+        ],
+        "08201_loop01_loop": [
+          "pm1120_14_00_08201_loop01_loop.tracm",
+          "pm1120_14_00_08201_loop01_loop.tranm"
+        ],
+        "08202_face03": [
+          "pm1120_14_00_08202_face03.tracm",
+          "pm1120_14_00_08202_face03.tranm"
+        ],
+        "08202_loop01_end": [
+          "pm1120_14_00_08202_loop01_end.tracm",
+          "pm1120_14_00_08202_loop01_end.tranm"
+        ],
+        "08203_face04": [
+          "pm1120_14_00_08203_face04.tracm",
+          "pm1120_14_00_08203_face04.tranm"
+        ],
+        "08204_face05": [
+          "pm1120_14_00_08204_face05.tracm",
+          "pm1120_14_00_08204_face05.tranm"
+        ],
+        "08205_face06": [
+          "pm1120_14_00_08205_face06.tracm",
+          "pm1120_14_00_08205_face06.tranm"
+        ],
+        "08206_face07": [
+          "pm1120_14_00_08206_face07.tracm",
+          "pm1120_14_00_08206_face07.tranm"
+        ],
+        "08207_face08": [
+          "pm1120_14_00_08207_face08.tracm",
+          "pm1120_14_00_08207_face08.tranm"
+        ],
+        "08208_face09": [
+          "pm1120_14_00_08208_face09.tracm",
+          "pm1120_14_00_08208_face09.tranm"
+        ],
+        "08209_face10": [
+          "pm1120_14_00_08209_face10.tracm",
+          "pm1120_14_00_08209_face10.tranm"
+        ]
+      },
+      "icon": "icon/pm1120_14_00_03_big.png"
     },
     {
       "id": "pm1120_14_99",
       "formIndex": 14,
       "variantIndex": 99,
-      "icon": "icon/pm1120_14_99_03_big.png",
-      "animations": {}
+      "animations": {
+        "08330_battle_loop01_loop": [
+          "pm1120_14_99_08330_battle_loop01_loop.tracm",
+          "pm1120_14_99_08330_battle_loop01_loop.tranm"
+        ],
+        "08331_loop02_loop": [
+          "pm1120_14_99_08331_loop02_loop.tracm",
+          "pm1120_14_99_08331_loop02_loop.tranm"
+        ],
+        "08500_damage01": [
+          "pm1120_14_99_08500_damage01.tranm"
+        ]
+      },
+      "icon": "icon/pm1120_14_99_03_big.png"
     },
     {
       "id": "pm1120_15_00",
       "formIndex": 15,
       "variantIndex": 0,
-      "icon": "icon/pm1120_11_00_00_big.png",
-      "animations": {}
+      "animations": {},
+      "icon": "icon/pm1120_11_00_00_big.png"
     },
     {
       "id": "pm1120_16_00",
       "formIndex": 16,
       "variantIndex": 0,
-      "icon": "icon/pm1120_12_00_01_big.png",
-      "animations": {}
+      "animations": {},
+      "icon": "icon/pm1120_12_00_01_big.png"
     },
     {
       "id": "pm1120_17_00",
       "formIndex": 17,
       "variantIndex": 0,
-      "icon": "icon/pm1120_13_00_02_big.png",
-      "animations": {}
+      "animations": {},
+      "icon": "icon/pm1120_13_00_02_big.png"
     },
     {
       "id": "pm1120_18_00",
       "formIndex": 18,
       "variantIndex": 0,
-      "icon": "icon/pm1120_14_00_03_big.png",
-      "animations": {}
+      "animations": {},
+      "icon": "icon/pm1120_14_00_03_big.png"
     }
   ]
 }

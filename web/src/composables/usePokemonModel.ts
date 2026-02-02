@@ -24,7 +24,7 @@ export function usePokemonModel() {
    * 加载宝可梦模型
    * 
    * @param formId - 形态 ID，如 'pm0001_00_00'
-   * @param game - 游戏类型，'SCVI' 或 'LZA'
+   * @param game - 游戏类型，'SCVI'、'LZA' 或 'LA'
    * @returns Promise<Model | null> 加载的模型实例，失败返回 null
    */
   async function load(formId: string, game: Game): Promise<Model | null> {
@@ -38,8 +38,10 @@ export function usePokemonModel() {
     }
 
     const pokemonId = getPokemonIdFromFormId(formId)
-    const fileBasePath = `/${game}/${pokemonId}/${formId}/${formId}`
-    const basePath = `/${game}/${pokemonId}/${formId}/`
+    // LA 风格的模型文件在 mdl 子目录下
+    const modelSubPath = game === 'LA' ? '/mdl' : ''
+    const fileBasePath = `/${game}/${pokemonId}/${formId}${modelSubPath}/${formId}`
+    const basePath = `/${game}/${pokemonId}/${formId}${modelSubPath}/`
 
     const loadFile = async (path: string): Promise<ArrayBuffer> => {
       try {

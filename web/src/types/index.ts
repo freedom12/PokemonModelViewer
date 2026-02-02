@@ -1,2 +1,2 @@
 
-export type Game = 'SCVI' | 'LZA';
+export type Game = 'SCVI' | 'LZA' | 'LA';

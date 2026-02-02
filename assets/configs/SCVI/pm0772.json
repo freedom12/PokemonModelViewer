@@ -6,8 +6,181 @@
       "id": "pm0772_00_00",
       "formIndex": 0,
       "variantIndex": 0,
-      "icon": "icon/pm0772_00_00_00_big.png",
-      "animations": {}
+      "animations": {
+        "20000_defaultwait01_loop": [
+          "pm0772_00_00_20000_defaultwait01_loop.tracm",
+          "pm0772_00_00_20000_defaultwait01_loop.tranm"
+        ],
+        "20001_battlewait01_loop": [
+          "pm0772_00_00_20001_battlewait01_loop.tracm",
+          "pm0772_00_00_20001_battlewait01_loop.tranm"
+        ],
+        "20010_defaultidle01": [
+          "pm0772_00_00_20010_defaultidle01.tracm",
+          "pm0772_00_00_20010_defaultidle01.tranm"
+        ],
+        "20011_defaultidle02": [
+          "pm0772_00_00_20011_defaultidle02.tracm",
+          "pm0772_00_00_20011_defaultidle02.tranm"
+        ],
+        "20021_turn_r090": [
+          "pm0772_00_00_20021_turn_r090.tracm",
+          "pm0772_00_00_20021_turn_r090.tranm"
+        ],
+        "20024_turn_l090": [
+          "pm0772_00_00_20024_turn_l090.tracm",
+          "pm0772_00_00_20024_turn_l090.tranm"
+        ],
+        "20030_walk01_loop": [
+          "pm0772_00_00_20030_walk01_loop.tracm",
+          "pm0772_00_00_20030_walk01_loop.tranm"
+        ],
+        "20100_run01_loop": [
+          "pm0772_00_00_20100_run01_loop.tracm",
+          "pm0772_00_00_20100_run01_loop.tranm"
+        ],
+        "20145_stepout01_start": [
+          "pm0772_00_00_20145_stepout01_start.tracm",
+          "pm0772_00_00_20145_stepout01_start.tranm"
+        ],
+        "20146_stepout01": [
+          "pm0772_00_00_20146_stepout01.tracm",
+          "pm0772_00_00_20146_stepout01.tranm"
+        ],
+        "20147_stepout01_end": [
+          "pm0772_00_00_20147_stepout01_end.tracm",
+          "pm0772_00_00_20147_stepout01_end.tranm"
+        ],
+        "20150_jumpup01_start": [
+          "pm0772_00_00_20150_jumpup01_start.tracm",
+          "pm0772_00_00_20150_jumpup01_start.tranm"
+        ],
+        "20151_jumpup01_loop": [
+          "pm0772_00_00_20151_jumpup01_loop.tracm",
+          "pm0772_00_00_20151_jumpup01_loop.tranm"
+        ],
+        "20152_jumpdown01_start": [
+          "pm0772_00_00_20152_jumpdown01_start.tracm",
+          "pm0772_00_00_20152_jumpdown01_start.tranm"
+        ],
+        "20153_jumpdown01_loop": [
+          "pm0772_00_00_20153_jumpdown01_loop.tracm",
+          "pm0772_00_00_20153_jumpdown01_loop.tranm"
+        ],
+        "20155_land02": [
+          "pm0772_00_00_20155_land02.tracm",
+          "pm0772_00_00_20155_land02.tranm"
+        ],
+        "20280_sleep01_start": [
+          "pm0772_00_00_20280_sleep01_start.tracm",
+          "pm0772_00_00_20280_sleep01_start.tranm"
+        ],
+        "20281_sleep01_loop": [
+          "pm0772_00_00_20281_sleep01_loop.tracm",
+          "pm0772_00_00_20281_sleep01_loop.tranm"
+        ],
+        "20282_sleep01_end": [
+          "pm0772_00_00_20282_sleep01_end.tracm",
+          "pm0772_00_00_20282_sleep01_end.tranm"
+        ],
+        "20290_eat01_start": [
+          "pm0772_00_00_20290_eat01_start.tracm",
+          "pm0772_00_00_20290_eat01_start.tranm"
+        ],
+        "20291_eat01_loop": [
+          "pm0772_00_00_20291_eat01_loop.tracm",
+          "pm0772_00_00_20291_eat01_loop.tranm"
+        ],
+        "20292_eat01_end": [
+          "pm0772_00_00_20292_eat01_end.tracm",
+          "pm0772_00_00_20292_eat01_end.tranm"
+        ],
+        "20300_roar01": [
+          "pm0772_00_00_20300_roar01.tracm",
+          "pm0772_00_00_20300_roar01.tranm"
+        ],
+        "20320_refresh01": [
+          "pm0772_00_00_20320_refresh01.tracm",
+          "pm0772_00_00_20320_refresh01.tranm"
+        ],
+        "20400_attack01": [
+          "pm0772_00_00_20400_attack01.tracm",
+          "pm0772_00_00_20400_attack01.tranm"
+        ],
+        "20410_attack02": [
+          "pm0772_00_00_20410_attack02.tracm",
+          "pm0772_00_00_20410_attack02.tranm"
+        ],
+        "20450_rangeattack01": [
+          "pm0772_00_00_20450_rangeattack01.tracm",
+          "pm0772_00_00_20450_rangeattack01.tranm"
+        ],
+        "20460_rangeattack02_start": [
+          "pm0772_00_00_20460_rangeattack02_start.tracm",
+          "pm0772_00_00_20460_rangeattack02_start.tranm"
+        ],
+        "20461_rangeattack02_loop": [
+          "pm0772_00_00_20461_rangeattack02_loop.tracm",
+          "pm0772_00_00_20461_rangeattack02_loop.tranm"
+        ],
+        "20462_rangeattack02_end": [
+          "pm0772_00_00_20462_rangeattack02_end.tracm",
+          "pm0772_00_00_20462_rangeattack02_end.tranm"
+        ],
+        "20500_damage01": [
+          "pm0772_00_00_20500_damage01.tracm",
+          "pm0772_00_00_20500_damage01.tranm"
+        ],
+        "20501_damage02": [
+          "pm0772_00_00_20501_damage02.tracm",
+          "pm0772_00_00_20501_damage02.tranm"
+        ],
+        "20510_stun01_start": [
+          "pm0772_00_00_20510_stun01_start.tracm",
+          "pm0772_00_00_20510_stun01_start.tranm"
+        ],
+        "20511_stun01_loop": [
+          "pm0772_00_00_20511_stun01_loop.tracm",
+          "pm0772_00_00_20511_stun01_loop.tranm"
+        ],
+        "20512_stun01_end": [
+          "pm0772_00_00_20512_stun01_end.tracm",
+          "pm0772_00_00_20512_stun01_end.tranm"
+        ],
+        "20520_down01_start": [
+          "pm0772_00_00_20520_down01_start.tracm",
+          "pm0772_00_00_20520_down01_start.tranm"
+        ],
+        "20521_down01_loop": [
+          "pm0772_00_00_20521_down01_loop.tracm",
+          "pm0772_00_00_20521_down01_loop.tranm"
+        ],
+        "20522_down01_end": [
+          "pm0772_00_00_20522_down01_end.tracm",
+          "pm0772_00_00_20522_down01_end.tranm"
+        ],
+        "20550_glad01": [
+          "pm0772_00_00_20550_glad01.tracm",
+          "pm0772_00_00_20550_glad01.tranm"
+        ],
+        "20560_notice01": [
+          "pm0772_00_00_20560_notice01.tracm",
+          "pm0772_00_00_20560_notice01.tranm"
+        ],
+        "20563_hate01": [
+          "pm0772_00_00_20563_hate01.tracm",
+          "pm0772_00_00_20563_hate01.tranm"
+        ],
+        "28000_eye01": [
+          "pm0772_00_00_28000_eye01.tracm",
+          "pm0772_00_00_28000_eye01.tranm"
+        ],
+        "28100_mouth01": [
+          "pm0772_00_00_28100_mouth01.tracm",
+          "pm0772_00_00_28100_mouth01.tranm"
+        ]
+      },
+      "icon": "icon/pm0772_00_00_00_big.png"
     }
   ]
 }

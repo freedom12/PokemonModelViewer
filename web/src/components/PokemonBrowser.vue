@@ -55,6 +55,11 @@ const emit = defineEmits<{
   selectGame: [game: Game];
 }>();
 
+const games: [Game, string][] = [
+  ["SCVI", "朱紫"],
+  ["LA", "传说：阿尔宙斯"],
+  ["LZA", "传说：Z-A"],
+];
 // 当前选择的目录
 const currentGame = ref<Game>(props.selectedGame);
 
@@ -208,30 +213,23 @@ watch(
   <div class="pokemon-browser">
     <!-- 头部区域 -->
     <div class="browser-header">
-      <h2 class="browser-title">
-        宝可梦图鉴
-      </h2>
+      <h2 class="browser-title">宝可梦图鉴</h2>
       <el-select
         v-model="currentGame"
         class="directory-selector"
         size="small"
       >
         <el-option
-          value="SCVI"
-          label="SCVI"
-        />
-        <el-option
-          value="LZA"
-          label="LZA"
+          v-for="[value, label] in games"
+          :key="value"
+          :value="value"
+          :label="label"
         />
       </el-select>
     </div>
 
     <!-- 列表加载状态 -->
-    <div
-      v-if="pokemons.length === 0"
-      class="list-loading"
-    >
+    <div v-if="pokemons.length === 0" class="list-loading">
       <el-icon class="is-loading">
         <Loading />
       </el-icon>
@@ -240,15 +238,8 @@ watch(
 
     <!-- 错误提示 - 使用 ErrorDisplay 组件 -->
     <!-- @validates 需求 8.4: 网络请求失败时显示重试选项 -->
-    <div
-      v-else-if="error"
-      class="error-wrapper"
-    >
-      <ErrorDisplay
-        :error="error"
-        title="列表加载失败"
-        @retry="handleRetry"
-      />
+    <div v-else-if="error" class="error-wrapper">
+      <ErrorDisplay :error="error" title="列表加载失败" @retry="handleRetry" />
     </div>
 
     <!-- 宝可梦列表 -->
@@ -271,7 +262,7 @@ watch(
               :alt="`Pokemon ${pokemon.index} Icon`"
               loading="lazy"
               @error="handleThumbnailError"
-            >
+            />
           </div>
 
           <!-- 右侧信息 -->

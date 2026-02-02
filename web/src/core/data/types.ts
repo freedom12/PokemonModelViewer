@@ -273,4 +273,4 @@ export interface MaterialOptions {
 /**
  * 支持的游戏类型
  */
-export type Game = 'SCVI' | 'LZA';
+export type Game = 'SCVI' | 'LZA' | 'LA';
