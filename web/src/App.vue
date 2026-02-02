@@ -144,18 +144,11 @@ function handleError(error: string | null): void {
     <aside class="browser-panel">
       <!-- 资源模式切换开关 -->
       <div class="resource-mode-toggle">
-        <label class="toggle-label">
-          <input
-            type="checkbox"
-            :checked="useRemoteAssets"
-            @change="
-              handleResourceModeChange(
-                ($event.target as HTMLInputElement).checked,
-              )
-            "
-          />
-          使用远程资源
-        </label>
+        <el-switch
+          v-model="useRemoteAssets"
+          active-text="使用远程资源"
+          @change="handleResourceModeChange"
+        />
       </div>
 
       <PokemonBrowser
@@ -208,19 +201,17 @@ function handleError(error: string | null): void {
   padding: 10px;
   border-bottom: 1px solid #0f3460;
   background-color: #16213e;
-}
-
-.toggle-label {
   display: flex;
   align-items: center;
-  gap: 8px;
-  color: #e94560;
-  font-size: 14px;
-  cursor: pointer;
+  justify-content: center;
 }
 
-.toggle-label input[type="checkbox"] {
-  margin: 0;
+.resource-mode-toggle :deep(.el-switch__label) {
+  color: #e94560;
+}
+
+.resource-mode-toggle :deep(.el-switch__label.is-active) {
+  color: #e94560;
 }
 
 /* 右侧查看器面板 - 填充剩余空间 */

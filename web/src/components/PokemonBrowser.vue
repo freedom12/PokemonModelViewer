@@ -18,11 +18,12 @@
  * @validates 需求 8.5: 发生错误时在控制台记录详细错误信息用于调试
  */
 import { ref, watch, Ref } from "vue";
+import { Loading } from '@element-plus/icons-vue';
 import ErrorDisplay from "./ErrorDisplay.vue";
 import { PokemonModel } from "../models";
 import { usePokemonDatas } from "../composables/usePokemonDatas";
 import { Game } from "../types";
-import { RecycleScroller } from 'vue-virtual-scroller'
+import { RecycleScroller } from 'vue-virtual-scroller';
 
 /**
  * Props 定义
@@ -97,23 +98,14 @@ async function handlePokemonClick(pokemon: PokemonModel): Promise<void> {
 
 /**
  * 处理形态选择变化（针对每个条目的选择器）
- * @param event - 选择事件
+ * @param value - 选中的值
  * @param pokemon - 对应的宝可梦
  * @validates 需求 6.5: 用户选择不同形态时切换显示对应形态的模型
  */
-function handleFormChangeForItem(event: Event, pokemon: PokemonModel): void {
-  const forms = pokemon.getFromResourceIds(currentGame.value);
-  if (forms.length === 0) {
-    return;
-  }
-  const target = event.target as HTMLSelectElement;
-  const formStr = target.value;
-  const parts = formStr.split(',').map(Number);
-  const selectedForm = [parts[0], parts[1]] as [number, number];
-
+function handleFormChangeForItem(value: [number, number], pokemon: PokemonModel): void {
   currentPokemon.value = pokemon;
-  currentForm.value = selectedForm;
-  emit("selectPokemon", pokemon, selectedForm);
+  currentForm.value = value;
+  emit("selectPokemon", pokemon, value);
 }
 
 // 监听 props 变化，同步内部状态
@@ -211,15 +203,17 @@ watch(currentGame, async (newGame, oldGame) => {
     <!-- 头部区域 -->
     <div class="browser-header">
       <h2 class="browser-title">宝可梦图鉴</h2>
-      <select v-model="currentGame" class="directory-selector">
-        <option value="SCVI">SCVI</option>
-        <option value="LZA">LZA</option>
-      </select>
+      <el-select v-model="currentGame" class="directory-selector" size="small">
+        <el-option value="SCVI" label="SCVI" />
+        <el-option value="LZA" label="LZA" />
+      </el-select>
     </div>
 
     <!-- 列表加载状态 -->
     <div v-if="pokemons.length === 0" class="list-loading">
-      <div class="spinner"></div>
+      <el-icon class="is-loading">
+        <Loading />
+      </el-icon>
       <span>加载宝可梦列表...</span>
     </div>
 
@@ -264,24 +258,24 @@ watch(currentGame, async (newGame, oldGame) => {
               v-if="pokemon.getFromResourceIds(currentGame).length > 1"
               class="pokemon-form-selector"
             >
-              <select
-                :value="
+              <el-select
+                :model-value="
                   currentPokemon?.index === pokemon.index
                     ? currentForm
                     : pokemon.getFromResourceIds(currentGame)[0]
                 "
                 class="form-select"
+                size="small"
                 @change="handleFormChangeForItem($event, pokemon)"
                 @click.stop
               >
-                <option
+                <el-option
                   v-for="form in pokemon.getFromResourceIds(currentGame)"
                   :key="`${form[0]}-${form[1]}`"
                   :value="form"
-                >
-                  {{ formatFormName(pokemon, form) }}
-                </option>
-              </select>
+                  :label="formatFormName(pokemon, form)"
+                />
+              </el-select>
             </div>
           </div>
         </div>
@@ -319,49 +313,20 @@ watch(currentGame, async (newGame, oldGame) => {
 }
 
 .directory-selector {
-  padding: 4px 8px;
-  font-size: 0.875rem;
+  width: 100px;
+}
+
+.directory-selector :deep(.el-input__wrapper) {
   background-color: #1a1a2e;
+  box-shadow: 0 0 0 1px #333 inset;
+}
+
+.directory-selector :deep(.el-input__wrapper:hover) {
+  box-shadow: 0 0 0 1px #e94560 inset;
+}
+
+.directory-selector :deep(.el-input__inner) {
   color: #fff;
-  border: 1px solid #333;
-  border-radius: 4px;
-  cursor: pointer;
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.directory-selector:hover,
-.directory-selector:focus {
-  border-color: #e94560;
-}
-
-/* 形态选择器 */
-.form-selector {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.form-label {
-  font-size: 0.875rem;
-  color: #a0a0a0;
-}
-
-.form-select {
-  padding: 6px 12px;
-  font-size: 0.875rem;
-  background-color: #0f3460;
-  color: #fff;
-  border: 1px solid #1a1a2e;
-  border-radius: 4px;
-  cursor: pointer;
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.form-select:hover,
-.form-select:focus {
-  border-color: #e94560;
 }
 
 /* 列表加载状态 */
@@ -373,21 +338,11 @@ watch(currentGame, async (newGame, oldGame) => {
   padding: 48px;
   gap: 16px;
   color: #a0a0a0;
+  font-size: 16px;
 }
 
-.spinner {
-  width: 32px;
-  height: 32px;
-  border: 3px solid #0f3460;
-  border-top-color: #e94560;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+.list-loading .el-icon {
+  font-size: 32px;
 }
 
 /* 错误提示包装器 */
@@ -450,28 +405,6 @@ watch(currentGame, async (newGame, oldGame) => {
   image-rendering: pixelated;
 }
 
-.pokemon-icon-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #0f3460;
-  border-radius: 4px;
-  color: #666;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.loading-spinner {
-  width: 20px;
-  height: 20px;
-  border: 2px solid #0f3460;
-  border-top-color: #e94560;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
 /* 右侧信息 */
 .pokemon-info {
   flex: 1;
@@ -497,20 +430,22 @@ watch(currentGame, async (newGame, oldGame) => {
 }
 
 .pokemon-form-selector .form-select {
-  padding: 4px 8px;
-  font-size: 0.75rem;
-  background-color: #0f3460;
-  color: #fff;
-  border: 1px solid #1a1a2e;
-  border-radius: 4px;
-  cursor: pointer;
-  outline: none;
-  transition: border-color 0.2s;
+  width: 100%;
 }
 
-.pokemon-form-selector .form-select:hover,
-.pokemon-form-selector .form-select:focus {
-  border-color: #e94560;
+.pokemon-form-selector :deep(.el-input__wrapper) {
+  background-color: #0f3460;
+  box-shadow: 0 0 0 1px #1a1a2e inset;
+  padding: 0 8px;
+}
+
+.pokemon-form-selector :deep(.el-input__wrapper:hover) {
+  box-shadow: 0 0 0 1px #e94560 inset;
+}
+
+.pokemon-form-selector :deep(.el-input__inner) {
+  color: #fff;
+  font-size: 12px;
 }
 
 /* 滚动条样式 */

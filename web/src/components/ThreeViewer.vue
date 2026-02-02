@@ -17,6 +17,7 @@
  * @validates 需求 8.5: 发生错误时在控制台记录详细错误信息用于调试
  */
 import { ref, watch, onMounted, onUnmounted, computed } from "vue";
+import { Camera, VideoCameraFilled, VideoPlay, VideoPause } from '@element-plus/icons-vue';
 import * as THREE from "three";
 import { useThreeScene } from "../composables/useThreeScene";
 import { useModelLoader } from "../composables/useModelLoader";
@@ -599,46 +600,32 @@ defineExpose({
 
     <!-- 控制面板 -->
     <div class="control-panel">
-      <label class="control-item">
-        <input
-          type="checkbox"
-          v-model="showVertexNormals"
-          class="control-checkbox"
-        />
-        <span class="control-label">显示顶点法线</span>
-      </label>
-      <label class="control-item">
-        <input
-          type="checkbox"
-          v-model="showWireframe"
-          class="control-checkbox"
-        />
-        <span class="control-label">显示网格线框</span>
-      </label>
-      <label class="control-item">
-        <input
-          type="checkbox"
-          v-model="showSkeleton"
-          class="control-checkbox"
-        />
-        <span class="control-label">显示骨骼</span>
-      </label>
       <div class="control-item">
-        <span class="control-label">选择模式:</span>
-        <select v-model="selectionMode" class="control-select">
-          <option value="none">--</option>
-          <option value="mesh">面片</option>
-          <option value="bone">骨骼</option>
-        </select>
+        <el-checkbox v-model="showVertexNormals">显示顶点法线</el-checkbox>
       </div>
       <div class="control-item">
-        <button
+        <el-checkbox v-model="showWireframe">显示网格线框</el-checkbox>
+      </div>
+      <div class="control-item">
+        <el-checkbox v-model="showSkeleton">显示骨骼</el-checkbox>
+      </div>
+      <div class="control-item">
+        <span class="control-label">选择模式:</span>
+        <el-select v-model="selectionMode" size="small" class="control-select">
+          <el-option value="none" label="--" />
+          <el-option value="mesh" label="面片" />
+          <el-option value="bone" label="骨骼" />
+        </el-select>
+      </div>
+      <div class="control-item">
+        <el-button
           @click="fitCameraToBestPosition"
-          class="control-btn"
           :disabled="!currentModel"
+          size="small"
         >
-          📹 调整摄像机
-        </button>
+          <el-icon><Camera /></el-icon>
+          调整摄像机
+        </el-button>
       </div>
     </div>
 
@@ -647,38 +634,34 @@ defineExpose({
       <div class="animation-controls">
         <div class="control-item">
           <span class="control-label">动画:</span>
-          <select v-model="selectedAnimation" class="control-select">
-            <option
+          <el-select v-model="selectedAnimation" size="small" class="control-select">
+            <el-option
               v-for="animation in animationOptions"
               :key="animation"
               :value="animation"
-            >
-              {{ animation }}
-            </option>
-          </select>
+              :label="animation"
+            />
+          </el-select>
         </div>
 
         <div class="animation-buttons">
-          <button
+          <el-button
             @click="togglePlayPause"
-            class="animation-btn play-pause-btn"
-            :class="{ playing: isAnimationPlaying }"
+            size="small"
+            :type="isAnimationPlaying ? 'warning' : 'success'"
           >
-            {{ isAnimationPlaying ? "⏸️ 暂停" : "▶️ 播放" }}
-          </button>
-          <button @click="stopAnimation" class="animation-btn stop-btn">
-            ⏹️ 停止
-          </button>
+            <el-icon v-if="isAnimationPlaying"><VideoPause /></el-icon>
+            <el-icon v-else><VideoPlay /></el-icon>
+            {{ isAnimationPlaying ? "暂停" : "播放" }}
+          </el-button>
+          <el-button @click="stopAnimation" size="small" type="danger">
+            停止
+          </el-button>
         </div>
 
-        <label class="control-item loop-control">
-          <input
-            type="checkbox"
-            v-model="animationLoop"
-            class="control-checkbox"
-          />
-          <span class="control-label">循环播放</span>
-        </label>
+        <div class="control-item loop-control">
+          <el-checkbox v-model="animationLoop">循环播放</el-checkbox>
+        </div>
       </div>
     </div>
 
@@ -796,56 +779,19 @@ defineExpose({
 .control-item {
   display: flex;
   align-items: center;
+  gap: 8px;
   color: #ffffff;
   font-size: 14px;
-  cursor: pointer;
   user-select: none;
 }
 
-.control-checkbox {
-  margin-right: 8px;
-  cursor: pointer;
-}
-
 .control-label {
-  cursor: pointer;
+  margin-right: 8px;
 }
 
 .control-select {
   margin-left: 8px;
-  padding: 2px 4px;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 3px;
-  font-size: 12px;
-}
-
-.control-select option {
-  background-color: rgba(0, 0, 0, 0.9);
-  color: #ffffff;
-}
-
-.control-btn {
-  margin-left: 8px;
-  padding: 4px 8px;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 12px;
-  transition: all 0.2s ease;
-}
-
-.control-btn:hover:not(:disabled) {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.5);
-}
-
-.control-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+  width: 140px;
 }
 
 /* 选中信息面板 */
@@ -969,32 +915,6 @@ defineExpose({
 .animation-buttons {
   display: flex;
   gap: 8px;
-}
-
-.animation-btn {
-  padding: 6px 12px;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 11px;
-  transition: all 0.2s ease;
-}
-
-.animation-btn:hover:not(:disabled) {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.5);
-}
-
-.animation-btn.active {
-  background-color: #00d4ff;
-  border-color: #00d4ff;
-}
-
-.play-pause-btn.playing {
-  background-color: #ff6b6b;
-  border-color: #ff6b6b;
 }
 
 .loop-control {

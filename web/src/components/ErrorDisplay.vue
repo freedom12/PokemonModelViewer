@@ -11,6 +11,7 @@
  * @validates 需求 8.2: 模型文件缺失时显示文件未找到的提示
  * @validates 需求 8.4: 网络请求失败时显示重试选项
  */
+import { RefreshRight } from '@element-plus/icons-vue';
 
 /**
  * Props 定义
@@ -101,10 +102,10 @@ function handleRetry(): void {
       <p class="error-message">{{ error }}</p>
 
       <!-- 重试按钮 -->
-      <button class="retry-button" type="button" @click="handleRetry">
-        <span class="retry-icon">🔄</span>
-        <span class="retry-text">重试</span>
-      </button>
+      <el-button type="danger" @click="handleRetry">
+        <el-icon class="retry-icon"><RefreshRight /></el-icon>
+        <span>重试</span>
+      </el-button>
     </div>
   </div>
 </template>
@@ -159,45 +160,7 @@ function handleRetry(): void {
   overflow-wrap: break-word;
 }
 
-/* 重试按钮 */
-.retry-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px 24px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #fff;
-  background-color: #e94560;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.retry-button:hover {
-  background-color: #ff6b6b;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(233, 69, 96, 0.3);
-}
-
-.retry-button:active {
-  transform: translateY(0);
-  box-shadow: none;
-}
-
-.retry-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.3);
-}
-
 .retry-icon {
-  font-size: 1rem;
-  line-height: 1;
-}
-
-.retry-text {
-  line-height: 1;
+  margin-right: 4px;
 }
 </style>
