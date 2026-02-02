@@ -1,0 +1,27 @@
+{
+  "id": "pm0194",
+  "number": 194,
+  "forms": [
+    {
+      "id": "pm0194_00_00",
+      "formIndex": 0,
+      "variantIndex": 0,
+      "icon": "icon/pm0194_00_00_00_big.png",
+      "animations": {}
+    },
+    {
+      "id": "pm0194_00_51",
+      "formIndex": 0,
+      "variantIndex": 51,
+      "icon": "icon/pm0194_00_51_00_big.png",
+      "animations": {}
+    },
+    {
+      "id": "pm0194_01_00",
+      "formIndex": 1,
+      "variantIndex": 0,
+      "icon": "icon/pm0194_01_00_00_big.png",
+      "animations": {}
+    }
+  ]
+}

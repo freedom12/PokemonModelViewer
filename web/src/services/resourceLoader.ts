@@ -12,16 +12,8 @@
 interface ResourceLoaderConfig {
   /** 是否使用远程资源 */
   useRemote: boolean;
-  /** 远程资源基础URL */
-  // remoteBaseUrl: string;
-  // /** 本地资源基础路径 */
-  // localBasePath: string;
-  // /** 模型资源基础路径 */
-  modelBasePath: string;
-  /** 模型资源远程路径 */
   modelRemotePath: string;
-  /** 模型索引基础路径 */
-  indexBasePath: string;
+  modelLocalPath: string;
 }
 
 /**
@@ -29,12 +21,9 @@ interface ResourceLoaderConfig {
  */
 const env = import.meta.env;
 const DEFAULT_CONFIG: ResourceLoaderConfig = {
-  useRemote: env.VITE_USE_REMOTE_ASSETS === 'true',
-  // remoteBaseUrl: 'https://pokemon-model-1400264169.cos.ap-beijing.myqcloud.com',
-  // localBasePath: '', // 本地模式下不添加额外路径前缀，因为http-server已经serve assets作为根目录
-  modelBasePath: env.VITE_MODEL_BASE_PATH,
+  useRemote: env.VITE_USE_REMOTE_ASSETS === "true",
   modelRemotePath: env.VITE_MODEL_REMOTE_PATH,
-  indexBasePath: env.VITE_INDEX_BASE_PATH,
+  modelLocalPath: env.VITE_MODEL_LOCAL_PATH,
 };
 
 /**
@@ -72,13 +61,13 @@ export function resolveResourcePath(path: string): string {
 
   // JSON文件始终从本地加载
   if (cleanPath.endsWith('.json')) {
-    return `${currentConfig.indexBasePath}/${cleanPath}`;
+    return `configs/${cleanPath}`;
   }
 
   if (currentConfig.useRemote) {
     return `${currentConfig.modelRemotePath}/${cleanPath}`;
   } else {
-    return `${currentConfig.modelBasePath}/${cleanPath}`;
+    return `${currentConfig.modelLocalPath}/${cleanPath}`;
   }
 }
 

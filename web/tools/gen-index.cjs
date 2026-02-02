@@ -33,7 +33,7 @@ const INDEX_FILE = path.join(
   "..",
   "..",
   "assets",
-  "model-index",
+  "configs",
   targetDir,
   "index.json",
 );
@@ -50,15 +50,15 @@ function showHelp() {
 参数:
   directory: 宝可梦数据目录名 (默认: SCVI)
 
-这个脚本会自动扫描 public/[directory] 目录结构并生成 index.json 配置文件。
+这个脚本会自动扫描 assets/models/[directory] 目录结构并生成 index.json 配置文件。
 
 目录结构要求：
 - 宝可梦文件夹: pmXXXX (如 pm0001, pm0002)
 - 形态文件夹: pmXXXX_YY_ZZ (如 pm0001_00_00, pm0003_01_00)
 
 生成的配置文件：
-- 外层 index.json: assets/model-index/{directory}/index.json 包含 pokemonIds 列表
-- 每个 pmXXXX.json: assets/model-index/{directory}/pmXXXX.json 包含该宝可梦的详细信息 (id, number, forms 等)
+- 外层 index.json: assets/configs/{directory}/index.json 包含 pokemonIds 列表
+- 每个 pmXXXX.json: assets/configs/{directory}/pmXXXX.json 包含该宝可梦的详细信息 (id, number, forms 等)
 `);
 }
 
@@ -143,9 +143,9 @@ function getPokemonForms(pokemonId, pokemonPath) {
         const formPath = path.join(pokemonPath, formId);
         const animations = getAnimationFiles(formPath);
 
-        if (formInfo.formIndex !== 0 || formInfo.variantIndex !== 0) {
+        if (formInfo.formIndex > 1) {
           console.log(
-            `🔍 发现形态 宝可梦: ${pokemonId}, 形态索引: ${formInfo.formIndex}, 变体索引: ${formInfo.variantIndex}`,
+            `"${pokemonId}_${formInfo.formIndex}": "",`,
           );
         }
 
@@ -217,7 +217,7 @@ function generateIndex() {
     "..",
     "..",
     "assets",
-    "model-index",
+    "configs",
     targetDir,
   );
   if (!fs.existsSync(modelIndexDir)) {
@@ -258,7 +258,7 @@ function generateIndex() {
       "..",
       "..",
       "assets",
-      "model-index",
+      "configs",
       targetDir,
       `${pokemonId}.json`,
     );
@@ -292,7 +292,7 @@ function generateIndex() {
       "..",
       "..",
       "assets",
-      "model-index",
+      "configs",
       targetDir,
       `${pokemonId}.json`,
     );

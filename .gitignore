@@ -43,7 +43,7 @@ refer/
 web/tools/json_output/
 
 # Ignore Pokemon files with number > 10
-assets/*
+assets/models/*
 !assets/models/SCVI/pm0000/
 !assets/models/SCVI/pm0001/
 !assets/models/SCVI/pm0002/
@@ -54,4 +54,4 @@ assets/*
 !assets/models/SCVI/pm0007/
 !assets/models/SCVI/pm0008/
 !assets/models/SCVI/pm0009/
-!assets/icons/
+

@@ -1,0 +1,20 @@
+{
+  "id": "pm0050",
+  "number": 50,
+  "forms": [
+    {
+      "id": "pm0050_00_00",
+      "formIndex": 0,
+      "variantIndex": 0,
+      "icon": "icon/pm0050_00_00_00_big.png",
+      "animations": {}
+    },
+    {
+      "id": "pm0050_00_11",
+      "formIndex": 0,
+      "variantIndex": 11,
+      "icon": "icon/pm0050_00_11_00_big.png",
+      "animations": {}
+    }
+  ]
+}

@@ -10,11 +10,12 @@
  * @validates 需求 6.3: 用户点击宝可梦时加载并显示该宝可梦的 3D 模型
  * @validates 需求 6.5: 用户选择不同形态时切换显示对应形态的模型
  */
-import { ref, defineAsyncComponent } from "vue";
+import { ref, defineAsyncComponent, Ref } from "vue";
 import {
-  loadJsonResource,
   setResourceLoaderConfig,
 } from "./services/resourceLoader";
+import { Game } from "./types";
+import { PokemonModel } from "./models";
 
 // 异步加载组件以优化初始加载性能
 const PokemonBrowser = defineAsyncComponent(
@@ -25,10 +26,10 @@ const ThreeViewer = defineAsyncComponent(
 );
 
 // 当前选中的宝可梦 ID
-const selectedPokemon = ref<string | null>(null);
+const selectedPokemon: Ref<PokemonModel | null> = ref(null);
 
 // 当前选中的形态 ID
-const selectedForm = ref<string | null>(null);
+const selectedForm = ref<[number, number] | null>(null);
 
 // 模型加载进度 (0-100)
 const loadingProgress = ref(0);
@@ -40,7 +41,7 @@ const isModelLoading = ref(false);
 const modelError = ref<string | null>(null);
 
 // 当前选择的目录
-const selectedDirectory = ref<string>("SCVI");
+const selectedGame = ref<Game>("SCVI");
 
 // 当前宝可梦的动画数据
 const currentAnimations = ref<Record<string, string[]> | null>(null);
@@ -59,31 +60,25 @@ const useRemoteAssets = ref(import.meta.env.VITE_USE_REMOTE_ASSETS === "true");
  * @validates 需求 6.3: 用户点击宝可梦时加载并显示该宝可梦的 3D 模型
  * @validates 需求 6.5: 用户选择不同形态时切换显示对应形态的模型
  */
-async function handlePokemonSelect(
-  pokemonId: string,
-  formId: string,
+async function handleSelectPokemon(
+  pokemon: PokemonModel,
+  form: [number, number],
 ): Promise<void> {
-  console.log(`App: 选择宝可梦 ${pokemonId}, 形态 ${formId}`);
-  selectedPokemon.value = pokemonId;
-  selectedForm.value = formId;
+  console.log(`App: 选择宝可梦 ${pokemon.index}, 形态 ${form}`);
+  selectedPokemon.value = pokemon;
+  selectedForm.value = form;
   // 清除之前的错误
   modelError.value = null;
 
-  // 获取当前形态的动画数据
-  try {
-    const pokemonData = await loadJsonResource(
-      `${selectedDirectory.value}/${pokemonId}.json`,
-    );
-    const form = pokemonData.forms.find((f: any) => f.id === formId);
-    if (form && form.animations) {
-      currentAnimations.value = form.animations;
-    } else {
-      currentAnimations.value = null;
-    }
-  } catch (error) {
-    console.error("App: 加载宝可梦详细信息失败:", error);
+  const resourceData = await pokemon.loadResourceData(selectedGame.value);
+  if (!resourceData) {
     currentAnimations.value = null;
+    return;
   }
+  currentAnimations.value =
+    resourceData.forms.find(
+      (f) => f.formIndex === form[0] && f.variantIndex === form[1],
+    )?.animations || null;
 }
 
 /**
@@ -104,10 +99,10 @@ function handleProgressChange(progress: number): void {
 
 /**
  * 处理目录切换事件
- * @param directory - 新的目录名
+ * @param game - 新的目录名
  */
-function handleDirectoryChange(directory: string): void {
-  selectedDirectory.value = directory;
+function handleSelectGame(game: Game): void {
+  selectedGame.value = game;
 
   // 清空当前选择的宝可梦和形态
   selectedPokemon.value = null;
@@ -164,21 +159,20 @@ function handleError(error: string | null): void {
       </div>
 
       <PokemonBrowser
-        :selected-pokemon="selectedPokemon"
-        :selected-form="selectedForm"
-        :directory="selectedDirectory"
-        @select="handlePokemonSelect"
-        @directory-change="handleDirectoryChange"
+        :selectedPokemon="selectedPokemon || undefined"
+        :selectedForm="selectedForm || undefined"
+        :selectedGame="selectedGame"
+        @select-pokemon="handleSelectPokemon"
+        @select-game="handleSelectGame"
       />
     </aside>
 
     <!-- 右侧：3D 查看器 -->
     <main class="viewer-panel">
       <ThreeViewer
-        :pokemon-id="selectedPokemon"
-        :form-id="selectedForm"
-        :animations="currentAnimations"
-        :directory="selectedDirectory"
+        :pokemon="selectedPokemon"
+        :form="selectedForm"
+        :game="selectedGame"
         @loading-change="handleLoadingChange"
         @progress-change="handleProgressChange"
         @error="handleError"
