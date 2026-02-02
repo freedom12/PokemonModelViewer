@@ -1,1 +1,1 @@
-export { PokemonModel } from "./PokemonModel";
+export { PokemonModel } from './PokemonModel'

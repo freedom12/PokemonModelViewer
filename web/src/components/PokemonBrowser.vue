@@ -18,12 +18,12 @@
  * @validates 需求 8.5: 发生错误时在控制台记录详细错误信息用于调试
  */
 import { ref, watch, Ref } from "vue";
-import { Loading } from '@element-plus/icons-vue';
+import { Loading } from "@element-plus/icons-vue";
 import ErrorDisplay from "./ErrorDisplay.vue";
 import { PokemonModel } from "../models";
 import { usePokemonDatas } from "../composables/usePokemonDatas";
 import { Game } from "../types";
-import { RecycleScroller } from 'vue-virtual-scroller';
+import { RecycleScroller } from "vue-virtual-scroller";
 
 /**
  * Props 定义
@@ -98,11 +98,14 @@ async function handlePokemonClick(pokemon: PokemonModel): Promise<void> {
 
 /**
  * 处理形态选择变化（针对每个条目的选择器）
- * @param value - 选中的值
+ * @param value - 选中的值 [formIndex, subFormIndex]
  * @param pokemon - 对应的宝可梦
  * @validates 需求 6.5: 用户选择不同形态时切换显示对应形态的模型
  */
-function handleFormChangeForItem(value: [number, number], pokemon: PokemonModel): void {
+function handleFormChangeForItem(
+  value: [number, number],
+  pokemon: PokemonModel,
+): void {
   currentPokemon.value = pokemon;
   currentForm.value = value;
   emit("selectPokemon", pokemon, value);
@@ -157,7 +160,7 @@ async function handleRetry(): Promise<void> {
  * @validates 需求 8.5: 发生错误时在控制台记录详细错误信息用于调试
  */
 function handleThumbnailError(event: Event): void {
-  const img = event.target as HTMLImageElement;
+  const img = event.target as InstanceType<typeof Image>;
   const originalSrc = img.src;
 
   // @validates 需求 8.5: 在控制台记录详细错误信息用于调试
@@ -182,35 +185,53 @@ watch(
 );
 
 // 监听 currentGame 变化，重新加载列表
-watch(currentGame, async (newGame, oldGame) => {
-  if (newGame !== oldGame) {
-    // 切换游戏时清除选中状态
-    currentPokemon.value = null;
-    currentForm.value = null;
-    emit("selectGame", newGame);
-    try {
-      pokemons.value = await loadPokemonListInGame(newGame);
-    } catch (err) {
-      console.error(`[PokemonBrowser] ${newGame} 列表加载失败:`, err);
+watch(
+  currentGame,
+  async (newGame, oldGame) => {
+    if (newGame !== oldGame) {
+      // 切换游戏时清除选中状态
+      currentPokemon.value = null;
+      currentForm.value = null;
+      emit("selectGame", newGame);
+      try {
+        pokemons.value = await loadPokemonListInGame(newGame);
+      } catch (err) {
+        console.error(`[PokemonBrowser] ${newGame} 列表加载失败:`, err);
+      }
     }
-  }
-}, { immediate: true });
-
+  },
+  { immediate: true },
+);
 </script>
 
 <template>
   <div class="pokemon-browser">
     <!-- 头部区域 -->
     <div class="browser-header">
-      <h2 class="browser-title">宝可梦图鉴</h2>
-      <el-select v-model="currentGame" class="directory-selector" size="small">
-        <el-option value="SCVI" label="SCVI" />
-        <el-option value="LZA" label="LZA" />
+      <h2 class="browser-title">
+        宝可梦图鉴
+      </h2>
+      <el-select
+        v-model="currentGame"
+        class="directory-selector"
+        size="small"
+      >
+        <el-option
+          value="SCVI"
+          label="SCVI"
+        />
+        <el-option
+          value="LZA"
+          label="LZA"
+        />
       </el-select>
     </div>
 
     <!-- 列表加载状态 -->
-    <div v-if="pokemons.length === 0" class="list-loading">
+    <div
+      v-if="pokemons.length === 0"
+      class="list-loading"
+    >
       <el-icon class="is-loading">
         <Loading />
       </el-icon>
@@ -219,15 +240,22 @@ watch(currentGame, async (newGame, oldGame) => {
 
     <!-- 错误提示 - 使用 ErrorDisplay 组件 -->
     <!-- @validates 需求 8.4: 网络请求失败时显示重试选项 -->
-    <div v-else-if="error" class="error-wrapper">
-      <ErrorDisplay :error="error" title="列表加载失败" @retry="handleRetry" />
+    <div
+      v-else-if="error"
+      class="error-wrapper"
+    >
+      <ErrorDisplay
+        :error="error"
+        title="列表加载失败"
+        @retry="handleRetry"
+      />
     </div>
 
     <!-- 宝可梦列表 -->
     <RecycleScroller
       class="pokemon-list"
       :items="pokemons"
-      :item-size="80"
+      :item-size="90"
       key-field="index"
     >
       <template #default="{ item: pokemon }">
@@ -243,7 +271,7 @@ watch(currentGame, async (newGame, oldGame) => {
               :alt="`Pokemon ${pokemon.index} Icon`"
               loading="lazy"
               @error="handleThumbnailError"
-            />
+            >
           </div>
 
           <!-- 右侧信息 -->
@@ -260,19 +288,25 @@ watch(currentGame, async (newGame, oldGame) => {
             >
               <el-select
                 :model-value="
-                  currentPokemon?.index === pokemon.index
-                    ? currentForm
-                    : pokemon.getFromResourceIds(currentGame)[0]
+                  currentPokemon?.index === pokemon.index && currentForm
+                    ? `${currentForm[0]}-${currentForm[1]}`
+                    : `${pokemon.getFromResourceIds(currentGame)[0][0]}-${pokemon.getFromResourceIds(currentGame)[0][1]}`
                 "
                 class="form-select"
                 size="small"
-                @change="handleFormChangeForItem($event, pokemon)"
+                @change="
+                  (val: string) =>
+                    handleFormChangeForItem(
+                      val.split('-').map(Number) as [number, number],
+                      pokemon,
+                    )
+                "
                 @click.stop
               >
                 <el-option
                   v-for="form in pokemon.getFromResourceIds(currentGame)"
                   :key="`${form[0]}-${form[1]}`"
-                  :value="form"
+                  :value="`${form[0]}-${form[1]}`"
                   :label="formatFormName(pokemon, form)"
                 />
               </el-select>

@@ -1,0 +1,587 @@
+{
+  track_list: {
+    list: [
+      {
+        track_name: "00512_stun01_end",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00512_stun01_end.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00512_stun01_end.tracm"
+          },
+          effect: {
+            filename: "pm0001_00_00_00512_stun01_end.traef"
+          }
+        }
+      },
+      {
+        track_name: "00520_down01_start",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00520_down01_start.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00520_down01_start.tracm"
+          },
+          effect: {
+            filename: "pm0001_00_00_00520_down01_start.traef"
+          }
+        }
+      },
+      {
+        track_name: "00521_down01_loop",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00521_down01_loop.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00521_down01_loop.tracm"
+          }
+        }
+      },
+      {
+        track_name: "00522_down01_end",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00522_down01_end.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00522_down01_end.tracm"
+          },
+          effect: {
+            filename: "pm0001_00_00_00522_down01_end.traef"
+          }
+        }
+      },
+      {
+        track_name: "00550_glad01",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00550_glad01.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00550_glad01.tracm"
+          },
+          effect: {
+            filename: "pm0001_00_00_00550_glad01.traef"
+          }
+        }
+      },
+      {
+        track_name: "00560_notice01",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00560_notice01.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00560_notice01.tracm"
+          },
+          effect: {
+            filename: "pm0001_00_00_00560_notice01.traef"
+          }
+        }
+      },
+      {
+        track_name: "00563_hate01",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00563_hate01.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00563_hate01.tracm"
+          },
+          effect: {
+            filename: "pm0001_00_00_00563_hate01.traef"
+          }
+        }
+      },
+      {
+        track_name: "08000_eye01",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_08000_eye01.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_08000_eye01.tracm"
+          }
+        }
+      },
+      {
+        track_name: "08100_mouth01",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_08100_mouth01.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_08100_mouth01.tracm"
+          }
+        }
+      },
+      {
+        track_name: "00000_defaultwait01_loop",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00000_defaultwait01_loop.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00000_defaultwait01_loop.tracm"
+          }
+        }
+      },
+      {
+        track_name: "00001_battlewait01_loop",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00001_battlewait01_loop.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00001_battlewait01_loop.tracm"
+          }
+        }
+      },
+      {
+        track_name: "00010_defaultidle01",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00010_defaultidle01.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00010_defaultidle01.tracm"
+          },
+          effect: {
+            filename: "pm0001_00_00_00010_defaultidle01.traef"
+          }
+        }
+      },
+      {
+        track_name: "00011_defaultidle02",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00011_defaultidle02.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00011_defaultidle02.tracm"
+          },
+          effect: {
+            filename: "pm0001_00_00_00011_defaultidle02.traef"
+          }
+        }
+      },
+      {
+        track_name: "00030_walk01_loop",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00030_walk01_loop.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00030_walk01_loop.tracm"
+          }
+        }
+      },
+      {
+        track_name: "00100_run01_loop",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00100_run01_loop.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00100_run01_loop.tracm"
+          }
+        }
+      },
+      {
+        track_name: "00145_stepout01_start",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00145_stepout01_start.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00145_stepout01_start.tracm"
+          },
+          effect: {
+            filename: "pm0001_00_00_00145_stepout01_start.traef"
+          }
+        }
+      },
+      {
+        track_name: "00146_stepout01",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00146_stepout01.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00146_stepout01.tracm"
+          }
+        }
+      },
+      {
+        track_name: "00147_stepout01_end",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00147_stepout01_end.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00147_stepout01_end.tracm"
+          },
+          effect: {
+            filename: "pm0001_00_00_00147_stepout01_end.traef"
+          }
+        }
+      },
+      {
+        track_name: "00150_jumpup01_start",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00150_jumpup01_start.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00150_jumpup01_start.tracm"
+          },
+          effect: {
+            filename: "pm0001_00_00_00150_jumpup01_start.traef"
+          }
+        }
+      },
+      {
+        track_name: "00151_jumpup01_loop",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00151_jumpup01_loop.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00151_jumpup01_loop.tracm"
+          }
+        }
+      },
+      {
+        track_name: "00152_jumpdown01_start",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00152_jumpdown01_start.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00152_jumpdown01_start.tracm"
+          }
+        }
+      },
+      {
+        track_name: "00153_jumpdown01_loop",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00153_jumpdown01_loop.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00153_jumpdown01_loop.tracm"
+          }
+        }
+      },
+      {
+        track_name: "00155_land02",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00155_land02.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00155_land02.tracm"
+          },
+          effect: {
+            filename: "pm0001_00_00_00155_land02.traef"
+          }
+        }
+      },
+      {
+        track_name: "00280_sleep01_start",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00280_sleep01_start.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00280_sleep01_start.tracm"
+          },
+          effect: {
+            filename: "pm0001_00_00_00280_sleep01_start.traef"
+          }
+        }
+      },
+      {
+        track_name: "00281_sleep01_loop",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00281_sleep01_loop.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00281_sleep01_loop.tracm"
+          }
+        }
+      },
+      {
+        track_name: "00282_sleep01_end",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00282_sleep01_end.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00282_sleep01_end.tracm"
+          },
+          effect: {
+            filename: "pm0001_00_00_00282_sleep01_end.traef"
+          }
+        }
+      },
+      {
+        track_name: "00290_eat01_start",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00290_eat01_start.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00290_eat01_start.tracm"
+          },
+          effect: {
+            filename: "pm0001_00_00_00290_eat01_start.traef"
+          }
+        }
+      },
+      {
+        track_name: "00291_eat01_loop",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00291_eat01_loop.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00291_eat01_loop.tracm"
+          },
+          effect: {
+            filename: "pm0001_00_00_00291_eat01_loop.traef"
+          }
+        }
+      },
+      {
+        track_name: "00292_eat01_end",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00292_eat01_end.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00292_eat01_end.tracm"
+          }
+        }
+      },
+      {
+        track_name: "00300_roar01",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00300_roar01.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00300_roar01.tracm"
+          },
+          effect: {
+            filename: "pm0001_00_00_00300_roar01.traef"
+          }
+        }
+      },
+      {
+        track_name: "00320_refresh01",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00320_refresh01.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00320_refresh01.tracm"
+          },
+          effect: {
+            filename: "pm0001_00_00_00320_refresh01.traef"
+          }
+        }
+      },
+      {
+        track_name: "00400_attack01",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00400_attack01.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00400_attack01.tracm"
+          },
+          effect: {
+            filename: "pm0001_00_00_00400_attack01.traef"
+          }
+        }
+      },
+      {
+        track_name: "00410_attack02",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00410_attack02.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00410_attack02.tracm"
+          },
+          effect: {
+            filename: "pm0001_00_00_00410_attack02.traef"
+          }
+        }
+      },
+      {
+        track_name: "00450_rangeattack01",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00450_rangeattack01.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00450_rangeattack01.tracm"
+          },
+          effect: {
+            filename: "pm0001_00_00_00450_rangeattack01.traef"
+          }
+        }
+      },
+      {
+        track_name: "00460_rangeattack02_start",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00460_rangeattack02_start.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00460_rangeattack02_start.tracm"
+          },
+          effect: {
+            filename: "pm0001_00_00_00460_rangeattack02_start.traef"
+          }
+        }
+      },
+      {
+        track_name: "00461_rangeattack02_loop",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00461_rangeattack02_loop.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00461_rangeattack02_loop.tracm"
+          }
+        }
+      },
+      {
+        track_name: "00462_rangeattack02_end",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00462_rangeattack02_end.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00462_rangeattack02_end.tracm"
+          }
+        }
+      },
+      {
+        track_name: "00500_damage01",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00500_damage01.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00500_damage01.tracm"
+          }
+        }
+      },
+      {
+        track_name: "00501_damage02",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00501_damage02.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00501_damage02.tracm"
+          }
+        }
+      },
+      {
+        track_name: "00510_stun01_start",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00510_stun01_start.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00510_stun01_start.tracm"
+          },
+          effect: {
+            filename: "pm0001_00_00_00510_stun01_start.traef"
+          }
+        }
+      },
+      {
+        track_name: "00511_stun01_loop",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00511_stun01_loop.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00511_stun01_loop.tracm"
+          }
+        }
+      },
+      {
+        track_name: "00021_turn_r090",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00021_turn_r090.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00021_turn_r090.tracm"
+          }
+        }
+      },
+      {
+        track_name: "00024_turn_l090",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00024_turn_l090.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00024_turn_l090.tracm"
+          }
+        }
+      },
+      {
+        track_name: "00270_rest01_start",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00270_rest01_start.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00270_rest01_start.tracm"
+          },
+          effect: {
+            filename: "pm0001_00_00_00270_rest01_start.traef"
+          }
+        }
+      },
+      {
+        track_name: "00271_rest01_loop",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00271_rest01_loop.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00271_rest01_loop.tracm"
+          }
+        }
+      },
+      {
+        track_name: "00272_rest01_end",
+        track_resource: {
+          animation: {
+            filename: "pm0001_00_00_00272_rest01_end.tranm"
+          },
+          material: {
+            filename: "pm0001_00_00_00272_rest01_end.tracm"
+          },
+          effect: {
+            filename: "pm0001_00_00_00272_rest01_end.traef"
+          }
+        }
+      }
+    ]
+  }
+}

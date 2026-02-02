@@ -11,7 +11,7 @@
  * @validates 需求 8.2: 模型文件缺失时显示文件未找到的提示
  * @validates 需求 8.4: 网络请求失败时显示重试选项
  */
-import { RefreshRight } from '@element-plus/icons-vue';
+import { RefreshRight } from "@element-plus/icons-vue";
 
 /**
  * Props 定义
@@ -96,14 +96,23 @@ function handleRetry(): void {
       </div>
 
       <!-- 错误标题 -->
-      <h3 class="error-title">{{ title }}</h3>
+      <h3 class="error-title">
+        {{ title }}
+      </h3>
 
       <!-- 错误信息 -->
-      <p class="error-message">{{ error }}</p>
+      <p class="error-message">
+        {{ error }}
+      </p>
 
       <!-- 重试按钮 -->
-      <el-button type="danger" @click="handleRetry">
-        <el-icon class="retry-icon"><RefreshRight /></el-icon>
+      <el-button
+        type="danger"
+        @click="handleRetry"
+      >
+        <el-icon class="retry-icon">
+          <RefreshRight />
+        </el-icon>
         <span>重试</span>
       </el-button>
     </div>

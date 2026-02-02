@@ -1,4 +1,4 @@
-import { Game } from "../types";
+import { Game } from '../types'
 
 interface PokemonFormResourceData {
   formIndex: number;
@@ -11,7 +11,7 @@ interface PokemonResourceData {
 }
 
 export class PokemonModel {
-  private resourceDataMap: Record<string, PokemonResourceData> = {};
+  private resourceDataMap: Record<string, PokemonResourceData> = {}
 
   constructor(
     public readonly index: number,
@@ -24,56 +24,56 @@ export class PokemonModel {
 
   get name(): string {
     // 默认使用中文名字
-    return this.nameZh;
+    return this.nameZh
   }
 
   async loadResourceData(game: Game): Promise<PokemonResourceData> {
     if (this.resourceDataMap[game]) {
-      return this.resourceDataMap[game];
+      return this.resourceDataMap[game]
     }
-    console.log(`[usePokemonList] 加载宝可梦资源信息: ${this.resourceId}`);
-    const data = await fetch(`/configs/${game}/pm${this.resourceId}.json`);
+    console.log(`[usePokemonList] 加载宝可梦资源信息: ${this.resourceId}`)
+    const data = await fetch(`/configs/${game}/pm${this.resourceId}.json`)
     if (!data.ok) {
       throw new Error(
         `加载宝可梦资源信息失败: ${this.resourceId} (HTTP ${data.status})`,
-      );
+      )
     }
-    this.resourceDataMap[game] = await data.json();
-    return this.resourceDataMap[game];
+    this.resourceDataMap[game] = await data.json()
+    return this.resourceDataMap[game]
   }
 
   getResourceData(game: Game): PokemonResourceData | null {
-    return this.resourceDataMap[game] || null;
+    return this.resourceDataMap[game] || null
   }
 
   getFormResourceData(
     game: Game,
     form: [number, number],
   ): PokemonFormResourceData | null {
-    const resourceData = this.getResourceData(game);
+    const resourceData = this.getResourceData(game)
     if (!resourceData) {
-      return null;
+      return null
     }
-    const [formIndex, variantIndex] = form;
+    const [formIndex, variantIndex] = form
     return (
       resourceData.forms.find(
         (f) => f.formIndex === formIndex && f.variantIndex === variantIndex,
       ) || null
-    );
+    )
   }
 
   getFromResourceIds(game: Game): [number, number][] {
     if (!this.resourceDataMap[game]) {
-      return [];
+      return []
     }
     return this.resourceDataMap[game].forms.map((form) => [
       form.formIndex,
       form.variantIndex,
-    ]);
+    ])
   }
 
   getFormResourceName(form: [number, number]): string {
-    const [formIndex, variantIndex] = form;
-    return `${formIndex.toString().padStart(2, "0")}_${variantIndex.toString().padStart(2, "0")}`;
+    const [formIndex, variantIndex] = form
+    return `${formIndex.toString().padStart(2, '0')}_${variantIndex.toString().padStart(2, '0')}`
   }
 }

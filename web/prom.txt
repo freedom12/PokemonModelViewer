@@ -1,7 +1,22 @@
-这是一个加载宝可梦模型并渲染的项目，宝可梦模型文件是经过flatbuf处理后的二进制文件
-protobuf的scheme文件存储在tools/scheme下，并自动生成了对应的ts解析文件再parsers/generated中
-同时也将模型文件输出成json格式放在tools/json_output下，方便你对具体字段的内容进行参考和分析
+这是一个加载宝可梦模型并渲染的项目，assets下放有大量资源通过代理来访问，web下node前端通过vue+ts+element plus实现
+宝可梦模型文件是经过flatbuf处理后的二进制文件放在assets/models
+其下根据游戏（当前有SVCI/LZA，之后会扩展）分为多了个目录
+再之下根据宝可梦分成多个目录，宝可梦目录使用resource id进行命名，注意和宝可梦的其他id做区分
+protobuf的scheme文件存储在web/tools/scheme下，并自动生成了对应的ts解析文件再web/parsers/generated中
+同时也将模型文件输出成json格式放在web/tools/json_output下，方便你对具体字段的内容进行参考和分析
 
-参考分析pm0004_00_00.trmtr.json中的材质参数，实现IkCharacter shader效果
-特别的LayerMaskMap根据rgba分为四个遮罩，所谓系数乘以BaseColorLayer1-4的颜色值
-实现shader的方式参考unLit
+之前通过对整个项目进行过实现和重构，但是我又自己进行了大量重构
+因此之前的web/.kiro中的文件，参考性比较弱，所以不要被其过分误导，当下也可以选择删除掉
+
+现在我希望重构整个项目
+1.希望实现出单独的Model/Material/Animation/Skeleton等对象，能通过这些对象方便的将原始数据加载并存储为更加通用的数据
+之后还会扩展支持其他格式，同时也提供常用函数的封装（比如骨骼的各种变换）
+2.希望Animation类 能够整合封装蒙皮/可见性动画，之后还会支持材质属性动画
+3.希望材质能有更强的适配性，当前的一个策略是所有模型都使用默认材质，如果有实现了对应的材质则使用具体的对应材质
+这个些具体的材质，会在之后渐进式的实现，希望能够对其更好的支持
+请注意：当前这些具体材质使用onBeforeCompile的方式，因为不像改动默认的顶点shader而导致动画失效
+4.针对Three部分也可以拆分并实现World/Camera等对象
+5.其他显示组件也可以进行拆分
+6.清理原先的注释
+
+

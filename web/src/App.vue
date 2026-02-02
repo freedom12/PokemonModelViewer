@@ -152,9 +152,9 @@ function handleError(error: string | null): void {
       </div>
 
       <PokemonBrowser
-        :selectedPokemon="selectedPokemon || undefined"
-        :selectedForm="selectedForm || undefined"
-        :selectedGame="selectedGame"
+        :selected-pokemon="selectedPokemon || undefined"
+        :selected-form="selectedForm || undefined"
+        :selected-game="selectedGame"
         @select-pokemon="handleSelectPokemon"
         @select-game="handleSelectGame"
       />

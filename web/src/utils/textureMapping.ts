@@ -18,76 +18,76 @@
  * 纹理类型枚举
  */
 export type TextureType =
-  | "albedo" // 漫反射贴图
-  | "normal" // 法线贴图
-  | "emission" // 自发光贴图
-  | "roughness" // 粗糙度贴图
-  | "metalness" // 金属度贴图
-  | "ao" // 环境光遮蔽贴图
-  | "mask" // 遮罩贴图
-  | "region" // 区域贴图（自定义）
-  | "unknown"; // 未知类型
+  | 'albedo' // 漫反射贴图
+  | 'normal' // 法线贴图
+  | 'emission' // 自发光贴图
+  | 'roughness' // 粗糙度贴图
+  | 'metalness' // 金属度贴图
+  | 'ao' // 环境光遮蔽贴图
+  | 'mask' // 遮罩贴图
+  | 'region' // 区域贴图（自定义）
+  | 'unknown'; // 未知类型
 
 /**
  * Three.js 材质属性名
  */
 export type MaterialPropertyName =
-  | "map" // 漫反射贴图
-  | "normalMap" // 法线贴图
-  | "emissiveMap" // 自发光贴图
-  | "roughnessMap" // 粗糙度贴图
-  | "metalnessMap" // 金属度贴图
-  | "aoMap" // 环境光遮蔽贴图
-  | "alphaMap" // 透明度贴图
+  | 'map' // 漫反射贴图
+  | 'normalMap' // 法线贴图
+  | 'emissiveMap' // 自发光贴图
+  | 'roughnessMap' // 粗糙度贴图
+  | 'metalnessMap' // 金属度贴图
+  | 'aoMap' // 环境光遮蔽贴图
+  | 'alphaMap' // 透明度贴图
   | null; // 无对应属性（如 region 或 unknown）
 
 /**
  * 纹理名称到类型的映射（优先使用）
  */
 const TEXTURE_NAME_MAP: Record<string, TextureType> = {
-  BaseColorMap: "albedo",
-  NormalMap: "normal",
-  NormalMap1: "normal",
-  LayerMaskMap: "emission",
-  RoughnessMap: "roughness",
-  MetallicMap: "metalness",
-  AOMap: "ao",
-  SSSMaskMap: "mask",
-  EmissionColorMap: "emission",
-};
+  BaseColorMap: 'albedo',
+  NormalMap: 'normal',
+  NormalMap1: 'normal',
+  LayerMaskMap: 'emission',
+  RoughnessMap: 'roughness',
+  MetallicMap: 'metalness',
+  AOMap: 'ao',
+  SSSMaskMap: 'mask',
+  EmissionColorMap: 'emission',
+}
 
 /**
  * 纹理后缀到类型的映射（备用）
  */
 const TEXTURE_SUFFIX_MAP: Record<string, TextureType> = {
-  _alb: "albedo",
-  _nrm: "normal",
-  _lym: "emission",
-  _ao: "ao",
-  _msk: "mask",
-  _rgn: "roughness",
-  _mtl: "metalness",
-};
+  _alb: 'albedo',
+  _nrm: 'normal',
+  _lym: 'emission',
+  _ao: 'ao',
+  _msk: 'mask',
+  _rgn: 'roughness',
+  _mtl: 'metalness',
+}
 
 /**
  * 纹理类型到 Three.js 材质属性的映射
  */
 const TEXTURE_TYPE_TO_PROPERTY: Record<TextureType, MaterialPropertyName> = {
-  albedo: "map",
-  normal: "normalMap",
-  emission: "emissiveMap",
-  roughness: "roughnessMap",
-  metalness: "metalnessMap",
-  ao: "aoMap",
-  mask: "alphaMap",
+  albedo: 'map',
+  normal: 'normalMap',
+  emission: 'emissiveMap',
+  roughness: 'roughnessMap',
+  metalness: 'metalnessMap',
+  ao: 'aoMap',
+  mask: 'alphaMap',
   region: null,
   unknown: null,
-};
+}
 
 /**
  * 所有支持的纹理后缀列表
  */
-export const TEXTURE_SUFFIXES = Object.keys(TEXTURE_SUFFIX_MAP);
+export const TEXTURE_SUFFIXES = Object.keys(TEXTURE_SUFFIX_MAP)
 
 /**
  * 根据纹理名称获取纹理类型（优先方法）
@@ -104,7 +104,7 @@ export const TEXTURE_SUFFIXES = Object.keys(TEXTURE_SUFFIX_MAP);
  * getTextureTypeFromName("UnknownMap")   // 'unknown'
  */
 export function getTextureTypeFromName(textureName: string): TextureType {
-  return TEXTURE_NAME_MAP[textureName] || "unknown";
+  return TEXTURE_NAME_MAP[textureName] || 'unknown'
 }
 
 /**
@@ -131,16 +131,16 @@ export function getTextureTypeFromName(textureName: string): TextureType {
 export function getTextureType(filename: string): TextureType {
   // 移除文件扩展名以便分析
   // 例如: "pm0001_00_00_alb.png" -> "pm0001_00_00_alb"
-  const nameWithoutExt = filename.replace(/\.[^.]+$/, "");
+  const nameWithoutExt = filename.replace(/\.[^.]+$/, '')
 
   // 检查每个已知的纹理后缀
   for (const suffix of TEXTURE_SUFFIXES) {
     if (nameWithoutExt.endsWith(suffix)) {
-      return TEXTURE_SUFFIX_MAP[suffix];
+      return TEXTURE_SUFFIX_MAP[suffix]
     }
   }
 
-  return "unknown";
+  return 'unknown'
 }
 
 /**
@@ -165,7 +165,7 @@ export function getTextureType(filename: string): TextureType {
 export function mapToMaterialProperty(
   textureType: TextureType,
 ): MaterialPropertyName {
-  return TEXTURE_TYPE_TO_PROPERTY[textureType];
+  return TEXTURE_TYPE_TO_PROPERTY[textureType]
 }
 
 /**
@@ -184,8 +184,8 @@ export function mapToMaterialProperty(
 export function getPropertyFromFilename(
   filename: string,
 ): MaterialPropertyName {
-  const textureType = getTextureType(filename);
-  return mapToMaterialProperty(textureType);
+  const textureType = getTextureType(filename)
+  return mapToMaterialProperty(textureType)
 }
 
 /**
@@ -199,7 +199,7 @@ export function getPropertyFromFilename(
  * isKnownTextureType("pm0001_00_00.png")     // false
  */
 export function isKnownTextureType(filename: string): boolean {
-  return getTextureType(filename) !== "unknown";
+  return getTextureType(filename) !== 'unknown'
 }
 
 /**
@@ -214,5 +214,5 @@ export function isKnownTextureType(filename: string): boolean {
  * hasMaterialProperty('unknown') // false
  */
 export function hasMaterialProperty(textureType: TextureType): boolean {
-  return mapToMaterialProperty(textureType) !== null;
+  return mapToMaterialProperty(textureType) !== null
 }

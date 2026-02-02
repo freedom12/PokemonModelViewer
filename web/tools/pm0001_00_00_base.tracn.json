@@ -1,0 +1,32 @@
+{
+  list: [
+    {
+      animation_name: "parameter",
+      filename: "pm0001_00_00_base.tracp"
+    },
+    {
+      animation_name: "resource",
+      filename: "pm0001_00_00_base.tracr"
+    },
+    {
+      animation_name: "layer",
+      filename: "pm0001_00_00_base.tracl"
+    },
+    {
+      animation_name: "state",
+      filename: "pm0001_00_00_base.tracs"
+    },
+    {
+      animation_name: "look_at",
+      filename: "pm0001_00_00_base.tralk"
+    },
+    {
+      animation_name: "slope_orientor",
+      filename: "pm0001_00_00_base.trslp"
+    },
+    {
+      animation_name: "motion_detector",
+      filename: "pm0001_00_00_base.trmdt"
+    }
+  ]
+}
