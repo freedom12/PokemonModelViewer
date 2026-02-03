@@ -71,9 +71,9 @@ export function usePokemonModel() {
     try {
       // 加载必需文件
       const [trmdlBuf, trmshBuf, trmbfBuf] = await Promise.all([
-        loadFile(`${fileBasePath}.trmdl`),
-        loadFile(`${fileBasePath}.trmsh`),
-        loadFile(`${fileBasePath}.trmbf`),
+        loadFile(`models${fileBasePath}.trmdl`),
+        loadFile(`models${fileBasePath}.trmsh`),
+        loadFile(`models${fileBasePath}.trmbf`),
       ]);
 
       // 解析必需文件
@@ -86,14 +86,14 @@ export function usePokemonModel() {
       let trskl: TRSKL | undefined;
 
       try {
-        const buf = await loadFile(`${fileBasePath}.trmtr`);
+        const buf = await loadFile(`models${fileBasePath}.trmtr`);
         trmtr = parse(buf, 'TRMTR', (bb) => TRMTR.getRootAsTRMTR(bb));
       } catch {
         /* optional */
       }
 
       try {
-        const buf = await loadFile(`${fileBasePath}.trskl`);
+        const buf = await loadFile(`models${fileBasePath}.trskl`);
         trskl = parse(buf, 'TRSKL', (bb) => TRSKL.getRootAsTRSKL(bb));
       } catch {
         /* optional */

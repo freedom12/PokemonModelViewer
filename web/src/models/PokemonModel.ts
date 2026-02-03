@@ -32,7 +32,7 @@ export class PokemonModel {
       return this.resourceDataMap[game];
     }
     // 加载宝可梦资源信息
-    const data = await fetch(`/configs/${game}/pm${this.resourceId}.json`);
+    const data = await fetch(`local/configs/${game}/pm${this.resourceId}.json`);
     if (!data.ok) {
       throw new Error(`加载宝可梦资源信息失败: ${this.resourceId} (HTTP ${data.status})`);
     }

@@ -1,0 +1,13 @@
+{
+  "id": "pm0281",
+  "number": 281,
+  "forms": [
+    {
+      "id": "pm0281_00_00",
+      "formIndex": 0,
+      "variantIndex": 0,
+      "icon": "icon/pm0281_00_00_00_big.png",
+      "animations": {}
+    }
+  ]
+}

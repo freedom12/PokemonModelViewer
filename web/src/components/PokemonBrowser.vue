@@ -251,7 +251,7 @@ watch(
           <!-- 左侧图标 -->
           <div class="pokemon-icon">
             <img
-              :src="`/icons/icon${pokemon.index.toString().padStart(4, '0')}_f00_s0.png`"
+              :src="`local/icons/icon${pokemon.index.toString().padStart(4, '0')}_f00_s0.png`"
               :alt="`Pokemon ${pokemon.index} Icon`"
               loading="lazy"
               @error="handleThumbnailError"

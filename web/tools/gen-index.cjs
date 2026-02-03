@@ -57,8 +57,8 @@ function showHelp() {
 - 形态文件夹: pmXXXX_YY_ZZ (如 pm0001_00_00, pm0003_01_00)
 
 生成的配置文件：
-- 外层 index.json: assets/configs/{directory}/index.json 包含 pokemonIds 列表
-- 每个 pmXXXX.json: assets/configs/{directory}/pmXXXX.json 包含该宝可梦的详细信息 (id, number, forms 等)
+- 外层 index.json: assets/local/configs/{directory}/index.json 包含 pokemonIds 列表
+- 每个 pmXXXX.json: assets/local/configs/{directory}/pmXXXX.json 包含该宝可梦的详细信息 (id, number, forms 等)
 `);
 }
 
