@@ -1,0 +1,20 @@
+{
+  "id": "pm0404",
+  "number": 404,
+  "forms": [
+    {
+      "id": "pm0404_00_00",
+      "formIndex": 0,
+      "variantIndex": 0,
+      "icon": "icon/pm0404_00_00_00_big.png",
+      "animations": {}
+    },
+    {
+      "id": "pm0404_01_00",
+      "formIndex": 1,
+      "variantIndex": 0,
+      "icon": "icon/pm0404_01_00_00_big.png",
+      "animations": {}
+    }
+  ]
+}

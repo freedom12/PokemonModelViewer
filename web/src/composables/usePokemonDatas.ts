@@ -11,7 +11,7 @@ async function loadPokemonModels(): Promise<void> {
   if (modelsLoaded) return;
 
   try {
-    let response = await fetch('/configs/pokemon_species.json');
+    let response = await fetch('local/configs/pokemon_species.json');
     if (!response.ok) {
       throw new Error(`加载宝可梦名字失败: HTTP ${response.status}`);
     }
@@ -37,7 +37,7 @@ async function loadPokemonModels(): Promise<void> {
       pokemonResourceIdMap.value[pokemonModel.resourceId] = pokemonModel;
     });
 
-    response = await fetch('/configs/pokemon_forms.json');
+    response = await fetch('local/configs/pokemon_forms.json');
     if (!response.ok) {
       throw new Error(`加载形态名失败: HTTP ${response.status}`);
     }
@@ -52,7 +52,7 @@ async function loadPokemonModels(): Promise<void> {
 async function loadPokemonListInGame(game: Game): Promise<PokemonModel[]> {
   try {
     await loadPokemonModels();
-    const response = await fetch(`/configs/${game}/index.json`);
+    const response = await fetch(`local/configs/${game}/index.json`);
     if (!response.ok) {
       throw new Error(`加载游戏内宝可梦列表失败: HTTP ${response.status}`);
     }

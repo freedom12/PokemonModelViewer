@@ -999,7 +999,7 @@ export class Model extends THREE.Group {
   async loadAnimationFromUrl(url: string): Promise<void> {
     try {
       // 解析资源路径（支持本地/远程切换）
-      const resolvedUrl = resolveResourcePath(url);
+      const resolvedUrl = resolveResourcePath(url, true);
 
       // 加载二进制数据
       const response = await fetch(resolvedUrl);

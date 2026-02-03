@@ -11,19 +11,22 @@
  */
 interface ResourceLoaderConfig {
   /** 是否使用远程资源 */
-  useRemote: boolean;
-  modelRemotePath: string;
-  modelLocalPath: string;
+  useRemoteCos: boolean;
+  remoteCosPath: string;
+  assetsRemotePath: string;
+  assetsLocalPath: string;
 }
 
 /**
  * 默认配置
  */
 const env = import.meta.env;
+console.log(env)
 const DEFAULT_CONFIG: ResourceLoaderConfig = {
-  useRemote: env.VITE_USE_REMOTE_ASSETS === 'true',
-  modelRemotePath: env.VITE_MODEL_REMOTE_PATH,
-  modelLocalPath: env.VITE_MODEL_LOCAL_PATH,
+  useRemoteCos: env.VITE_USE_REMOTE_COS === 'true',
+  remoteCosPath: env.VITE_REMOTE_COS_PATH,
+  assetsRemotePath: env.VITE_ASSETS_REMOTE_PATH,
+  assetsLocalPath: env.VITE_ASSETS_LOCAL_PATH,
 };
 
 /**
@@ -53,21 +56,21 @@ export function getResourceLoaderConfig(): ResourceLoaderConfig {
  * 转换资源路径
  *
  * @param path - 原始路径
+ * @param isRemote - 是否属于远程资源，不传值默认为false
  * @returns 转换后的路径
  */
-export function resolveResourcePath(path: string): string {
+export function resolveResourcePath(path: string, isRemote = false): string {
   // 移除开头的斜杠
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
 
-  // JSON文件始终从本地加载
-  if (cleanPath.endsWith('.json')) {
-    return `configs/${cleanPath}`;
-  }
-
-  if (currentConfig.useRemote) {
-    return `${currentConfig.modelRemotePath}/${cleanPath}`;
+  if (!isRemote) {
+    return `${currentConfig.assetsLocalPath}/${cleanPath}`;
   } else {
-    return `${currentConfig.modelLocalPath}/${cleanPath}`;
+    if (currentConfig.useRemoteCos) {
+      return `${currentConfig.remoteCosPath}/${path}`;
+    } else {
+      return `${currentConfig.assetsRemotePath}/${path}`;
+    }
   }
 }
 
@@ -97,7 +100,7 @@ export async function loadTextResource(path: string): Promise<string> {
  * @returns Promise<ArrayBuffer> 二进制数据
  */
 export async function loadBinaryResource(path: string): Promise<ArrayBuffer> {
-  const resolvedPath = resolveResourcePath(path);
+  const resolvedPath = resolveResourcePath(path, true);
 
   const response = await fetch(resolvedPath);
   if (!response.ok) {
