@@ -238,11 +238,11 @@ export class MaterialFactory {
 
         // 根据纹理类型设置颜色空间
         if (
-          textureRef.type === 'normal' ||
-          textureRef.type === 'roughness' ||
-          textureRef.type === 'metalness' ||
-          textureRef.type === 'ao'
+          textureRef.type === 'albedo' ||
+          textureRef.type === 'emission'
         ) {
+          texture.colorSpace = THREE.SRGBColorSpace;
+        } else {
           texture.colorSpace = THREE.LinearSRGBColorSpace;
         }
 

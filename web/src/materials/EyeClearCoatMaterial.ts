@@ -18,72 +18,6 @@ import { MaterialData } from '../core/data';
 import type { MaterialCreator } from './MaterialFactory';
 
 /**
- * EyeClearCoat 材质参数接口
- */
-export interface EyeClearCoatParams {
-  /** 基础颜色 */
-  baseColor: THREE.Vector4;
-  /** 第一层基础颜色 */
-  baseColorLayer1: THREE.Vector4;
-  /** 第二层基础颜色 */
-  baseColorLayer2: THREE.Vector4;
-  /** 第三层基础颜色 */
-  baseColorLayer3: THREE.Vector4;
-  /** 第四层基础颜色 */
-  baseColorLayer4: THREE.Vector4;
-  /** 自发光颜色 */
-  emissionColor: THREE.Vector4;
-  /** 第一层自发光颜色 */
-  emissionColorLayer1: THREE.Vector4;
-  /** 第二层自发光颜色 */
-  emissionColorLayer2: THREE.Vector4;
-  /** 第三层自发光颜色 */
-  emissionColorLayer3: THREE.Vector4;
-  /** 第四层自发光颜色 */
-  emissionColorLayer4: THREE.Vector4;
-  /** 第五层自发光颜色 */
-  emissionColorLayer5: THREE.Vector4;
-  /** 自发光强度 */
-  emissionIntensity: number;
-  /** 第一层金属度 */
-  metallicLayer1: number;
-  /** 第二层金属度 */
-  metallicLayer2: number;
-  /** 第三层金属度 */
-  metallicLayer3: number;
-  /** 第四层金属度 */
-  metallicLayer4: number;
-  /** 第一层粗糙度 */
-  roughnessLayer1: number;
-  /** 第二层粗糙度 */
-  roughnessLayer2: number;
-  /** 第三层粗糙度 */
-  roughnessLayer3: number;
-  /** 第四层粗糙度 */
-  roughnessLayer4: number;
-  /** 第一层自发光强度 */
-  emissionIntensityLayer1: number;
-  /** 第二层自发光强度 */
-  emissionIntensityLayer2: number;
-  /** 第三层自发光强度 */
-  emissionIntensityLayer3: number;
-  /** 第四层自发光强度 */
-  emissionIntensityLayer4: number;
-  /** 第一层蒙版缩放 */
-  layerMaskScale1: number;
-  /** 第二层蒙版缩放 */
-  layerMaskScale2: number;
-  /** 第三层蒙版缩放 */
-  layerMaskScale3: number;
-  /** 第四层蒙版缩放 */
-  layerMaskScale4: number;
-  /** UV 缩放和偏移 */
-  uvScaleOffset: THREE.Vector4;
-  /** 法线贴图 UV 缩放和偏移 */
-  uvScaleOffsetNormal: THREE.Vector4;
-}
-
-/**
  * 创建 EyeClearCoat 材质
  *
  * @param data - 材质数据
@@ -100,6 +34,7 @@ export const createEyeClearCoatMaterial: MaterialCreator = (
   const enableHighlight = data.isAnyShaderFeatureEnabled('EnableHighlight');
 
   // 获取纹理
+  const baseColorMapTexture = getTextureByName(data, textureMap, 'BaseColorMap');
   const layerMaskTexture = getTextureByName(data, textureMap, 'LayerMaskMap');
   let highlightMaskTexture = getTextureByName(data, textureMap, 'HighlightMaskMap');
 
@@ -201,10 +136,16 @@ export const createEyeClearCoatMaterial: MaterialCreator = (
   // 创建 MeshStandardMaterial
   const material = new THREE.MeshStandardMaterial({
     side: THREE.DoubleSide,
-    transparent: data.isTransparent,
+    // transparent: data.isTransparent,
   });
 
   // 设置纹理和 UV 变换
+  if (baseColorMapTexture) {
+    material.map = baseColorMapTexture;
+    material.userData.baseColorMap = baseColorMapTexture;
+    baseColorMapTexture.repeat.set(uvScaleOffset.x, uvScaleOffset.y);
+    baseColorMapTexture.offset.set(uvScaleOffset.z, uvScaleOffset.w);
+  }
   if (layerMaskTexture) {
     material.userData.layerMaskMap = layerMaskTexture;
     layerMaskTexture.repeat.set(uvScaleOffset.x, uvScaleOffset.y);
@@ -226,44 +167,11 @@ export const createEyeClearCoatMaterial: MaterialCreator = (
     normalTexture1.offset.set(uvScaleOffsetNormal.z, uvScaleOffsetNormal.w);
   }
 
-  // 存储 EyeClearCoat 参数
-  const eyeClearCoatParams: EyeClearCoatParams = {
-    baseColor,
-    baseColorLayer1,
-    baseColorLayer2,
-    baseColorLayer3,
-    baseColorLayer4,
-    emissionColor,
-    emissionColorLayer1,
-    emissionColorLayer2,
-    emissionColorLayer3,
-    emissionColorLayer4,
-    emissionColorLayer5,
-    emissionIntensity,
-    emissionIntensityLayer1,
-    emissionIntensityLayer2,
-    emissionIntensityLayer3,
-    emissionIntensityLayer4,
-    layerMaskScale1,
-    layerMaskScale2,
-    layerMaskScale3,
-    layerMaskScale4,
-    metallicLayer1,
-    metallicLayer2,
-    metallicLayer3,
-    metallicLayer4,
-    roughnessLayer1,
-    roughnessLayer2,
-    roughnessLayer3,
-    roughnessLayer4,
-    uvScaleOffset,
-    uvScaleOffsetNormal,
-  };
-  material.userData.eyeClearCoatParams = eyeClearCoatParams;
-
   // 使用 onBeforeCompile 修改 fragment shader
   material.onBeforeCompile = (shader) => {
     // 添加 uniforms
+    shader.uniforms.baseColorMap = { value: baseColorMapTexture || null };
+    shader.uniforms.useBaseColorMap = { value: !!baseColorMapTexture };
     shader.uniforms.layerMaskMap = { value: layerMaskTexture || null };
     shader.uniforms.highlightMaskMap = { value: highlightMaskTexture || null };
     shader.uniforms.useHighlightMask = { value: !!highlightMaskTexture };
@@ -322,8 +230,24 @@ export const createEyeClearCoatMaterial: MaterialCreator = (
       ),
     };
 
+    // 确保 vUv 在 vertex shader 中可用
+    if (!shader.vertexShader.includes('varying vec2 vUv;')) {
+      shader.vertexShader = shader.vertexShader.replace(
+        '#include <common>',
+        '#include <common>\nvarying vec2 vUv;'
+      );
+    }
+
+    // 确保 vUv 被赋值 - 在 uv_vertex chunk 之后插入
+    shader.vertexShader = shader.vertexShader.replace(
+      '#include <uv_vertex>',
+      '#include <uv_vertex>\nvUv = uv;'
+    );
+
     // uniform 声明
     const uniformDeclarations = `
+      uniform sampler2D baseColorMap;
+      uniform bool useBaseColorMap;
       uniform sampler2D layerMaskMap;
       uniform sampler2D highlightMaskMap;
       uniform bool useHighlightMask;
@@ -366,28 +290,6 @@ export const createEyeClearCoatMaterial: MaterialCreator = (
       '#include <common>\n' + uniformDeclarations
     );
 
-    // 确保 vUv 在 vertex shader 中可用
-    if (!shader.vertexShader.includes('varying vec2 vUv;')) {
-      shader.vertexShader = shader.vertexShader.replace(
-        '#include <common>',
-        '#include <common>\nvarying vec2 vUv;'
-      );
-    }
-
-    // 确保 vUv 被赋值
-    if (!shader.vertexShader.includes('vUv = uv;')) {
-      const vertexMainRegex = /void main\(\) \{([\s\S]*?)\}/;
-      const vertexMainMatch = shader.vertexShader.match(vertexMainRegex);
-      if (vertexMainMatch) {
-        let vertexMainBody = vertexMainMatch[1];
-        vertexMainBody = 'vUv = uv;\n' + vertexMainBody;
-        shader.vertexShader = shader.vertexShader.replace(
-          vertexMainMatch[0],
-          `void main() {${vertexMainBody}}`
-        );
-      }
-    }
-
     // 确保 vUv 在 fragment shader 中可用
     if (!shader.fragmentShader.includes('varying vec2 vUv;')) {
       shader.fragmentShader = shader.fragmentShader.replace(
@@ -396,60 +298,47 @@ export const createEyeClearCoatMaterial: MaterialCreator = (
       );
     }
 
-    // 修改 fragment shader 的 main 函数
-    const fragmentShader = shader.fragmentShader;
-    const mainFunctionRegex = /void main\(\) \{([\s\S]*?)\}/;
-    const mainFunctionMatch = fragmentShader.match(mainFunctionRegex);
+    // EyeClearCoat 多层混合逻辑 - 在 map_fragment 之后插入
+    const eyeClearCoatLogic = `
+      // EyeClearCoat 多层混合逻辑
+      // 应用 UV 变换：uvTransform.xy = scale, uvTransform.zw = offset
+      vec2 transformedUv = vUv * uvTransform.xy + uvTransform.zw;
+      vec4 layerMask = texture(layerMaskMap, transformedUv);
+      // 明度乘以2
+      layerMask *= 2.0;
+      layerMask = clamp(layerMask, 0.0, 1.0);
 
-    if (mainFunctionMatch) {
-      let mainFunctionBody = mainFunctionMatch[1];
 
-      // 查找 diffuseColor 的赋值
-      const diffuseColorAssignmentRegex = /(diffuseColor\s*=.*;)/;
-      const diffuseColorMatch = mainFunctionBody.match(diffuseColorAssignmentRegex);
+      float weight1 = layerMask.r * layerMaskScale1;
+      float weight2 = layerMask.g * layerMaskScale2;
+      float weight3 = layerMask.b * layerMaskScale3;
+      float weight4 = layerMask.a * layerMaskScale4;
 
-      if (diffuseColorMatch) {
-        // EyeClearCoat 多层混合逻辑
-        const eyeClearCoatLogic = `
-          // EyeClearCoat 多层混合逻辑
-          // 应用 UV 变换：uvTransform.xy = scale, uvTransform.zw = offset
-          vec2 transformedUv = vUv * uvTransform.xy + uvTransform.zw;
-          vec4 layerMask = texture(layerMaskMap, transformedUv);
-          float weight1 = layerMask.r * layerMaskScale1;
-          float weight2 = layerMask.g * layerMaskScale2;
-          float weight3 = layerMask.b * layerMaskScale3;
-          float weight4 = layerMask.a * layerMaskScale4;
-
-          vec4 albedo = vec4(1.0);
-          vec4 baseColor = albedo * baseColor + emissionColor * emissionIntensity;
-          baseColor = (albedo * baseColorLayer1 + emissionColorLayer1 * emissionIntensityLayer1) * weight1 + baseColor * (1.0 - weight1);
-          baseColor = (albedo * baseColorLayer2 + emissionColorLayer2 * emissionIntensityLayer2) * weight2 + baseColor * (1.0 - weight2);
-          baseColor = (albedo * baseColorLayer3 + emissionColorLayer3 * emissionIntensityLayer3) * weight3 + baseColor * (1.0 - weight3);
-          baseColor = (albedo * baseColorLayer4 + emissionColorLayer4 * emissionIntensityLayer4) * weight4 + baseColor * (1.0 - weight4);
-
-          baseColor = baseColor;
-
-          diffuseColor = baseColor;
-
-          vec4 highlightMask = vec4(0.0);
-          if (useHighlightMask) {
-            highlightMask = texture(highlightMaskMap, transformedUv);
-          }
-
-          diffuseColor.rgb = baseColor.rgb + highlightMask.rgb;
-        `;
-
-        mainFunctionBody = mainFunctionBody.replace(
-          diffuseColorMatch[0],
-          diffuseColorMatch[0] + eyeClearCoatLogic
-        );
+      // 从 BaseColorMap 纹理采样基础颜色，如果没有则使用 baseColor 参数
+      vec4 albedo = baseColor;
+      if (useBaseColorMap) {
+        albedo = texture(baseColorMap, transformedUv) * baseColor;
       }
 
-      shader.fragmentShader = shader.fragmentShader.replace(
-        mainFunctionMatch[0],
-        `void main() {${mainFunctionBody}}`
-      );
-    }
+      albedo = albedo + emissionColor * emissionIntensity;
+      albedo = (baseColorLayer1 + emissionColorLayer1 * emissionIntensityLayer1) * weight1 + albedo * (1.0 - weight1);
+      albedo = (baseColorLayer2 + emissionColorLayer2 * emissionIntensityLayer2) * weight2 + albedo * (1.0 - weight2);
+      albedo = (baseColorLayer3 + emissionColorLayer3 * emissionIntensityLayer3) * weight3 + albedo * (1.0 - weight3);
+      albedo = (baseColorLayer4 + emissionColorLayer4 * emissionIntensityLayer4) * weight4 + albedo * (1.0 - weight4);
+
+      vec4 highlightMask = vec4(0.0);
+      if (useHighlightMask) {
+        highlightMask = texture2D(highlightMaskMap, transformedUv);
+      }
+
+      diffuseColor.rgb = albedo.rgb + highlightMask.rgb;
+    `;
+
+    // 在 #include <map_fragment> 之后插入自定义逻辑
+    shader.fragmentShader = shader.fragmentShader.replace(
+      '#include <map_fragment>',
+      '#include <map_fragment>\n' + eyeClearCoatLogic
+    );
   };
 
   // 设置材质名称
