@@ -19,7 +19,7 @@
 ### 远程资源
 可以通过以下方式启用远程资源加载：
 
-1. **环境变量**：设置 `VITE_USE_REMOTE_ASSETS=true`
+1. **环境变量**：设置 `VITE_USE_REMOTE_COS=true`
 2. **运行时切换**：在应用程序界面中使用"使用远程资源"开关
 
 远程资源存储在腾讯云COS：`https://pokemon-model-1400264169.cos.ap-beijing.myqcloud.com/`

@@ -43,7 +43,7 @@ const selectedGame = ref<Game>('SCVI');
 const currentAnimations = ref<Record<string, string[]> | null>(null);
 
 // 资源加载模式：本地或远程
-const useRemoteAssets = ref(import.meta.env.VITE_USE_REMOTE_ASSETS === 'true');
+const useRemoteAssets = ref(import.meta.env.VITE_USE_REMOTE_COS === 'true');
 
 // 组件挂载时不需要额外加载数据，PokemonBrowser 会处理
 
@@ -112,7 +112,7 @@ function handleSelectGame(game: Game): void {
  */
 function handleResourceModeChange(useRemote: boolean): void {
   useRemoteAssets.value = useRemote;
-  setResourceLoaderConfig({ useRemote });
+  setResourceLoaderConfig({ useRemoteCos: useRemote });
 }
 
 /**

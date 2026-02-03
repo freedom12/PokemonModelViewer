@@ -192,7 +192,7 @@ export class MaterialFactory {
     }
 
     // 解析资源路径（支持本地/远程切换）
-    const resolvedPath = resolveResourcePath(path);
+    const resolvedPath = resolveResourcePath(`models${path}`, true);
 
     // 使用默认的 Three.js TextureLoader
     const loader = MaterialFactory.getThreeTextureLoader();
@@ -341,9 +341,7 @@ export class MaterialFactory {
 
       textureMap.set('eye_hight_mask', texture);
       return;
-    } catch {
-
-    }
+    } catch {}
 
     const fallbackFilename = layerMaskRef.filename.replace('_eye_lym', '_eye_msk');
     const fallbackPath = `${basePath}${fallbackFilename}`;
@@ -358,9 +356,7 @@ export class MaterialFactory {
       texture.needsUpdate = true;
 
       textureMap.set('eye_hight_mask', texture);
-    } catch (error) {
-
-    }
+    } catch (error) {}
   }
 
   /**
