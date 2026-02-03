@@ -1,0 +1,5 @@
+dist
+node_modules
+src/parsers/generated
+**/*.d.ts
+tools

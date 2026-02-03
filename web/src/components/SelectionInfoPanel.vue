@@ -9,8 +9,8 @@
  *
  * @validates 需求 6.4: 选择信息面板作为独立组件，显示选中的三角形或骨骼信息
  */
-import { computed } from "vue";
-import * as THREE from "three";
+import { computed } from 'vue';
+import * as THREE from 'three';
 
 // 三角形顶点信息接口
 interface VertexInfo {
@@ -54,7 +54,7 @@ const showBonePanel = computed(() => {
 
 // 计算属性：获取 Mesh 名称
 const meshName = computed(() => {
-  return props.triangleInfo?.mesh?.name || "Unnamed";
+  return props.triangleInfo?.mesh?.name || 'Unnamed';
 });
 
 /**
@@ -85,18 +85,11 @@ function formatVector2(vec: THREE.Vector2): string {
 
 <template>
   <!-- 三角形信息面板 -->
-  <div
-    v-if="showTrianglePanel"
-    class="selection-info-panel"
-  >
-    <h4 class="selection-info-title">
-      选中三角形信息
-    </h4>
+  <div v-if="showTrianglePanel" class="selection-info-panel">
+    <h4 class="selection-info-title">选中三角形信息</h4>
     <div class="selection-info-content">
       <!-- Mesh 名称 -->
-      <div class="selection-info-item">
-        <strong>Mesh:</strong> {{ meshName }}
-      </div>
+      <div class="selection-info-item"><strong>Mesh:</strong> {{ meshName }}</div>
       <!-- 面片索引 -->
       <div class="selection-info-item">
         <strong>Face Index:</strong> {{ triangleInfo?.faceIndex }}
@@ -111,9 +104,7 @@ function formatVector2(vec: THREE.Vector2): string {
           <h5>顶点 {{ index + 1 }}</h5>
           <div class="vertex-detail">
             <!-- 顶点位置 -->
-            <div>
-              <strong>位置:</strong> {{ formatVector3(vertex.position) }}
-            </div>
+            <div><strong>位置:</strong> {{ formatVector3(vertex.position) }}</div>
             <!-- 顶点法线 -->
             <div><strong>法线:</strong> {{ formatVector3(vertex.normal) }}</div>
             <!-- 顶点 UV（如果存在） -->
@@ -127,13 +118,8 @@ function formatVector2(vec: THREE.Vector2): string {
   </div>
 
   <!-- 骨骼信息面板 -->
-  <div
-    v-if="showBonePanel"
-    class="selection-info-panel"
-  >
-    <h4 class="selection-info-title">
-      选中骨骼信息
-    </h4>
+  <div v-if="showBonePanel" class="selection-info-panel">
+    <h4 class="selection-info-title">选中骨骼信息</h4>
     <div class="selection-info-content">
       <!-- 骨骼名称 -->
       <div class="selection-info-item bone-info-mono">
@@ -146,12 +132,12 @@ function formatVector2(vec: THREE.Vector2): string {
       <!-- 世界坐标 -->
       <div class="bone-info-item">
         <strong>世界坐标:</strong>
-        {{ boneInfo ? formatVector3(boneInfo.worldPosition) : "" }}
+        {{ boneInfo ? formatVector3(boneInfo.worldPosition) : '' }}
       </div>
       <!-- 本地坐标 -->
       <div class="bone-info-item">
         <strong>本地坐标:</strong>
-        {{ boneInfo ? formatVector3(boneInfo.localPosition) : "" }}
+        {{ boneInfo ? formatVector3(boneInfo.localPosition) : '' }}
       </div>
     </div>
   </div>

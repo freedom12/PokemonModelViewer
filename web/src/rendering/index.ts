@@ -4,7 +4,7 @@
  * 导出渲染相关的类和工具
  */
 
-export { CameraController } from './CameraController'
-export { LightingManager } from './LightingManager'
-export { RenderLoop } from './RenderLoop'
-export { World } from './World'
+export { CameraController } from './CameraController';
+export { LightingManager } from './LightingManager';
+export { RenderLoop } from './RenderLoop';
+export { World } from './World';

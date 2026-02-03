@@ -13,29 +13,29 @@
  * @validates 需求 6.1: ThreeViewer组件拆分为场景容器组件和控制面板组件
  * @validates 需求 6.7: 组件间通信使用props和emits进行数据传递
  */
-import { ref, watch, onMounted, onUnmounted, computed } from "vue";
-import * as THREE from "three";
+import { ref, watch, onMounted, onUnmounted, computed } from 'vue';
+import * as THREE from 'three';
 
 // 导入渲染层类
-import { World } from "../rendering";
+import { World } from '../rendering';
 
 // 导入 Model 整合类
-import { Model } from "../core/model";
+import { Model } from '../core/model';
 
 // 导入宝可梦模型加载
-import { usePokemonModel } from "../composables/usePokemonModel";
+import { usePokemonModel } from '../composables/usePokemonModel';
 
 // 导入子组件
-import ControlPanel from "./ControlPanel.vue";
-import AnimationController from "./AnimationController.vue";
-import SelectionInfoPanel from "./SelectionInfoPanel.vue";
-import LoadingOverlay from "./LoadingOverlay.vue";
-import ErrorDisplay from "./ErrorDisplay.vue";
+import ControlPanel from './ControlPanel.vue';
+import AnimationController from './AnimationController.vue';
+import SelectionInfoPanel from './SelectionInfoPanel.vue';
+import LoadingOverlay from './LoadingOverlay.vue';
+import ErrorDisplay from './ErrorDisplay.vue';
 
 // 导入类型
-import { PokemonModel } from "../models";
-import { Game } from "../types";
-import { AnimationState } from "../core/data/types";
+import { PokemonModel } from '../models';
+import { Game } from '../types';
+import { AnimationState } from '../core/data/types';
 
 // ===== Props 定义 =====
 const props = defineProps<{
@@ -50,13 +50,13 @@ const props = defineProps<{
 // ===== Emits 定义 =====
 const emit = defineEmits<{
   /** 加载状态变化事件 */
-  (e: "loading-change", loading: boolean): void;
+  (e: 'loading-change', loading: boolean): void;
   /** 加载进度变化事件 */
-  (e: "progress-change", progress: number): void;
+  (e: 'progress-change', progress: number): void;
   /** 错误事件 */
-  (e: "error", error: string | null): void;
+  (e: 'error', error: string | null): void;
   /** 模型加载完成事件 */
-  (e: "model-loaded", formId: string): void;
+  (e: 'model-loaded', formId: string): void;
 }>();
 
 // ===== 响应式状态 =====
@@ -74,12 +74,12 @@ let world: World | null = null;
 const currentModel = ref<Model | null>(null);
 
 // 当前形态 ID
-const currentFormId = ref<string>("");
+const currentFormId = ref<string>('');
 
 // 加载状态
 const loading = ref(false);
 const progress = ref(0);
-const progressInfo = ref({ message: "加载中..." });
+const progressInfo = ref({ message: '加载中...' });
 const error = ref<string | null>(null);
 
 // 场景是否已初始化
@@ -103,7 +103,7 @@ const showGridHelper = ref(true);
 const showShadow = ref(true);
 
 // 选择模式：'none' | 'mesh' | 'bone'
-const selectionMode = ref<"none" | "mesh" | "bone">("none");
+const selectionMode = ref<'none' | 'mesh' | 'bone'>('none');
 
 // ===== 动画相关状态 =====
 
@@ -111,7 +111,7 @@ const selectionMode = ref<"none" | "mesh" | "bone">("none");
 const availableAnimations = ref<Record<string, string[]>>({});
 
 // 当前选中的动画名称
-const selectedAnimation = ref<string>("");
+const selectedAnimation = ref<string>('');
 
 // 是否正在播放动画
 const isAnimationPlaying = ref(false);
@@ -185,7 +185,7 @@ const animationOptions = computed(() => {
  */
 function initWorld(): void {
   if (!containerRef.value) {
-    console.warn("[ThreeViewer] 容器元素不存在，无法初始化 World");
+    console.warn('[ThreeViewer] 容器元素不存在，无法初始化 World');
     return;
   }
 
@@ -217,21 +217,21 @@ function initWorld(): void {
  */
 async function loadAndDisplayModel(
   pokemon: PokemonModel,
-  form: [number, number],
+  form: [number, number]
 ): Promise<void> {
   // 确保场景已初始化
   if (!sceneInitialized.value || !world) {
-    console.warn("[ThreeViewer] 场景未初始化，无法加载模型");
+    console.warn('[ThreeViewer] 场景未初始化，无法加载模型');
     return;
   }
 
   // 开始加载时先设置为无选择模式
-  selectionMode.value = "none";
+  selectionMode.value = 'none';
 
   // 切换模型时清空当前选择的mesh、骨骼和动画数据
   selectedTriangle.value = null;
   selectedBone.value = null;
-  selectedAnimation.value = "";
+  selectedAnimation.value = '';
   isAnimationPlaying.value = false;
   animationState.value = null;
 
@@ -294,7 +294,7 @@ async function loadAndDisplayModel(
 
   // 构建 formId
   const pokemonId = `pm${pokemon.resourceId}`;
-  const formId = `${pokemonId}_${form[0].toString().padStart(2, "0")}_${form[1].toString().padStart(2, "0")}`;
+  const formId = `${pokemonId}_${form[0].toString().padStart(2, '0')}_${form[1].toString().padStart(2, '0')}`;
 
   // 设置加载状态
   loading.value = true;
@@ -304,17 +304,17 @@ async function loadAndDisplayModel(
 
   try {
     // 使用 Model.load 加载模型
-    progressInfo.value = { message: "正在加载模型文件..." };
+    progressInfo.value = { message: '正在加载模型文件...' };
     progress.value = 20;
 
     const model = await loadModel(formId, props.game);
 
     // 检查加载是否成功
     if (!model) {
-      throw new Error("模型加载失败");
+      throw new Error('模型加载失败');
     }
 
-    progressInfo.value = { message: "正在创建网格..." };
+    progressInfo.value = { message: '正在创建网格...' };
     progress.value = 60;
 
     // 将模型添加到场景
@@ -322,7 +322,7 @@ async function loadAndDisplayModel(
     currentModel.value = model;
     currentFormId.value = formId;
 
-    progressInfo.value = { message: "正在设置相机..." };
+    progressInfo.value = { message: '正在设置相机...' };
     progress.value = 80;
 
     // 设置固定的摄像机位置 - 正面偏上视角
@@ -332,11 +332,11 @@ async function loadAndDisplayModel(
     // 应用当前的显示设置
     applyDisplaySettings();
 
-    progressInfo.value = { message: "加载完成" };
+    progressInfo.value = { message: '加载完成' };
     progress.value = 100;
 
     // 触发模型加载完成事件
-    emit("model-loaded", formId);
+    emit('model-loaded', formId);
 
     // 获取可用动画列表
     const formResourceData = pokemon.getFormResourceData(props.game, form);
@@ -348,13 +348,13 @@ async function loadAndDisplayModel(
     }
   } catch (err) {
     // 加载失败时设置为无选择模式
-    selectionMode.value = "none";
+    selectionMode.value = 'none';
 
     // 设置错误信息
     const errorMessage = err instanceof Error ? err.message : String(err);
     error.value = errorMessage;
 
-    console.error("[ThreeViewer] 模型加载失败:", {
+    console.error('[ThreeViewer] 模型加载失败:', {
       pokemonId,
       formId,
       error: err,
@@ -445,7 +445,7 @@ function updateVertexNormalsVisualization(visible: boolean): void {
 
   // 创建新的法线组
   vertexNormalsGroup = new THREE.Group();
-  vertexNormalsGroup.name = "VertexNormals";
+  vertexNormalsGroup.name = 'VertexNormals';
 
   // 遍历模型中的所有 Mesh
   currentModel.value.traverse((child) => {
@@ -571,7 +571,7 @@ function updateSkeletonVisualization(visible: boolean): void {
 
   // 创建新的骨骼组
   skeletonGroup = new THREE.Group();
-  skeletonGroup.name = "SkeletonVisualization";
+  skeletonGroup.name = 'SkeletonVisualization';
 
   // 创建骨骼名称到索引的映射
   skeletonBoneIndexMap = new Map<string, number>();
@@ -590,20 +590,16 @@ function updateSkeletonVisualization(visible: boolean): void {
   skeletonJointsInstanced = new THREE.InstancedMesh(
     jointGeometry,
     jointMaterial,
-    boneCount,
+    boneCount
   );
-  skeletonJointsInstanced.name = "SkeletonJoints";
+  skeletonJointsInstanced.name = 'SkeletonJoints';
   skeletonJointsInstanced.renderOrder = 1;
 
   // 初始化每个实例的变换矩阵
   for (let i = 0; i < boneCount; i++) {
     const bone = threeSkeleton.bones[i];
     bone.getWorldPosition(_tempWorldPos);
-    _tempMatrix.makeTranslation(
-      _tempWorldPos.x,
-      _tempWorldPos.y,
-      _tempWorldPos.z,
-    );
+    _tempMatrix.makeTranslation(_tempWorldPos.x, _tempWorldPos.y, _tempWorldPos.z);
     skeletonJointsInstanced.setMatrixAt(i, _tempMatrix);
   }
   skeletonJointsInstanced.instanceMatrix.needsUpdate = true;
@@ -627,10 +623,7 @@ function updateSkeletonVisualization(visible: boolean): void {
   if (lineCount > 0) {
     const linePositions = new Float32Array(lineCount * 2 * 3); // lineCount * 2 vertices * 3 components
     const lineGeometry = new THREE.BufferGeometry();
-    lineGeometry.setAttribute(
-      "position",
-      new THREE.BufferAttribute(linePositions, 3),
-    );
+    lineGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
 
     // 初始化线段位置
     for (let i = 0; i < lineCount; i++) {
@@ -655,7 +648,7 @@ function updateSkeletonVisualization(visible: boolean): void {
     });
 
     skeletonLinesSegments = new THREE.LineSegments(lineGeometry, lineMaterial);
-    skeletonLinesSegments.name = "SkeletonLines";
+    skeletonLinesSegments.name = 'SkeletonLines';
     skeletonLinesSegments.renderOrder = 1;
 
     skeletonGroup.add(skeletonLinesSegments);
@@ -686,11 +679,7 @@ function updateSkeletonPositions(): void {
     for (let i = 0; i < boneCount; i++) {
       const bone = threeSkeleton.bones[i];
       bone.getWorldPosition(_tempWorldPos);
-      _tempMatrix.makeTranslation(
-        _tempWorldPos.x,
-        _tempWorldPos.y,
-        _tempWorldPos.z,
-      );
+      _tempMatrix.makeTranslation(_tempWorldPos.x, _tempWorldPos.y, _tempWorldPos.z);
       skeletonJointsInstanced.setMatrixAt(i, _tempMatrix);
     }
     skeletonJointsInstanced.instanceMatrix.needsUpdate = true;
@@ -750,7 +739,7 @@ function handleShadowChange(value: boolean): void {
 /**
  * 处理选择模式变更
  */
-function handleSelectionModeChange(value: "none" | "mesh" | "bone"): void {
+function handleSelectionModeChange(value: 'none' | 'mesh' | 'bone'): void {
   selectionMode.value = value;
   // 切换模式时清除当前的选择状态和高亮
   selectedTriangle.value = null;
@@ -764,7 +753,7 @@ function handleSelectionModeChange(value: "none" | "mesh" | "bone"): void {
  */
 function highlightSelectedTriangle(
   mesh: THREE.Mesh | null,
-  faceIndex: number | null,
+  faceIndex: number | null
 ): void {
   // 移除现有的高亮
   if (selectedTriangleHighlight && world) {
@@ -825,10 +814,7 @@ function highlightSelectedTriangle(
   positions[7] = posC.y;
   positions[8] = posC.z;
 
-  triangleGeometry.setAttribute(
-    "position",
-    new THREE.BufferAttribute(positions, 3),
-  );
+  triangleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
   // 创建材质（绿色半透明）
   const material = new THREE.MeshBasicMaterial({
@@ -841,7 +827,7 @@ function highlightSelectedTriangle(
 
   // 创建高亮 mesh
   const highlightMesh = new THREE.Mesh(triangleGeometry, material);
-  highlightMesh.name = "SelectedTriangleHighlight";
+  highlightMesh.name = 'SelectedTriangleHighlight';
   highlightMesh.renderOrder = 999;
 
   // 设置变换矩阵与原 mesh 相同
@@ -899,7 +885,7 @@ function highlightSelectedBone(boneIndex: number | null): void {
   // 创建高亮 mesh
   const highlightMesh = new THREE.Mesh(highlightGeometry, highlightMaterial);
   highlightMesh.position.copy(worldPosition);
-  highlightMesh.name = "SelectedBoneHighlight";
+  highlightMesh.name = 'SelectedBoneHighlight';
   highlightMesh.renderOrder = 999;
 
   // 添加到场景
@@ -942,11 +928,8 @@ function handleTogglePlay(): void {
     isAnimationPlaying.value = false;
   } else {
     // 播放动画
-    if (
-      !selectedAnimation.value ||
-      !availableAnimations.value[selectedAnimation.value]
-    ) {
-      console.warn("[ThreeViewer] 没有选中的动画或动画文件不存在");
+    if (!selectedAnimation.value || !availableAnimations.value[selectedAnimation.value]) {
+      console.warn('[ThreeViewer] 没有选中的动画或动画文件不存在');
       return;
     }
     loadAndPlayAnimation(selectedAnimation.value);
@@ -987,17 +970,17 @@ async function loadAndPlayAnimation(animationName: string): Promise<void> {
     }
 
     // 选择第一个 .tranm 文件（骨骼动画）
-    const tranmFile = animationFiles.find((file) => file.endsWith(".tranm"));
+    const tranmFile = animationFiles.find((file) => file.endsWith('.tranm'));
     if (!tranmFile) {
       throw new Error(`No .tranm file found for animation ${animationName}`);
     }
 
     // 查找对应的 .tracm 文件（可见性动画）
-    const tracmFile = animationFiles.find((file) => file.endsWith(".tracm"));
+    const tracmFile = animationFiles.find((file) => file.endsWith('.tracm'));
 
     // 构建动画文件 URL
     const pokemonId = `pm${props.pokemon.resourceId}`;
-    const formId = `${pokemonId}_${props.form[0].toString().padStart(2, "0")}_${props.form[1].toString().padStart(2, "0")}`;
+    const formId = `${pokemonId}_${props.form[0].toString().padStart(2, '0')}_${props.form[1].toString().padStart(2, '0')}`;
     const tranmUrl = `/${props.game}/${pokemonId}/${formId}/${tranmFile}`;
 
     // 加载骨骼动画
@@ -1016,7 +999,7 @@ async function loadAndPlayAnimation(animationName: string): Promise<void> {
     currentModel.value.playAnimation();
     isAnimationPlaying.value = true;
   } catch (err) {
-    console.error("[ThreeViewer] 加载动画失败:", err);
+    console.error('[ThreeViewer] 加载动画失败:', err);
     isAnimationPlaying.value = false;
   }
 }
@@ -1027,17 +1010,15 @@ async function loadAndPlayAnimation(animationName: string): Promise<void> {
  * 处理容器点击事件
  */
 function handleContainerClick(event: MouseEvent): void {
-  if (!currentModel.value || !world || selectionMode.value === "none") {
+  if (!currentModel.value || !world || selectionMode.value === 'none') {
     return;
   }
 
-  if (selectionMode.value === "mesh") {
+  if (selectionMode.value === 'mesh') {
     // 面片选择模式：对模型进行射线检测
-    const intersections = world.raycastFromScreen(
-      event.clientX,
-      event.clientY,
-      [currentModel.value],
-    );
+    const intersections = world.raycastFromScreen(event.clientX, event.clientY, [
+      currentModel.value,
+    ]);
 
     if (intersections.length > 0) {
       const intersection = intersections[0];
@@ -1054,14 +1035,14 @@ function handleContainerClick(event: MouseEvent): void {
         const c = face.c;
 
         // 获取顶点属性
-        const positionAttr = geometry.getAttribute("position");
-        const normalAttr = geometry.getAttribute("normal");
-        const uvAttr = geometry.getAttribute("uv");
+        const positionAttr = geometry.getAttribute('position');
+        const normalAttr = geometry.getAttribute('normal');
+        const uvAttr = geometry.getAttribute('uv');
 
         // 辅助函数：安全地从 buffer attribute 获取向量数据
         const getVector3FromAttribute = (
           attribute: THREE.BufferAttribute | THREE.InterleavedBufferAttribute,
-          index: number,
+          index: number
         ): THREE.Vector3 => {
           const vector = new THREE.Vector3();
           if (attribute instanceof THREE.BufferAttribute) {
@@ -1070,7 +1051,7 @@ function handleContainerClick(event: MouseEvent): void {
             vector.set(
               attribute.getX(index),
               attribute.getY(index),
-              attribute.getZ(index),
+              attribute.getZ(index)
             );
           }
           return vector;
@@ -1078,7 +1059,7 @@ function handleContainerClick(event: MouseEvent): void {
 
         const getVector2FromAttribute = (
           attribute: THREE.BufferAttribute | THREE.InterleavedBufferAttribute,
-          index: number,
+          index: number
         ): THREE.Vector2 => {
           const vector = new THREE.Vector2();
           if (attribute instanceof THREE.BufferAttribute) {
@@ -1129,18 +1110,16 @@ function handleContainerClick(event: MouseEvent): void {
         highlightSelectedBone(null);
       }
     }
-  } else if (selectionMode.value === "bone") {
+  } else if (selectionMode.value === 'bone') {
     // 骨骼选择模式：对骨骼关节 InstancedMesh 进行射线检测
     if (!skeletonJointsInstanced || !currentModel.value.threeSkeleton) {
       return;
     }
 
     // 对 InstancedMesh 进行射线检测
-    const intersections = world.raycastFromScreen(
-      event.clientX,
-      event.clientY,
-      [skeletonJointsInstanced],
-    );
+    const intersections = world.raycastFromScreen(event.clientX, event.clientY, [
+      skeletonJointsInstanced,
+    ]);
 
     if (intersections.length > 0) {
       const intersection = intersections[0];
@@ -1203,28 +1182,28 @@ watch(
       // 清空状态
       selectedTriangle.value = null;
       selectedBone.value = null;
-      selectedAnimation.value = "";
+      selectedAnimation.value = '';
       isAnimationPlaying.value = false;
       animationState.value = null;
       availableAnimations.value = {};
     }
   },
-  { immediate: true },
+  { immediate: true }
 );
 
 // 监听加载状态变化，触发事件
 watch(loading, (newLoading) => {
-  emit("loading-change", newLoading);
+  emit('loading-change', newLoading);
 });
 
 // 监听进度变化，触发事件
 watch(progress, (newProgress) => {
-  emit("progress-change", newProgress);
+  emit('progress-change', newProgress);
 });
 
 // 监听错误变化，触发事件
 watch(error, (newError) => {
-  emit("error", newError);
+  emit('error', newError);
 });
 
 // ===== 生命周期 =====
@@ -1236,7 +1215,7 @@ onMounted(() => {
   // 添加鼠标点击事件监听器
   const container = containerRef.value;
   if (container) {
-    container.addEventListener("click", handleContainerClick);
+    container.addEventListener('click', handleContainerClick);
   }
 
   // 如果已有有效的模型路径，立即加载
@@ -1249,7 +1228,7 @@ onUnmounted(() => {
   // 移除鼠标点击事件监听器
   const container = containerRef.value;
   if (container) {
-    container.removeEventListener("click", handleContainerClick);
+    container.removeEventListener('click', handleContainerClick);
   }
 
   // 清理顶点法线可视化
@@ -1339,10 +1318,7 @@ defineExpose({
 </script>
 
 <template>
-  <div
-    ref="containerRef"
-    class="three-viewer-container"
-  >
+  <div ref="containerRef" class="three-viewer-container">
     <!-- Three.js 将在此容器中创建 canvas 元素 -->
 
     <!-- 控制面板组件 -->
@@ -1370,10 +1346,7 @@ defineExpose({
     <!-- 动画控制器组件 -->
     <!-- @validates 需求 6.3: 动画控制器作为独立组件 -->
     <!-- @validates 需求 6.7: 使用 props 和 emits 进行组件间通信 -->
-    <div
-      v-if="hasAnimations"
-      class="animation-controller-wrapper"
-    >
+    <div v-if="hasAnimations" class="animation-controller-wrapper">
       <AnimationController
         :animations="animationOptions"
         :selected-animation="selectedAnimation"
@@ -1390,10 +1363,7 @@ defineExpose({
     <!-- 选择信息面板组件 -->
     <!-- @validates 需求 6.4: 选择信息面板作为独立组件 -->
     <!-- @validates 需求 6.7: 使用 props 和 emits 进行组件间通信 -->
-    <SelectionInfoPanel
-      :triangle-info="selectedTriangle"
-      :bone-info="selectedBone"
-    />
+    <SelectionInfoPanel :triangle-info="selectedTriangle" :bone-info="selectedBone" />
 
     <!-- 加载进度指示器组件 -->
     <!-- @validates 需求 6.5: 加载进度指示器作为独立组件 -->
@@ -1405,15 +1375,8 @@ defineExpose({
 
     <!-- 错误提示组件 -->
     <!-- @validates 需求 6.6: 错误显示作为独立组件 -->
-    <div
-      v-if="error && !loading"
-      class="error-overlay"
-    >
-      <ErrorDisplay
-        :error="error"
-        title="模型加载失败"
-        @retry="handleRetry"
-      />
+    <div v-if="error && !loading" class="error-overlay">
+      <ErrorDisplay :error="error" title="模型加载失败" @retry="handleRetry" />
     </div>
   </div>
 </template>

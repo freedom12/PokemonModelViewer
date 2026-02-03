@@ -21,8 +21,8 @@
  */
 export class ModelNotMaterializedError extends Error {
   constructor(operation: string) {
-    super(`Cannot ${operation}: Model is not materialized. Call materialize() first.`)
-    this.name = 'ModelNotMaterializedError'
+    super(`Cannot ${operation}: Model is not materialized. Call materialize() first.`);
+    this.name = 'ModelNotMaterializedError';
   }
 }
 
@@ -43,8 +43,8 @@ export class ModelDisposedError extends Error {
   constructor(operation?: string) {
     const message = operation
       ? `Cannot ${operation}: Model has been disposed and cannot be used.`
-      : 'Model has been disposed and cannot be used.'
-    super(message)
-    this.name = 'ModelDisposedError'
+      : 'Model has been disposed and cannot be used.';
+    super(message);
+    this.name = 'ModelDisposedError';
   }
 }

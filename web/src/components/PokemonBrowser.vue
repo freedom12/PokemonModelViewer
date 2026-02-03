@@ -17,13 +17,13 @@
  * @validates 需求 8.4: 网络请求失败时显示重试选项
  * @validates 需求 8.5: 发生错误时在控制台记录详细错误信息用于调试
  */
-import { ref, watch, Ref } from "vue";
-import { Loading } from "@element-plus/icons-vue";
-import ErrorDisplay from "./ErrorDisplay.vue";
-import { PokemonModel } from "../models";
-import { usePokemonDatas } from "../composables/usePokemonDatas";
-import { Game } from "../types";
-import { RecycleScroller } from "vue-virtual-scroller";
+import { ref, watch, Ref } from 'vue';
+import { Loading } from '@element-plus/icons-vue';
+import ErrorDisplay from './ErrorDisplay.vue';
+import { PokemonModel } from '../models';
+import { usePokemonDatas } from '../composables/usePokemonDatas';
+import { Game } from '../types';
+import { RecycleScroller } from 'vue-virtual-scroller';
 
 /**
  * Props 定义
@@ -40,7 +40,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   selectedPokemon: undefined,
   selectedForm: undefined,
-  selectedGame: "SCVI",
+  selectedGame: 'SCVI',
 });
 
 const { loadPokemonListInGame } = usePokemonDatas();
@@ -56,9 +56,9 @@ const emit = defineEmits<{
 }>();
 
 const games: [Game, string][] = [
-  ["SCVI", "朱紫"],
-  ["LA", "传说：阿尔宙斯"],
-  ["LZA", "传说：Z-A"],
+  ['SCVI', '朱紫'],
+  ['LA', '传说：阿尔宙斯'],
+  ['LZA', '传说：Z-A'],
 ];
 // 当前选择的目录
 const currentGame = ref<Game>(props.selectedGame);
@@ -97,7 +97,7 @@ async function handlePokemonClick(pokemon: PokemonModel): Promise<void> {
   const defaultForm = pokemon.getFromResourceIds(currentGame.value)[0];
   if (defaultForm) {
     currentForm.value = defaultForm;
-    emit("selectPokemon", pokemon, defaultForm);
+    emit('selectPokemon', pokemon, defaultForm);
   }
 }
 
@@ -107,13 +107,10 @@ async function handlePokemonClick(pokemon: PokemonModel): Promise<void> {
  * @param pokemon - 对应的宝可梦
  * @validates 需求 6.5: 用户选择不同形态时切换显示对应形态的模型
  */
-function handleFormChangeForItem(
-  value: [number, number],
-  pokemon: PokemonModel,
-): void {
+function handleFormChangeForItem(value: [number, number], pokemon: PokemonModel): void {
   currentPokemon.value = pokemon;
   currentForm.value = value;
-  emit("selectPokemon", pokemon, value);
+  emit('selectPokemon', pokemon, value);
 }
 
 // 监听 props 变化，同步内部状态
@@ -127,7 +124,7 @@ watch(
       }
     }
   },
-  { immediate: true },
+  { immediate: true }
 );
 
 watch(
@@ -137,7 +134,7 @@ watch(
       currentForm.value = newForm;
     }
   },
-  { immediate: true },
+  { immediate: true }
 );
 
 /**
@@ -150,7 +147,7 @@ async function handleRetry(): Promise<void> {
     await loadPokemonListInGame(currentGame.value);
   } catch (err) {
     // @validates 需求 8.5: 在控制台记录详细错误信息用于调试
-    console.error("[PokemonBrowser] 数据重新加载失败:", {
+    console.error('[PokemonBrowser] 数据重新加载失败:', {
       error: err,
       errorMessage: err instanceof Error ? err.message : String(err),
       errorStack: err instanceof Error ? err.stack : undefined,
@@ -169,7 +166,7 @@ function handleThumbnailError(event: Event): void {
   const originalSrc = img.src;
 
   // @validates 需求 8.5: 在控制台记录详细错误信息用于调试
-  console.warn("[PokemonBrowser] 缩略图加载失败:", {
+  console.warn('[PokemonBrowser] 缩略图加载失败:', {
     originalSrc,
     timestamp: new Date().toISOString(),
   });
@@ -186,7 +183,7 @@ watch(
     if (newGame && newGame !== currentGame.value) {
       currentGame.value = newGame;
     }
-  },
+  }
 );
 
 // 监听 currentGame 变化，重新加载列表
@@ -197,7 +194,7 @@ watch(
       // 切换游戏时清除选中状态
       currentPokemon.value = null;
       currentForm.value = null;
-      emit("selectGame", newGame);
+      emit('selectGame', newGame);
       try {
         pokemons.value = await loadPokemonListInGame(newGame);
       } catch (err) {
@@ -205,7 +202,7 @@ watch(
       }
     }
   },
-  { immediate: true },
+  { immediate: true }
 );
 </script>
 
@@ -214,11 +211,7 @@ watch(
     <!-- 头部区域 -->
     <div class="browser-header">
       <h2 class="browser-title">宝可梦图鉴</h2>
-      <el-select
-        v-model="currentGame"
-        class="directory-selector"
-        size="small"
-      >
+      <el-select v-model="currentGame" class="directory-selector" size="small">
         <el-option
           v-for="[value, label] in games"
           :key="value"
@@ -268,9 +261,7 @@ watch(
           <!-- 右侧信息 -->
           <div class="pokemon-info">
             <!-- 中间名字 -->
-            <div class="pokemon-name">
-              {{ pokemon.name }} ({{ pokemon.resourceId }})
-            </div>
+            <div class="pokemon-name">{{ pokemon.name }} ({{ pokemon.resourceId }})</div>
 
             <!-- 形态选择器 -->
             <div
@@ -289,7 +280,7 @@ watch(
                   (val: string) =>
                     handleFormChangeForItem(
                       val.split('-').map(Number) as [number, number],
-                      pokemon,
+                      pokemon
                     )
                 "
                 @click.stop

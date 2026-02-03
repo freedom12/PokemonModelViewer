@@ -13,9 +13,9 @@
  * @validates 需求 4.6: 支持 EyeClearCoat 材质（多层蒙版混合）
  */
 
-import * as THREE from "three";
-import { MaterialData } from "../core/data";
-import type { MaterialCreator } from "./MaterialFactory";
+import * as THREE from 'three';
+import { MaterialData } from '../core/data';
+import type { MaterialCreator } from './MaterialFactory';
 
 /**
  * EyeClearCoat 材质参数接口
@@ -94,24 +94,20 @@ export interface EyeClearCoatParams {
 export const createEyeClearCoatMaterial: MaterialCreator = (
   data: MaterialData,
   _basePath: string,
-  textureMap: Map<string, THREE.Texture>,
+  textureMap: Map<string, THREE.Texture>
 ): THREE.Material => {
   // 检查任意 shader 是否启用了 EnableHighlight（通常在第二个 shader Eye 中）
-  const enableHighlight = data.isAnyShaderFeatureEnabled("EnableHighlight");
+  const enableHighlight = data.isAnyShaderFeatureEnabled('EnableHighlight');
 
   // 获取纹理
-  const layerMaskTexture = getTextureByName(data, textureMap, "LayerMaskMap");
-  let highlightMaskTexture = getTextureByName(
-    data,
-    textureMap,
-    "HighlightMaskMap",
-  );
+  const layerMaskTexture = getTextureByName(data, textureMap, 'LayerMaskMap');
+  let highlightMaskTexture = getTextureByName(data, textureMap, 'HighlightMaskMap');
 
   // 如果启用了 EnableHighlight 但没有 HighlightMaskMap，则从 LayerMaskMap 生成
   if (enableHighlight && !highlightMaskTexture && layerMaskTexture) {
-    const layerMaskRef = data.getTextureByName("LayerMaskMap");
+    const layerMaskRef = data.getTextureByName('LayerMaskMap');
     if (layerMaskRef) {
-      highlightMaskTexture = textureMap.get("eye_hight_mask") || null;
+      highlightMaskTexture = textureMap.get('eye_hight_mask') || null;
 
       // 如果找到了纹理，复制 LayerMaskMap 的采样器设置
       if (highlightMaskTexture && layerMaskTexture) {
@@ -121,97 +117,85 @@ export const createEyeClearCoatMaterial: MaterialCreator = (
     }
   }
 
-  const normalTexture = getTextureByName(data, textureMap, "NormalMap");
-  const normalTexture1 = getTextureByName(data, textureMap, "NormalMap1");
+  const normalTexture = getTextureByName(data, textureMap, 'NormalMap');
+  const normalTexture1 = getTextureByName(data, textureMap, 'NormalMap1');
 
   // 获取各层的参数
   const baseColor = data.getColorParam(
-    "BaseColor",
-    new THREE.Vector4(0.0, 0.0, 0.0, 1.0),
+    'BaseColor',
+    new THREE.Vector4(0.0, 0.0, 0.0, 1.0)
   );
   const baseColorLayer1 = data.getColorParam(
-    "BaseColorLayer1",
-    new THREE.Vector4(0.0, 0.0, 0.0, 1.0),
+    'BaseColorLayer1',
+    new THREE.Vector4(0.0, 0.0, 0.0, 1.0)
   );
   const baseColorLayer2 = data.getColorParam(
-    "BaseColorLayer2",
-    new THREE.Vector4(0.0, 0.0, 0.0, 1.0),
+    'BaseColorLayer2',
+    new THREE.Vector4(0.0, 0.0, 0.0, 1.0)
   );
   const baseColorLayer3 = data.getColorParam(
-    "BaseColorLayer3",
-    new THREE.Vector4(0.0, 0.0, 0.0, 1.0),
+    'BaseColorLayer3',
+    new THREE.Vector4(0.0, 0.0, 0.0, 1.0)
   );
   const baseColorLayer4 = data.getColorParam(
-    "BaseColorLayer4",
-    new THREE.Vector4(0.0, 0.0, 0.0, 1.0),
+    'BaseColorLayer4',
+    new THREE.Vector4(0.0, 0.0, 0.0, 1.0)
   );
 
   const emissionColor = data.getColorParam(
-    "EmissionColor",
-    new THREE.Vector4(0.0, 0.0, 0.0, 1.0),
+    'EmissionColor',
+    new THREE.Vector4(0.0, 0.0, 0.0, 1.0)
   );
   const emissionColorLayer1 = data.getColorParam(
-    "EmissionColorLayer1",
-    new THREE.Vector4(0.0, 0.0, 0.0, 1.0),
+    'EmissionColorLayer1',
+    new THREE.Vector4(0.0, 0.0, 0.0, 1.0)
   );
   const emissionColorLayer2 = data.getColorParam(
-    "EmissionColorLayer2",
-    new THREE.Vector4(0.0, 0.0, 0.0, 1.0),
+    'EmissionColorLayer2',
+    new THREE.Vector4(0.0, 0.0, 0.0, 1.0)
   );
   const emissionColorLayer3 = data.getColorParam(
-    "EmissionColorLayer3",
-    new THREE.Vector4(0.0, 0.0, 0.0, 1.0),
+    'EmissionColorLayer3',
+    new THREE.Vector4(0.0, 0.0, 0.0, 1.0)
   );
   const emissionColorLayer4 = data.getColorParam(
-    "EmissionColorLayer4",
-    new THREE.Vector4(0.0, 0.0, 0.0, 1.0),
+    'EmissionColorLayer4',
+    new THREE.Vector4(0.0, 0.0, 0.0, 1.0)
   );
   const emissionColorLayer5 = data.getColorParam(
-    "EmissionColorLayer5",
-    new THREE.Vector4(0.0, 0.0, 0.0, 1.0),
+    'EmissionColorLayer5',
+    new THREE.Vector4(0.0, 0.0, 0.0, 1.0)
   );
 
-  const emissionIntensity = data.getFloatParam("EmissionIntensity", 0);
-  const metallicLayer1 = data.getFloatParam("MetallicLayer1", 0.0);
-  const metallicLayer2 = data.getFloatParam("MetallicLayer2", 0.0);
-  const metallicLayer3 = data.getFloatParam("MetallicLayer3", 0.0);
-  const metallicLayer4 = data.getFloatParam("MetallicLayer4", 0.0);
+  const emissionIntensity = data.getFloatParam('EmissionIntensity', 0);
+  const metallicLayer1 = data.getFloatParam('MetallicLayer1', 0.0);
+  const metallicLayer2 = data.getFloatParam('MetallicLayer2', 0.0);
+  const metallicLayer3 = data.getFloatParam('MetallicLayer3', 0.0);
+  const metallicLayer4 = data.getFloatParam('MetallicLayer4', 0.0);
 
-  const roughnessLayer1 = data.getFloatParam("RoughnessLayer1", 0.8);
-  const roughnessLayer2 = data.getFloatParam("RoughnessLayer2", 0.8);
-  const roughnessLayer3 = data.getFloatParam("RoughnessLayer3", 0.8);
-  const roughnessLayer4 = data.getFloatParam("RoughnessLayer4", 0.8);
+  const roughnessLayer1 = data.getFloatParam('RoughnessLayer1', 0.8);
+  const roughnessLayer2 = data.getFloatParam('RoughnessLayer2', 0.8);
+  const roughnessLayer3 = data.getFloatParam('RoughnessLayer3', 0.8);
+  const roughnessLayer4 = data.getFloatParam('RoughnessLayer4', 0.8);
 
-  const emissionIntensityLayer1 = data.getFloatParam(
-    "EmissionIntensityLayer1",
-    0,
-  );
-  const emissionIntensityLayer2 = data.getFloatParam(
-    "EmissionIntensityLayer2",
-    0,
-  );
-  const emissionIntensityLayer3 = data.getFloatParam(
-    "EmissionIntensityLayer3",
-    0,
-  );
-  const emissionIntensityLayer4 = data.getFloatParam(
-    "EmissionIntensityLayer4",
-    0,
-  );
+  const emissionIntensityLayer1 = data.getFloatParam('EmissionIntensityLayer1', 0);
+  const emissionIntensityLayer2 = data.getFloatParam('EmissionIntensityLayer2', 0);
+  const emissionIntensityLayer3 = data.getFloatParam('EmissionIntensityLayer3', 0);
+  const emissionIntensityLayer4 = data.getFloatParam('EmissionIntensityLayer4', 0);
 
-  const layerMaskScale1 = data.getFloatParam("LayerMaskScale1", 0.0);
-  const layerMaskScale2 = data.getFloatParam("LayerMaskScale2", 0.0);
-  const layerMaskScale3 = data.getFloatParam("LayerMaskScale3", 0.0);
-  const layerMaskScale4 = data.getFloatParam("LayerMaskScale4", 0.0);
+  const layerMaskScale1 = data.getFloatParam('LayerMaskScale1', 0.0);
+  const layerMaskScale2 = data.getFloatParam('LayerMaskScale2', 0.0);
+  const layerMaskScale3 = data.getFloatParam('LayerMaskScale3', 0.0);
+  const layerMaskScale4 = data.getFloatParam('LayerMaskScale4', 0.0);
 
   // 获取 UV 缩放和偏移参数
   const uvScaleOffset = data.getColorParam(
-    "UVScaleOffset",
-    new THREE.Vector4(1.0, 1.0, 0.0, 0.0),
+    'UVScaleOffset',
+    new THREE.Vector4(1.0, 1.0, 0.0, 0.0)
   );
   const uvScaleOffsetNormal = data.getColorParam(
-    "UVScaleOffsetNormal",
-    new THREE.Vector4(1.0, 1.0, 0.0, 0.0),
+    'UVScaleOffsetNormal',
+    new THREE.Vector4(1.0, 1.0, 0.0, 0.0)
   );
 
   // 创建 MeshStandardMaterial
@@ -326,7 +310,7 @@ export const createEyeClearCoatMaterial: MaterialCreator = (
         uvScaleOffset.x,
         uvScaleOffset.y,
         uvScaleOffset.z,
-        uvScaleOffset.w,
+        uvScaleOffset.w
       ),
     };
     shader.uniforms.uvTransformNormal = {
@@ -334,7 +318,7 @@ export const createEyeClearCoatMaterial: MaterialCreator = (
         uvScaleOffsetNormal.x,
         uvScaleOffsetNormal.y,
         uvScaleOffsetNormal.z,
-        uvScaleOffsetNormal.w,
+        uvScaleOffsetNormal.w
       ),
     };
 
@@ -378,37 +362,37 @@ export const createEyeClearCoatMaterial: MaterialCreator = (
 
     // 在 fragment shader 中添加 uniform 声明
     shader.fragmentShader = shader.fragmentShader.replace(
-      "#include <common>",
-      "#include <common>\n" + uniformDeclarations,
+      '#include <common>',
+      '#include <common>\n' + uniformDeclarations
     );
 
     // 确保 vUv 在 vertex shader 中可用
-    if (!shader.vertexShader.includes("varying vec2 vUv;")) {
+    if (!shader.vertexShader.includes('varying vec2 vUv;')) {
       shader.vertexShader = shader.vertexShader.replace(
-        "#include <common>",
-        "#include <common>\nvarying vec2 vUv;",
+        '#include <common>',
+        '#include <common>\nvarying vec2 vUv;'
       );
     }
 
     // 确保 vUv 被赋值
-    if (!shader.vertexShader.includes("vUv = uv;")) {
+    if (!shader.vertexShader.includes('vUv = uv;')) {
       const vertexMainRegex = /void main\(\) \{([\s\S]*?)\}/;
       const vertexMainMatch = shader.vertexShader.match(vertexMainRegex);
       if (vertexMainMatch) {
         let vertexMainBody = vertexMainMatch[1];
-        vertexMainBody = "vUv = uv;\n" + vertexMainBody;
+        vertexMainBody = 'vUv = uv;\n' + vertexMainBody;
         shader.vertexShader = shader.vertexShader.replace(
           vertexMainMatch[0],
-          `void main() {${vertexMainBody}}`,
+          `void main() {${vertexMainBody}}`
         );
       }
     }
 
     // 确保 vUv 在 fragment shader 中可用
-    if (!shader.fragmentShader.includes("varying vec2 vUv;")) {
+    if (!shader.fragmentShader.includes('varying vec2 vUv;')) {
       shader.fragmentShader = shader.fragmentShader.replace(
-        "#include <common>",
-        "#include <common>\nvarying vec2 vUv;",
+        '#include <common>',
+        '#include <common>\nvarying vec2 vUv;'
       );
     }
 
@@ -422,9 +406,7 @@ export const createEyeClearCoatMaterial: MaterialCreator = (
 
       // 查找 diffuseColor 的赋值
       const diffuseColorAssignmentRegex = /(diffuseColor\s*=.*;)/;
-      const diffuseColorMatch = mainFunctionBody.match(
-        diffuseColorAssignmentRegex,
-      );
+      const diffuseColorMatch = mainFunctionBody.match(diffuseColorAssignmentRegex);
 
       if (diffuseColorMatch) {
         // EyeClearCoat 多层混合逻辑
@@ -459,13 +441,13 @@ export const createEyeClearCoatMaterial: MaterialCreator = (
 
         mainFunctionBody = mainFunctionBody.replace(
           diffuseColorMatch[0],
-          diffuseColorMatch[0] + eyeClearCoatLogic,
+          diffuseColorMatch[0] + eyeClearCoatLogic
         );
       }
 
       shader.fragmentShader = shader.fragmentShader.replace(
         mainFunctionMatch[0],
-        `void main() {${mainFunctionBody}}`,
+        `void main() {${mainFunctionBody}}`
       );
     }
   };
@@ -487,7 +469,7 @@ export const createEyeClearCoatMaterial: MaterialCreator = (
 function getTextureByName(
   data: MaterialData,
   textureMap: Map<string, THREE.Texture>,
-  textureName: string,
+  textureName: string
 ): THREE.Texture | null {
   const textureRef = data.getTextureByName(textureName);
   if (textureRef) {

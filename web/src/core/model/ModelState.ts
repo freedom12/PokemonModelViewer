@@ -21,5 +21,5 @@ export enum ModelState {
   /** 已实例化：GPU 资源已创建，可以渲染 */
   Materialized = 'materialized',
   /** 已销毁：所有资源已释放，不可再使用 */
-  Disposed = 'disposed'
+  Disposed = 'disposed',
 }

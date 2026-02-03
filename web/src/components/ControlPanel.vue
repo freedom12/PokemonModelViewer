@@ -128,10 +128,7 @@ function handleFitCamera(): void {
           显示骨骼
         </el-checkbox>
       </div>
-      <div
-        v-if="showGridHelper !== undefined"
-        class="control-item"
-      >
+      <div v-if="showGridHelper !== undefined" class="control-item">
         <el-checkbox
           :model-value="showGridHelper"
           @update:model-value="handleGridHelperChange"
@@ -139,14 +136,8 @@ function handleFitCamera(): void {
           显示网格辅助线
         </el-checkbox>
       </div>
-      <div
-        v-if="showShadow !== undefined"
-        class="control-item"
-      >
-        <el-checkbox
-          :model-value="showShadow"
-          @update:model-value="handleShadowChange"
-        >
+      <div v-if="showShadow !== undefined" class="control-item">
+        <el-checkbox :model-value="showShadow" @update:model-value="handleShadowChange">
           显示阴影
         </el-checkbox>
       </div>
@@ -162,18 +153,9 @@ function handleFitCamera(): void {
           class="control-select"
           @update:model-value="handleSelectionModeChange"
         >
-          <el-option
-            value="none"
-            label="--"
-          />
-          <el-option
-            value="mesh"
-            label="面片"
-          />
-          <el-option
-            value="bone"
-            label="骨骼"
-          />
+          <el-option value="none" label="--" />
+          <el-option value="mesh" label="面片" />
+          <el-option value="bone" label="骨骼" />
         </el-select>
       </div>
     </div>
@@ -181,11 +163,7 @@ function handleFitCamera(): void {
     <!-- 摄像机控制区域 -->
     <div class="control-section">
       <div class="control-item">
-        <el-button
-          :disabled="!hasModel"
-          size="small"
-          @click="handleFitCamera"
-        >
+        <el-button :disabled="!hasModel" size="small" @click="handleFitCamera">
           <el-icon><Camera /></el-icon>
           调整摄像机
         </el-button>

@@ -1,11 +1,11 @@
 /**
  * 核心数据模型类型定义
- * 
+ *
  * 本文件定义了模型系统的基础接口和类型，用于将原始FlatBuffers数据
  * 转换为通用格式，方便后续扩展支持其他格式。
  */
 
-import * as THREE from 'three'
+import * as THREE from 'three';
 
 // ==================== 模型数据接口 ====================
 
@@ -43,8 +43,8 @@ export interface IMeshData {
  * 存储 shader 的字符串参数
  */
 export interface ShaderValueData {
-  name: string
-  value: string
+  name: string;
+  value: string;
 }
 
 /**
@@ -52,8 +52,8 @@ export interface ShaderValueData {
  * 存储单个 shader 的名称和参数
  */
 export interface ShaderData {
-  name: string
-  values: ShaderValueData[]
+  name: string;
+  values: ShaderValueData[];
 }
 
 /**
@@ -122,15 +122,15 @@ export interface TextureReference {
 /**
  * 纹理类型枚举
  */
-export type TextureType = 
-  | 'albedo' 
-  | 'normal' 
-  | 'emission' 
-  | 'roughness' 
-  | 'metalness' 
-  | 'ao' 
-  | 'mask' 
-  | 'region' 
+export type TextureType =
+  | 'albedo'
+  | 'normal'
+  | 'emission'
+  | 'roughness'
+  | 'metalness'
+  | 'ao'
+  | 'mask'
+  | 'region'
   | 'unknown';
 
 /**

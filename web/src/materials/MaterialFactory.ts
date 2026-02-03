@@ -12,9 +12,9 @@
  * @validates 需求 4.4: 当 shader 类型没有对应实现时回退到 Default_Material
  */
 
-import * as THREE from "three";
-import { MaterialData, MaterialOptions } from "../core/data";
-import { resolveResourcePath } from "../services/resourceLoader";
+import * as THREE from 'three';
+import { MaterialData, MaterialOptions } from '../core/data';
+import { resolveResourcePath } from '../services/resourceLoader';
 
 /**
  * 材质创建器函数类型
@@ -29,7 +29,7 @@ import { resolveResourcePath } from "../services/resourceLoader";
 export type MaterialCreator = (
   data: MaterialData,
   basePath: string,
-  textureMap: Map<string, THREE.Texture>,
+  textureMap: Map<string, THREE.Texture>
 ) => THREE.Material;
 
 /**
@@ -107,8 +107,8 @@ export class MaterialFactory {
    * ```
    */
   static register(shaderName: string, creator: MaterialCreator): void {
-    if (!shaderName || shaderName.trim() === "") {
-      console.warn("[MaterialFactory] 无法注册空的 shader 名称");
+    if (!shaderName || shaderName.trim() === '') {
+      console.warn('[MaterialFactory] 无法注册空的 shader 名称');
       return;
     }
 
@@ -211,7 +211,7 @@ export class MaterialFactory {
         undefined,
         (error) => {
           reject(new Error(`纹理加载失败: ${resolvedPath} - ${error}`));
-        },
+        }
       );
     });
   }
@@ -225,7 +225,7 @@ export class MaterialFactory {
    */
   private static async loadTextures(
     data: MaterialData,
-    basePath: string,
+    basePath: string
   ): Promise<Map<string, THREE.Texture>> {
     const textureMap = new Map<string, THREE.Texture>();
 
@@ -238,10 +238,10 @@ export class MaterialFactory {
 
         // 根据纹理类型设置颜色空间
         if (
-          textureRef.type === "normal" ||
-          textureRef.type === "roughness" ||
-          textureRef.type === "metalness" ||
-          textureRef.type === "ao"
+          textureRef.type === 'normal' ||
+          textureRef.type === 'roughness' ||
+          textureRef.type === 'metalness' ||
+          textureRef.type === 'ao'
         ) {
           texture.colorSpace = THREE.LinearSRGBColorSpace;
         }
@@ -255,7 +255,7 @@ export class MaterialFactory {
         return { name: textureRef.filename, texture };
       } catch (error) {
         // 纹理加载失败时记录警告，继续处理其他纹理
-        console.warn("[MaterialFactory] 纹理加载失败，将使用默认材质:", {
+        console.warn('[MaterialFactory] 纹理加载失败，将使用默认材质:', {
           filename: textureRef.filename,
           fullPath,
           textureType: textureRef.type,
@@ -296,35 +296,35 @@ export class MaterialFactory {
   private static async loadHighlightMaskIfNeeded(
     data: MaterialData,
     basePath: string,
-    textureMap: Map<string, THREE.Texture>,
+    textureMap: Map<string, THREE.Texture>
   ): Promise<void> {
     // 检查是否是 EyeClearCoat 材质
-    if (data.shaderName !== "EyeClearCoat") {
+    if (data.shaderName !== 'EyeClearCoat') {
       return;
     }
 
     // 检查是否启用了 EnableHighlight
-    if (!data.isAnyShaderFeatureEnabled("EnableHighlight")) {
+    if (!data.isAnyShaderFeatureEnabled('EnableHighlight')) {
       return;
     }
 
     // 检查是否已有 HighlightMaskMap
-    const highlightMaskRef = data.getTextureByName("HighlightMaskMap");
+    const highlightMaskRef = data.getTextureByName('HighlightMaskMap');
     if (highlightMaskRef) {
       return;
     }
 
     // 获取 LayerMaskMap 纹理引用用于采样器设置
-    const layerMaskRef = data.getTextureByName("LayerMaskMap");
+    const layerMaskRef = data.getTextureByName('LayerMaskMap');
     // 从 LayerMaskMap 文件名生成 _msk 文件名
-    if (!layerMaskRef || !layerMaskRef.filename.includes("_eye_lym")) {
+    if (!layerMaskRef || !layerMaskRef.filename.includes('_eye_lym')) {
       return;
     }
 
     // 优先尝试 {材质名}_msk 格式
     const materialBasedFilename = layerMaskRef.filename.replace(
-      "_eye_lym",
-      `_${data.name}_msk`,
+      '_eye_lym',
+      `_${data.name}_msk`
     );
     const materialBasedPath = `${basePath}${materialBasedFilename}`;
 
@@ -339,16 +339,13 @@ export class MaterialFactory {
       }
       texture.needsUpdate = true;
 
-      textureMap.set("eye_hight_mask", texture);
+      textureMap.set('eye_hight_mask', texture);
       return;
     } catch {
       // {材质名}_msk 不存在，尝试回退方案
     }
 
-    const fallbackFilename = layerMaskRef.filename.replace(
-      "_eye_lym",
-      "_eye_msk",
-    );
+    const fallbackFilename = layerMaskRef.filename.replace('_eye_lym', '_eye_msk');
     const fallbackPath = `${basePath}${fallbackFilename}`;
 
     try {
@@ -363,7 +360,7 @@ export class MaterialFactory {
       textureMap.set(fallbackFilename, texture);
     } catch (error) {
       // HighlightMaskMap 加载失败不是致命错误，只记录警告
-      console.warn("[MaterialFactory] HighlightMaskMap 加载失败:", {
+      console.warn('[MaterialFactory] HighlightMaskMap 加载失败:', {
         materialName: data.name,
         triedPaths: [materialBasedFilename, fallbackFilename],
         error: error instanceof Error ? error.message : String(error),
@@ -393,10 +390,7 @@ export class MaterialFactory {
    * );
    * ```
    */
-  static async create(
-    data: MaterialData,
-    basePath: string,
-  ): Promise<THREE.Material> {
+  static async create(data: MaterialData, basePath: string): Promise<THREE.Material> {
     const shaderName = data.shaderName;
 
     // 加载所有纹理
@@ -416,7 +410,7 @@ export class MaterialFactory {
         return material;
       } catch (error) {
         // 创建器执行失败时，回退到默认材质
-        console.warn("[MaterialFactory] 材质创建器执行失败，使用默认材质:", {
+        console.warn('[MaterialFactory] 材质创建器执行失败，使用默认材质:', {
           materialName: data.name,
           shaderName,
           error: error instanceof Error ? error.message : String(error),
@@ -425,7 +419,7 @@ export class MaterialFactory {
       }
     } else if (shaderName) {
       // shader 类型未注册，记录警告
-      console.warn("[MaterialFactory] Shader 类型未注册，使用默认材质:", {
+      console.warn('[MaterialFactory] Shader 类型未注册，使用默认材质:', {
         materialName: data.name,
         shaderName,
         registeredShaders: MaterialFactory.getRegisteredShaders(),
@@ -446,7 +440,7 @@ export class MaterialFactory {
    */
   private static createDefaultFromData(
     data: MaterialData,
-    textureMap: Map<string, THREE.Texture>,
+    textureMap: Map<string, THREE.Texture>
   ): THREE.MeshStandardMaterial {
     // 如果没有纹理，返回简单的默认材质
     if (textureMap.size === 0) {
@@ -460,16 +454,16 @@ export class MaterialFactory {
 
     // 创建带纹理的默认材质
     const material = new THREE.MeshStandardMaterial({
-      roughness: data.getFloatParam("Roughness", 0.7),
-      metalness: data.getFloatParam("Metallic", 0.0),
+      roughness: data.getFloatParam('Roughness', 0.7),
+      metalness: data.getFloatParam('Metallic', 0.0),
       side: THREE.DoubleSide,
       transparent: data.isTransparent,
     });
 
     // 获取 UV 缩放和偏移参数
     const uvScaleOffset = data.getColorParam(
-      "UVScaleOffset",
-      new THREE.Vector4(1.0, 1.0, 0.0, 0.0),
+      'UVScaleOffset',
+      new THREE.Vector4(1.0, 1.0, 0.0, 0.0)
     );
 
     // 应用纹理
@@ -483,25 +477,25 @@ export class MaterialFactory {
 
       // 根据纹理类型设置材质属性
       switch (textureRef.type) {
-        case "albedo":
+        case 'albedo':
           material.map = texture;
           break;
-        case "normal":
+        case 'normal':
           material.normalMap = texture;
           material.normalScale.set(1, 1);
           break;
-        case "emission":
+        case 'emission':
           material.emissiveMap = texture;
           material.emissive = new THREE.Color(0xffffff);
           material.emissiveIntensity = 1.0;
           break;
-        case "roughness":
+        case 'roughness':
           material.roughnessMap = texture;
           break;
-        case "metalness":
+        case 'metalness':
           material.metalnessMap = texture;
           break;
-        case "ao":
+        case 'ao':
           material.aoMap = texture;
           break;
       }
@@ -544,9 +538,7 @@ export class MaterialFactory {
    * });
    * ```
    */
-  static createDefault(
-    options: MaterialOptions = {},
-  ): THREE.MeshStandardMaterial {
+  static createDefault(options: MaterialOptions = {}): THREE.MeshStandardMaterial {
     const mergedOptions = { ...DEFAULT_MATERIAL_OPTIONS, ...options };
 
     const material = new THREE.MeshStandardMaterial({
@@ -585,7 +577,7 @@ export class MaterialFactory {
    */
   static async createAll(
     materials: MaterialData[],
-    basePath: string,
+    basePath: string
   ): Promise<THREE.Material[]> {
     const results: THREE.Material[] = [];
 
@@ -595,7 +587,7 @@ export class MaterialFactory {
         results.push(material);
       } catch (error) {
         // 单个材质创建失败时，使用默认材质
-        console.warn("[MaterialFactory] 材质创建失败，使用默认材质:", {
+        console.warn('[MaterialFactory] 材质创建失败，使用默认材质:', {
           materialName: materialData.name,
           error: error instanceof Error ? error.message : String(error),
           timestamp: new Date().toISOString(),

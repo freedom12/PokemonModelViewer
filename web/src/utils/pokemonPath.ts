@@ -38,13 +38,13 @@ export interface FormIdResult {
  * 宝可梦类型目录名正则表达式
  * 匹配格式: pm{XXXX}，其中 XXXX 为4位数字
  */
-const POKEMON_ID_REGEX = /^pm(\d{4})$/
+const POKEMON_ID_REGEX = /^pm(\d{4})$/;
 
 /**
  * 形态目录名正则表达式
  * 匹配格式: pm{XXXX}_{YY}_{ZZ}，其中 XXXX 为4位数字，YY 和 ZZ 为2位数字
  */
-const FORM_ID_REGEX = /^pm(\d{4})_(\d{2})_(\d{2})$/
+const FORM_ID_REGEX = /^pm(\d{4})_(\d{2})_(\d{2})$/;
 
 /**
  * 解析宝可梦类型目录名
@@ -60,19 +60,19 @@ const FORM_ID_REGEX = /^pm(\d{4})_(\d{2})_(\d{2})$/
  * @validates 需求 7.1: 识别 pm{XXXX} 格式的宝可梦类型目录
  */
 export function parsePokemonId(dirName: string): PokemonIdResult | null {
-  const match = dirName.match(POKEMON_ID_REGEX)
+  const match = dirName.match(POKEMON_ID_REGEX);
 
   if (!match) {
-    return null
+    return null;
   }
 
-  const numberStr = match[1]
-  const number = parseInt(numberStr, 10)
+  const numberStr = match[1];
+  const number = parseInt(numberStr, 10);
 
   return {
     id: dirName,
     number,
-  }
+  };
 }
 
 /**
@@ -90,22 +90,22 @@ export function parsePokemonId(dirName: string): PokemonIdResult | null {
  * @validates 需求 7.3: 解析形态目录时提取宝可梦编号、形态编号和变体编号
  */
 export function parseFormId(dirName: string): FormIdResult | null {
-  const match = dirName.match(FORM_ID_REGEX)
+  const match = dirName.match(FORM_ID_REGEX);
 
   if (!match) {
-    return null
+    return null;
   }
 
-  const pokemonNumberStr = match[1]
-  const formIndexStr = match[2]
-  const variantIndexStr = match[3]
+  const pokemonNumberStr = match[1];
+  const formIndexStr = match[2];
+  const variantIndexStr = match[3];
 
   return {
     id: dirName,
     pokemonNumber: parseInt(pokemonNumberStr, 10),
     formIndex: parseInt(formIndexStr, 10),
     variantIndex: parseInt(variantIndexStr, 10),
-  }
+  };
 }
 
 /**
@@ -126,11 +126,11 @@ export function parseFormId(dirName: string): FormIdResult | null {
 export function getThumbnailPath(formId: string): string {
   // 从形态 ID 中提取宝可梦 ID
   // pm0001_00_00 -> pm0001
-  const pokemonId = formId.substring(0, 6)
+  const pokemonId = formId.substring(0, 6);
 
   // 构建缩略图路径
   // pokemon/{pokemonId}/{formId}/{formId}_00.png
-  return `pokemon/${pokemonId}/${formId}/${formId}_00.png`
+  return `pokemon/${pokemonId}/${formId}/${formId}_00.png`;
 }
 
 /**
@@ -149,10 +149,10 @@ export function getThumbnailPath(formId: string): string {
  */
 export function getBigThumbnailPath(formId: string): string {
   // 从形态 ID 中提取宝可梦 ID
-  const pokemonId = formId.substring(0, 6)
+  const pokemonId = formId.substring(0, 6);
 
   // 构建大尺寸缩略图路径
-  return `pokemon/${pokemonId}/${formId}/${formId}_00_big.png`
+  return `pokemon/${pokemonId}/${formId}/${formId}_00_big.png`;
 }
 
 /**
@@ -166,7 +166,7 @@ export function getBigThumbnailPath(formId: string): string {
  * getPokemonIdFromFormId("pm0025_01_02") // "pm0025"
  */
 export function getPokemonIdFromFormId(formId: string): string {
-  return formId.substring(0, 6)
+  return formId.substring(0, 6);
 }
 
 /**
@@ -176,7 +176,7 @@ export function getPokemonIdFromFormId(formId: string): string {
  * @returns 是否为有效的宝可梦类型目录名
  */
 export function isValidPokemonId(dirName: string): boolean {
-  return POKEMON_ID_REGEX.test(dirName)
+  return POKEMON_ID_REGEX.test(dirName);
 }
 
 /**
@@ -186,5 +186,5 @@ export function isValidPokemonId(dirName: string): boolean {
  * @returns 是否为有效的形态目录名
  */
 export function isValidFormId(dirName: string): boolean {
-  return FORM_ID_REGEX.test(dirName)
+  return FORM_ID_REGEX.test(dirName);
 }

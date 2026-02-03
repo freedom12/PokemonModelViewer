@@ -1,8 +1,8 @@
 /**
  * 动画系统模块入口
- * 
+ *
  * 导出所有动画相关的类型、类和函数
- * 
+ *
  * @module core/animation
  */
 
@@ -10,7 +10,7 @@
 export {
   // 抽象基类
   AnimationTrack,
-  
+
   // 向量轨道
   type IVectorTrack,
   FixedVectorTrack,
@@ -19,7 +19,7 @@ export {
   Framed8VectorTrack,
   type VectorTrack,
   createVectorTrack,
-  
+
   // 旋转轨道
   QuaternionUnpacker,
   type IRotationTrack,
@@ -29,7 +29,7 @@ export {
   Framed8RotationTrack,
   type RotationTrack,
   createRotationTrack,
-  
+
   // 布尔轨道
   type IBoolTrack,
   FixedBoolTrack,
@@ -38,24 +38,16 @@ export {
   Framed8BoolTrack,
   type BoolTrack,
   createBoolTrack,
-} from './AnimationTrack'
+} from './AnimationTrack';
 
 // 骨骼动画轨道
-export {
-  BoneAnimationTrack,
-} from './BoneAnimationTrack'
+export { BoneAnimationTrack } from './BoneAnimationTrack';
 
 // 可见性动画轨道
-export {
-  VisibilityAnimationTrack,
-} from './VisibilityAnimationTrack'
+export { VisibilityAnimationTrack } from './VisibilityAnimationTrack';
 
 // 动画片段
-export {
-  AnimationClip,
-} from './AnimationClip'
+export { AnimationClip } from './AnimationClip';
 
 // 动画混合器
-export {
-  AnimationMixer,
-} from './AnimationMixer'
+export { AnimationMixer } from './AnimationMixer';

@@ -6,10 +6,10 @@
  *
  * 需求: 5.1, 5.2, 5.6, 5.7, 5.8, 5.9
  */
-import * as THREE from 'three'
-import { CameraController } from './CameraController'
-import { LightingManager } from './LightingManager'
-import { RenderLoop } from './RenderLoop'
+import * as THREE from 'three';
+import { CameraController } from './CameraController';
+import { LightingManager } from './LightingManager';
+import { RenderLoop } from './RenderLoop';
 
 /**
  * 场景辅助对象配置常量
@@ -33,7 +33,7 @@ const HELPERS_CONFIG = {
     opacity: 1.0, // 不透明度
     yOffset: 0, // Y 轴偏移
   },
-} as const
+} as const;
 
 /**
  * 场景背景配置
@@ -41,7 +41,7 @@ const HELPERS_CONFIG = {
 const SCENE_CONFIG = {
   // 背景颜色（浅灰色）
   backgroundColor: 0x2a2a2a,
-} as const
+} as const;
 
 /**
  * World 类
@@ -61,28 +61,28 @@ const SCENE_CONFIG = {
  */
 export class World {
   /** Three.js 场景对象 */
-  readonly scene: THREE.Scene
+  readonly scene: THREE.Scene;
 
   /** 相机控制器 */
-  readonly camera: CameraController
+  readonly camera: CameraController;
 
   /** 光照管理器 */
-  readonly lighting: LightingManager
+  readonly lighting: LightingManager;
 
   /** 渲染循环 */
-  readonly renderLoop: RenderLoop
+  readonly renderLoop: RenderLoop;
 
   /** 场景辅助对象组（网格、坐标轴） */
-  private helpers: THREE.Group
+  private helpers: THREE.Group;
 
   /** 地面平面（用于接收阴影） */
-  private groundPlane: THREE.Mesh
+  private groundPlane: THREE.Mesh;
 
   /** 射线检测器 */
-  private raycaster: THREE.Raycaster
+  private raycaster: THREE.Raycaster;
 
   /** 容器元素引用 */
-  private container: HTMLElement
+  private container: HTMLElement;
 
   /**
    * 创建 World 实例
@@ -90,62 +90,59 @@ export class World {
    * @param container - 渲染容器元素
    */
   constructor(container: HTMLElement) {
-    this.container = container
+    this.container = container;
 
     // 创建场景
-    this.scene = new THREE.Scene()
-    this.scene.background = new THREE.Color(SCENE_CONFIG.backgroundColor)
+    this.scene = new THREE.Scene();
+    this.scene.background = new THREE.Color(SCENE_CONFIG.backgroundColor);
 
     // 创建相机控制器
-    this.camera = new CameraController(container)
+    this.camera = new CameraController(container);
 
     // 创建光照管理器
-    this.lighting = new LightingManager(this.scene)
+    this.lighting = new LightingManager(this.scene);
 
     // 创建渲染循环
-    this.renderLoop = new RenderLoop(
-      container,
-      this.scene,
-      this.camera.camera
-    )
+    this.renderLoop = new RenderLoop(container, this.scene, this.camera.camera);
 
     // 创建场景辅助对象
-    this.helpers = this.createHelpers()
-    this.scene.add(this.helpers)
+    this.helpers = this.createHelpers();
+    this.scene.add(this.helpers);
 
     // 创建地面平面（用于接收阴影）
-    this.groundPlane = this.createGroundPlane()
-    this.scene.add(this.groundPlane)
+    this.groundPlane = this.createGroundPlane();
+    this.scene.add(this.groundPlane);
 
     // 创建射线检测器
-    this.raycaster = new THREE.Raycaster()
+    this.raycaster = new THREE.Raycaster();
 
     // 注册相机控制器更新回调
     this.renderLoop.addCallback(() => {
-      this.camera.update()
-    })
+      this.camera.update();
+    });
 
     // 更新 OrbitControls 的 DOM 元素为渲染器的 canvas
     // 这样可以确保鼠标事件正确绑定
-    this.camera.controls.dispose()
-    const newControls = new (
-      this.camera.controls.constructor as new (
-        camera: THREE.Camera,
-        domElement: HTMLElement
-      ) => typeof this.camera.controls
-    )(this.camera.camera, this.renderLoop.getDomElement())
+    this.camera.controls.dispose();
+    const newControls = new (this.camera.controls.constructor as new (
+      camera: THREE.Camera,
+      domElement: HTMLElement
+    ) => typeof this.camera.controls)(
+      this.camera.camera,
+      this.renderLoop.getDomElement()
+    );
 
     // 复制控制器配置
-    newControls.enableDamping = this.camera.controls.enableDamping
-    newControls.dampingFactor = this.camera.controls.dampingFactor
-    newControls.minDistance = this.camera.controls.minDistance
-    newControls.maxDistance = this.camera.controls.maxDistance
-    newControls.enablePan = this.camera.controls.enablePan
+    newControls.enableDamping = this.camera.controls.enableDamping;
+    newControls.dampingFactor = this.camera.controls.dampingFactor;
+    newControls.minDistance = this.camera.controls.minDistance;
+    newControls.maxDistance = this.camera.controls.maxDistance;
+    newControls.enablePan = this.camera.controls.enablePan;
     newControls.target.copy(this.camera.controls.target);
 
     // 替换控制器
     // eslint-disable-next-line @typescript-eslint/no-explicit-any -- 需要访问 CameraController 的内部 controls 属性
-    (this.camera as any).controls = newControls
+    (this.camera as any).controls = newControls;
   }
 
   /**
@@ -156,8 +153,8 @@ export class World {
    * @returns 包含辅助对象的 Group
    */
   private createHelpers(): THREE.Group {
-    const group = new THREE.Group()
-    group.name = 'SceneHelpers'
+    const group = new THREE.Group();
+    group.name = 'SceneHelpers';
 
     // 创建网格辅助线
     const gridHelper = new THREE.GridHelper(
@@ -165,25 +162,25 @@ export class World {
       HELPERS_CONFIG.grid.divisions,
       HELPERS_CONFIG.grid.colorCenterLine,
       HELPERS_CONFIG.grid.colorGrid
-    )
-    gridHelper.name = 'GridHelper'
-    group.add(gridHelper)
+    );
+    gridHelper.name = 'GridHelper';
+    group.add(gridHelper);
 
     // 创建坐标轴辅助线
-    const axesHelper = new THREE.AxesHelper(HELPERS_CONFIG.axes.size)
-    axesHelper.name = 'AxesHelper'
+    const axesHelper = new THREE.AxesHelper(HELPERS_CONFIG.axes.size);
+    axesHelper.name = 'AxesHelper';
     // 设置渲染顺序，确保坐标轴在网格之上
-    axesHelper.renderOrder = 1
+    axesHelper.renderOrder = 1;
     // 禁用深度测试，彻底解决 Z-fighting 问题
     axesHelper.traverse((child) => {
       if (child instanceof THREE.Line) {
-        const material = child.material as THREE.LineBasicMaterial
-        material.depthTest = false
+        const material = child.material as THREE.LineBasicMaterial;
+        material.depthTest = false;
       }
-    })
-    group.add(axesHelper)
+    });
+    group.add(axesHelper);
 
-    return group
+    return group;
   }
 
   /**
@@ -194,19 +191,19 @@ export class World {
    * @returns 地面平面 Mesh
    */
   private createGroundPlane(): THREE.Mesh {
-    const config = HELPERS_CONFIG.groundPlane
-    const geometry = new THREE.PlaneGeometry(config.size, config.size)
+    const config = HELPERS_CONFIG.groundPlane;
+    const geometry = new THREE.PlaneGeometry(config.size, config.size);
     const material = new THREE.ShadowMaterial({
       opacity: 0.3, // 阴影透明度
-    })
+    });
 
-    const plane = new THREE.Mesh(geometry, material)
-    plane.name = 'GroundPlane'
-    plane.rotation.x = -Math.PI / 2 // 旋转为水平
-    plane.position.y = config.yOffset
-    plane.receiveShadow = true
+    const plane = new THREE.Mesh(geometry, material);
+    plane.name = 'GroundPlane';
+    plane.rotation.x = -Math.PI / 2; // 旋转为水平
+    plane.position.y = config.yOffset;
+    plane.receiveShadow = true;
 
-    return plane
+    return plane;
   }
 
   /**
@@ -215,7 +212,7 @@ export class World {
    * @param object - 要添加的 3D 对象
    */
   add(object: THREE.Object3D): void {
-    this.scene.add(object)
+    this.scene.add(object);
   }
 
   /**
@@ -224,7 +221,7 @@ export class World {
    * @param object - 要移除的 3D 对象
    */
   remove(object: THREE.Object3D): void {
-    this.scene.remove(object)
+    this.scene.remove(object);
   }
 
   /**
@@ -233,7 +230,7 @@ export class World {
    * @param visible - 是否可见
    */
   setHelpersVisible(visible: boolean): void {
-    this.helpers.visible = visible
+    this.helpers.visible = visible;
   }
 
   /**
@@ -242,7 +239,7 @@ export class World {
    * @returns 是否可见
    */
   getHelpersVisible(): boolean {
-    return this.helpers.visible
+    return this.helpers.visible;
   }
 
   /**
@@ -251,9 +248,9 @@ export class World {
    * @param visible - 是否可见
    */
   setGridVisible(visible: boolean): void {
-    const gridHelper = this.helpers.getObjectByName('GridHelper')
+    const gridHelper = this.helpers.getObjectByName('GridHelper');
     if (gridHelper) {
-      gridHelper.visible = visible
+      gridHelper.visible = visible;
     }
   }
 
@@ -263,9 +260,9 @@ export class World {
    * @param visible - 是否可见
    */
   setAxesVisible(visible: boolean): void {
-    const axesHelper = this.helpers.getObjectByName('AxesHelper')
+    const axesHelper = this.helpers.getObjectByName('AxesHelper');
     if (axesHelper) {
-      axesHelper.visible = visible
+      axesHelper.visible = visible;
     }
   }
 
@@ -276,11 +273,11 @@ export class World {
    */
   setShadowEnabled(enabled: boolean): void {
     // 设置渲染器阴影
-    this.renderLoop.setShadowEnabled(enabled)
+    this.renderLoop.setShadowEnabled(enabled);
     // 设置方向光阴影
-    this.lighting.setDirectionalShadow(enabled)
+    this.lighting.setDirectionalShadow(enabled);
     // 设置地面平面可见性
-    this.groundPlane.visible = enabled
+    this.groundPlane.visible = enabled;
   }
 
   /**
@@ -289,7 +286,7 @@ export class World {
    * @returns 是否启用阴影
    */
   isShadowEnabled(): boolean {
-    return this.renderLoop.isShadowEnabled()
+    return this.renderLoop.isShadowEnabled();
   }
 
   /**
@@ -301,15 +298,12 @@ export class World {
    * @param objects - 要检测的对象数组
    * @returns 交点信息数组，按距离排序
    */
-  raycast(
-    mouse: THREE.Vector2,
-    objects: THREE.Object3D[]
-  ): THREE.Intersection[] {
+  raycast(mouse: THREE.Vector2, objects: THREE.Object3D[]): THREE.Intersection[] {
     // 设置射线
-    this.raycaster.setFromCamera(mouse, this.camera.camera)
+    this.raycaster.setFromCamera(mouse, this.camera.camera);
 
     // 执行射线检测
-    return this.raycaster.intersectObjects(objects, true)
+    return this.raycaster.intersectObjects(objects, true);
   }
 
   /**
@@ -328,15 +322,15 @@ export class World {
     objects: THREE.Object3D[]
   ): THREE.Intersection[] {
     // 获取容器尺寸
-    const rect = this.container.getBoundingClientRect()
+    const rect = this.container.getBoundingClientRect();
 
     // 将屏幕坐标转换为归一化设备坐标（-1 到 1）
     const mouse = new THREE.Vector2(
       ((screenX - rect.left) / rect.width) * 2 - 1,
       -((screenY - rect.top) / rect.height) * 2 + 1
-    )
+    );
 
-    return this.raycast(mouse, objects)
+    return this.raycast(mouse, objects);
   }
 
   /**
@@ -345,7 +339,7 @@ export class World {
    * @param model - 要适配的 3D 对象
    */
   fitToModel(model: THREE.Object3D): void {
-    this.camera.fitToModel(model)
+    this.camera.fitToModel(model);
   }
 
   /**
@@ -354,15 +348,15 @@ export class World {
    * 更新相机和渲染器的尺寸
    */
   resize(): void {
-    const width = this.container.clientWidth
-    const height = this.container.clientHeight
+    const width = this.container.clientWidth;
+    const height = this.container.clientHeight;
 
     if (width > 0 && height > 0) {
       // 更新相机
-      this.camera.resize()
+      this.camera.resize();
 
       // 更新渲染器
-      this.renderLoop.resize(width, height)
+      this.renderLoop.resize(width, height);
     }
   }
 
@@ -370,14 +364,14 @@ export class World {
    * 启动渲染循环
    */
   start(): void {
-    this.renderLoop.start()
+    this.renderLoop.start();
   }
 
   /**
    * 停止渲染循环
    */
   stop(): void {
-    this.renderLoop.stop()
+    this.renderLoop.stop();
   }
 
   /**
@@ -386,7 +380,7 @@ export class World {
    * @returns 是否正在运行
    */
   isRunning(): boolean {
-    return this.renderLoop.isRunning()
+    return this.renderLoop.isRunning();
   }
 
   /**
@@ -395,7 +389,7 @@ export class World {
    * @param callback - 每帧调用的回调函数
    */
   addRenderCallback(callback: (deltaTime: number) => void): void {
-    this.renderLoop.addCallback(callback)
+    this.renderLoop.addCallback(callback);
   }
 
   /**
@@ -404,7 +398,7 @@ export class World {
    * @param callback - 要移除的回调函数
    */
   removeRenderCallback(callback: (deltaTime: number) => void): void {
-    this.renderLoop.removeCallback(callback)
+    this.renderLoop.removeCallback(callback);
   }
 
   /**
@@ -413,7 +407,7 @@ export class World {
    * @param color - 背景颜色
    */
   setBackgroundColor(color: THREE.ColorRepresentation): void {
-    this.scene.background = new THREE.Color(color)
+    this.scene.background = new THREE.Color(color);
   }
 
   /**
@@ -422,7 +416,7 @@ export class World {
    * @returns Canvas 元素
    */
   getDomElement(): HTMLCanvasElement {
-    return this.renderLoop.getDomElement()
+    return this.renderLoop.getDomElement();
   }
 
   /**
@@ -431,7 +425,7 @@ export class World {
    * @returns WebGLRenderer 实例
    */
   getRenderer(): THREE.WebGLRenderer {
-    return this.renderLoop.getRenderer()
+    return this.renderLoop.getRenderer();
   }
 
   /**
@@ -441,24 +435,24 @@ export class World {
    */
   dispose(): void {
     // 停止渲染循环
-    this.renderLoop.stop()
+    this.renderLoop.stop();
 
     // 移除辅助对象
-    this.scene.remove(this.helpers)
+    this.scene.remove(this.helpers);
 
     // 移除地面平面
-    this.scene.remove(this.groundPlane)
-    this.groundPlane.geometry.dispose()
+    this.scene.remove(this.groundPlane);
+    this.groundPlane.geometry.dispose();
     if (this.groundPlane.material instanceof THREE.Material) {
-      this.groundPlane.material.dispose()
+      this.groundPlane.material.dispose();
     }
 
     // 释放各组件资源
-    this.camera.dispose()
-    this.lighting.dispose()
-    this.renderLoop.dispose()
+    this.camera.dispose();
+    this.lighting.dispose();
+    this.renderLoop.dispose();
 
     // 清理场景
-    this.scene.clear()
+    this.scene.clear();
   }
 }

@@ -9,7 +9,7 @@
  *
  * @validates 需求 6.5: 模型加载中显示加载进度指示器
  */
-import { computed } from "vue";
+import { computed } from 'vue';
 
 /**
  * Props 定义
@@ -33,11 +33,11 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   progress: 0,
-  message: "加载中...",
+  message: '加载中...',
   showProgress: true,
   showPercent: true,
-  backgroundColor: "rgba(26, 26, 46, 0.9)",
-  progressColor: "#00d4ff",
+  backgroundColor: 'rgba(26, 26, 46, 0.9)',
+  progressColor: '#00d4ff',
 });
 
 /**
@@ -75,17 +75,10 @@ const percentStyle = computed(() => ({
 <template>
   <!-- 加载遮罩层 - 使用 Teleport 确保在最顶层显示 -->
   <Transition name="fade">
-    <div
-      v-if="visible"
-      class="loading-overlay"
-      :style="overlayStyle"
-    >
+    <div v-if="visible" class="loading-overlay" :style="overlayStyle">
       <div class="loading-content">
         <!-- 加载动画旋转器 -->
-        <div
-          class="loading-spinner"
-          :style="{ borderTopColor: progressColor }"
-        />
+        <div class="loading-spinner" :style="{ borderTopColor: progressColor }" />
 
         <!-- 加载提示文字 -->
         <div class="loading-text">
@@ -93,22 +86,12 @@ const percentStyle = computed(() => ({
         </div>
 
         <!-- 进度条 -->
-        <div
-          v-if="showProgress"
-          class="loading-progress"
-        >
-          <div
-            class="progress-bar"
-            :style="progressBarStyle"
-          />
+        <div v-if="showProgress" class="loading-progress">
+          <div class="progress-bar" :style="progressBarStyle" />
         </div>
 
         <!-- 百分比显示 -->
-        <div
-          v-if="showPercent"
-          class="loading-percent"
-          :style="percentStyle"
-        >
+        <div v-if="showPercent" class="loading-percent" :style="percentStyle">
           {{ formattedProgress }}%
         </div>
       </div>

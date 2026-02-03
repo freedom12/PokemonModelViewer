@@ -6,8 +6,8 @@
  *
  * 需求: 5.3
  */
-import * as THREE from 'three'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 /**
  * 相机配置常量
@@ -21,7 +21,7 @@ const CAMERA_CONFIG = {
   defaultPosition: { x: 2, y: 1.5, z: 3 },
   // 默认目标点
   defaultTarget: { x: 0, y: 0.5, z: 0 },
-} as const
+} as const;
 
 /**
  * 控制器配置常量
@@ -37,7 +37,7 @@ const CONTROLS_CONFIG = {
   maxDistance: 50,
   // 启用平移
   enablePan: true,
-} as const
+} as const;
 
 /**
  * 相机控制器类
@@ -49,13 +49,13 @@ const CONTROLS_CONFIG = {
  */
 export class CameraController {
   /** 透视相机 */
-  readonly camera: THREE.PerspectiveCamera
+  readonly camera: THREE.PerspectiveCamera;
 
   /** 轨道控制器 */
-  readonly controls: OrbitControls
+  readonly controls: OrbitControls;
 
   /** 容器元素引用 */
-  private readonly container: HTMLElement
+  private readonly container: HTMLElement;
 
   /**
    * 创建相机控制器
@@ -63,12 +63,12 @@ export class CameraController {
    * @param container - 渲染容器元素
    */
   constructor(container: HTMLElement) {
-    this.container = container
+    this.container = container;
 
     // 获取容器尺寸
-    const width = container.clientWidth
-    const height = container.clientHeight
-    const aspect = width / height || 1
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+    const aspect = width / height || 1;
 
     // 创建透视相机
     this.camera = new THREE.PerspectiveCamera(
@@ -76,36 +76,36 @@ export class CameraController {
       aspect,
       CAMERA_CONFIG.near,
       CAMERA_CONFIG.far
-    )
+    );
 
     // 设置默认位置
     this.camera.position.set(
       CAMERA_CONFIG.defaultPosition.x,
       CAMERA_CONFIG.defaultPosition.y,
       CAMERA_CONFIG.defaultPosition.z
-    )
+    );
 
     // 创建轨道控制器
     // 注意：OrbitControls 需要一个 DOM 元素来监听事件
     // 这里传入 container，实际使用时可能需要传入 renderer.domElement
-    this.controls = new OrbitControls(this.camera, container)
+    this.controls = new OrbitControls(this.camera, container);
 
     // 配置控制器
-    this.controls.enableDamping = CONTROLS_CONFIG.enableDamping
-    this.controls.dampingFactor = CONTROLS_CONFIG.dampingFactor
-    this.controls.minDistance = CONTROLS_CONFIG.minDistance
-    this.controls.maxDistance = CONTROLS_CONFIG.maxDistance
-    this.controls.enablePan = CONTROLS_CONFIG.enablePan
+    this.controls.enableDamping = CONTROLS_CONFIG.enableDamping;
+    this.controls.dampingFactor = CONTROLS_CONFIG.dampingFactor;
+    this.controls.minDistance = CONTROLS_CONFIG.minDistance;
+    this.controls.maxDistance = CONTROLS_CONFIG.maxDistance;
+    this.controls.enablePan = CONTROLS_CONFIG.enablePan;
 
     // 设置默认目标点
     this.controls.target.set(
       CAMERA_CONFIG.defaultTarget.x,
       CAMERA_CONFIG.defaultTarget.y,
       CAMERA_CONFIG.defaultTarget.z
-    )
+    );
 
     // 初始更新
-    this.controls.update()
+    this.controls.update();
   }
 
   /**
@@ -118,54 +118,54 @@ export class CameraController {
    */
   fitToModel(model: THREE.Object3D): void {
     // 计算模型的包围盒
-    const boundingBox = new THREE.Box3().setFromObject(model)
+    const boundingBox = new THREE.Box3().setFromObject(model);
 
     // 检查包围盒是否有效
     if (boundingBox.isEmpty()) {
-      console.warn('[CameraController] 模型包围盒为空，无法适配相机')
-      return
+      console.warn('[CameraController] 模型包围盒为空，无法适配相机');
+      return;
     }
 
     // 获取包围盒中心点
-    const center = new THREE.Vector3()
-    boundingBox.getCenter(center)
+    const center = new THREE.Vector3();
+    boundingBox.getCenter(center);
 
     // 获取包围盒尺寸
-    const size = new THREE.Vector3()
-    boundingBox.getSize(size)
+    const size = new THREE.Vector3();
+    boundingBox.getSize(size);
 
     // 计算包围球半径（使用对角线长度的一半）
-    const maxDim = Math.max(size.x, size.y, size.z)
-    const radius = maxDim / 2
+    const maxDim = Math.max(size.x, size.y, size.z);
+    const radius = maxDim / 2;
 
     // 计算相机距离
     // 使用 FOV 计算合适的距离，确保模型完整显示
-    const fovRad = THREE.MathUtils.degToRad(this.camera.fov)
-    const distance = radius / Math.sin(fovRad / 2)
+    const fovRad = THREE.MathUtils.degToRad(this.camera.fov);
+    const distance = radius / Math.sin(fovRad / 2);
 
     // 添加一些边距（1.5 倍距离）
-    const cameraDistance = distance * 1.5
+    const cameraDistance = distance * 1.5;
 
     // 计算相机位置（从右上方观察）
-    const cameraOffset = new THREE.Vector3(1, 0.8, 1).normalize()
+    const cameraOffset = new THREE.Vector3(1, 0.8, 1).normalize();
     const cameraPosition = center
       .clone()
-      .add(cameraOffset.multiplyScalar(cameraDistance))
+      .add(cameraOffset.multiplyScalar(cameraDistance));
 
     // 设置相机位置
-    this.camera.position.copy(cameraPosition)
+    this.camera.position.copy(cameraPosition);
 
     // 设置控制器目标点为模型中心
-    this.controls.target.copy(center)
+    this.controls.target.copy(center);
 
     // 更新相机近远裁剪面
     // 根据模型大小动态调整，避免裁剪问题
-    this.camera.near = Math.max(0.01, cameraDistance * 0.01)
-    this.camera.far = Math.max(100, cameraDistance * 10)
-    this.camera.updateProjectionMatrix()
+    this.camera.near = Math.max(0.01, cameraDistance * 0.01);
+    this.camera.far = Math.max(100, cameraDistance * 10);
+    this.camera.updateProjectionMatrix();
 
     // 更新控制器
-    this.controls.update()
+    this.controls.update();
   }
 
   /**
@@ -176,8 +176,8 @@ export class CameraController {
    * @param z - Z 坐标
    */
   setPosition(x: number, y: number, z: number): void {
-    this.camera.position.set(x, y, z)
-    this.controls.update()
+    this.camera.position.set(x, y, z);
+    this.controls.update();
   }
 
   /**
@@ -188,8 +188,8 @@ export class CameraController {
    * @param z - Z 坐标
    */
   setTarget(x: number, y: number, z: number): void {
-    this.controls.target.set(x, y, z)
-    this.controls.update()
+    this.controls.target.set(x, y, z);
+    this.controls.update();
   }
 
   /**
@@ -198,7 +198,7 @@ export class CameraController {
    * 应在每帧渲染循环中调用，用于更新阻尼效果
    */
   update(): void {
-    this.controls.update()
+    this.controls.update();
   }
 
   /**
@@ -207,12 +207,12 @@ export class CameraController {
    * 更新相机宽高比
    */
   resize(): void {
-    const width = this.container.clientWidth
-    const height = this.container.clientHeight
+    const width = this.container.clientWidth;
+    const height = this.container.clientHeight;
 
     if (width > 0 && height > 0) {
-      this.camera.aspect = width / height
-      this.camera.updateProjectionMatrix()
+      this.camera.aspect = width / height;
+      this.camera.updateProjectionMatrix();
     }
   }
 
@@ -224,15 +224,15 @@ export class CameraController {
       CAMERA_CONFIG.defaultPosition.x,
       CAMERA_CONFIG.defaultPosition.y,
       CAMERA_CONFIG.defaultPosition.z
-    )
+    );
 
     this.controls.target.set(
       CAMERA_CONFIG.defaultTarget.x,
       CAMERA_CONFIG.defaultTarget.y,
       CAMERA_CONFIG.defaultTarget.z
-    )
+    );
 
-    this.controls.update()
+    this.controls.update();
   }
 
   /**
@@ -241,6 +241,6 @@ export class CameraController {
    * 清理控制器事件监听器
    */
   dispose(): void {
-    this.controls.dispose()
+    this.controls.dispose();
   }
 }

@@ -11,7 +11,7 @@
  * @validates 需求 8.2: 模型文件缺失时显示文件未找到的提示
  * @validates 需求 8.4: 网络请求失败时显示重试选项
  */
-import { RefreshRight } from "@element-plus/icons-vue";
+import { RefreshRight } from '@element-plus/icons-vue';
 
 /**
  * Props 定义
@@ -24,7 +24,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  title: "出错了",
+  title: '出错了',
 });
 
 /**
@@ -44,38 +44,38 @@ function getErrorIcon(): string {
 
   // 文件未找到错误
   if (
-    errorLower.includes("not found") ||
-    errorLower.includes("未找到") ||
-    errorLower.includes("404") ||
-    errorLower.includes("缺失")
+    errorLower.includes('not found') ||
+    errorLower.includes('未找到') ||
+    errorLower.includes('404') ||
+    errorLower.includes('缺失')
   ) {
-    return "📁";
+    return '📁';
   }
 
   // 网络错误
   if (
-    errorLower.includes("network") ||
-    errorLower.includes("网络") ||
-    errorLower.includes("fetch") ||
-    errorLower.includes("timeout") ||
-    errorLower.includes("超时")
+    errorLower.includes('network') ||
+    errorLower.includes('网络') ||
+    errorLower.includes('fetch') ||
+    errorLower.includes('timeout') ||
+    errorLower.includes('超时')
   ) {
-    return "🌐";
+    return '🌐';
   }
 
   // 解析错误
   if (
-    errorLower.includes("parse") ||
-    errorLower.includes("解析") ||
-    errorLower.includes("flatbuffers") ||
-    errorLower.includes("format") ||
-    errorLower.includes("格式")
+    errorLower.includes('parse') ||
+    errorLower.includes('解析') ||
+    errorLower.includes('flatbuffers') ||
+    errorLower.includes('format') ||
+    errorLower.includes('格式')
   ) {
-    return "⚙️";
+    return '⚙️';
   }
 
   // 默认警告图标
-  return "⚠️";
+  return '⚠️';
 }
 
 /**
@@ -83,7 +83,7 @@ function getErrorIcon(): string {
  * @validates 需求 8.4: 网络请求失败时显示重试选项
  */
 function handleRetry(): void {
-  emit("retry");
+  emit('retry');
 }
 </script>
 
@@ -106,10 +106,7 @@ function handleRetry(): void {
       </p>
 
       <!-- 重试按钮 -->
-      <el-button
-        type="danger"
-        @click="handleRetry"
-      >
+      <el-button type="danger" @click="handleRetry">
         <el-icon class="retry-icon">
           <RefreshRight />
         </el-icon>

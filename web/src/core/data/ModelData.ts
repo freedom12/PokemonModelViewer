@@ -7,7 +7,7 @@
  * @module core/data/ModelData
  */
 
-import * as THREE from "three";
+import * as THREE from 'three';
 import {
   type TRMDL,
   type TRMSH,
@@ -18,18 +18,15 @@ import {
   type Buffer as TRMBFBuffer,
   VertexAttribute,
   UVWrapMode as FBUVWrapMode,
-} from "../../parsers";
+} from '../../parsers';
 import {
   parseVertexAttribute,
   parseIndices,
   extractUV2Components,
   getVertexTypeInfo,
   getIndexByteSize,
-} from "./vertexUtils";
-import {
-  getTextureType,
-  getTextureTypeFromName,
-} from "../../utils/textureMapping";
+} from './vertexUtils';
+import { getTextureType, getTextureTypeFromName } from '../../utils/textureMapping';
 import {
   IModelData,
   MeshGroup,
@@ -39,10 +36,10 @@ import {
   UVWrapMode,
   BoneData,
   ShaderData,
-} from "./types";
-import { MeshData } from "./MeshData";
-import { MaterialData } from "./MaterialData";
-import { SkeletonData } from "./SkeletonData";
+} from './types';
+import { MeshData } from './MeshData';
+import { MaterialData } from './MaterialData';
+import { SkeletonData } from './SkeletonData';
 
 /**
  * ModelData 类实现
@@ -82,7 +79,7 @@ export class ModelData implements IModelData {
     public readonly name: string,
     public readonly meshes: MeshData[],
     public readonly materials: MaterialData[],
-    public readonly skeleton: SkeletonData | null,
+    public readonly skeleton: SkeletonData | null
   ) {}
 
   /**
@@ -175,13 +172,13 @@ export class ModelData implements IModelData {
     const errors: string[] = [];
 
     // 检查名称
-    if (!this.name || this.name.trim() === "") {
-      errors.push("Model name is required");
+    if (!this.name || this.name.trim() === '') {
+      errors.push('Model name is required');
     }
 
     // 检查网格数据
     if (this.meshes.length === 0) {
-      errors.push("Model must have at least one mesh");
+      errors.push('Model must have at least one mesh');
     }
 
     // 验证每个网格
@@ -189,7 +186,7 @@ export class ModelData implements IModelData {
       const meshValidation = this.meshes[i].validate();
       if (!meshValidation.valid) {
         errors.push(
-          `Mesh ${i} (${this.meshes[i].name}): ${meshValidation.errors.join(", ")}`,
+          `Mesh ${i} (${this.meshes[i].name}): ${meshValidation.errors.join(', ')}`
         );
       }
     }
@@ -199,7 +196,7 @@ export class ModelData implements IModelData {
       const matValidation = this.materials[i].validate();
       if (!matValidation.valid) {
         errors.push(
-          `Material ${i} (${this.materials[i].name}): ${matValidation.errors.join(", ")}`,
+          `Material ${i} (${this.materials[i].name}): ${matValidation.errors.join(', ')}`
         );
       }
     }
@@ -239,17 +236,17 @@ export class ModelData implements IModelData {
     trmsh: TRMSH,
     trmbf: TRMBF,
     trmtr?: TRMTR,
-    trskl?: TRSKL,
+    trskl?: TRSKL
   ): ModelData {
     // 获取模型名称（从第一个网格引用）
-    let modelName = "unnamed_model";
+    let modelName = 'unnamed_model';
     if (trmdl.meshesLength() > 0) {
       const firstMesh = trmdl.meshes(0);
       if (firstMesh) {
         const filename = firstMesh.filename();
         if (filename) {
           // 从文件名提取模型名称（去掉扩展名）
-          modelName = filename.replace(/\.[^/.]+$/, "");
+          modelName = filename.replace(/\.[^/.]+$/, '');
         }
       }
     }
@@ -282,9 +279,7 @@ export class ModelData implements IModelData {
       const buffer = trmbf.buffers(i);
 
       if (!meshShape || !buffer) {
-        console.warn(
-          `[ModelData] Skipping mesh ${i}: missing mesh shape or buffer`,
-        );
+        console.warn(`[ModelData] Skipping mesh ${i}: missing mesh shape or buffer`);
         continue;
       }
 
@@ -310,7 +305,7 @@ export class ModelData implements IModelData {
   private static parseSingleMesh(
     meshShape: MeshShape,
     buffer: TRMBFBuffer,
-    meshIndex: number,
+    meshIndex: number
   ): MeshData {
     // 解析顶点属性
     const vertexData = ModelData.parseVertexAttributes(meshShape, buffer);
@@ -335,7 +330,7 @@ export class ModelData implements IModelData {
       vertexData.skinIndices,
       vertexData.skinWeights,
       indices || new Uint16Array(0),
-      groups,
+      groups
     );
   }
 
@@ -344,7 +339,7 @@ export class ModelData implements IModelData {
    */
   private static parseVertexAttributes(
     meshShape: MeshShape,
-    buffer: TRMBFBuffer,
+    buffer: TRMBFBuffer
   ): {
     positions: Float32Array | null;
     normals: Float32Array | null;
@@ -389,8 +384,7 @@ export class ModelData implements IModelData {
       const stride = sizeInfo ? sizeInfo.size() : 0;
 
       // 计算顶点数量
-      const vertexCount =
-        stride > 0 ? Math.floor(vertexBuffer.length / stride) : 0;
+      const vertexCount = stride > 0 ? Math.floor(vertexBuffer.length / stride) : 0;
       if (vertexCount === 0) continue;
 
       // 遍历所有属性访问器
@@ -412,7 +406,7 @@ export class ModelData implements IModelData {
               type,
               offset,
               stride,
-              vertexCount,
+              vertexCount
             );
             break;
 
@@ -422,7 +416,7 @@ export class ModelData implements IModelData {
               type,
               offset,
               stride,
-              vertexCount,
+              vertexCount
             );
             break;
 
@@ -433,7 +427,7 @@ export class ModelData implements IModelData {
                 type,
                 offset,
                 stride,
-                vertexCount,
+                vertexCount
               );
 
               // 根据数据类型提取 UV 分量
@@ -465,7 +459,7 @@ export class ModelData implements IModelData {
               type,
               offset,
               stride,
-              vertexCount,
+              vertexCount
             );
             break;
 
@@ -475,7 +469,7 @@ export class ModelData implements IModelData {
               type,
               offset,
               stride,
-              vertexCount,
+              vertexCount
             );
             break;
 
@@ -485,7 +479,7 @@ export class ModelData implements IModelData {
               type,
               offset,
               stride,
-              vertexCount,
+              vertexCount
             );
             break;
 
@@ -495,7 +489,7 @@ export class ModelData implements IModelData {
               type,
               offset,
               stride,
-              vertexCount,
+              vertexCount
             );
             break;
 
@@ -517,7 +511,7 @@ export class ModelData implements IModelData {
    */
   private static parseIndexData(
     meshShape: MeshShape,
-    buffer: TRMBFBuffer,
+    buffer: TRMBFBuffer
   ): Uint16Array | Uint32Array | null {
     // 获取索引缓冲区
     const indexBufferCount = buffer.indexBufferLength();
@@ -624,7 +618,7 @@ export class ModelData implements IModelData {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FlatBuffers 生成的 Material 类型
   private static parseSingleMaterial(material: any): MaterialData {
     // 获取材质名称
-    const name = material.name() || "unnamed_material";
+    const name = material.name() || 'unnamed_material';
 
     // 获取 shader 名称和解析所有 shader 数据
     let shaderName: string | null = null;
@@ -638,13 +632,13 @@ export class ModelData implements IModelData {
           if (!shaderName) {
             shaderName = sn;
           }
-          
+
           // 解析 shader values
           const shaderData: ShaderData = {
             name: sn,
-            values: []
+            values: [],
           };
-          
+
           const valuesCount = shader.shaderValuesLength();
           for (let j = 0; j < valuesCount; j++) {
             const value = shader.shaderValues(j);
@@ -654,12 +648,12 @@ export class ModelData implements IModelData {
               if (valueName) {
                 shaderData.values.push({
                   name: valueName,
-                  value: valueStr || ''
+                  value: valueStr || '',
                 });
               }
             }
           }
-          
+
           shaders.push(shaderData);
         }
       }
@@ -675,15 +669,15 @@ export class ModelData implements IModelData {
       const textureFile = texture.textureFile();
       if (!textureFile) continue;
 
-      const textureName = texture.textureName() || "";
+      const textureName = texture.textureName() || '';
       const textureSlot = texture.textureSlot() || 0;
 
       // 将 .bntx 扩展名转换为 .png
-      const pngFilename = textureFile.replace(/\.bntx$/i, ".png");
+      const pngFilename = textureFile.replace(/\.bntx$/i, '.png');
 
       // 确定纹理类型
       let textureType: TextureType = getTextureTypeFromName(textureName);
-      if (textureType === "unknown") {
+      if (textureType === 'unknown') {
         textureType = getTextureType(pngFilename);
       }
 
@@ -725,8 +719,8 @@ export class ModelData implements IModelData {
             colorValue.r(),
             colorValue.g(),
             colorValue.b(),
-            colorValue.a(),
-          ),
+            colorValue.a()
+          )
         );
       }
     }
@@ -740,7 +734,7 @@ export class ModelData implements IModelData {
     for (let i = 0; i < samplersCount; i++) {
       const sampler = material.samplers(i);
       if (!sampler) {
-        samplers.push({ wrapU: "repeat", wrapV: "repeat" });
+        samplers.push({ wrapU: 'repeat', wrapV: 'repeat' });
         continue;
       }
 
@@ -757,7 +751,7 @@ export class ModelData implements IModelData {
       floatParams,
       colorParams,
       alphaType,
-      samplers,
+      samplers
     );
   }
 
@@ -770,14 +764,14 @@ export class ModelData implements IModelData {
   private static convertUVWrapMode(fbWrapMode: FBUVWrapMode): UVWrapMode {
     switch (fbWrapMode) {
       case FBUVWrapMode.CLAMP:
-        return "clamp";
+        return 'clamp';
       case FBUVWrapMode.MIRROR:
-        return "mirror";
+        return 'mirror';
       case FBUVWrapMode.MIRROR_ONCE:
-        return "mirror";
+        return 'mirror';
       case FBUVWrapMode.WRAP:
       default:
-        return "repeat";
+        return 'repeat';
     }
   }
 
@@ -812,10 +806,10 @@ export class ModelData implements IModelData {
 
       let boneName = `Bone_${boneIndex}`;
       let localPosition = new THREE.Vector3(0, 0, 0);
-      let localRotation = new THREE.Euler(0, 0, 0, "ZYX");
+      let localRotation = new THREE.Euler(0, 0, 0, 'ZYX');
       let localScale = new THREE.Vector3(1, 1, 1);
       let parentIndex = -1;
-      
+
       // 从 bone 的 inherit_position 字段获取 isIgnoreScale
       // inherit_position: 1 表示忽略缩放，0 或空表示不忽略
       const isIgnoreScale = bone ? bone.inheritPosition() === 1 : false;
@@ -824,7 +818,7 @@ export class ModelData implements IModelData {
         // 设置骨骼名称
         const name = transformNode.name();
         if (name) {
-          boneName = name.decode ? name.decode("utf-8") : name;
+          boneName = name.decode ? name.decode('utf-8') : name;
         }
 
         // 设置骨骼的局部变换
@@ -842,14 +836,14 @@ export class ModelData implements IModelData {
               rotation.x(),
               rotation.y(),
               rotation.z(),
-              "ZYX",
+              'ZYX'
             );
           }
           if (translation) {
             localPosition = new THREE.Vector3(
               translation.x(),
               translation.y(),
-              translation.z(),
+              translation.z()
             );
           }
         }
@@ -892,7 +886,7 @@ export class ModelData implements IModelData {
       this.name,
       this.meshes.map((mesh) => mesh.clone()),
       this.materials.map((mat) => mat.clone()),
-      this.skeleton ? new SkeletonData([...this.skeleton.bones]) : null,
+      this.skeleton ? new SkeletonData([...this.skeleton.bones]) : null
     );
   }
 
@@ -906,12 +900,12 @@ export class ModelData implements IModelData {
       `ModelData: ${this.name}`,
       `  Meshes: ${this.meshCount}`,
       `  Materials: ${this.materialCount}`,
-      `  Skeleton: ${this.hasSkeleton ? `${this.skeleton!.boneCount} bones` : "none"}`,
+      `  Skeleton: ${this.hasSkeleton ? `${this.skeleton!.boneCount} bones` : 'none'}`,
       `  Total Vertices: ${this.totalVertexCount}`,
       `  Total Triangles: ${this.totalTriangleCount}`,
     ];
 
-    return lines.join("\n");
+    return lines.join('\n');
   }
 
   /**

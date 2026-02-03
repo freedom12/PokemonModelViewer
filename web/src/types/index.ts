@@ -1,2 +1,1 @@
-
-export type Game = 'SCVI' | 'LZA' | 'LA';
+export type { Game } from '../core/data/types';

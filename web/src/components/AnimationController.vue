@@ -11,8 +11,8 @@
  *
  * @validates 需求 6.3: 动画控制器作为独立组件，包含动画选择和播放控制
  */
-import { computed } from "vue";
-import { VideoPlay, VideoPause } from "@element-plus/icons-vue";
+import { computed } from 'vue';
+import { VideoPlay, VideoPause } from '@element-plus/icons-vue';
 
 /**
  * 动画状态接口
@@ -50,13 +50,13 @@ const props = defineProps<{
 // Emits 定义 - 发送控制事件
 const emit = defineEmits<{
   /** 选中的动画变更 */
-  (e: "update:selectedAnimation", value: string): void;
+  (e: 'update:selectedAnimation', value: string): void;
   /** 播放/暂停切换 */
-  (e: "toggle-play"): void;
+  (e: 'toggle-play'): void;
   /** 停止播放 */
-  (e: "stop"): void;
+  (e: 'stop'): void;
   /** 循环模式变更 */
-  (e: "update:loop", value: boolean): void;
+  (e: 'update:loop', value: boolean): void;
 }>();
 
 // ===== 计算属性 =====
@@ -74,7 +74,7 @@ const hasAnimations = computed(() => {
  */
 const frameDisplay = computed(() => {
   if (!props.animationState) {
-    return "-- / --";
+    return '-- / --';
   }
   return `${props.animationState.currentFrame} / ${props.animationState.frameCount}`;
 });
@@ -85,7 +85,7 @@ const frameDisplay = computed(() => {
  */
 const timeDisplay = computed(() => {
   if (!props.animationState) {
-    return "0.00s / 0.00s";
+    return '0.00s / 0.00s';
   }
   const current = props.animationState.currentTime.toFixed(2);
   const total = props.animationState.duration.toFixed(2);
@@ -98,36 +98,33 @@ const timeDisplay = computed(() => {
  * 处理动画选择变更
  */
 function handleAnimationChange(value: string): void {
-  emit("update:selectedAnimation", value);
+  emit('update:selectedAnimation', value);
 }
 
 /**
  * 处理播放/暂停按钮点击
  */
 function handleTogglePlay(): void {
-  emit("toggle-play");
+  emit('toggle-play');
 }
 
 /**
  * 处理停止按钮点击
  */
 function handleStop(): void {
-  emit("stop");
+  emit('stop');
 }
 
 /**
  * 处理循环模式变更
  */
 function handleLoopChange(value: boolean): void {
-  emit("update:loop", value);
+  emit('update:loop', value);
 }
 </script>
 
 <template>
-  <div
-    v-if="hasAnimations"
-    class="animation-controller"
-  >
+  <div v-if="hasAnimations" class="animation-controller">
     <!-- 动画选择区域 -->
     <div class="control-section">
       <div class="control-item">
@@ -164,7 +161,7 @@ function handleLoopChange(value: boolean): void {
           <el-icon v-else>
             <VideoPlay />
           </el-icon>
-          {{ isPlaying ? "暂停" : "播放" }}
+          {{ isPlaying ? '暂停' : '播放' }}
         </el-button>
         <el-button
           size="small"
@@ -180,10 +177,7 @@ function handleLoopChange(value: boolean): void {
     <!-- 循环控制区域 -->
     <div class="control-section">
       <div class="control-item">
-        <el-checkbox
-          :model-value="loop"
-          @update:model-value="handleLoopChange"
-        >
+        <el-checkbox :model-value="loop" @update:model-value="handleLoopChange">
           循环播放
         </el-checkbox>
       </div>
@@ -281,8 +275,7 @@ function handleLoopChange(value: boolean): void {
   color: #ffffff;
 }
 
-.animation-controller
-  :deep(.el-checkbox__input.is-checked + .el-checkbox__label) {
+.animation-controller :deep(.el-checkbox__input.is-checked + .el-checkbox__label) {
   color: #ffffff;
 }
 </style>

@@ -10,20 +10,16 @@
  * @validates 需求 6.3: 用户点击宝可梦时加载并显示该宝可梦的 3D 模型
  * @validates 需求 6.5: 用户选择不同形态时切换显示对应形态的模型
  */
-import { ref, defineAsyncComponent, Ref } from "vue";
-import {
-  setResourceLoaderConfig,
-} from "./services/resourceLoader";
-import { Game } from "./types";
-import { PokemonModel } from "./models";
+import { ref, defineAsyncComponent, Ref } from 'vue';
+import { setResourceLoaderConfig } from './services/resourceLoader';
+import { Game } from './types';
+import { PokemonModel } from './models';
 
 // 异步加载组件以优化初始加载性能
 const PokemonBrowser = defineAsyncComponent(
-  () => import("./components/PokemonBrowser.vue"),
+  () => import('./components/PokemonBrowser.vue')
 );
-const ThreeViewer = defineAsyncComponent(
-  () => import("./components/ThreeViewer.vue"),
-);
+const ThreeViewer = defineAsyncComponent(() => import('./components/ThreeViewer.vue'));
 
 // 当前选中的宝可梦 ID
 const selectedPokemon: Ref<PokemonModel | null> = ref(null);
@@ -41,13 +37,13 @@ const isModelLoading = ref(false);
 const modelError = ref<string | null>(null);
 
 // 当前选择的目录
-const selectedGame = ref<Game>("SCVI");
+const selectedGame = ref<Game>('SCVI');
 
 // 当前宝可梦的动画数据
 const currentAnimations = ref<Record<string, string[]> | null>(null);
 
 // 资源加载模式：本地或远程
-const useRemoteAssets = ref(import.meta.env.VITE_USE_REMOTE_ASSETS === "true");
+const useRemoteAssets = ref(import.meta.env.VITE_USE_REMOTE_ASSETS === 'true');
 
 // 组件挂载时不需要额外加载数据，PokemonBrowser 会处理
 
@@ -62,7 +58,7 @@ const useRemoteAssets = ref(import.meta.env.VITE_USE_REMOTE_ASSETS === "true");
  */
 async function handleSelectPokemon(
   pokemon: PokemonModel,
-  form: [number, number],
+  form: [number, number]
 ): Promise<void> {
   console.log(`App: 选择宝可梦 ${pokemon.index}, 形态 ${form}`);
   selectedPokemon.value = pokemon;
@@ -76,9 +72,8 @@ async function handleSelectPokemon(
     return;
   }
   currentAnimations.value =
-    resourceData.forms.find(
-      (f) => f.formIndex === form[0] && f.variantIndex === form[1],
-    )?.animations || null;
+    resourceData.forms.find((f) => f.formIndex === form[0] && f.variantIndex === form[1])
+      ?.animations || null;
 }
 
 /**

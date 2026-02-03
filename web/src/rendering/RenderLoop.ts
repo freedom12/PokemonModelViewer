@@ -6,7 +6,7 @@
  *
  * 需求: 5.5
  */
-import * as THREE from 'three'
+import * as THREE from 'three';
 
 /**
  * 渲染器配置常量
@@ -31,7 +31,7 @@ const RENDERER_CONFIG = {
     enabled: true,
     type: THREE.PCFSoftShadowMap,
   },
-} as const
+} as const;
 
 /**
  * 渲染循环类
@@ -45,25 +45,25 @@ const RENDERER_CONFIG = {
  */
 export class RenderLoop {
   /** WebGL 渲染器 */
-  private renderer: THREE.WebGLRenderer
+  private renderer: THREE.WebGLRenderer;
 
   /** 场景引用 */
-  private scene: THREE.Scene
+  private scene: THREE.Scene;
 
   /** 相机引用 */
-  private camera: THREE.PerspectiveCamera
+  private camera: THREE.PerspectiveCamera;
 
   /** 动画帧 ID（用于取消动画） */
-  private animationId: number | null
+  private animationId: number | null;
 
   /** 回调函数集合（每帧调用） */
-  private callbacks: Set<(deltaTime: number) => void>
+  private callbacks: Set<(deltaTime: number) => void>;
 
   /** 时钟（用于计算 deltaTime） */
-  private clock: THREE.Clock
+  private clock: THREE.Clock;
 
   /** 容器元素引用 */
-  private container: HTMLElement
+  private container: HTMLElement;
 
   /**
    * 创建渲染循环
@@ -77,21 +77,21 @@ export class RenderLoop {
     scene: THREE.Scene,
     camera: THREE.PerspectiveCamera
   ) {
-    this.container = container
-    this.scene = scene
-    this.camera = camera
-    this.animationId = null
-    this.callbacks = new Set()
-    this.clock = new THREE.Clock()
+    this.container = container;
+    this.scene = scene;
+    this.camera = camera;
+    this.animationId = null;
+    this.callbacks = new Set();
+    this.clock = new THREE.Clock();
 
     // 创建 WebGL 渲染器
-    this.renderer = this.createRenderer()
+    this.renderer = this.createRenderer();
 
     // 将渲染器的 canvas 添加到容器
-    container.appendChild(this.renderer.domElement)
+    container.appendChild(this.renderer.domElement);
 
     // 初始化尺寸
-    this.resize(container.clientWidth, container.clientHeight)
+    this.resize(container.clientWidth, container.clientHeight);
   }
 
   /**
@@ -104,27 +104,24 @@ export class RenderLoop {
       antialias: RENDERER_CONFIG.antialias,
       alpha: RENDERER_CONFIG.alpha,
       preserveDrawingBuffer: RENDERER_CONFIG.preserveDrawingBuffer,
-    })
+    });
 
     // 配置色调映射
-    renderer.toneMapping = RENDERER_CONFIG.toneMapping
-    renderer.toneMappingExposure = RENDERER_CONFIG.toneMappingExposure
+    renderer.toneMapping = RENDERER_CONFIG.toneMapping;
+    renderer.toneMappingExposure = RENDERER_CONFIG.toneMappingExposure;
 
     // 配置输出颜色空间
-    renderer.outputColorSpace = RENDERER_CONFIG.outputColorSpace
+    renderer.outputColorSpace = RENDERER_CONFIG.outputColorSpace;
 
     // 设置像素比例（限制最大值以提高性能）
-    const pixelRatio = Math.min(
-      window.devicePixelRatio,
-      RENDERER_CONFIG.maxPixelRatio
-    )
-    renderer.setPixelRatio(pixelRatio)
+    const pixelRatio = Math.min(window.devicePixelRatio, RENDERER_CONFIG.maxPixelRatio);
+    renderer.setPixelRatio(pixelRatio);
 
     // 配置阴影
-    renderer.shadowMap.enabled = RENDERER_CONFIG.shadow.enabled
-    renderer.shadowMap.type = RENDERER_CONFIG.shadow.type
+    renderer.shadowMap.enabled = RENDERER_CONFIG.shadow.enabled;
+    renderer.shadowMap.type = RENDERER_CONFIG.shadow.type;
 
-    return renderer
+    return renderer;
   }
 
   /**
@@ -133,9 +130,9 @@ export class RenderLoop {
    * @param enabled - 是否启用阴影
    */
   setShadowEnabled(enabled: boolean): void {
-    this.renderer.shadowMap.enabled = enabled
+    this.renderer.shadowMap.enabled = enabled;
     // 需要更新所有材质以应用阴影变化
-    this.renderer.shadowMap.needsUpdate = true
+    this.renderer.shadowMap.needsUpdate = true;
   }
 
   /**
@@ -144,7 +141,7 @@ export class RenderLoop {
    * @returns 是否启用阴影
    */
   isShadowEnabled(): boolean {
-    return this.renderer.shadowMap.enabled
+    return this.renderer.shadowMap.enabled;
   }
 
   /**
@@ -156,7 +153,7 @@ export class RenderLoop {
    * @param callback - 回调函数，接收 deltaTime 参数
    */
   addCallback(callback: (deltaTime: number) => void): void {
-    this.callbacks.add(callback)
+    this.callbacks.add(callback);
   }
 
   /**
@@ -165,7 +162,7 @@ export class RenderLoop {
    * @param callback - 要移除的回调函数
    */
   removeCallback(callback: (deltaTime: number) => void): void {
-    this.callbacks.delete(callback)
+    this.callbacks.delete(callback);
   }
 
   /**
@@ -179,35 +176,35 @@ export class RenderLoop {
   start(): void {
     // 如果已经在运行，则不重复启动
     if (this.animationId !== null) {
-      return
+      return;
     }
 
     // 重置时钟
-    this.clock.start()
+    this.clock.start();
 
     // 定义动画循环函数
     const animate = (): void => {
       // 请求下一帧
-      this.animationId = requestAnimationFrame(animate)
+      this.animationId = requestAnimationFrame(animate);
 
       // 计算 deltaTime
-      const deltaTime = this.clock.getDelta()
+      const deltaTime = this.clock.getDelta();
 
       // 调用所有回调函数
       for (const callback of this.callbacks) {
         try {
-          callback(deltaTime)
+          callback(deltaTime);
         } catch (error) {
-          console.error('[RenderLoop] 回调函数执行错误:', error)
+          console.error('[RenderLoop] 回调函数执行错误:', error);
         }
       }
 
       // 渲染场景
-      this.renderer.render(this.scene, this.camera)
-    }
+      this.renderer.render(this.scene, this.camera);
+    };
 
     // 启动动画循环
-    animate()
+    animate();
   }
 
   /**
@@ -217,9 +214,9 @@ export class RenderLoop {
    */
   stop(): void {
     if (this.animationId !== null) {
-      cancelAnimationFrame(this.animationId)
-      this.animationId = null
-      this.clock.stop()
+      cancelAnimationFrame(this.animationId);
+      this.animationId = null;
+      this.clock.stop();
     }
   }
 
@@ -232,15 +229,15 @@ export class RenderLoop {
   resize(width: number, height: number): void {
     // 确保尺寸有效
     if (width <= 0 || height <= 0) {
-      return
+      return;
     }
 
     // 更新渲染器尺寸
-    this.renderer.setSize(width, height)
+    this.renderer.setSize(width, height);
 
     // 更新相机宽高比
-    this.camera.aspect = width / height
-    this.camera.updateProjectionMatrix()
+    this.camera.aspect = width / height;
+    this.camera.updateProjectionMatrix();
   }
 
   /**
@@ -249,7 +246,7 @@ export class RenderLoop {
    * @returns WebGLRenderer 实例
    */
   getRenderer(): THREE.WebGLRenderer {
-    return this.renderer
+    return this.renderer;
   }
 
   /**
@@ -258,7 +255,7 @@ export class RenderLoop {
    * @returns Canvas 元素
    */
   getDomElement(): HTMLCanvasElement {
-    return this.renderer.domElement
+    return this.renderer.domElement;
   }
 
   /**
@@ -267,7 +264,7 @@ export class RenderLoop {
    * @returns 是否正在运行
    */
   isRunning(): boolean {
-    return this.animationId !== null
+    return this.animationId !== null;
   }
 
   /**
@@ -276,7 +273,7 @@ export class RenderLoop {
    * 在渲染循环停止时，可以使用此方法手动渲染单帧
    */
   renderOnce(): void {
-    this.renderer.render(this.scene, this.camera)
+    this.renderer.render(this.scene, this.camera);
   }
 
   /**
@@ -286,17 +283,17 @@ export class RenderLoop {
    */
   dispose(): void {
     // 停止渲染循环
-    this.stop()
+    this.stop();
 
     // 清空回调函数
-    this.callbacks.clear()
+    this.callbacks.clear();
 
     // 从容器中移除 canvas
     if (this.renderer.domElement.parentElement === this.container) {
-      this.container.removeChild(this.renderer.domElement)
+      this.container.removeChild(this.renderer.domElement);
     }
 
     // 释放渲染器资源
-    this.renderer.dispose()
+    this.renderer.dispose();
   }
 }
