@@ -154,7 +154,7 @@ function switchToBrowser(): void {
 <template>
   <div class="app-container">
     <!-- 画廊视图 -->
-    <GalleryView v-if="viewMode === 'gallery'" @back="switchToBrowser" />
+    <GalleryView v-if="viewMode === 'gallery'" :game="selectedGame" @back="switchToBrowser" />
 
     <!-- 浏览器视图 -->
     <template v-else>

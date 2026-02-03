@@ -7,6 +7,9 @@
 
     <!-- 控制面板 -->
     <div class="controls">
+      <div class="game-info">
+        当前游戏: {{ game }}
+      </div>
       <button @click="toggleAutoPlay" :class="{ active: isAutoPlaying }">
         {{ isAutoPlaying ? '暂停' : '自动播放' }}
       </button>
@@ -29,6 +32,21 @@
     <!-- Three.js 渲染容器 -->
     <div ref="containerRef" class="render-container"></div>
 
+    <!-- 进度条 -->
+    <div class="progress-bar-container">
+      <input
+        type="range"
+        class="progress-bar"
+        min="0"
+        :max="maxProgress"
+        v-model.number="progressValue"
+        @input="handleProgressChange"
+      />
+      <div class="progress-info">
+        <span>{{ currentModelIndex + 1 }} / {{ totalPokemonCount }}</span>
+      </div>
+    </div>
+
     <!-- 加载提示 -->
     <div v-if="isInitializing" class="loading-overlay">
       <div class="loading-content">
@@ -40,15 +58,20 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, shallowRef } from 'vue';
+import { ref, onMounted, onBeforeUnmount, shallowRef, computed } from 'vue';
 import * as THREE from 'three';
 import { Model } from '../core/model/Model';
 import { ModelData } from '../core/data';
 import { flatbuffers, TRMDL, TRMSH, TRMBF, TRMTR, TRSKL } from '../parsers';
 import { loadBinaryResource } from '../services/resourceLoader';
 import { getPokemonIdFromFormId } from '../utils/pokemonPath';
+import { Game } from '../types';
 
 // Props
+const props = defineProps<{
+  game: Game;
+}>();
+
 const emit = defineEmits<{
   back: [];
 }>();
@@ -60,12 +83,15 @@ const isAutoPlaying = ref(true);
 const cameraSpeed = ref(0.25); // 默认速度再减半
 const loadedModelsCount = ref(0);
 const totalPokemonCount = ref(0);
+const progressValue = ref(0); // 进度条当前值
+const currentModelIndex = ref(0); // 当前模型索引
 
 // Three.js 相关
 let scene: THREE.Scene | null = null;
 let camera: THREE.PerspectiveCamera | null = null;
 let renderer: THREE.WebGLRenderer | null = null;
 let animationFrameId: number | null = null;
+let directionalLight: THREE.DirectionalLight | null = null; // 存储平行光引用
 
 // 模型管理
 interface ModelSlot {
@@ -83,7 +109,13 @@ const MAX_LOADED_MODELS = 5; // 最多同时加载的模型数量
 const LOAD_DISTANCE = 15; // 摄像机距离多远开始加载模型
 
 let cameraPosition = 0; // 摄像机当前位置
-let pokemonIds: string[] = [];
+
+// 存储所有形态信息
+interface FormInfo {
+  pokemonId: string;
+  formId: string;
+}
+let allForms: FormInfo[] = [];
 
 /**
  * 初始化场景
@@ -113,7 +145,7 @@ async function initScene() {
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
   scene.add(ambientLight);
 
-  const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+  directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
   directionalLight.position.set(5, 10, 7);
   directionalLight.castShadow = true;
   // 配置阴影
@@ -175,28 +207,60 @@ async function initScene() {
 }
 
 /**
- * 加载SCVI宝可梦列表
+ * 加载宝可梦列表及其所有形态
  */
 async function loadPokemonList() {
   try {
-    const response = await fetch('local/configs/SCVI/index.json');
+    const response = await fetch(`local/configs/${props.game}/index.json`);
     const data = await response.json();
-    pokemonIds = data.pokemonIds || [];
-    totalPokemonCount.value = pokemonIds.length;
-    console.log(`[Gallery] 加载了 ${pokemonIds.length} 个宝可梦`);
+    const pokemonIds = data.pokemonIds || [];
+    
+    // 加载每个宝可梦的配置以获取所有形态
+    const formsPromises = pokemonIds.map(async (pokemonId: string) => {
+      try {
+        const configResponse = await fetch(`local/configs/${props.game}/${pokemonId}.json`);
+        if (!configResponse.ok) {
+          // 如果配置不存在，使用默认形态
+          return [{ pokemonId, formId: `${pokemonId}_00_00` }];
+        }
+        const config = await configResponse.json();
+        const forms = config.forms || [];
+        
+        // 为每个形态创建FormInfo，排除 pmXXXX_01_00 格式的形态
+        return forms
+          .filter((form: any) => {
+            const formId = form.id || `${pokemonId}_00_00`;
+            // 排除格式为 pmXXXX_01_00 的形态
+            return !formId.match(/_01_00$/);
+          })
+          .map((form: any) => ({
+            pokemonId,
+            formId: form.id || `${pokemonId}_00_00`
+          }));
+      } catch (error) {
+        console.warn(`[Gallery] 加载 ${pokemonId} 配置失败, 使用默认形态:`, error);
+        return [{ pokemonId, formId: `${pokemonId}_00_00` }];
+      }
+    });
+    
+    const formsArrays = await Promise.all(formsPromises);
+    allForms = formsArrays.flat();
+    
+    totalPokemonCount.value = allForms.length;
+    console.log(`[Gallery] 加载了 ${pokemonIds.length} 个宝可梦, 共 ${allForms.length} 个形态`);
   } catch (error) {
     console.error('[Gallery] 加载宝可梦列表失败:', error);
-    pokemonIds = [];
+    allForms = [];
   }
 }
 
 /**
- * 创建所有模型槽位
+ * 创建所有模型槽位（为每个形态创建一个槽位）
  */
 function createModelSlots() {
   if (!scene) return;
 
-  modelSlots.value = pokemonIds.map((pokemonId, index) => {
+  modelSlots.value = allForms.map((formInfo, index) => {
     const group = new THREE.Group();
     group.position.x = index * MODEL_SPACING;
     group.position.y = 0;
@@ -216,8 +280,8 @@ function createModelSlots() {
 
     return {
       position: index * MODEL_SPACING,
-      pokemonId,
-      formId: `${pokemonId}_00_00`, // 默认形态
+      pokemonId: formInfo.pokemonId,
+      formId: formInfo.formId,
       model: null,
       isLoading: false,
       group,
@@ -365,7 +429,7 @@ function unloadModel(slot: ModelSlot) {
  * 加载宝可梦模型（简化版本）
  */
 async function loadPokemonModel(formId: string): Promise<Model | null> {
-  const game = 'SCVI';
+  const game = props.game;
   const pokemonId = getPokemonIdFromFormId(formId);
   const fileBasePath = `/${game}/${pokemonId}/${formId}/${formId}`;
   const basePath = `/${game}/${pokemonId}/${formId}/`;
@@ -432,7 +496,7 @@ async function loadPokemonModel(formId: string): Promise<Model | null> {
     // 加载第一个动画
     try {
       // 获取宝可梦配置，找到第一个动画
-      const configResponse = await fetch(`local/configs/SCVI/${pokemonId}.json`);
+      const configResponse = await fetch(`local/configs/${props.game}/${pokemonId}.json`);
       if (configResponse.ok) {
         const config = await configResponse.json();
         const form = config.forms?.find((f: any) => f.id === formId);
@@ -496,6 +560,20 @@ function animate() {
     camera.lookAt(cameraPosition, 1, 0);
   }
 
+  // 更新平行光位置，使阴影相机跟随主相机
+  if (directionalLight) {
+    directionalLight.position.set(cameraPosition + 5, 10, 7);
+    directionalLight.target.position.set(cameraPosition, 0, 0);
+    directionalLight.target.updateMatrixWorld();
+  }
+
+  // 更新进度条和当前索引
+  if (modelSlots.value.length > 0) {
+    const index = Math.round(cameraPosition / MODEL_SPACING);
+    currentModelIndex.value = Math.max(0, Math.min(index, modelSlots.value.length - 1));
+    progressValue.value = currentModelIndex.value;
+  }
+
   // 更新模型加载
   updateModelLoading();
 
@@ -529,6 +607,32 @@ function handleResize() {
  */
 function toggleAutoPlay() {
   isAutoPlaying.value = !isAutoPlaying.value;
+}
+
+/**
+ * 计算进度条最大值
+ */
+const maxProgress = computed(() => {
+  return Math.max(0, modelSlots.value.length - 1);
+});
+
+/**
+ * 处理进度条变更
+ */
+function handleProgressChange(event: Event) {
+  const value = (event.target as HTMLInputElement).valueAsNumber;
+  
+  // 根据进度值计算摄像机位置
+  if (modelSlots.value.length > 0) {
+    const targetSlot = modelSlots.value[value];
+    if (targetSlot) {
+      cameraPosition = targetSlot.position;
+      if (camera) {
+        camera.position.x = cameraPosition;
+        camera.lookAt(cameraPosition, 1, 0);
+      }
+    }
+  }
 }
 
 /**
@@ -645,6 +749,17 @@ onBeforeUnmount(() => {
   background-color: rgba(76, 175, 80, 0.8);
 }
 
+.game-info {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 12px;
+  background-color: rgba(33, 150, 243, 0.3);
+  border-radius: 4px;
+  border: 1px solid rgba(33, 150, 243, 0.5);
+  text-align: center;
+  color: #64b5f6;
+}
+
 .speed-control {
   display: flex;
   align-items: center;
@@ -668,6 +783,82 @@ onBeforeUnmount(() => {
   font-size: 14px;
   padding-top: 5px;
   border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.progress-bar-container {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 800px;
+  padding: 15px 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+}
+
+.progress-bar::-webkit-slider-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.progress-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #64b5f6;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.progress-bar::-webkit-slider-thumb:hover {
+  background: #42a5f5;
+}
+
+.progress-bar::-moz-range-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.progress-bar::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #64b5f6;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.progress-bar::-moz-range-thumb:hover {
+  background: #42a5f5;
+}
+
+.progress-info {
+  text-align: center;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .loading-overlay {
