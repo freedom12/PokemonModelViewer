@@ -810,9 +810,47 @@ export class ModelData implements IModelData {
       let localScale = new THREE.Vector3(1, 1, 1);
       let parentIndex = -1;
 
-      // 从 bone 的 inherit_position 字段获取 isIgnoreScale
-      // inherit_position: 1 表示忽略缩放，0 或空表示不忽略
-      const isIgnoreScale = bone ? bone.inheritPosition() === 1 : false;
+      // 从transformNode的type字段获取isIgnoreScale
+      // NodeType.Floating (2) - 始终忽略缩放（用于眼睛、嘴巴、脚部等，避免变形）
+      // NodeType.Chained (1) - 始终继承缩放（用于手指、舌头等需要联动的骨骼）
+      // NodeType.Default (0) - 沿父链查找：
+      //   - 如果任何祖先是Chained → 继承缩放（翅膀等附加部件，通过缩放实现显示/隐藏）
+      //   - 否则 → 忽略缩放（主体骨骼，保持结构稳定）
+      let isIgnoreScale = false;
+      if (transformNode) {
+        const nodeType = transformNode.type();
+        
+        if (nodeType === 2) {
+          // Floating: 始终忽略缩放
+          isIgnoreScale = true;
+        } else if (nodeType === 1) {
+          // Chained: 始终继承缩放
+          isIgnoreScale = false;
+        } else {
+          // Default (0或undefined): 沿父链查找，是否有Chained祖先
+          let hasChainedAncestor = false;
+          let currentParentIdx = transformNode.parentIdx();
+          let depth = 0;
+          const maxDepth = 20; // 防止无限循环
+          
+          while (currentParentIdx >= 0 && depth < maxDepth && trskl) {
+            const parentNode = trskl.transformNodes(currentParentIdx);
+            if (!parentNode) break;
+            
+            const parentType = parentNode.type();
+            if (parentType === 1) { // Chained
+              hasChainedAncestor = true;
+              break;
+            }
+            
+            currentParentIdx = parentNode.parentIdx();
+            depth++;
+          }
+          
+          // 如果有Chained祖先，则继承缩放；否则忽略缩放
+          isIgnoreScale = !hasChainedAncestor;
+        }
+      }
 
       if (transformNode) {
         // 设置骨骼名称

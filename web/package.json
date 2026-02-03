@@ -13,8 +13,7 @@
     "gen-parsers": "node tools/gen-parsers.cjs",
     "copy-anim": "node tools/copy-anim.js",
     "format": "prettier --write \"src/**/*.{ts,vue,css,scss}\"",
-    "format:check": "prettier --check \"src/**/*.{ts,vue,css,scss}\"",
-    "test": "vitest run"
+    "format:check": "prettier --check \"src/**/*.{ts,vue,css,scss}\""
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.2",

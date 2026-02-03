@@ -95,10 +95,11 @@ export class MaterialData implements IMaterialData {
    */
   get isTransparent(): boolean {
     if (!this.alphaType) return false;
-    const transparentTypes = ['Blend', 'Translucent', 'Additive', 'AlphaBlend'];
-    return transparentTypes.some((type) =>
-      this.alphaType!.toLowerCase().includes(type.toLowerCase())
-    );
+    // const transparentTypes = ['Blend', 'Translucent', 'Additive', 'AlphaBlend'];
+    // return transparentTypes.some((type) =>
+    //   this.alphaType!.toLowerCase().includes(type.toLowerCase())
+    // );
+    return false;
   }
 
   /**

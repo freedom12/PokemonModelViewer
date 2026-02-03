@@ -11,6 +11,9 @@ import { createEyeClearCoatMaterial } from './EyeClearCoatMaterial';
 import { createFireMaterial } from './FireMaterial';
 import { createNonDirectionalMaterial } from './NonDirectionalMaterial';
 import { createIkCharacterMaterial } from './IkCharacterMaterial';
+import { createInsideEmissionParallaxMaterial } from './InsideEmissionParallaxMaterial';
+import { createStandardMaterial } from './StandardMaterial';
+import { createTransparentMaterial } from './TransparentMaterial';
 
 /**
  * 注册所有具体材质创建器到 MaterialFactory
@@ -29,6 +32,9 @@ import { createIkCharacterMaterial } from './IkCharacterMaterial';
  * ```
  */
 export function registerAllMaterials(): void {
+  // 注册 Standard 材质（基础 PBR）
+  MaterialFactory.register('Standard', createStandardMaterial);
+
   // 注册 EyeClearCoat 材质（眼睛多层混合）
   // 支持 'EyeClearCoat' 和 'Eye' 两种 shader 名称
   MaterialFactory.register('EyeClearCoat', createEyeClearCoatMaterial);
@@ -43,6 +49,15 @@ export function registerAllMaterials(): void {
 
   // 注册 IkCharacter 材质（多层 PBR）
   MaterialFactory.register('IkCharacter', createIkCharacterMaterial);
+
+  // 注册 InsideEmissionParallax 材质（内部自发光视差）
+  MaterialFactory.register('InsideEmissionParallax', createInsideEmissionParallaxMaterial);
+
+  // 注册 Transparent 材质（透明效果）
+  MaterialFactory.register('Transparent', createTransparentMaterial);
+
+  // 注册 Standard 材质作为 InsideEmissionParallax 的别名（当 Standard 使用相同参数时）
+  // 注意：Standard 本身会使用默认 MeshStandardMaterial，这里只注册特殊情况
 }
 
 /**
@@ -58,6 +73,7 @@ export function isAllMaterialsRegistered(): boolean {
     'Fire',
     'NonDirectional',
     'IkCharacter',
+    'Transparent',
   ];
 
   return expectedShaders.every((shader) => MaterialFactory.isRegistered(shader));

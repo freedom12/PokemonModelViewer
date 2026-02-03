@@ -12,7 +12,6 @@ export type { MaterialCreator, TextureLoader } from './MaterialFactory';
 
 // 导出具体材质实现
 export { createEyeClearCoatMaterial } from './EyeClearCoatMaterial';
-export type { EyeClearCoatParams } from './EyeClearCoatMaterial';
 
 export { createFireMaterial } from './FireMaterial';
 export type { FireParams } from './FireMaterial';
@@ -22,6 +21,12 @@ export type { NonDirectionalParams } from './NonDirectionalMaterial';
 
 export { createIkCharacterMaterial } from './IkCharacterMaterial';
 export type { IkCharacterParams } from './IkCharacterMaterial';
+
+export { createInsideEmissionParallaxMaterial } from './InsideEmissionParallaxMaterial';
+export type { InsideEmissionParallaxParams } from './InsideEmissionParallaxMaterial';
+
+export { createStandardMaterial } from './StandardMaterial';
+export type { StandardParams } from './StandardMaterial';
 
 // 导出材质注册函数
 export { registerAllMaterials } from './registerMaterials';

@@ -124,6 +124,9 @@ export const createFireMaterial: MaterialCreator = (
   material.onBeforeCompile = (shader) => {
     // 添加 uniforms
     shader.uniforms.layerMaskMap = { value: layerMaskTexture || null };
+    shader.uniforms.hasLayerMaskMap = { value: layerMaskTexture ? 1.0 : 0.0 };
+    shader.uniforms.baseColorMap = { value: baseColorTexture || null };
+    shader.uniforms.hasBaseColorMap = { value: baseColorTexture ? 1.0 : 0.0 };
     shader.uniforms.baseColor = { value: baseColor };
     shader.uniforms.baseColorLayer1 = { value: baseColorLayer1 };
     shader.uniforms.baseColorLayer2 = { value: baseColorLayer2 };
@@ -134,6 +137,9 @@ export const createFireMaterial: MaterialCreator = (
     // uniform 声明
     const uniformDeclarations = `
       uniform sampler2D layerMaskMap;
+      uniform float hasLayerMaskMap;
+      uniform sampler2D baseColorMap;
+      uniform float hasBaseColorMap;
       uniform vec4 baseColor;
       uniform vec4 baseColorLayer1;
       uniform vec4 baseColorLayer2;
@@ -194,7 +200,10 @@ export const createFireMaterial: MaterialCreator = (
         // Fire 多层混合逻辑
         const fireLogic = `
           // Fire 多层混合逻辑
-          vec4 layerMask = texture2D(layerMaskMap, vUv);
+          vec4 layerMask = vec4(1.0, 0.0, 0.0, 0.0);
+          if (hasLayerMaskMap > 0.5) {
+            layerMask = texture2D(layerMaskMap, vUv);
+          }
           float weight1 = layerMask.r;
           float weight2 = layerMask.g;
           float weight3 = layerMask.b;
@@ -206,7 +215,10 @@ export const createFireMaterial: MaterialCreator = (
                            baseColorLayer4 * weight4;
 
           // 应用基础颜色纹理
-          vec4 baseColorTex = texture2D(map, vUv);
+          vec4 baseColorTex = vec4(1.0);
+          if (hasBaseColorMap > 0.5) {
+            baseColorTex = texture2D(baseColorMap, vUv);
+          }
           vec4 finalColor = baseColor * baseColorTex * layerColor;
 
           // 应用自发光强度

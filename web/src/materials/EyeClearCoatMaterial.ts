@@ -136,7 +136,7 @@ export const createEyeClearCoatMaterial: MaterialCreator = (
   // 创建 MeshStandardMaterial
   const material = new THREE.MeshStandardMaterial({
     side: THREE.DoubleSide,
-    // transparent: data.isTransparent,
+    transparent: data.isTransparent,
   });
 
   // 设置纹理和 UV 变换

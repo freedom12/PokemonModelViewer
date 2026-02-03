@@ -105,8 +105,9 @@ export class Bone {
 
     this.localScale = data.localScale.clone();
 
-    // 初始化是否忽略缩放，默认为 true
-    this.isIgnoreScale = data.isIgnoreScale ?? true;
+    // 初始化是否忽略缩放
+    // 默认值根据是否提供来决定：如果提供了明确值则使用，否则默认为false（不忽略缩放）
+    this.isIgnoreScale = data.isIgnoreScale ?? false;
 
     // 初始化矩阵
     this._localMatrix = new THREE.Matrix4();
