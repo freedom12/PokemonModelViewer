@@ -48,7 +48,7 @@ const TEXTURE_NAME_MAP: Record<string, TextureType> = {
   BaseColorMap: 'albedo',
   NormalMap: 'normal',
   NormalMap1: 'normal',
-  LayerMaskMap: 'emission',
+  LayerMaskMap: 'mask',
   RoughnessMap: 'roughness',
   MetallicMap: 'metalness',
   AOMap: 'ao',
