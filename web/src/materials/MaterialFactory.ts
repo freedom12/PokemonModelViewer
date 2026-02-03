@@ -342,7 +342,7 @@ export class MaterialFactory {
       textureMap.set('eye_hight_mask', texture);
       return;
     } catch {
-      // {材质名}_msk 不存在，尝试回退方案
+
     }
 
     const fallbackFilename = layerMaskRef.filename.replace('_eye_lym', '_eye_msk');
@@ -357,14 +357,9 @@ export class MaterialFactory {
       texture.wrapT = MaterialData.uvWrapModeToThree(sampler.wrapV);
       texture.needsUpdate = true;
 
-      textureMap.set(fallbackFilename, texture);
+      textureMap.set('eye_hight_mask', texture);
     } catch (error) {
-      // HighlightMaskMap 加载失败不是致命错误，只记录警告
-      console.warn('[MaterialFactory] HighlightMaskMap 加载失败:', {
-        materialName: data.name,
-        triedPaths: [materialBasedFilename, fallbackFilename],
-        error: error instanceof Error ? error.message : String(error),
-      });
+
     }
   }
 
