@@ -145,6 +145,7 @@ describe('MaterialFactory', () => {
         'test_material',
         'CustomShader',
         [],
+        [],
         new Map(),
         new Map(),
         null,
@@ -165,6 +166,7 @@ describe('MaterialFactory', () => {
         'test_material',
         'UnknownShader',
         [],
+        [],
         new Map(),
         new Map(),
         null,
@@ -183,6 +185,7 @@ describe('MaterialFactory', () => {
       const materialData = new MaterialData(
         'test_material',
         null,
+        [],
         [],
         new Map(),
         new Map(),
@@ -207,6 +210,7 @@ describe('MaterialFactory', () => {
         'test_material',
         'ErrorShader',
         [],
+        [],
         new Map(),
         new Map(),
         null,
@@ -224,9 +228,9 @@ describe('MaterialFactory', () => {
   describe('createAll()', () => {
     it('应该为所有材质数据创建材质', async () => {
       const materialDatas = [
-        new MaterialData('mat1', null, [], new Map(), new Map(), null, []),
-        new MaterialData('mat2', null, [], new Map(), new Map(), null, []),
-        new MaterialData('mat3', null, [], new Map(), new Map(), null, []),
+        new MaterialData('mat1', null, [], [], new Map(), new Map(), null, []),
+        new MaterialData('mat2', null, [], [], new Map(), new Map(), null, []),
+        new MaterialData('mat3', null, [], [], new Map(), new Map(), null, []),
       ]
       
       const materials = await MaterialFactory.createAll(materialDatas, '/test/')
@@ -246,9 +250,9 @@ describe('MaterialFactory', () => {
       MaterialFactory.register('ErrorShader', mockCreator)
       
       const materialDatas = [
-        new MaterialData('mat1', null, [], new Map(), new Map(), null, []),
-        new MaterialData('mat2', 'ErrorShader', [], new Map(), new Map(), null, []),
-        new MaterialData('mat3', null, [], new Map(), new Map(), null, []),
+        new MaterialData('mat1', null, [], [], new Map(), new Map(), null, []),
+        new MaterialData('mat2', 'ErrorShader', [], [], new Map(), new Map(), null, []),
+        new MaterialData('mat3', null, [], [], new Map(), new Map(), null, []),
       ]
       
       const materials = await MaterialFactory.createAll(materialDatas, '/test/')
@@ -356,6 +360,7 @@ describe('MaterialFactory', () => {
         'test',
         'RegisteredShader',
         [],
+        [],
         new Map(),
         new Map(),
         null,
@@ -374,6 +379,7 @@ describe('MaterialFactory', () => {
       const materialData = new MaterialData(
         'test',
         'UnregisteredShader',
+        [],
         [],
         new Map(),
         new Map(),

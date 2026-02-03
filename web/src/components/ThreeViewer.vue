@@ -992,13 +992,22 @@ async function loadAndPlayAnimation(animationName: string): Promise<void> {
       throw new Error(`No .tranm file found for animation ${animationName}`);
     }
 
+    // 查找对应的 .tracm 文件（可见性动画）
+    const tracmFile = animationFiles.find((file) => file.endsWith(".tracm"));
+
     // 构建动画文件 URL
     const pokemonId = `pm${props.pokemon.resourceId}`;
     const formId = `${pokemonId}_${props.form[0].toString().padStart(2, "0")}_${props.form[1].toString().padStart(2, "0")}`;
-    const animationUrl = `/${props.game}/${pokemonId}/${formId}/${tranmFile}`;
+    const tranmUrl = `/${props.game}/${pokemonId}/${formId}/${tranmFile}`;
 
-    // 加载动画
-    await currentModel.value.loadAnimationFromUrl(animationUrl);
+    // 加载骨骼动画
+    await currentModel.value.loadAnimationFromUrl(tranmUrl);
+
+    // 如果有可见性动画文件，也加载它
+    if (tracmFile) {
+      const tracmUrl = `/${props.game}/${pokemonId}/${formId}/${tracmFile}`;
+      await currentModel.value.loadAnimationFromUrl(tracmUrl);
+    }
 
     // 设置循环模式
     currentModel.value.setAnimationLoop(animationLoop.value);

@@ -53,11 +53,38 @@ export class AnimationMixer {
   /** 骨骼名称到 THREE.Bone 的映射（用于快速查找） */
   private boneMap: Map<string, THREE.Bone> = new Map()
 
+  /** 初始骨骼变换数据（用于恢复到 T-Pose） */
+  private initialBoneTransforms: Map<string, { position: THREE.Vector3, quaternion: THREE.Quaternion, scale: THREE.Vector3 }> = new Map()
+
+  /** 是否应用动画中的缩放变换 */
+  private applyScale: boolean = true
+
   /**
    * 创建 AnimationMixer 实例
    */
   constructor() {
     // 初始化为默认状态
+  }
+
+  /**
+   * 设置是否应用动画中的缩放变换
+   * 
+   * 当设置为 false 时，动画中的缩放变换将被忽略，
+   * 骨骼将保持 (1, 1, 1) 的缩放值。
+   * 
+   * @param apply - 是否应用缩放
+   */
+  setApplyScale(apply: boolean): void {
+    this.applyScale = apply
+  }
+
+  /**
+   * 获取是否应用动画中的缩放变换
+   * 
+   * @returns 是否应用缩放
+   */
+  getApplyScale(): boolean {
+    return this.applyScale
   }
 
   /**
@@ -86,16 +113,24 @@ export class AnimationMixer {
 
   /**
    * 构建骨骼名称到 THREE.Bone 的映射
+   * 同时保存初始骨骼变换，用于恢复到 T-Pose
    * 
    * @private
    */
   private buildBoneMap(): void {
     this.boneMap.clear()
+    this.initialBoneTransforms.clear()
     if (!this.threeSkeleton) return
 
     for (const bone of this.threeSkeleton.bones) {
       if (bone.name) {
         this.boneMap.set(bone.name, bone)
+        // 保存初始变换（克隆以避免引用问题）
+        this.initialBoneTransforms.set(bone.name, {
+          position: bone.position.clone(),
+          quaternion: bone.quaternion.clone(),
+          scale: bone.scale.clone()
+        })
       }
     }
   }
@@ -154,7 +189,7 @@ export class AnimationMixer {
   /**
    * 停止动画播放
    * 
-   * 重置播放时间到开始位置
+   * 重置播放时间到开始位置，并将骨骼恢复到初始姿势（T-Pose）
    * 
    * @验证需求: 3.6 - 播放控制
    */
@@ -162,6 +197,62 @@ export class AnimationMixer {
     this.isPlaying = false
     this.currentTime = 0
     this.currentFrame = 0
+    
+    // 恢复骨骼到初始姿势（T-Pose）
+    this.resetToInitialPose()
+  }
+
+  /**
+   * 将骨骼恢复到初始姿势（T-Pose）
+   * 
+   * @private
+   */
+  private resetToInitialPose(): void {
+    // 恢复 THREE.Skeleton 的骨骼变换
+    if (this.threeSkeleton) {
+      for (const bone of this.threeSkeleton.bones) {
+        const initialTransform = this.initialBoneTransforms.get(bone.name)
+        if (initialTransform) {
+          bone.position.copy(initialTransform.position)
+          bone.quaternion.copy(initialTransform.quaternion)
+          bone.scale.copy(initialTransform.scale)
+        }
+      }
+    }
+
+    // 同时恢复自定义 Skeleton 的骨骼变换
+    if (this.skeleton) {
+      for (const bone of this.skeleton.bones) {
+        const initialTransform = this.initialBoneTransforms.get(bone.name)
+        if (initialTransform) {
+          bone.setLocalTransform(
+            initialTransform.position,
+            initialTransform.quaternion,
+            initialTransform.scale
+          )
+        }
+      }
+      // 更新世界矩阵
+      this.skeleton.updateWorldMatrices()
+    }
+
+    // 恢复所有网格的可见性为 true
+    this.resetMeshVisibility()
+  }
+
+  /**
+   * 重置所有网格的可见性为 true
+   * 
+   * @private
+   */
+  private resetMeshVisibility(): void {
+    if (!this.modelGroup) return
+
+    this.modelGroup.traverse((object) => {
+      if (object instanceof THREE.Mesh) {
+        object.visible = true
+      }
+    })
   }
 
   /**
@@ -271,11 +362,19 @@ export class AnimationMixer {
             transform.rotation.z,
             transform.rotation.w
           )
-          threeBone.scale.set(
-            transform.scale.x,
-            transform.scale.y,
-            transform.scale.z
-          )
+          
+          // 检查是否应用缩放（全局设置或单个骨骼设置）
+          const customBone = this.skeleton?.getBoneByName(boneName)
+          if (!this.applyScale || customBone?.isIgnoreScale) {
+            // 忽略缩放，设置为 (1, 1, 1)
+            threeBone.scale.set(1, 1, 1)
+          } else {
+            threeBone.scale.set(
+              transform.scale.x,
+              transform.scale.y,
+              transform.scale.z
+            )
+          }
         }
       }
     }
@@ -288,7 +387,7 @@ export class AnimationMixer {
           // 获取当前帧的变换
           const transform = track.getTransformAtFrame(this.currentFrame)
           
-          // 应用变换到骨骼
+          // 应用变换到骨骼（isIgnoreScale 会在 updateWorldMatrix 中处理）
           bone.setLocalTransform(
             transform.position,
             transform.rotation,
@@ -419,6 +518,7 @@ export class AnimationMixer {
     this.modelGroup = null
     this.meshCache.clear()
     this.boneMap.clear()
+    this.initialBoneTransforms.clear()
     this.currentTime = 0
     this.currentFrame = 0
     this.isPlaying = false

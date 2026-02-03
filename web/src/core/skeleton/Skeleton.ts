@@ -215,7 +215,12 @@ export class Skeleton {
       // 设置局部变换
       threeBone.position.copy(bone.localPosition)
       threeBone.quaternion.copy(bone.localRotation)
-      threeBone.scale.copy(bone.localScale)
+      // 如果忽略缩放，则设置为 (1, 1, 1)
+      if (bone.isIgnoreScale) {
+        threeBone.scale.set(1, 1, 1)
+      } else {
+        threeBone.scale.copy(bone.localScale)
+      }
 
       threeBones.push(threeBone)
     }
@@ -274,7 +279,12 @@ export class Skeleton {
       // 设置局部变换
       threeBone.position.copy(bone.localPosition)
       threeBone.quaternion.copy(bone.localRotation)
-      threeBone.scale.copy(bone.localScale)
+      // 如果忽略缩放，则设置为 (1, 1, 1)
+      if (bone.isIgnoreScale) {
+        threeBone.scale.set(1, 1, 1)
+      } else {
+        threeBone.scale.copy(bone.localScale)
+      }
 
       threeBones.push(threeBone)
     }
@@ -321,7 +331,8 @@ export class Skeleton {
       parentIndex: bone.parent ? bone.parent.index : -1,
       localPosition: bone.localPosition.clone(),
       localRotation: new THREE.Euler().setFromQuaternion(bone.localRotation),
-      localScale: bone.localScale.clone()
+      localScale: bone.localScale.clone(),
+      isIgnoreScale: bone.isIgnoreScale
     }))
 
     // 创建 SkeletonData

@@ -275,7 +275,72 @@ export class MaterialFactory {
       }
     }
 
+    // 为 EyeClearCoat 材质加载额外的 HighlightMaskMap 纹理
+    // 当 EnableHighlight 启用但没有 HighlightMaskMap 时，从 LayerMaskMap 生成文件名
+    await MaterialFactory.loadHighlightMaskIfNeeded(data, basePath, textureMap)
+
     return textureMap
+  }
+
+  /**
+   * 为 EyeClearCoat 材质加载 HighlightMaskMap 纹理
+   * 
+   * 当 EnableHighlight 启用但没有 HighlightMaskMap 时，
+   * 从 LayerMaskMap 的文件名生成 _msk 纹理文件名并加载
+   * 
+   * @param data - 材质数据
+   * @param basePath - 纹理文件基础路径
+   * @param textureMap - 已加载的纹理映射表
+   */
+  private static async loadHighlightMaskIfNeeded(
+    data: MaterialData,
+    basePath: string,
+    textureMap: Map<string, THREE.Texture>
+  ): Promise<void> {
+    // 检查是否是 EyeClearCoat 材质
+    if (data.shaderName !== 'EyeClearCoat') {
+      return
+    }
+
+    // 检查是否启用了 EnableHighlight
+    if (!data.isAnyShaderFeatureEnabled('EnableHighlight')) {
+      return
+    }
+
+    // 检查是否已有 HighlightMaskMap
+    const highlightMaskRef = data.getTextureByName('HighlightMaskMap')
+    if (highlightMaskRef) {
+      return
+    }
+
+    // 获取 LayerMaskMap 纹理引用
+    const layerMaskRef = data.getTextureByName('LayerMaskMap')
+    if (!layerMaskRef || !layerMaskRef.filename.includes('_lym')) {
+      return
+    }
+
+    // 生成 HighlightMaskMap 文件名
+    const highlightMaskFilename = layerMaskRef.filename.replace('_lym', '_msk')
+    const fullPath = `${basePath}${highlightMaskFilename}`
+
+    try {
+      const texture = await MaterialFactory.loadTexture(fullPath)
+      
+      // 复制 LayerMaskMap 的采样器设置
+      const sampler = data.getSampler(layerMaskRef.slot)
+      texture.wrapS = MaterialData.uvWrapModeToThree(sampler.wrapU)
+      texture.wrapT = MaterialData.uvWrapModeToThree(sampler.wrapV)
+      texture.needsUpdate = true
+
+      textureMap.set(highlightMaskFilename, texture)
+    } catch (error) {
+      // HighlightMaskMap 加载失败不是致命错误，只记录警告
+      console.warn('[MaterialFactory] HighlightMaskMap 加载失败:', {
+        materialName: data.name,
+        filename: highlightMaskFilename,
+        error: error instanceof Error ? error.message : String(error),
+      })
+    }
   }
 
   /**

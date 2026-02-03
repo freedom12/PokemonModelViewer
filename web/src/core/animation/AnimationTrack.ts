@@ -821,9 +821,9 @@ export class FixedBoolTrack implements IBoolTrack {
 
   static fromData(data: BoolTrackData): FixedBoolTrack {
     if (data.values.length === 0) {
-      return new FixedBoolTrack(true)
+      return new FixedBoolTrack(false)
     }
-    return new FixedBoolTrack(data.values[0] !== 0)
+    return new FixedBoolTrack(!!data.values[0])
   }
 }
 
@@ -843,12 +843,12 @@ export class DynamicBoolTrack implements IBoolTrack {
 
   getValue(frame: number): boolean {
     if (this.frameCount === 0) {
-      return true
+      return false
     }
 
     // 使用帧号对值数组长度取模（与原始实现一致）
     const index = frame % this.frameCount
-    return this.values[index] !== 0
+    return !!this.values[index]
   }
 
   static fromData(data: BoolTrackData): DynamicBoolTrack {
@@ -873,7 +873,7 @@ export class Framed16BoolTrack implements IBoolTrack {
 
   getValue(frame: number): boolean {
     if (this.keyframeCount === 0 || this.values.length === 0) {
-      return true
+      return false
     }
 
     // 找到当前帧所在的区间
@@ -891,7 +891,7 @@ export class Framed16BoolTrack implements IBoolTrack {
       currentIndex = this.values.length - 1
     }
 
-    return this.values[currentIndex] !== 0
+    return !!this.values[currentIndex]
   }
 
   static fromData(data: BoolTrackData): Framed16BoolTrack {
@@ -919,7 +919,7 @@ export class Framed8BoolTrack implements IBoolTrack {
 
   getValue(frame: number): boolean {
     if (this.keyframeCount === 0 || this.values.length === 0) {
-      return true
+      return false
     }
 
     // 找到当前帧所在的区间
@@ -937,7 +937,7 @@ export class Framed8BoolTrack implements IBoolTrack {
       currentIndex = this.values.length - 1
     }
 
-    return this.values[currentIndex] !== 0
+    return !!this.values[currentIndex]
   }
 
   static fromData(data: BoolTrackData): Framed8BoolTrack {

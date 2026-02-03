@@ -1018,8 +1018,6 @@ export class Model extends THREE.Group {
       
       if (extension === 'tranm') {
         // 解析骨骼动画文件
-        // 注意：这里需要导入 TRANM 解析器，暂时使用基础结构
-        // 实际实现需要根据项目的 FlatBuffers 解析器来完成
         const { TRANM } = await import('../../parsers')
         const byteBuffer = new (await import('flatbuffers')).ByteBuffer(new Uint8Array(buffer))
         const tranm = TRANM.getRootAsTRANM(byteBuffer)
@@ -1030,6 +1028,12 @@ export class Model extends THREE.Group {
         const byteBuffer = new (await import('flatbuffers')).ByteBuffer(new Uint8Array(buffer))
         const tracm = TRACM.getRootAsTRACM(byteBuffer)
         clip = AnimationClip.fromTRACM(tracm, animationName)
+        
+        // 如果已经存在同名的骨骼动画，则合并
+        const existingClip = this._animationClips.get(animationName)
+        if (existingClip && existingClip.boneTracks.size > 0) {
+          clip = AnimationClip.merge(existingClip, clip, animationName)
+        }
       } else {
         throw new Error(`不支持的动画文件格式: ${extension}`)
       }

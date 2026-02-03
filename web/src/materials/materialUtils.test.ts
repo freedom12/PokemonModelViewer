@@ -38,6 +38,7 @@ function createTestMaterialData(
   return new MaterialData(
     'test_material',
     'TestShader',
+    [],
     textures,
     floatParams,
     colorParams,

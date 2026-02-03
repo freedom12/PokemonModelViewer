@@ -39,12 +39,31 @@ export interface IMeshData {
 }
 
 /**
+ * Shader 值数据
+ * 存储 shader 的字符串参数
+ */
+export interface ShaderValueData {
+  name: string
+  value: string
+}
+
+/**
+ * Shader 数据
+ * 存储单个 shader 的名称和参数
+ */
+export interface ShaderData {
+  name: string
+  values: ShaderValueData[]
+}
+
+/**
  * 材质数据接口
  * 存储材质属性（纹理引用、shader参数、渲染状态）
  */
 export interface IMaterialData {
   readonly name: string;
   readonly shaderName: string | null;
+  readonly shaders: ShaderData[];
   readonly textures: TextureReference[];
   readonly floatParams: Map<string, number>;
   readonly colorParams: Map<string, THREE.Vector4>;
@@ -140,6 +159,8 @@ export interface BoneData {
   readonly localPosition: THREE.Vector3;
   readonly localRotation: THREE.Euler;
   readonly localScale: THREE.Vector3;
+  /** 是否忽略当前和父级的所有缩放，默认为 true */
+  readonly isIgnoreScale?: boolean;
 }
 
 // ==================== 动画相关类型 ====================

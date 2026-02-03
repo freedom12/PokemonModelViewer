@@ -93,16 +93,36 @@ export interface EyeClearCoatParams {
  */
 export const createEyeClearCoatMaterial: MaterialCreator = (
   data: MaterialData,
-  basePath: string,
+  _basePath: string,
   textureMap: Map<string, THREE.Texture>,
 ): THREE.Material => {
+  // 检查任意 shader 是否启用了 EnableHighlight（通常在第二个 shader Eye 中）
+  const enableHighlight = data.isAnyShaderFeatureEnabled('EnableHighlight')
+  
   // 获取纹理
   const layerMaskTexture = getTextureByName(data, textureMap, "LayerMaskMap");
-  const highlightMaskTexture = getTextureByName(
+  let highlightMaskTexture = getTextureByName(
     data,
     textureMap,
     "HighlightMaskMap",
   );
+  
+  // 如果启用了 EnableHighlight 但没有 HighlightMaskMap，则从 LayerMaskMap 生成
+  if (enableHighlight && !highlightMaskTexture && layerMaskTexture) {
+    const layerMaskRef = data.getTextureByName('LayerMaskMap')
+    if (layerMaskRef) {
+      // 将 _lym 替换为 _msk
+      const highlightMaskFilename = layerMaskRef.filename.replace('_lym', '_msk')
+      highlightMaskTexture = textureMap.get(highlightMaskFilename) || null
+      
+      // 如果找到了纹理，复制 LayerMaskMap 的采样器设置
+      if (highlightMaskTexture && layerMaskTexture) {
+        highlightMaskTexture.wrapS = layerMaskTexture.wrapS
+        highlightMaskTexture.wrapT = layerMaskTexture.wrapT
+      }
+    }
+  }
+  
   const normalTexture = getTextureByName(data, textureMap, "NormalMap");
   const normalTexture1 = getTextureByName(data, textureMap, "NormalMap1");
 

@@ -4,6 +4,13 @@ import vue from "@vitejs/plugin-vue";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   plugins: [vue()],
+  // 启用 source map 以支持调试
+  build: {
+    sourcemap: true,
+  },
+  css: {
+    devSourcemap: true,
+  },
   server: {
     host: "0.0.0.0",
     proxy: {

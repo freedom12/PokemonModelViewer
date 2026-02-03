@@ -13,7 +13,8 @@ import {
   TextureReference, 
   TextureType, 
   SamplerData, 
-  UVWrapMode 
+  UVWrapMode,
+  ShaderData
 } from './types'
 
 /**
@@ -50,6 +51,7 @@ export class MaterialData implements IMaterialData {
    * 
    * @param name - 材质名称
    * @param shaderName - Shader 名称，可为 null
+   * @param shaders - Shader 数据数组
    * @param textures - 纹理引用数组
    * @param floatParams - 浮点参数映射
    * @param colorParams - 颜色参数映射（Vector4 格式）
@@ -59,6 +61,7 @@ export class MaterialData implements IMaterialData {
   constructor(
     public readonly name: string,
     public readonly shaderName: string | null,
+    public readonly shaders: ShaderData[],
     public readonly textures: TextureReference[],
     public readonly floatParams: Map<string, number>,
     public readonly colorParams: Map<string, THREE.Vector4>,
@@ -195,6 +198,61 @@ export class MaterialData implements IMaterialData {
   }
 
   /**
+   * 获取指定 shader 的字符串参数值
+   * 
+   * @param shaderIndex - shader 索引
+   * @param paramName - 参数名称
+   * @returns 参数值，如果不存在则返回 null
+   */
+  getShaderValue(shaderIndex: number, paramName: string): string | null {
+    if (shaderIndex < 0 || shaderIndex >= this.shaders.length) {
+      return null
+    }
+    const shader = this.shaders[shaderIndex]
+    const value = shader.values.find(v => v.name === paramName)
+    return value?.value ?? null
+  }
+
+  /**
+   * 检查指定 shader 是否启用了某个功能
+   * 
+   * @param shaderIndex - shader 索引
+   * @param paramName - 参数名称
+   * @returns 是否启用（值为 "True"）
+   */
+  isShaderFeatureEnabled(shaderIndex: number, paramName: string): boolean {
+    const value = this.getShaderValue(shaderIndex, paramName)
+    return value?.toLowerCase() === 'true'
+  }
+
+  /**
+   * 在所有 shader 中查找参数值
+   * 
+   * @param paramName - 参数名称
+   * @returns 参数值，如果不存在则返回 null
+   */
+  findShaderValue(paramName: string): string | null {
+    for (const shader of this.shaders) {
+      const value = shader.values.find(v => v.name === paramName)
+      if (value) {
+        return value.value
+      }
+    }
+    return null
+  }
+
+  /**
+   * 检查任意 shader 是否启用了某个功能
+   * 
+   * @param paramName - 参数名称
+   * @returns 是否启用（值为 "True"）
+   */
+  isAnyShaderFeatureEnabled(paramName: string): boolean {
+    const value = this.findShaderValue(paramName)
+    return value?.toLowerCase() === 'true'
+  }
+
+  /**
    * 获取颜色参数作为 THREE.Color
    * 
    * @param name - 参数名称
@@ -251,6 +309,12 @@ export class MaterialData implements IMaterialData {
    * @returns 新的 MaterialData 实例
    */
   clone(): MaterialData {
+    // 深拷贝 shaders 数组
+    const clonedShaders = this.shaders.map(shader => ({
+      name: shader.name,
+      values: shader.values.map(v => ({ ...v }))
+    }))
+
     // 深拷贝纹理引用数组
     const clonedTextures = this.textures.map(tex => ({ ...tex }))
 
@@ -272,6 +336,7 @@ export class MaterialData implements IMaterialData {
     return new MaterialData(
       this.name,
       this.shaderName,
+      clonedShaders,
       clonedTextures,
       clonedFloatParams,
       clonedColorParams,
@@ -366,6 +431,7 @@ export class MaterialData implements IMaterialData {
       name,
       null,
       [],
+      [],
       new Map<string, number>(),
       new Map<string, THREE.Vector4>(),
       null,
@@ -391,6 +457,7 @@ export class MaterialData implements IMaterialData {
     return new MaterialData(
       name,
       null,
+      [],
       [],
       floatParams,
       colorParams,
