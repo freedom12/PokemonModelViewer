@@ -1208,6 +1208,13 @@ watch(error, (newError) => {
 
 // ===== 生命周期 =====
 
+/** 处理窗口大小变化 */
+const handleResize = (): void => {
+  if (world) {
+    world.resize();
+  }
+};
+
 onMounted(() => {
   // 初始化 World
   initWorld();
@@ -1218,6 +1225,9 @@ onMounted(() => {
     container.addEventListener('click', handleContainerClick);
   }
 
+  // 添加窗口大小变化监听器
+  window.addEventListener('resize', handleResize);
+
   // 如果已有有效的模型路径，立即加载
   if (hasValidModelPath.value && props.pokemon && props.form) {
     loadAndDisplayModel(props.pokemon, props.form);
@@ -1225,6 +1235,9 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
+  // 移除窗口大小变化监听器
+  window.removeEventListener('resize', handleResize);
+
   // 移除鼠标点击事件监听器
   const container = containerRef.value;
   if (container) {
