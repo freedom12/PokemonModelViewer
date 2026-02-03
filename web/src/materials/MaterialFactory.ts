@@ -250,6 +250,7 @@ export class MaterialFactory {
         const sampler = data.getSampler(textureRef.slot)
         texture.wrapS = MaterialData.uvWrapModeToThree(sampler.wrapU)
         texture.wrapT = MaterialData.uvWrapModeToThree(sampler.wrapV)
+        texture.needsUpdate = true
 
         return { name: textureRef.filename, texture }
       } catch (error) {

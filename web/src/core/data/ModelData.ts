@@ -726,6 +726,8 @@ export class ModelData implements IModelData {
         return 'clamp'
       case FBUVWrapMode.MIRROR:
         return 'mirror'
+      case FBUVWrapMode.MIRROR_ONCE:
+        return 'mirror'
       case FBUVWrapMode.WRAP:
       default:
         return 'repeat'
