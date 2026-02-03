@@ -6,8 +6,53 @@
       "id": "pm9999_00_00",
       "formIndex": 0,
       "variantIndex": 0,
-      "icon": "icon/pm9999_00_00_00_big.png",
-      "animations": {}
+      "animations": {
+        "20000_defaultwait01_loop": [
+          "pm9999_00_00_20000_defaultwait01_loop.tracm",
+          "pm9999_00_00_20000_defaultwait01_loop.tranm"
+        ],
+        "20150_jumpup01_start": [
+          "pm9999_00_00_20150_jumpup01_start.tracm",
+          "pm9999_00_00_20150_jumpup01_start.tranm"
+        ],
+        "20151_jumpup01_loop": [
+          "pm9999_00_00_20151_jumpup01_loop.tracm",
+          "pm9999_00_00_20151_jumpup01_loop.tranm"
+        ],
+        "20152_jumpdown01_start": [
+          "pm9999_00_00_20152_jumpdown01_start.tracm",
+          "pm9999_00_00_20152_jumpdown01_start.tranm"
+        ],
+        "20153_jumpdown01_loop": [
+          "pm9999_00_00_20153_jumpdown01_loop.tracm",
+          "pm9999_00_00_20153_jumpdown01_loop.tranm"
+        ],
+        "20155_land02": [
+          "pm9999_00_00_20155_land02.tracm",
+          "pm9999_00_00_20155_land02.tranm"
+        ],
+        "20500_damage01": [
+          "pm9999_00_00_20500_damage01.tracm",
+          "pm9999_00_00_20500_damage01.tranm"
+        ],
+        "20501_damage02": [
+          "pm9999_00_00_20501_damage02.tracm",
+          "pm9999_00_00_20501_damage02.tranm"
+        ],
+        "20520_down01_start": [
+          "pm9999_00_00_20520_down01_start.tracm",
+          "pm9999_00_00_20520_down01_start.tranm"
+        ],
+        "20521_down01_loop": [
+          "pm9999_00_00_20521_down01_loop.tracm",
+          "pm9999_00_00_20521_down01_loop.tranm"
+        ],
+        "20522_down01_end": [
+          "pm9999_00_00_20522_down01_end.tracm",
+          "pm9999_00_00_20522_down01_end.tranm"
+        ]
+      },
+      "icon": "icon/pm9999_00_00_00_big.png"
     }
   ]
 }

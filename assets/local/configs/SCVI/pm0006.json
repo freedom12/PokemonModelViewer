@@ -6,7 +6,6 @@
       "id": "pm0006_00_00",
       "formIndex": 0,
       "variantIndex": 0,
-      "icon": "icon/pm0006_00_00_00_big.png",
       "animations": {
         "00000_defaultwait01_loop": [
           "pm0006_00_00_00000_defaultwait01_loop.tracm",
@@ -340,7 +339,8 @@
           "pm0006_00_00_28201_loop01_loop.tracm",
           "pm0006_00_00_28201_loop01_loop.tranm"
         ]
-      }
+      },
+      "icon": "icon/pm0006_00_00_00_big.png"
     }
   ]
 }
