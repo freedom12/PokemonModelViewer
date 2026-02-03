@@ -802,8 +802,6 @@ export class ModelData implements IModelData {
     // 为每个骨骼创建 BoneData
     for (let boneIndex = 0; boneIndex < boneCount; boneIndex++) {
       const transformNode = rigIdxToTransformNode.get(boneIndex);
-      const bone = trskl.bones(boneIndex);
-
       let boneName = `Bone_${boneIndex}`;
       let localPosition = new THREE.Vector3(0, 0, 0);
       let localRotation = new THREE.Euler(0, 0, 0, 'ZYX');

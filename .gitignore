@@ -43,15 +43,15 @@ refer/
 web/tools/json_output/
 
 # Ignore Pokemon files with number > 10
-assets/models/*
-!assets/models/SCVI/pm0000/
-!assets/models/SCVI/pm0001/
-!assets/models/SCVI/pm0002/
-!assets/models/SCVI/pm0003/
-!assets/models/SCVI/pm0004/
-!assets/models/SCVI/pm0005/
-!assets/models/SCVI/pm0006/
-!assets/models/SCVI/pm0007/
-!assets/models/SCVI/pm0008/
-!assets/models/SCVI/pm0009/
+assets/remote/models/*
+!assets/remote/models/SCVI/pm0000/
+!assets/remote/models/SCVI/pm0001/
+!assets/remote/models/SCVI/pm0002/
+!assets/remote/models/SCVI/pm0003/
+!assets/remote/models/SCVI/pm0004/
+!assets/remote/models/SCVI/pm0005/
+!assets/remote/models/SCVI/pm0006/
+!assets/remote/models/SCVI/pm0007/
+!assets/remote/models/SCVI/pm0008/
+!assets/remote/models/SCVI/pm0009/
 
