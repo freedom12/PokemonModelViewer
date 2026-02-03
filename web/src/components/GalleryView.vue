@@ -106,16 +106,49 @@ async function initScene() {
   renderer.setSize(containerRef.value.clientWidth, containerRef.value.clientHeight);
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap; // 柔和阴影
   containerRef.value.appendChild(renderer.domElement);
 
-  // 添加光照
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+  // 添加光照（与ThreeViewer一致）
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
   scene.add(ambientLight);
 
   const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-  directionalLight.position.set(5, 10, 5);
+  directionalLight.position.set(5, 10, 7);
   directionalLight.castShadow = true;
+  // 配置阴影
+  directionalLight.shadow.mapSize.width = 2048;
+  directionalLight.shadow.mapSize.height = 2048;
+  directionalLight.shadow.bias = -0.0001;
+  directionalLight.shadow.normalBias = 0.02;
+  directionalLight.shadow.camera.near = 0.1;
+  directionalLight.shadow.camera.far = 50;
+  directionalLight.shadow.camera.left = -10;
+  directionalLight.shadow.camera.right = 10;
+  directionalLight.shadow.camera.top = 10;
+  directionalLight.shadow.camera.bottom = -10;
   scene.add(directionalLight);
+
+  // 创建环境贴图（用于PBR材质反射）
+  const envMapSize = 512;
+  const canvas = document.createElement('canvas');
+  canvas.width = envMapSize;
+  canvas.height = envMapSize;
+  const context = canvas.getContext('2d')!;
+  const gradient = context.createLinearGradient(0, 0, 0, envMapSize);
+  gradient.addColorStop(0, '#cccccc');
+  gradient.addColorStop(0.33, '#a0d0e0');
+  gradient.addColorStop(0.66, '#5a9bb8');
+  gradient.addColorStop(1, '#2f5a7a');
+  context.fillStyle = gradient;
+  context.fillRect(0, 0, envMapSize, envMapSize);
+  
+  // 创建立方体贴图的6个面（都使用同一个渐变）
+  const cubeTexture = new THREE.CubeTexture([
+    canvas, canvas, canvas, canvas, canvas, canvas
+  ]);
+  cubeTexture.needsUpdate = true;
+  scene.environment = cubeTexture;
 
   // 添加地面
   const groundGeometry = new THREE.PlaneGeometry(10000, 10);
@@ -271,10 +304,18 @@ async function loadModel(slot: ModelSlot) {
       slot.group.add(model);
       slot.model = model;
 
+      // 启用模型阴影
+      model.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          child.castShadow = true;
+          child.receiveShadow = true;
+        }
+      });
+
       // 让模型站在地面上（按原始比例显示）
       model.position.y = 0;
       
-      // 绕z轴旋转45度
+      // 绕y轴旋转-30度
       model.rotation.y = -Math.PI / 6;
 
       loadedModelsCount.value++;
