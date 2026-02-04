@@ -29,7 +29,11 @@ export default defineConfig(({ mode }) => ({
       '/remote-cos': {
         target: 'https://pokemon-model-1400264169.cos.ap-beijing.myqcloud.com',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/remote-cos/, ''),
+        rewrite: (path) => {
+          path = path.replace(/^\/remote-cos\/models/, '');
+          // console.log('Rewritten /remote-cos path:', path);
+          return path;
+        },
       },
       '/remote': {
         target: 'http://localhost:5003',
