@@ -14,7 +14,7 @@
 
 import * as THREE from 'three';
 import { MaterialData, MaterialOptions } from '../core/data';
-import { resolveResourcePath } from '../services/resourceLoader';
+import { resolveResourcePath, checkResourceExists } from '../services/resourceLoader';
 
 /**
  * 材质创建器函数类型
@@ -328,35 +328,41 @@ export class MaterialFactory {
     );
     const materialBasedPath = `${basePath}${materialBasedFilename}`;
 
-    try {
-      const texture = await MaterialFactory.loadTexture(materialBasedPath);
+    // 先检查资源是否存在
+    if (await checkResourceExists(materialBasedPath)) {
+      try {
+        const texture = await MaterialFactory.loadTexture(materialBasedPath);
 
-      // 如果有 LayerMaskMap，复制其采样器设置
-      if (layerMaskRef) {
-        const sampler = data.getSampler(layerMaskRef.slot);
-        texture.wrapS = MaterialData.uvWrapModeToThree(sampler.wrapU);
-        texture.wrapT = MaterialData.uvWrapModeToThree(sampler.wrapV);
-      }
-      texture.needsUpdate = true;
+        // 如果有 LayerMaskMap，复制其采样器设置
+        if (layerMaskRef) {
+          const sampler = data.getSampler(layerMaskRef.slot);
+          texture.wrapS = MaterialData.uvWrapModeToThree(sampler.wrapU);
+          texture.wrapT = MaterialData.uvWrapModeToThree(sampler.wrapV);
+        }
+        texture.needsUpdate = true;
 
-      textureMap.set('eye_hight_mask', texture);
-      return;
-    } catch {}
+        textureMap.set('eye_hight_mask', texture);
+        return;
+      } catch {}
+    }
 
     const fallbackFilename = layerMaskRef.filename.replace('_eye_lym', '_eye_msk');
     const fallbackPath = `${basePath}${fallbackFilename}`;
 
-    try {
-      const texture = await MaterialFactory.loadTexture(fallbackPath);
+    // 先检查备用资源是否存在
+    if (await checkResourceExists(fallbackPath)) {
+      try {
+        const texture = await MaterialFactory.loadTexture(fallbackPath);
 
-      // 复制 LayerMaskMap 的采样器设置
-      const sampler = data.getSampler(layerMaskRef.slot);
-      texture.wrapS = MaterialData.uvWrapModeToThree(sampler.wrapU);
-      texture.wrapT = MaterialData.uvWrapModeToThree(sampler.wrapV);
-      texture.needsUpdate = true;
+        // 复制 LayerMaskMap 的采样器设置
+        const sampler = data.getSampler(layerMaskRef.slot);
+        texture.wrapS = MaterialData.uvWrapModeToThree(sampler.wrapU);
+        texture.wrapT = MaterialData.uvWrapModeToThree(sampler.wrapV);
+        texture.needsUpdate = true;
 
-      textureMap.set('eye_hight_mask', texture);
-    } catch (error) {}
+        textureMap.set('eye_hight_mask', texture);
+      } catch (error) {}
+    }
   }
 
   /**

@@ -21,7 +21,6 @@ interface ResourceLoaderConfig {
  * 默认配置
  */
 const env = import.meta.env;
-console.log(env)
 const DEFAULT_CONFIG: ResourceLoaderConfig = {
   useRemoteCos: env.VITE_USE_REMOTE_COS === 'true',
   remoteCosPath: env.VITE_REMOTE_COS_PATH,
@@ -67,30 +66,11 @@ export function resolveResourcePath(path: string, isRemote = false): string {
     return `${currentConfig.assetsLocalPath}/${cleanPath}`;
   } else {
     if (currentConfig.useRemoteCos) {
-      return `${currentConfig.remoteCosPath}/${path}`;
+      return `${currentConfig.remoteCosPath}/${cleanPath}`;
     } else {
-      return `${currentConfig.assetsRemotePath}/${path}`;
+      return `${currentConfig.assetsRemotePath}/${cleanPath}`;
     }
   }
-}
-
-/**
- * 加载文本资源
- *
- * @param path - 资源路径
- * @returns Promise<string> 文本内容
- */
-export async function loadTextResource(path: string): Promise<string> {
-  const resolvedPath = path;
-
-  const response = await fetch(resolvedPath);
-  if (!response.ok) {
-    throw new Error(
-      `Failed to load text resource: ${resolvedPath} (HTTP ${response.status})`
-    );
-  }
-
-  return response.text();
 }
 
 /**
@@ -120,8 +100,14 @@ export async function loadBinaryResource(path: string): Promise<ArrayBuffer> {
  */
 export async function loadJsonResource(path: string): Promise<unknown> {
   const resolvedPath = resolveResourcePath(path);
-  const text = await loadTextResource(resolvedPath);
+  const response = await fetch(resolvedPath);
+  if (!response.ok) {
+    throw new Error(
+      `Failed to load json resource: ${resolvedPath} (HTTP ${response.status})`
+    );
+  }
   try {
+    const text = await response.text();
     return JSON.parse(text);
   } catch (error) {
     throw new Error(`Failed to parse JSON resource: ${path} - ${error}`);
