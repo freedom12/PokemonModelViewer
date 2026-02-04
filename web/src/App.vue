@@ -49,6 +49,9 @@ const useRemoteAssets = ref(import.meta.env.VITE_USE_REMOTE_COS === 'true');
 // 视图模式：'browser' 或 'gallery'
 const viewMode = ref<'browser' | 'gallery'>('browser');
 
+// 是否为开发模式
+let isDevelopment = import.meta.env.DEV;
+// isDevelopment = false;
 // 组件挂载时不需要额外加载数据，PokemonBrowser 会处理
 
 /**
@@ -160,8 +163,8 @@ function switchToBrowser(): void {
     <template v-else>
       <!-- 左侧：宝可梦浏览器 -->
       <aside class="browser-panel">
-        <!-- 资源模式切换开关 -->
-        <div class="resource-mode-toggle">
+        <!-- 资源模式切换开关（仅在开发模式显示） -->
+        <div class="resource-mode-toggle" v-if="isDevelopment">
           <el-switch
             v-model="useRemoteAssets"
             active-text="使用远程资源"
