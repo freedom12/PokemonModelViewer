@@ -27,7 +27,7 @@ export function usePokemonModel() {
    * @param game - 游戏类型，'SCVI'、'LZA' 或 'LA'
    * @returns Promise<Model | null> 加载的模型实例，失败返回 null
    */
-  async function load(formId: string, game: Game): Promise<Model | null> {
+  async function loadModel(formId: string, game: Game): Promise<Model | null> {
     loading.value = true;
     error.value = null;
 
@@ -123,6 +123,96 @@ export function usePokemonModel() {
   }
 
   /**
+   * 获取宝可梦形态的可用动画列表
+   *
+   * @param formId - 形态 ID，如 'pm0001_00_00'
+   * @param game - 游戏类型
+   * @returns Promise<Record<string, string[]>> 动画名称到文件列表的映射
+   */
+  async function getAvailableAnimations(
+    formId: string,
+    game: Game
+  ): Promise<Record<string, string[]>> {
+    const pokemonId = getPokemonIdFromFormId(formId);
+    
+    try {
+      const configResponse = await fetch(`local/configs/${game}/${pokemonId}.json`);
+      if (!configResponse.ok) {
+        console.warn(`[usePokemonModel] 配置文件未找到: ${pokemonId}`);
+        return {};
+      }
+      
+      const config = await configResponse.json();
+      const form = config.forms?.find((f: any) => f.id === formId);
+      
+      return form?.animations || {};
+    } catch (err) {
+      console.error(`[usePokemonModel] 加载配置失败 ${formId}:`, err);
+      return {};
+    }
+  }
+
+  /**
+   * 加载并播放动画
+   *
+   * @param formId - 形态 ID，如 'pm0001_00_00'
+   * @param game - 游戏类型
+   * @param animationName - 动画名称（键）
+   * @param loop - 是否循环播放
+   * @param targetModel - 可选的目标模型，如果不提供则使用内部管理的 model
+   * @returns Promise<void>
+   */
+  async function loadAndPlayAnimation(
+    formId: string,
+    game: Game,
+    animationName: string,
+    loop: boolean = true,
+    targetModel?: Model
+  ): Promise<void> {
+    const currentModel = targetModel || model.value;
+    
+    if (!currentModel) {
+      throw new Error(`无法加载动画: 模型未加载`);
+    }
+
+    // 获取可用动画列表
+    const animations = await getAvailableAnimations(formId, game);
+    const animationFiles = animations[animationName];
+    
+    if (!animationFiles || animationFiles.length === 0) {
+      throw new Error(`未找到动画: ${animationName}`);
+    }
+
+    // 选择第一个 .tranm 文件（骨骼动画）
+    const tranmFile = animationFiles.find((file) => file.endsWith('.tranm'));
+    if (!tranmFile) {
+      throw new Error(`未找到骨骼动画文件 (.tranm): ${animationName}`);
+    }
+
+    // 查找对应的 .tracm 文件（可见性动画）
+    const tracmFile = animationFiles.find((file) => file.endsWith('.tracm'));
+
+    // 构建动画文件路径
+    const pokemonId = getPokemonIdFromFormId(formId);
+    const tranmUrl = `models/${game}/${pokemonId}/${formId}/${tranmFile}`;
+
+    // 加载骨骼动画
+    await currentModel.loadAnimationFromUrl(tranmUrl);
+
+    // 如果有可见性动画文件，也加载它
+    if (tracmFile) {
+      const tracmUrl = `models/${game}/${pokemonId}/${formId}/${tracmFile}`;
+      await currentModel.loadAnimationFromUrl(tracmUrl);
+    }
+
+    // 设置循环模式
+    currentModel.setAnimationLoop(loop);
+
+    // 开始播放
+    currentModel.playAnimation();
+  }
+
+  /**
    * 释放当前模型
    */
   function dispose(): void {
@@ -136,7 +226,9 @@ export function usePokemonModel() {
     model,
     loading,
     error,
-    load,
+    loadModel,
+    getAvailableAnimations,
+    loadAndPlayAnimation,
     dispose,
   };
 }

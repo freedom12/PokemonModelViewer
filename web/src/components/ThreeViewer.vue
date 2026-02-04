@@ -62,7 +62,10 @@ const emit = defineEmits<{
 // ===== 响应式状态 =====
 
 // 使用宝可梦模型加载 Composable
-const { load: loadModel } = usePokemonModel();
+const {
+  loadModel,
+  loadAndPlayAnimation,
+} = usePokemonModel();
 
 // Canvas 容器元素引用
 const containerRef = ref<HTMLDivElement | null>(null);
@@ -915,7 +918,7 @@ function handleAnimationChange(value: string): void {
 
   // 如果当前正在播放，切换到新动画
   if (isAnimationPlaying.value && currentModel.value) {
-    loadAndPlayAnimation(value);
+    loadAndPlayAnimationByName(value);
   }
 }
 
@@ -935,7 +938,7 @@ function handleTogglePlay(): void {
       console.warn('[ThreeViewer] 没有选中的动画或动画文件不存在');
       return;
     }
-    loadAndPlayAnimation(selectedAnimation.value);
+    loadAndPlayAnimationByName(selectedAnimation.value);
   }
 }
 
@@ -963,43 +966,18 @@ function handleLoopChange(value: boolean): void {
 /**
  * 加载并播放动画
  */
-async function loadAndPlayAnimation(animationName: string): Promise<void> {
+async function loadAndPlayAnimationByName(animationName: string): Promise<void> {
   if (!currentModel.value || !props.pokemon || !props.form) return;
 
   try {
-    const animationFiles = availableAnimations.value[animationName];
-    if (!animationFiles || animationFiles.length === 0) {
-      throw new Error(`No animation files found for ${animationName}`);
-    }
+    // 使用 composable 的方法加载和播放动画（不需要传入 animationFiles）
+    await loadAndPlayAnimation(
+      currentFormId.value,
+      props.game,
+      animationName,
+      animationLoop.value
+    );
 
-    // 选择第一个 .tranm 文件（骨骼动画）
-    const tranmFile = animationFiles.find((file) => file.endsWith('.tranm'));
-    if (!tranmFile) {
-      throw new Error(`No .tranm file found for animation ${animationName}`);
-    }
-
-    // 查找对应的 .tracm 文件（可见性动画）
-    const tracmFile = animationFiles.find((file) => file.endsWith('.tracm'));
-
-    // 构建动画文件 URL
-    const pokemonId = `pm${props.pokemon.resourceId}`;
-    const formId = `${pokemonId}_${props.form[0].toString().padStart(2, '0')}_${props.form[1].toString().padStart(2, '0')}`;
-    const tranmUrl = `models/${props.game}/${pokemonId}/${formId}/${tranmFile}`;
-
-    // 加载骨骼动画
-    await currentModel.value.loadAnimationFromUrl(tranmUrl);
-
-    // 如果有可见性动画文件，也加载它
-    if (tracmFile) {
-      const tracmUrl = `models/${props.game}/${pokemonId}/${formId}/${tracmFile}`;
-      await currentModel.value.loadAnimationFromUrl(tracmUrl);
-    }
-
-    // 设置循环模式
-    currentModel.value.setAnimationLoop(animationLoop.value);
-
-    // 开始播放
-    currentModel.value.playAnimation();
     isAnimationPlaying.value = true;
   } catch (err) {
     console.error('[ThreeViewer] 加载动画失败:', err);

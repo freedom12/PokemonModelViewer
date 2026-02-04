@@ -61,10 +61,8 @@
 import { ref, onMounted, onBeforeUnmount, shallowRef, computed } from 'vue';
 import * as THREE from 'three';
 import { Model } from '../core/model/Model';
-import { ModelData } from '../core/data';
-import { flatbuffers, TRMDL, TRMSH, TRMBF, TRMTR, TRSKL } from '../parsers';
-import { loadBinaryResource } from '../services/resourceLoader';
 import { getPokemonIdFromFormId } from '../utils/pokemonPath';
+import { usePokemonModel } from '../composables/usePokemonModel';
 import { Game } from '../types';
 
 // Props
@@ -426,103 +424,33 @@ function unloadModel(slot: ModelSlot) {
 }
 
 /**
- * 加载宝可梦模型（简化版本）
+ * 加载宝可梦模型（使用 composable）
  */
 async function loadPokemonModel(formId: string): Promise<Model | null> {
-  const game = props.game;
-  const pokemonId = getPokemonIdFromFormId(formId);
-  const fileBasePath = `/${game}/${pokemonId}/${formId}/${formId}`;
-  const basePath = `/${game}/${pokemonId}/${formId}/`;
-
-  const loadFile = async (path: string): Promise<ArrayBuffer> => {
-    try {
-      return await loadBinaryResource(path);
-    } catch (err) {
-      throw new Error(`加载文件失败: ${path}`);
-    }
-  };
-
-  const parse = <T>(
-    buffer: ArrayBuffer,
-    name: string,
-    getRootFn: (bb: flatbuffers.ByteBuffer) => T
-  ): T => {
-    const bb = new flatbuffers.ByteBuffer(new Uint8Array(buffer));
-    const result = getRootFn(bb);
-    if (!result) {
-      throw new Error(`${name} 文件格式错误`);
-    }
-    return result;
-  };
-
   try {
-    // 加载必需文件
-    const [trmdlBuf, trmshBuf, trmbfBuf] = await Promise.all([
-      loadFile(`models${fileBasePath}.trmdl`),
-      loadFile(`models${fileBasePath}.trmsh`),  // SCVI使用 .trmsh 而不是 _lod0.trmsh
-      loadFile(`models${fileBasePath}.trmbf`),
-    ]);
-
-    // 解析必需文件
-    const trmdl = parse(trmdlBuf, 'TRMDL', (bb) => TRMDL.getRootAsTRMDL(bb));
-    const trmsh = parse(trmshBuf, 'TRMSH', (bb) => TRMSH.getRootAsTRMSH(bb));
-    const trmbf = parse(trmbfBuf, 'TRMBF', (bb) => TRMBF.getRootAsTRMBF(bb));
-
-    // 加载并解析可选文件
-    let trmtr: TRMTR | undefined = undefined;
-    let trskl: TRSKL | undefined = undefined;
-
-    try {
-      const buf = await loadFile(`models${fileBasePath}.trmtr`);
-      trmtr = parse(buf, 'TRMTR', (bb) => TRMTR.getRootAsTRMTR(bb));
-    } catch {
-      /* optional */
+    // 使用 composable 加载模型
+    const { loadModel, loadAndPlayAnimation, getAvailableAnimations } = usePokemonModel();
+    const model = await loadModel(formId, props.game);
+    
+    if (!model) {
+      console.error(`[Gallery] 模型加载失败: ${formId}`);
+      return null;
     }
-
-    try {
-      const buf = await loadFile(`models${fileBasePath}.trskl`);
-      trskl = parse(buf, 'TRSKL', (bb) => TRSKL.getRootAsTRSKL(bb));
-    } catch {
-      /* optional */
-    }
-
-    // 创建 ModelData
-    const modelData = ModelData.fromFlatBuffers(trmdl, trmsh, trmbf, trmtr, trskl);
-    const model = new Model(modelData);
-
-    // 实例化模型（创建 GPU 资源）
-    await model.materialize(basePath);
 
     // 加载第一个动画
     try {
-      // 获取宝可梦配置，找到第一个动画
-      const configResponse = await fetch(`local/configs/${props.game}/${pokemonId}.json`);
-      if (configResponse.ok) {
-        const config = await configResponse.json();
-        const form = config.forms?.find((f: any) => f.id === formId);
-        if (form && form.animations) {
-          const firstAnimKey = Object.keys(form.animations)[0];
-          if (firstAnimKey) {
-            const animFiles = form.animations[firstAnimKey];
-            if (animFiles && animFiles.length >= 2) {
-              // 加载动画文件（同时加载可见性和骨骼动画）
-              const tracmFileName = animFiles[0]; // 可见性动画 .tracm
-              const tranmFileName = animFiles[1]; // 骨骼动画 .tranm
-              const tracmPath = `models${basePath}${tracmFileName}`;
-              const tranmPath = `models${basePath}${tranmFileName}`;
-              
-              // 加载两个动画文件
-              await Promise.all([
-                model.loadAnimationFromUrl(tracmPath),
-                model.loadAnimationFromUrl(tranmPath)
-              ]);
-              
-              // 播放动画并循环（使用文件名作为动画名，去掉扩展名）
-              const animName = tranmFileName.replace(/\.(tranm|tracm)$/i, '');
-              model.playAnimation(animName);
-            }
-          }
-        }
+      const animations = await getAvailableAnimations(formId, props.game);
+      const firstAnimKey = Object.keys(animations)[0];
+      
+      if (firstAnimKey) {
+        // 使用 composable 加载动画（传入外部创建的 model）
+        await loadAndPlayAnimation(
+          formId,
+          props.game,
+          firstAnimKey,
+          true,
+          model
+        );
       }
     } catch (err) {
       console.warn(`[Gallery] 加载动画失败 ${formId}:`, err);
