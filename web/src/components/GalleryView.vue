@@ -368,13 +368,13 @@ async function loadModel(slot: ModelSlot) {
       slot.group.add(model);
       slot.model = model;
 
-      // 启用模型阴影
-      model.traverse((child) => {
-        if (child instanceof THREE.Mesh) {
-          child.castShadow = true;
-          child.receiveShadow = true;
-        }
-      });
+      // // 启用模型阴影
+      // model.traverse((child) => {
+      //   if (child instanceof THREE.Mesh) {
+      //     child.castShadow = true;
+      //     child.receiveShadow = true;
+      //   }
+      // });
 
       // 让模型站在地面上（按原始比例显示）
       model.position.y = 0;
