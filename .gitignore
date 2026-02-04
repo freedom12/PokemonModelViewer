@@ -41,6 +41,7 @@ refer/
 
 
 web/tools/json_output/
+web/tools/bnsh/output/
 
 # Ignore Pokemon files with number > 10
 assets/remote/models/*

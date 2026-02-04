@@ -86,17 +86,17 @@ function parseFormId(dirName) {
 }
 
 /**
- * 检测目录类型 (LA风格还是SCVI/LZA风格)
- * LA风格: 动画在 anm/ 子目录，模型在 mdl/ 子目录
+ * 检测目录类型 (LA/SWSH风格还是SCVI/LZA风格)
+ * LA/SWSH风格: 动画在 anm/ 子目录，模型在 mdl/ 子目录
  * SCVI/LZA风格: 动画和模型直接在形态目录下
  */
 function detectDirectoryStyle(formPath) {
   const anmDir = path.join(formPath, "anm");
   const mdlDir = path.join(formPath, "mdl");
   if (fs.existsSync(anmDir) && fs.existsSync(mdlDir)) {
-    return "LA";
+    return "subdirs"; // LA和SWSH都使用子目录结构
   }
-  return "SCVI";
+  return "flat"; // SCVI/LZA使用扁平结构
 }
 
 /**
@@ -113,8 +113,8 @@ function getAnimationFiles(formPath) {
 
       for (const entry of entries) {
         if (entry.isDirectory()) {
-          // 对于LA风格，只扫描anm目录；对于SCVI风格，扫描所有子目录
-          if (dirStyle === "LA") {
+          // 对于subdirs风格(LA/SWSH)，只扫描anm目录；对于flat风格(SCVI/LZA)，扫描所有子目录
+          if (dirStyle === "subdirs") {
             if (entry.name === "anm") {
               scanDir(path.join(dirPath, entry.name));
             }
@@ -123,13 +123,25 @@ function getAnimationFiles(formPath) {
           }
         } else if (
           entry.isFile() &&
-          (entry.name.endsWith(".tranm") || entry.name.endsWith(".tracm"))
+          (entry.name.endsWith(".tranm") || 
+           entry.name.endsWith(".tracm") || 
+           entry.name.endsWith(".gfbanm"))
         ) {
           // console.log(`Found animation file: ${entry.name} in ${dirPath}`);
-          // 提取动画名：去掉前缀 pmXXXX_YY_ZZ_ 和后缀 .tranm/.tracm
-          const animationName = entry.name
-            .replace(/^pm\d{4}_\d{2}_\d{2}_/, "")
-            .replace(/\.(tranm|tracm)$/, "");
+          // 提取动画名：去掉前缀 pmXXXX_YY_ZZ_ 或 pmXXXX_YY_ 和后缀
+          let animationName = entry.name;
+          
+          // 对于 LA 格式 (pmXXXX_YY_ZZ_animname)
+          if (animationName.match(/^pm\d{4}_\d{2}_\d{2}_/)) {
+            animationName = animationName.replace(/^pm\d{4}_\d{2}_\d{2}_/, "");
+          } 
+          // 对于 SWSH 格式 (pmXXXX_YY_animname)
+          else if (animationName.match(/^pm\d{4}_\d{2}_/)) {
+            animationName = animationName.replace(/^pm\d{4}_\d{2}_/, "");
+          }
+          
+          // 去掉扩展名
+          animationName = animationName.replace(/\.(tranm|tracm|gfbanm)$/, "");
 
           if (!animations[animationName]) {
             animations[animationName] = [];
@@ -175,9 +187,9 @@ function getPokemonForms(pokemonId, pokemonPath) {
 
         const dirStyle = detectDirectoryStyle(formPath);
         
-        // LA风格不需要icon
+        // subdirs风格(LA/SWSH)不需要icon
         let iconPath = null;
-        if (dirStyle !== "LA") {
+        if (dirStyle !== "subdirs") {
           // 查找实际存在的icon文件
           const iconDir = path.join(formPath, "icon");
           if (fs.existsSync(iconDir)) {
@@ -214,7 +226,7 @@ function getPokemonForms(pokemonId, pokemonPath) {
           animations: animations,
         };
         
-        // 只有非LA风格才添加icon字段
+        // 只有flat风格(SCVI/LZA)才添加icon字段
         if (iconPath) {
           formData.icon = iconPath;
         }

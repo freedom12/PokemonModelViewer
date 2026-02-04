@@ -1,0 +1,12 @@
+# 输出目录
+output/
+glsl_output/
+demo_*/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Visual Studio
+*.pdb
