@@ -85,6 +85,9 @@ const error = ref<string | null>(null);
 // 场景是否已初始化
 const sceneInitialized = ref(false);
 
+// 是否为开发模式
+const isDevelopment = import.meta.env.DEV;
+
 // ===== 控制面板状态 =====
 
 // 是否显示顶点法线
@@ -1334,10 +1337,10 @@ defineExpose({
   <div ref="containerRef" class="three-viewer-container">
     <!-- Three.js 将在此容器中创建 canvas 元素 -->
 
-    <!-- 控制面板组件 -->
+    <!-- 控制面板组件（仅在开发模式显示） -->
     <!-- @validates 需求 6.2: 控制面板作为独立组件 -->
     <!-- @validates 需求 6.7: 使用 props 和 emits 进行组件间通信 -->
-    <div class="control-panel-wrapper">
+    <div v-if="isDevelopment" class="control-panel-wrapper">
       <ControlPanel
         :show-vertex-normals="showVertexNormals"
         :show-wireframe="showWireframe"
