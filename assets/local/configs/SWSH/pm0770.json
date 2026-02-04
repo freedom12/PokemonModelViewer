@@ -1,0 +1,264 @@
+{
+  "id": "pm0770",
+  "number": 770,
+  "forms": [
+    {
+      "id": "pm0770_00_00",
+      "formIndex": 0,
+      "variantIndex": 0,
+      "animations": {
+        "ba10_waitA01": [
+          "anm/pm0001_00_ba10_waitA01.gfbanm",
+          "anm/pm0770_00_ba10_waitA01.gfbanm"
+        ],
+        "pm0770_00": [
+          "anm/pm0770_00.gfbanm"
+        ],
+        "ba01_landA01": [
+          "anm/pm0770_00_ba01_landA01.gfbanm"
+        ],
+        "ba01_landB01": [
+          "anm/pm0770_00_ba01_landB01.gfbanm"
+        ],
+        "ba01_landC01": [
+          "anm/pm0770_00_ba01_landC01.gfbanm"
+        ],
+        "ba02_roar01": [
+          "anm/pm0770_00_ba02_roar01.gfbanm"
+        ],
+        "ba10_waitB01": [
+          "anm/pm0770_00_ba10_waitB01.gfbanm"
+        ],
+        "ba20_buturi01": [
+          "anm/pm0770_00_ba20_buturi01.gfbanm"
+        ],
+        "ba20_buturi02": [
+          "anm/pm0770_00_ba20_buturi02.gfbanm"
+        ],
+        "ba20_buturi03": [
+          "anm/pm0770_00_ba20_buturi03.gfbanm"
+        ],
+        "ba21_tokusyu01": [
+          "anm/pm0770_00_ba21_tokusyu01.gfbanm"
+        ],
+        "ba30_damageS01": [
+          "anm/pm0770_00_ba30_damageS01.gfbanm"
+        ],
+        "ba41_down01": [
+          "anm/pm0770_00_ba41_down01.gfbanm"
+        ],
+        "eye01": [
+          "anm/pm0770_00_eye01.gfbanm"
+        ],
+        "fi20_walk01": [
+          "anm/pm0770_00_fi20_walk01.gfbanm"
+        ],
+        "fi21_run01": [
+          "anm/pm0770_00_fi21_run01.gfbanm"
+        ],
+        "gloop01": [
+          "anm/pm0770_00_gloop01.gfbanm"
+        ],
+        "kw20_drowseA01": [
+          "anm/pm0770_00_kw20_drowseA01.gfbanm"
+        ],
+        "kw20_drowseB01": [
+          "anm/pm0770_00_kw20_drowseB01.gfbanm"
+        ],
+        "kw20_drowseC01": [
+          "anm/pm0770_00_kw20_drowseC01.gfbanm"
+        ],
+        "kw30_hate01": [
+          "anm/pm0770_00_kw30_hate01.gfbanm"
+        ],
+        "kw32_happyB01": [
+          "anm/pm0770_00_kw32_happyB01.gfbanm"
+        ],
+        "kw36_mad01": [
+          "anm/pm0770_00_kw36_mad01.gfbanm"
+        ],
+        "kw50_eatA01": [
+          "anm/pm0770_00_kw50_eatA01.gfbanm"
+        ],
+        "kw50_eatB01": [
+          "anm/pm0770_00_kw50_eatB01.gfbanm"
+        ],
+        "kw50_eatC01": [
+          "anm/pm0770_00_kw50_eatC01.gfbanm"
+        ],
+        "loop01": [
+          "anm/pm0770_00_loop01.gfbanm"
+        ]
+      }
+    },
+    {
+      "id": "pm0770_12_00",
+      "formIndex": 12,
+      "variantIndex": 0,
+      "animations": {
+        "ba10_waitA01": [
+          "anm/pm0001_00_ba10_waitA01.gfbanm",
+          "anm/pm0770_12_ba10_waitA01.gfbanm"
+        ],
+        "pm0770_12": [
+          "anm/pm0770_12.gfbanm"
+        ],
+        "ba01_landA01": [
+          "anm/pm0770_12_ba01_landA01.gfbanm"
+        ],
+        "ba01_landB01": [
+          "anm/pm0770_12_ba01_landB01.gfbanm"
+        ],
+        "ba01_landC01": [
+          "anm/pm0770_12_ba01_landC01.gfbanm"
+        ],
+        "ba02_roar01": [
+          "anm/pm0770_12_ba02_roar01.gfbanm"
+        ],
+        "ba10_waitB01": [
+          "anm/pm0770_12_ba10_waitB01.gfbanm"
+        ],
+        "ba20_buturi01": [
+          "anm/pm0770_12_ba20_buturi01.gfbanm"
+        ],
+        "ba20_buturi02": [
+          "anm/pm0770_12_ba20_buturi02.gfbanm"
+        ],
+        "ba21_tokusyu01": [
+          "anm/pm0770_12_ba21_tokusyu01.gfbanm"
+        ],
+        "ba21_tokusyu02": [
+          "anm/pm0770_12_ba21_tokusyu02.gfbanm"
+        ],
+        "ba30_damageS01": [
+          "anm/pm0770_12_ba30_damageS01.gfbanm"
+        ],
+        "ba41_down01": [
+          "anm/pm0770_12_ba41_down01.gfbanm"
+        ],
+        "eye01": [
+          "anm/pm0770_12_eye01.gfbanm"
+        ],
+        "fi20_walk01": [
+          "anm/pm0770_12_fi20_walk01.gfbanm"
+        ],
+        "fi21_run01": [
+          "anm/pm0770_12_fi21_run01.gfbanm"
+        ],
+        "gloop01": [
+          "anm/pm0770_12_gloop01.gfbanm"
+        ],
+        "kw20_drowseA01": [
+          "anm/pm0770_12_kw20_drowseA01.gfbanm"
+        ],
+        "kw20_drowseB01": [
+          "anm/pm0770_12_kw20_drowseB01.gfbanm"
+        ],
+        "kw20_drowseC01": [
+          "anm/pm0770_12_kw20_drowseC01.gfbanm"
+        ],
+        "kw30_hate01": [
+          "anm/pm0770_12_kw30_hate01.gfbanm"
+        ],
+        "kw32_happyB01": [
+          "anm/pm0770_12_kw32_happyB01.gfbanm"
+        ],
+        "kw33_moveC01": [
+          "anm/pm0770_12_kw33_moveC01.gfbanm"
+        ],
+        "kw36_mad01": [
+          "anm/pm0770_12_kw36_mad01.gfbanm"
+        ],
+        "kw50_eatA01": [
+          "anm/pm0770_12_kw50_eatA01.gfbanm"
+        ],
+        "kw50_eatB01": [
+          "anm/pm0770_12_kw50_eatB01.gfbanm"
+        ],
+        "kw50_eatC01": [
+          "anm/pm0770_12_kw50_eatC01.gfbanm"
+        ],
+        "loop01": [
+          "anm/pm0770_12_loop01.gfbanm"
+        ],
+        "mouth01": [
+          "anm/pm0770_12_mouth01.gfbanm"
+        ]
+      }
+    },
+    {
+      "id": "pm0770_15_00",
+      "formIndex": 15,
+      "variantIndex": 0,
+      "animations": {
+        "ba10_waitA01": [
+          "anm/pm0001_00_ba10_waitA01.gfbanm",
+          "anm/pm0770_15_ba10_waitA01.gfbanm"
+        ],
+        "pm0770_15": [
+          "anm/pm0770_15.gfbanm"
+        ],
+        "ba01_landA01": [
+          "anm/pm0770_15_ba01_landA01.gfbanm"
+        ],
+        "ba01_landB01": [
+          "anm/pm0770_15_ba01_landB01.gfbanm"
+        ],
+        "ba01_landC01": [
+          "anm/pm0770_15_ba01_landC01.gfbanm"
+        ],
+        "ba02_roar01": [
+          "anm/pm0770_15_ba02_roar01.gfbanm"
+        ],
+        "ba10_waitB01": [
+          "anm/pm0770_15_ba10_waitB01.gfbanm"
+        ],
+        "ba20_buturi01": [
+          "anm/pm0770_15_ba20_buturi01.gfbanm"
+        ],
+        "ba20_buturi02": [
+          "anm/pm0770_15_ba20_buturi02.gfbanm"
+        ],
+        "ba21_tokusyu01": [
+          "anm/pm0770_15_ba21_tokusyu01.gfbanm"
+        ],
+        "ba30_damageS01": [
+          "anm/pm0770_15_ba30_damageS01.gfbanm"
+        ],
+        "ba41_down01": [
+          "anm/pm0770_15_ba41_down01.gfbanm"
+        ],
+        "ba50_wideuse01": [
+          "anm/pm0770_15_ba50_wideuse01.gfbanm"
+        ],
+        "ba50_wideuse02": [
+          "anm/pm0770_15_ba50_wideuse02.gfbanm"
+        ],
+        "fi20_walk01": [
+          "anm/pm0770_15_fi20_walk01.gfbanm"
+        ],
+        "fi21_run01": [
+          "anm/pm0770_15_fi21_run01.gfbanm"
+        ],
+        "fi31_run_wait01": [
+          "anm/pm0770_15_fi31_run_wait01.gfbanm"
+        ],
+        "fi31_wait_run01": [
+          "anm/pm0770_15_fi31_wait_run01.gfbanm"
+        ],
+        "fi32_run_walk01": [
+          "anm/pm0770_15_fi32_run_walk01.gfbanm"
+        ],
+        "fi32_walk_run01": [
+          "anm/pm0770_15_fi32_walk_run01.gfbanm"
+        ],
+        "gloop01": [
+          "anm/pm0770_15_gloop01.gfbanm"
+        ],
+        "loop01": [
+          "anm/pm0770_15_loop01.gfbanm"
+        ]
+      }
+    }
+  ]
+}

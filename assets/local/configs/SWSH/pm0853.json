@@ -1,0 +1,91 @@
+{
+  "id": "pm0853",
+  "number": 853,
+  "forms": [
+    {
+      "id": "pm0853_00_00",
+      "formIndex": 0,
+      "variantIndex": 0,
+      "animations": {
+        "pm0853_00": [
+          "anm/pm0853_00.gfbanm"
+        ],
+        "ba01_landA01": [
+          "anm/pm0853_00_ba01_landA01.gfbanm"
+        ],
+        "ba01_landB01": [
+          "anm/pm0853_00_ba01_landB01.gfbanm"
+        ],
+        "ba01_landC01": [
+          "anm/pm0853_00_ba01_landC01.gfbanm"
+        ],
+        "ba02_roar01": [
+          "anm/pm0853_00_ba02_roar01.gfbanm"
+        ],
+        "ba10_waitA01": [
+          "anm/pm0853_00_ba10_waitA01.gfbanm"
+        ],
+        "ba10_waitB01": [
+          "anm/pm0853_00_ba10_waitB01.gfbanm"
+        ],
+        "ba20_buturi01": [
+          "anm/pm0853_00_ba20_buturi01.gfbanm"
+        ],
+        "ba20_buturi02": [
+          "anm/pm0853_00_ba20_buturi02.gfbanm"
+        ],
+        "ba21_tokusyu01": [
+          "anm/pm0853_00_ba21_tokusyu01.gfbanm"
+        ],
+        "ba30_damageS01": [
+          "anm/pm0853_00_ba30_damageS01.gfbanm"
+        ],
+        "ba41_down01": [
+          "anm/pm0853_00_ba41_down01.gfbanm"
+        ],
+        "eye01": [
+          "anm/pm0853_00_eye01.gfbanm"
+        ],
+        "fi20_walk01": [
+          "anm/pm0853_00_fi20_walk01.gfbanm"
+        ],
+        "fi21_run01": [
+          "anm/pm0853_00_fi21_run01.gfbanm"
+        ],
+        "gloop01": [
+          "anm/pm0853_00_gloop01.gfbanm"
+        ],
+        "kw20_drowseA01": [
+          "anm/pm0853_00_kw20_drowseA01.gfbanm"
+        ],
+        "kw20_drowseB01": [
+          "anm/pm0853_00_kw20_drowseB01.gfbanm"
+        ],
+        "kw20_drowseC01": [
+          "anm/pm0853_00_kw20_drowseC01.gfbanm"
+        ],
+        "kw30_hate01": [
+          "anm/pm0853_00_kw30_hate01.gfbanm"
+        ],
+        "kw32_happyB01": [
+          "anm/pm0853_00_kw32_happyB01.gfbanm"
+        ],
+        "kw36_mad01": [
+          "anm/pm0853_00_kw36_mad01.gfbanm"
+        ],
+        "kw50_eatA01": [
+          "anm/pm0853_00_kw50_eatA01.gfbanm"
+        ],
+        "kw50_eatB01": [
+          "anm/pm0853_00_kw50_eatB01.gfbanm"
+        ],
+        "kw50_eatC01": [
+          "anm/pm0853_00_kw50_eatC01.gfbanm"
+        ],
+        "mouth01": [
+          "anm/pm0853_00_mouth01.gfbanm"
+        ]
+      }
+    }
+  ]
+}

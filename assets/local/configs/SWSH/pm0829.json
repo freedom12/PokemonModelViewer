@@ -1,0 +1,288 @@
+{
+  "id": "pm0829",
+  "number": 829,
+  "forms": [
+    {
+      "id": "pm0829_11_00",
+      "formIndex": 11,
+      "variantIndex": 0,
+      "animations": {
+        "pm0829_11": [
+          "anm/pm0829_11.gfbanm"
+        ],
+        "ba01_landA01": [
+          "anm/pm0829_11_ba01_landA01.gfbanm"
+        ],
+        "ba01_landB01": [
+          "anm/pm0829_11_ba01_landB01.gfbanm"
+        ],
+        "ba01_landC01": [
+          "anm/pm0829_11_ba01_landC01.gfbanm"
+        ],
+        "ba10_waitA01": [
+          "anm/pm0829_11_ba10_waitA01.gfbanm"
+        ],
+        "ba10_waitB01": [
+          "anm/pm0829_11_ba10_waitB01.gfbanm"
+        ],
+        "ba20_buturi01": [
+          "anm/pm0829_11_ba20_buturi01.gfbanm"
+        ],
+        "ba20_buturi02": [
+          "anm/pm0829_11_ba20_buturi02.gfbanm"
+        ],
+        "ba21_tokusyu01": [
+          "anm/pm0829_11_ba21_tokusyu01.gfbanm"
+        ],
+        "ba30_damageS01": [
+          "anm/pm0829_11_ba30_damageS01.gfbanm"
+        ],
+        "ba41_down01": [
+          "anm/pm0829_11_ba41_down01.gfbanm"
+        ],
+        "cm10_bawait_kwwait01": [
+          "anm/pm0829_11_cm10_bawait_kwwait01.gfbanm"
+        ],
+        "cm10_kwwait_bawait01": [
+          "anm/pm0829_11_cm10_kwwait_bawait01.gfbanm"
+        ],
+        "eye01": [
+          "anm/pm0829_11_eye01.gfbanm"
+        ],
+        "fi20_walk01": [
+          "anm/pm0829_11_fi20_walk01.gfbanm"
+        ],
+        "fi21_run01": [
+          "anm/pm0829_11_fi21_run01.gfbanm"
+        ],
+        "gloop01": [
+          "anm/pm0829_11_gloop01.gfbanm"
+        ],
+        "kw01_wait01": [
+          "anm/pm0829_11_kw01_wait01.gfbanm"
+        ],
+        "kw20_drowseA01": [
+          "anm/pm0829_11_kw20_drowseA01.gfbanm"
+        ],
+        "kw20_drowseB01": [
+          "anm/pm0829_11_kw20_drowseB01.gfbanm"
+        ],
+        "kw20_drowseC01": [
+          "anm/pm0829_11_kw20_drowseC01.gfbanm"
+        ],
+        "kw30_hate01": [
+          "anm/pm0829_11_kw30_hate01.gfbanm"
+        ],
+        "kw32_happyB01": [
+          "anm/pm0829_11_kw32_happyB01.gfbanm"
+        ],
+        "kw33_moveC01": [
+          "anm/pm0829_11_kw33_moveC01.gfbanm"
+        ],
+        "kw36_mad01": [
+          "anm/pm0829_11_kw36_mad01.gfbanm"
+        ],
+        "kw50_eatA01": [
+          "anm/pm0829_11_kw50_eatA01.gfbanm"
+        ],
+        "kw50_eatB01": [
+          "anm/pm0829_11_kw50_eatB01.gfbanm"
+        ],
+        "kw50_eatC01": [
+          "anm/pm0829_11_kw50_eatC01.gfbanm"
+        ],
+        "mouth01": [
+          "anm/pm0829_11_mouth01.gfbanm"
+        ]
+      }
+    },
+    {
+      "id": "pm0829_12_00",
+      "formIndex": 12,
+      "variantIndex": 0,
+      "animations": {
+        "pm0829_12": [
+          "anm/pm0829_12.gfbanm"
+        ],
+        "ba01_landA01": [
+          "anm/pm0829_12_ba01_landA01.gfbanm"
+        ],
+        "ba01_landB01": [
+          "anm/pm0829_12_ba01_landB01.gfbanm"
+        ],
+        "ba01_landC01": [
+          "anm/pm0829_12_ba01_landC01.gfbanm"
+        ],
+        "ba10_waitA01": [
+          "anm/pm0829_12_ba10_waitA01.gfbanm"
+        ],
+        "ba10_waitB01": [
+          "anm/pm0829_12_ba10_waitB01.gfbanm"
+        ],
+        "ba20_buturi01": [
+          "anm/pm0829_12_ba20_buturi01.gfbanm"
+        ],
+        "ba20_buturi02": [
+          "anm/pm0829_12_ba20_buturi02.gfbanm"
+        ],
+        "ba21_tokusyu01": [
+          "anm/pm0829_12_ba21_tokusyu01.gfbanm"
+        ],
+        "ba30_damageS01": [
+          "anm/pm0829_12_ba30_damageS01.gfbanm"
+        ],
+        "ba41_down01": [
+          "anm/pm0829_12_ba41_down01.gfbanm"
+        ],
+        "cm10_bawait_kwwait01": [
+          "anm/pm0829_12_cm10_bawait_kwwait01.gfbanm"
+        ],
+        "cm10_kwwait_bawait01": [
+          "anm/pm0829_12_cm10_kwwait_bawait01.gfbanm"
+        ],
+        "eye01": [
+          "anm/pm0829_12_eye01.gfbanm"
+        ],
+        "fi20_walk01": [
+          "anm/pm0829_12_fi20_walk01.gfbanm"
+        ],
+        "fi21_run01": [
+          "anm/pm0829_12_fi21_run01.gfbanm"
+        ],
+        "gloop01": [
+          "anm/pm0829_12_gloop01.gfbanm"
+        ],
+        "kw01_wait01": [
+          "anm/pm0829_12_kw01_wait01.gfbanm"
+        ],
+        "kw20_drowseA01": [
+          "anm/pm0829_12_kw20_drowseA01.gfbanm"
+        ],
+        "kw20_drowseB01": [
+          "anm/pm0829_12_kw20_drowseB01.gfbanm"
+        ],
+        "kw20_drowseC01": [
+          "anm/pm0829_12_kw20_drowseC01.gfbanm"
+        ],
+        "kw30_hate01": [
+          "anm/pm0829_12_kw30_hate01.gfbanm"
+        ],
+        "kw32_happyB01": [
+          "anm/pm0829_12_kw32_happyB01.gfbanm"
+        ],
+        "kw33_moveC01": [
+          "anm/pm0829_12_kw33_moveC01.gfbanm"
+        ],
+        "kw36_mad01": [
+          "anm/pm0829_12_kw36_mad01.gfbanm"
+        ],
+        "kw50_eatA01": [
+          "anm/pm0829_12_kw50_eatA01.gfbanm"
+        ],
+        "kw50_eatB01": [
+          "anm/pm0829_12_kw50_eatB01.gfbanm"
+        ],
+        "kw50_eatC01": [
+          "anm/pm0829_12_kw50_eatC01.gfbanm"
+        ],
+        "mouth01": [
+          "anm/pm0829_12_mouth01.gfbanm"
+        ]
+      }
+    },
+    {
+      "id": "pm0829_13_00",
+      "formIndex": 13,
+      "variantIndex": 0,
+      "animations": {
+        "pm0829_13": [
+          "anm/pm0829_13.gfbanm"
+        ],
+        "ba01_landA01": [
+          "anm/pm0829_13_ba01_landA01.gfbanm"
+        ],
+        "ba01_landB01": [
+          "anm/pm0829_13_ba01_landB01.gfbanm"
+        ],
+        "ba01_landC01": [
+          "anm/pm0829_13_ba01_landC01.gfbanm"
+        ],
+        "ba10_waitA01": [
+          "anm/pm0829_13_ba10_waitA01.gfbanm"
+        ],
+        "ba10_waitB01": [
+          "anm/pm0829_13_ba10_waitB01.gfbanm"
+        ],
+        "ba20_buturi01": [
+          "anm/pm0829_13_ba20_buturi01.gfbanm"
+        ],
+        "ba20_buturi02": [
+          "anm/pm0829_13_ba20_buturi02.gfbanm"
+        ],
+        "ba21_tokusyu01": [
+          "anm/pm0829_13_ba21_tokusyu01.gfbanm"
+        ],
+        "ba30_damageS01": [
+          "anm/pm0829_13_ba30_damageS01.gfbanm"
+        ],
+        "ba41_down01": [
+          "anm/pm0829_13_ba41_down01.gfbanm"
+        ],
+        "cm10_bawait_kwwait01": [
+          "anm/pm0829_13_cm10_bawait_kwwait01.gfbanm"
+        ],
+        "cm10_kwwait_bawait01": [
+          "anm/pm0829_13_cm10_kwwait_bawait01.gfbanm"
+        ],
+        "eye01": [
+          "anm/pm0829_13_eye01.gfbanm"
+        ],
+        "fi20_walk01": [
+          "anm/pm0829_13_fi20_walk01.gfbanm"
+        ],
+        "fi21_run01": [
+          "anm/pm0829_13_fi21_run01.gfbanm"
+        ],
+        "gloop01": [
+          "anm/pm0829_13_gloop01.gfbanm"
+        ],
+        "kw01_wait01": [
+          "anm/pm0829_13_kw01_wait01.gfbanm"
+        ],
+        "kw20_drowseA01": [
+          "anm/pm0829_13_kw20_drowseA01.gfbanm"
+        ],
+        "kw20_drowseB01": [
+          "anm/pm0829_13_kw20_drowseB01.gfbanm"
+        ],
+        "kw20_drowseC01": [
+          "anm/pm0829_13_kw20_drowseC01.gfbanm"
+        ],
+        "kw30_hate01": [
+          "anm/pm0829_13_kw30_hate01.gfbanm"
+        ],
+        "kw32_happyB01": [
+          "anm/pm0829_13_kw32_happyB01.gfbanm"
+        ],
+        "kw33_moveC01": [
+          "anm/pm0829_13_kw33_moveC01.gfbanm"
+        ],
+        "kw36_mad01": [
+          "anm/pm0829_13_kw36_mad01.gfbanm"
+        ],
+        "kw50_eatA01": [
+          "anm/pm0829_13_kw50_eatA01.gfbanm"
+        ],
+        "kw50_eatB01": [
+          "anm/pm0829_13_kw50_eatB01.gfbanm"
+        ],
+        "kw50_eatC01": [
+          "anm/pm0829_13_kw50_eatC01.gfbanm"
+        ],
+        "mouth01": [
+          "anm/pm0829_13_mouth01.gfbanm"
+        ]
+      }
+    }
+  ]
+}

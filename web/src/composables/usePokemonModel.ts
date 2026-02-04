@@ -38,10 +38,14 @@ export function usePokemonModel() {
     }
 
     const pokemonId = getPokemonIdFromFormId(formId);
+    let basePath = `/${game}/${pokemonId}/${formId}/`;
+    let fileBasePath = `${basePath}${formId}`;
+
     // LA 风格的模型文件在 mdl 子目录下
-    const modelSubPath = game === 'LA' ? '/mdl' : '';
-    const fileBasePath = `/${game}/${pokemonId}/${formId}${modelSubPath}/${formId}`;
-    const basePath = `/${game}/${pokemonId}/${formId}${modelSubPath}/`;
+    if (game === 'LA') {
+      basePath = `/${game}/${pokemonId}/${formId}/mdl/`;
+      fileBasePath = `${basePath}${formId}`;
+    }
 
     const loadFile = async (path: string): Promise<ArrayBuffer> => {
       try {
@@ -134,17 +138,17 @@ export function usePokemonModel() {
     game: Game
   ): Promise<Record<string, string[]>> {
     const pokemonId = getPokemonIdFromFormId(formId);
-    
+
     try {
       const configResponse = await fetch(`local/configs/${game}/${pokemonId}.json`);
       if (!configResponse.ok) {
         console.warn(`[usePokemonModel] 配置文件未找到: ${pokemonId}`);
         return {};
       }
-      
+
       const config = await configResponse.json();
       const form = config.forms?.find((f: any) => f.id === formId);
-      
+
       return form?.animations || {};
     } catch (err) {
       console.error(`[usePokemonModel] 加载配置失败 ${formId}:`, err);
@@ -170,7 +174,7 @@ export function usePokemonModel() {
     targetModel?: Model
   ): Promise<void> {
     const currentModel = targetModel || model.value;
-    
+
     if (!currentModel) {
       throw new Error(`无法加载动画: 模型未加载`);
     }
@@ -178,7 +182,7 @@ export function usePokemonModel() {
     // 获取可用动画列表
     const animations = await getAvailableAnimations(formId, game);
     const animationFiles = animations[animationName];
-    
+
     if (!animationFiles || animationFiles.length === 0) {
       throw new Error(`未找到动画: ${animationName}`);
     }

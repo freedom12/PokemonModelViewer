@@ -1,0 +1,19 @@
+{
+  "id": "pm0000",
+  "number": 0,
+  "forms": [
+    {
+      "id": "pm0000_00_00",
+      "formIndex": 0,
+      "variantIndex": 0,
+      "animations": {
+        "ba10_waitA01": [
+          "anm/pm0000_00_ba10_waitA01.gfbanm"
+        ],
+        "kw01_wait01": [
+          "anm/pm0000_00_kw01_wait01.gfbanm"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "id": "pm0922",
+  "number": 922,
+  "forms": [
+    {
+      "id": "pm0922_11_00",
+      "formIndex": 11,
+      "variantIndex": 0,
+      "animations": {
+        "00": [
+          "anm/pm0922_11_00.gfbanm"
+        ],
+        "ba01_landA01": [
+          "anm/pm0922_11_00_ba01_landA01.gfbanm"
+        ],
+        "ba01_landB01": [
+          "anm/pm0922_11_00_ba01_landB01.gfbanm"
+        ],
+        "ba01_landC01": [
+          "anm/pm0922_11_00_ba01_landC01.gfbanm"
+        ],
+        "ba02_roar01": [
+          "anm/pm0922_11_00_ba02_roar01.gfbanm"
+        ],
+        "ba10_waitA01": [
+          "anm/pm0922_11_00_ba10_waitA01.gfbanm"
+        ],
+        "ba10_waitB01": [
+          "anm/pm0922_11_00_ba10_waitB01.gfbanm"
+        ],
+        "ba20_buturi01": [
+          "anm/pm0922_11_00_ba20_buturi01.gfbanm"
+        ],
+        "ba21_tokusyu01": [
+          "anm/pm0922_11_00_ba21_tokusyu01.gfbanm"
+        ],
+        "ba30_damageS01": [
+          "anm/pm0922_11_00_ba30_damageS01.gfbanm"
+        ],
+        "ba41_down01": [
+          "anm/pm0922_11_00_ba41_down01.gfbanm"
+        ],
+        "cm10_bawait_fiwait01": [
+          "anm/pm0922_11_00_cm10_bawait_fiwait01.gfbanm"
+        ],
+        "cm10_fiwait_bawait01": [
+          "anm/pm0922_11_00_cm10_fiwait_bawait01.gfbanm"
+        ],
+        "eye01": [
+          "anm/pm0922_11_00_eye01.gfbanm"
+        ],
+        "fi01_wait01": [
+          "anm/pm0922_11_00_fi01_wait01.gfbanm"
+        ],
+        "fi20_walk01": [
+          "anm/pm0922_11_00_fi20_walk01.gfbanm"
+        ],
+        "fi21_run01": [
+          "anm/pm0922_11_00_fi21_run01.gfbanm"
+        ],
+        "gloop01": [
+          "anm/pm0922_11_00_gloop01.gfbanm"
+        ],
+        "kw20_drowseA01": [
+          "anm/pm0922_11_00_kw20_drowseA01.gfbanm"
+        ],
+        "kw20_drowseB01": [
+          "anm/pm0922_11_00_kw20_drowseB01.gfbanm"
+        ],
+        "kw20_drowseC01": [
+          "anm/pm0922_11_00_kw20_drowseC01.gfbanm"
+        ],
+        "kw30_hate01": [
+          "anm/pm0922_11_00_kw30_hate01.gfbanm"
+        ],
+        "kw32_happyB01": [
+          "anm/pm0922_11_00_kw32_happyB01.gfbanm"
+        ],
+        "kw33_moveC01": [
+          "anm/pm0922_11_00_kw33_moveC01.gfbanm"
+        ],
+        "kw36_mad01": [
+          "anm/pm0922_11_00_kw36_mad01.gfbanm"
+        ],
+        "kw50_eatA01": [
+          "anm/pm0922_11_00_kw50_eatA01.gfbanm"
+        ],
+        "kw50_eatB01": [
+          "anm/pm0922_11_00_kw50_eatB01.gfbanm"
+        ],
+        "kw50_eatC01": [
+          "anm/pm0922_11_00_kw50_eatC01.gfbanm"
+        ],
+        "loop01": [
+          "anm/pm0922_11_00_loop01.gfbanm"
+        ],
+        "mouth01": [
+          "anm/pm0922_11_00_mouth01.gfbanm"
+        ]
+      }
+    },
+    {
+      "id": "pm0922_12_00",
+      "formIndex": 12,
+      "variantIndex": 0,
+      "animations": {
+        "00": [
+          "anm/pm0922_12_00.gfbanm"
+        ],
+        "ba01_landA01": [
+          "anm/pm0922_12_00_ba01_landA01.gfbanm"
+        ],
+        "ba01_landB01": [
+          "anm/pm0922_12_00_ba01_landB01.gfbanm"
+        ],
+        "ba01_landC01": [
+          "anm/pm0922_12_00_ba01_landC01.gfbanm"
+        ],
+        "ba02_roar01": [
+          "anm/pm0922_12_00_ba02_roar01.gfbanm"
+        ],
+        "ba10_waitA01": [
+          "anm/pm0922_12_00_ba10_waitA01.gfbanm"
+        ],
+        "ba10_waitB01": [
+          "anm/pm0922_12_00_ba10_waitB01.gfbanm"
+        ],
+        "ba20_buturi01": [
+          "anm/pm0922_12_00_ba20_buturi01.gfbanm"
+        ],
+        "ba21_tokusyu01": [
+          "anm/pm0922_12_00_ba21_tokusyu01.gfbanm"
+        ],
+        "ba30_damageS01": [
+          "anm/pm0922_12_00_ba30_damageS01.gfbanm"
+        ],
+        "ba41_down01": [
+          "anm/pm0922_12_00_ba41_down01.gfbanm"
+        ],
+        "eye01": [
+          "anm/pm0922_12_00_eye01.gfbanm"
+        ],
+        "fi20_walk01": [
+          "anm/pm0922_12_00_fi20_walk01.gfbanm"
+        ],
+        "fi21_run01": [
+          "anm/pm0922_12_00_fi21_run01.gfbanm"
+        ],
+        "gloop01": [
+          "anm/pm0922_12_00_gloop01.gfbanm"
+        ],
+        "kw20_drowseA01": [
+          "anm/pm0922_12_00_kw20_drowseA01.gfbanm"
+        ],
+        "kw20_drowseB01": [
+          "anm/pm0922_12_00_kw20_drowseB01.gfbanm"
+        ],
+        "kw20_drowseC01": [
+          "anm/pm0922_12_00_kw20_drowseC01.gfbanm"
+        ],
+        "kw30_hate01": [
+          "anm/pm0922_12_00_kw30_hate01.gfbanm"
+        ],
+        "kw32_happyB01": [
+          "anm/pm0922_12_00_kw32_happyB01.gfbanm"
+        ],
+        "kw33_moveC01": [
+          "anm/pm0922_12_00_kw33_moveC01.gfbanm"
+        ],
+        "kw36_mad01": [
+          "anm/pm0922_12_00_kw36_mad01.gfbanm"
+        ],
+        "kw50_eatA01": [
+          "anm/pm0922_12_00_kw50_eatA01.gfbanm"
+        ],
+        "kw50_eatB01": [
+          "anm/pm0922_12_00_kw50_eatB01.gfbanm"
+        ],
+        "kw50_eatC01": [
+          "anm/pm0922_12_00_kw50_eatC01.gfbanm"
+        ],
+        "loop01": [
+          "anm/pm0922_12_00_loop01.gfbanm"
+        ],
+        "mouth01": [
+          "anm/pm0922_12_00_mouth01.gfbanm"
+        ]
+      }
+    },
+    {
+      "id": "pm0922_81_00",
+      "formIndex": 81,
+      "variantIndex": 0,
+      "animations": {
+        "00": [
+          "anm/pm0922_81_00.gfbanm"
+        ],
+        "ba01_landA01": [
+          "anm/pm0922_81_00_ba01_landA01.gfbanm"
+        ],
+        "ba01_landB01": [
+          "anm/pm0922_81_00_ba01_landB01.gfbanm"
+        ],
+        "ba01_landC01": [
+          "anm/pm0922_81_00_ba01_landC01.gfbanm"
+        ],
+        "ba02_roar01": [
+          "anm/pm0922_81_00_ba02_roar01.gfbanm"
+        ],
+        "ba10_waitA01": [
+          "anm/pm0922_81_00_ba10_waitA01.gfbanm"
+        ],
+        "ba10_waitB01": [
+          "anm/pm0922_81_00_ba10_waitB01.gfbanm"
+        ],
+        "ba20_buturi01": [
+          "anm/pm0922_81_00_ba20_buturi01.gfbanm"
+        ],
+        "ba21_tokusyu01": [
+          "anm/pm0922_81_00_ba21_tokusyu01.gfbanm"
+        ],
+        "ba30_damageS01": [
+          "anm/pm0922_81_00_ba30_damageS01.gfbanm"
+        ],
+        "ba41_down01": [
+          "anm/pm0922_81_00_ba41_down01.gfbanm"
+        ],
+        "ba50_wideuse01": [
+          "anm/pm0922_81_00_ba50_wideuse01.gfbanm"
+        ],
+        "eye01": [
+          "anm/pm0922_81_00_eye01.gfbanm"
+        ],
+        "gloop01": [
+          "anm/pm0922_81_00_gloop01.gfbanm"
+        ],
+        "mouth01": [
+          "anm/pm0922_81_00_mouth01.gfbanm"
+        ]
+      }
+    }
+  ]
+}

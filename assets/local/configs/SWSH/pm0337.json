@@ -1,0 +1,67 @@
+{
+  "id": "pm0337",
+  "number": 337,
+  "forms": [
+    {
+      "id": "pm0337_00_00",
+      "formIndex": 0,
+      "variantIndex": 0,
+      "animations": {
+        "pm0337_00": [
+          "anm/pm0337_00.gfbanm"
+        ],
+        "ba01_land01": [
+          "anm/pm0337_00_ba01_land01.gfbanm"
+        ],
+        "ba02_roar01": [
+          "anm/pm0337_00_ba02_roar01.gfbanm"
+        ],
+        "ba10_waitA01": [
+          "anm/pm0337_00_ba10_waitA01.gfbanm"
+        ],
+        "ba20_buturi01": [
+          "anm/pm0337_00_ba20_buturi01.gfbanm"
+        ],
+        "ba30_damageS01": [
+          "anm/pm0337_00_ba30_damageS01.gfbanm"
+        ],
+        "ba41_down01": [
+          "anm/pm0337_00_ba41_down01.gfbanm"
+        ],
+        "eye01": [
+          "anm/pm0337_00_eye01.gfbanm"
+        ],
+        "fi01_wait01": [
+          "anm/pm0337_00_fi01_wait01.gfbanm"
+        ],
+        "fi20_walk01": [
+          "anm/pm0337_00_fi20_walk01.gfbanm"
+        ],
+        "fi21_run01": [
+          "anm/pm0337_00_fi21_run01.gfbanm"
+        ],
+        "gloop01": [
+          "anm/pm0337_00_gloop01.gfbanm"
+        ],
+        "kw01_wait01": [
+          "anm/pm0337_00_kw01_wait01.gfbanm"
+        ],
+        "kw30_hate01": [
+          "anm/pm0337_00_kw30_hate01.gfbanm"
+        ],
+        "kw32_happyB01": [
+          "anm/pm0337_00_kw32_happyB01.gfbanm"
+        ],
+        "kw50_eatA01": [
+          "anm/pm0337_00_kw50_eatA01.gfbanm"
+        ],
+        "kw50_eatB01": [
+          "anm/pm0337_00_kw50_eatB01.gfbanm"
+        ],
+        "kw50_eatC01": [
+          "anm/pm0337_00_kw50_eatC01.gfbanm"
+        ]
+      }
+    }
+  ]
+}

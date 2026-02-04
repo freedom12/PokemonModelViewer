@@ -1,0 +1,127 @@
+{
+  "id": "pm0841",
+  "number": 841,
+  "forms": [
+    {
+      "id": "pm0841_00_00",
+      "formIndex": 0,
+      "variantIndex": 0,
+      "animations": {
+        "pm0841_00": [
+          "anm/pm0841_00.gfbanm"
+        ],
+        "ba01_landA01": [
+          "anm/pm0841_00_ba01_landA01.gfbanm"
+        ],
+        "ba01_landB01": [
+          "anm/pm0841_00_ba01_landB01.gfbanm"
+        ],
+        "ba01_landC01": [
+          "anm/pm0841_00_ba01_landC01.gfbanm"
+        ],
+        "ba02_roar01": [
+          "anm/pm0841_00_ba02_roar01.gfbanm"
+        ],
+        "ba10_waitA01": [
+          "anm/pm0841_00_ba10_waitA01.gfbanm"
+        ],
+        "ba10_waitB01": [
+          "anm/pm0841_00_ba10_waitB01.gfbanm"
+        ],
+        "ba20_buturi01": [
+          "anm/pm0841_00_ba20_buturi01.gfbanm"
+        ],
+        "ba21_tokusyu01": [
+          "anm/pm0841_00_ba21_tokusyu01.gfbanm"
+        ],
+        "ba30_damageS01": [
+          "anm/pm0841_00_ba30_damageS01.gfbanm"
+        ],
+        "ba41_down01": [
+          "anm/pm0841_00_ba41_down01.gfbanm"
+        ],
+        "eye01": [
+          "anm/pm0841_00_eye01.gfbanm"
+        ],
+        "fi20_walk01": [
+          "anm/pm0841_00_fi20_walk01.gfbanm"
+        ],
+        "fi21_run01": [
+          "anm/pm0841_00_fi21_run01.gfbanm"
+        ],
+        "fi31_run_wait01": [
+          "anm/pm0841_00_fi31_run_wait01.gfbanm"
+        ],
+        "fi31_wait_run01": [
+          "anm/pm0841_00_fi31_wait_run01.gfbanm"
+        ],
+        "fi32_run_walk01": [
+          "anm/pm0841_00_fi32_run_walk01.gfbanm"
+        ],
+        "fi32_walk_run01": [
+          "anm/pm0841_00_fi32_walk_run01.gfbanm"
+        ],
+        "gloop01": [
+          "anm/pm0841_00_gloop01.gfbanm"
+        ],
+        "kw20_drowseA01": [
+          "anm/pm0841_00_kw20_drowseA01.gfbanm"
+        ],
+        "kw20_drowseB01": [
+          "anm/pm0841_00_kw20_drowseB01.gfbanm"
+        ],
+        "kw20_drowseC01": [
+          "anm/pm0841_00_kw20_drowseC01.gfbanm"
+        ],
+        "kw21_sleepA01": [
+          "anm/pm0841_00_kw21_sleepA01.gfbanm"
+        ],
+        "kw21_sleepB01": [
+          "anm/pm0841_00_kw21_sleepB01.gfbanm"
+        ],
+        "kw30_hate01": [
+          "anm/pm0841_00_kw30_hate01.gfbanm"
+        ],
+        "kw32_happyA01": [
+          "anm/pm0841_00_kw32_happyA01.gfbanm"
+        ],
+        "kw32_happyB01": [
+          "anm/pm0841_00_kw32_happyB01.gfbanm"
+        ],
+        "kw32_happyC01": [
+          "anm/pm0841_00_kw32_happyC01.gfbanm"
+        ],
+        "kw33_moveA01": [
+          "anm/pm0841_00_kw33_moveA01.gfbanm"
+        ],
+        "kw33_moveC01": [
+          "anm/pm0841_00_kw33_moveC01.gfbanm"
+        ],
+        "kw34_lonely01": [
+          "anm/pm0841_00_kw34_lonely01.gfbanm"
+        ],
+        "kw35_playA01": [
+          "anm/pm0841_00_kw35_playA01.gfbanm"
+        ],
+        "kw36_mad01": [
+          "anm/pm0841_00_kw36_mad01.gfbanm"
+        ],
+        "kw50_eatA01": [
+          "anm/pm0841_00_kw50_eatA01.gfbanm"
+        ],
+        "kw50_eatB01": [
+          "anm/pm0841_00_kw50_eatB01.gfbanm"
+        ],
+        "kw50_eatC01": [
+          "anm/pm0841_00_kw50_eatC01.gfbanm"
+        ],
+        "kw60_touch01": [
+          "anm/pm0841_00_kw60_touch01.gfbanm"
+        ],
+        "mouth01": [
+          "anm/pm0841_00_mouth01.gfbanm"
+        ]
+      }
+    }
+  ]
+}
