@@ -14,6 +14,8 @@ import { createIkCharacterMaterial } from './IkCharacterMaterial';
 import { createInsideEmissionParallaxMaterial } from './InsideEmissionParallaxMaterial';
 import { createStandardMaterial } from './StandardMaterial';
 import { createTransparentMaterial } from './TransparentMaterial';
+import { createFresnelEffectMaterial } from './FresnelEffectMaterial';
+import { createFresnelBlendMaterial } from './FresnelBlendMaterial';
 
 /**
  * 注册所有具体材质创建器到 MaterialFactory
@@ -56,6 +58,12 @@ export function registerAllMaterials(): void {
   // 注册 Transparent 材质（透明效果）
   MaterialFactory.register('Transparent', createTransparentMaterial);
 
+  // 注册 FresnelEffect 材质（菲涅尔效果）
+  MaterialFactory.register('FresnelEffect', createFresnelEffectMaterial);
+
+  // 注册 FresnelBlend 材质（菲涅尔多层混合）
+  MaterialFactory.register('FresnelBlend', createFresnelBlendMaterial);
+
   // 注册 Standard 材质作为 InsideEmissionParallax 的别名（当 Standard 使用相同参数时）
   // 注意：Standard 本身会使用默认 MeshStandardMaterial，这里只注册特殊情况
 }
@@ -72,8 +80,10 @@ export function isAllMaterialsRegistered(): boolean {
     'Unlit',
     'Fire',
     'NonDirectional',
+    'FresnelBlend',
     'IkCharacter',
     'Transparent',
+    'FresnelEffect',
   ];
 
   return expectedShaders.every((shader) => MaterialFactory.isRegistered(shader));

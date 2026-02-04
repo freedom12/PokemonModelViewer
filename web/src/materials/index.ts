@@ -28,6 +28,15 @@ export type { InsideEmissionParallaxParams } from './InsideEmissionParallaxMater
 export { createStandardMaterial } from './StandardMaterial';
 export type { StandardParams } from './StandardMaterial';
 
+export { createTransparentMaterial } from './TransparentMaterial';
+export type { TransparentParams } from './TransparentMaterial';
+
+export { createFresnelEffectMaterial } from './FresnelEffectMaterial';
+export type { FresnelEffectParams } from './FresnelEffectMaterial';
+
+export { createFresnelBlendMaterial } from './FresnelBlendMaterial';
+export type { FresnelBlendParams } from './FresnelBlendMaterial';
+
 // 导出材质注册函数
 export { registerAllMaterials } from './registerMaterials';
 
