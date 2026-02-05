@@ -390,12 +390,18 @@ watch(
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .pokemon-item:hover {
   background-color: #1f2b4a;
   border-color: #0f3460;
   transform: translateY(-1px);
+}
+
+.pokemon-item:active {
+  transform: translateY(0);
 }
 
 .pokemon-item.selected {
@@ -427,6 +433,7 @@ watch(
   display: flex;
   flex-direction: column;
   gap: 4px;
+  min-width: 0;
 }
 
 /* 中间名字 */
@@ -434,6 +441,9 @@ watch(
   font-size: 1rem;
   font-weight: 500;
   color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .pokemon-item.selected .pokemon-name {
@@ -443,6 +453,7 @@ watch(
 /* 形态选择器 */
 .pokemon-form-selector {
   flex-shrink: 0;
+  width: 100%;
 }
 
 .pokemon-form-selector .form-select {
@@ -480,5 +491,111 @@ watch(
 
 .pokemon-list::-webkit-scrollbar-thumb:hover {
   background: #1a4a7a;
+}
+
+/* ===== 移动端响应式优化 ===== */
+@media (max-width: 768px) {
+  .browser-header {
+    padding: 12px;
+  }
+
+  .browser-title {
+    font-size: 1.1rem;
+  }
+
+  .directory-selector {
+    width: 90px;
+  }
+
+  .pokemon-list {
+    padding: 12px;
+    gap: 6px;
+  }
+
+  .pokemon-item {
+    padding: 10px;
+  }
+
+  .pokemon-icon {
+    width: 44px;
+    height: 44px;
+    margin-right: 10px;
+  }
+
+  .pokemon-name {
+    font-size: 0.95rem;
+  }
+
+  .pokemon-form-selector :deep(.el-input__inner) {
+    font-size: 11px;
+  }
+
+  /* 移动端优化加载状态 */
+  .list-loading {
+    padding: 32px;
+    font-size: 14px;
+  }
+
+  .list-loading .el-icon {
+    font-size: 28px;
+  }
+}
+
+/* 小屏手机进一步优化 */
+@media (max-width: 480px) {
+  .browser-header {
+    padding: 10px;
+  }
+
+  .browser-title {
+    font-size: 1rem;
+  }
+
+  .directory-selector {
+    width: 80px;
+  }
+
+  .pokemon-list {
+    padding: 10px;
+    gap: 4px;
+  }
+
+  .pokemon-item {
+    padding: 8px;
+  }
+
+  .pokemon-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+  }
+
+  .pokemon-name {
+    font-size: 0.9rem;
+  }
+
+  .pokemon-form-selector :deep(.el-input__inner) {
+    font-size: 10px;
+    padding: 2px 4px;
+  }
+
+  /* 移动端滚动条更细 */
+  .pokemon-list::-webkit-scrollbar {
+    width: 4px;
+  }
+}
+
+/* 触摸设备优化 */
+@media (hover: none) and (pointer: coarse) {
+  .pokemon-item:hover {
+    background-color: #16213e;
+    border-color: transparent;
+    transform: none;
+  }
+
+  .pokemon-item:active {
+    background-color: #1f2b4a;
+    border-color: #0f3460;
+  }
 }
 </style>

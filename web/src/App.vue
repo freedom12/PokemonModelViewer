@@ -49,10 +49,44 @@ const useRemoteAssets = ref(import.meta.env.VITE_USE_REMOTE_COS === 'true');
 // 视图模式：'browser' 或 'gallery'
 const viewMode = ref<'browser' | 'gallery'>('browser');
 
+// 移动端相关状态
+const isMobileView = ref(false);
+const showMobileMenu = ref(false);
+
 // 是否为开发模式
 let isDevelopment = import.meta.env.DEV;
 // isDevelopment = false;
 // 组件挂载时不需要额外加载数据，PokemonBrowser 会处理
+
+/**
+ * 检查是否为移动端视图
+ */
+function checkMobileView(): void {
+  isMobileView.value = window.innerWidth <= 768;
+  if (!isMobileView.value) {
+    showMobileMenu.value = false;
+  }
+}
+
+/**
+ * 切换移动端菜单
+ */
+function toggleMobileMenu(): void {
+  showMobileMenu.value = !showMobileMenu.value;
+}
+
+/**
+ * 关闭移动端菜单
+ */
+function closeMobileMenu(): void {
+  showMobileMenu.value = false;
+}
+
+// 监听窗口大小变化
+if (typeof window !== 'undefined') {
+  checkMobileView();
+  window.addEventListener('resize', checkMobileView);
+}
 
 /**
  * 处理宝可梦选择事件
@@ -72,6 +106,11 @@ async function handleSelectPokemon(
   selectedForm.value = form;
   // 清除之前的错误
   modelError.value = null;
+  
+  // 移动端选择后自动关闭菜单
+  if (isMobileView.value) {
+    closeMobileMenu();
+  }
 
   const resourceData = await pokemon.loadResourceData(selectedGame.value);
   if (!resourceData) {
@@ -161,8 +200,20 @@ function switchToBrowser(): void {
 
     <!-- 浏览器视图 -->
     <template v-else>
+      <!-- 移动端菜单按钮 -->
+      <button class="mobile-menu-button" @click="toggleMobileMenu" v-if="isMobileView">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- 移动端遮罩 -->
+      <div class="mobile-overlay" :class="{ active: showMobileMenu }" @click="closeMobileMenu"></div>
+
       <!-- 左侧：宝可梦浏览器 -->
-      <aside class="browser-panel">
+      <aside class="browser-panel" :class="{ 'mobile-open': showMobileMenu }">
         <!-- 资源模式切换开关（仅在开发模式显示） -->
         <div class="resource-mode-toggle" v-if="isDevelopment">
           <el-switch
@@ -207,6 +258,56 @@ function switchToBrowser(): void {
   height: 100vh;
   overflow: hidden;
   background-color: #1a1a2e;
+  position: relative;
+}
+
+/* 移动端菜单按钮 */
+.mobile-menu-button {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 1001;
+  width: 44px;
+  height: 44px;
+  background-color: rgba(22, 33, 62, 0.95);
+  border: 1px solid #0f3460;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #e94560;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+.mobile-menu-button:hover {
+  background-color: rgba(15, 52, 96, 0.95);
+  transform: scale(1.05);
+}
+
+.mobile-menu-button:active {
+  transform: scale(0.95);
+}
+
+/* 移动端遮罩 */
+.mobile-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-overlay.active {
+  display: block;
+  opacity: 1;
 }
 
 /* 左侧浏览器面板 - 固定宽度 280px */
@@ -219,6 +320,7 @@ function switchToBrowser(): void {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  transition: transform 0.3s ease;
 }
 
 /* 资源模式切换开关 */
@@ -270,5 +372,60 @@ function switchToBrowser(): void {
   height: 100%;
   overflow: hidden;
   position: relative;
+}
+
+/* ===== 移动端响应式 ===== */
+@media (max-width: 768px) {
+  .browser-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 85vw;
+    max-width: 320px;
+    height: 100vh;
+    z-index: 1000;
+    transform: translateX(-100%);
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .browser-panel.mobile-open {
+    transform: translateX(0);
+  }
+
+  .viewer-panel {
+    width: 100%;
+  }
+
+  .resource-mode-toggle {
+    padding: 8px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .gallery-button-compact {
+    width: 100%;
+  }
+}
+
+/* 小屏手机进一步优化 */
+@media (max-width: 480px) {
+  .mobile-menu-button {
+    top: 8px;
+    left: 8px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .browser-panel {
+    width: 90vw;
+  }
+}
+
+/* 横屏模式优化 */
+@media (max-width: 896px) and (orientation: landscape) {
+  .browser-panel {
+    width: 50vw;
+    max-width: 360px;
+  }
 }
 </style>

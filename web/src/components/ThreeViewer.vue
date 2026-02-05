@@ -348,9 +348,18 @@ async function loadAndDisplayModel(
     const formResourceData = pokemon.getFormResourceData(props.game, form);
     availableAnimations.value = formResourceData?.animations || {};
 
-    // 如果有可用动画，选择第一个
+    // 如果有可用动画，选择第一个并自动播放
     if (Object.keys(availableAnimations.value).length > 0) {
-      selectedAnimation.value = Object.keys(availableAnimations.value)[0];
+      const firstAnimationName = Object.keys(availableAnimations.value)[0];
+      selectedAnimation.value = firstAnimationName;
+      
+      // 自动播放第一个动画
+      try {
+        await loadAndPlayAnimationByName(firstAnimationName);
+        console.log(`[ThreeViewer] 自动播放第一个动画: ${firstAnimationName}`);
+      } catch (err) {
+        console.warn('[ThreeViewer] 自动播放动画失败:', err);
+      }
     }
   } catch (err) {
     // 加载失败时设置为无选择模式

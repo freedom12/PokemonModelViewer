@@ -181,6 +181,7 @@ function handleFitCamera(): void {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  backdrop-filter: blur(5px);
 }
 
 /* 控制区域分组 */
@@ -218,5 +219,138 @@ function handleFitCamera(): void {
 
 .control-panel :deep(.el-checkbox__input.is-checked + .el-checkbox__label) {
   color: #ffffff;
+}
+
+/* ===== 移动端响应式优化 ===== */
+@media (max-width: 768px) {
+  .control-panel {
+    padding: 8px;
+    gap: 6px;
+    font-size: 13px;
+  }
+
+  .control-section {
+    gap: 4px;
+  }
+
+  .control-item {
+    gap: 6px;
+    font-size: 13px;
+  }
+
+  .control-label {
+    font-size: 13px;
+  }
+
+  .control-select {
+    width: 120px;
+  }
+
+  /* 移动端按钮优化 */
+  .control-panel :deep(.el-button) {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+
+  /* 移动端复选框优化 */
+  .control-panel :deep(.el-checkbox__label) {
+    font-size: 13px;
+  }
+}
+
+/* 小屏手机进一步优化 */
+@media (max-width: 480px) {
+  .control-panel {
+    padding: 6px;
+    gap: 4px;
+    font-size: 12px;
+    max-width: 100%;
+  }
+
+  .control-section {
+    gap: 3px;
+  }
+
+  .control-item {
+    gap: 4px;
+    font-size: 12px;
+    flex-wrap: wrap;
+  }
+
+  .control-label {
+    font-size: 12px;
+    margin-right: 4px;
+  }
+
+  .control-select {
+    width: 100px;
+    font-size: 12px;
+  }
+
+  .control-select :deep(.el-input__inner) {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+
+  /* 小屏按钮进一步缩小 */
+  .control-panel :deep(.el-button) {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  .control-panel :deep(.el-button .el-icon) {
+    font-size: 14px;
+  }
+
+  /* 小屏复选框优化 */
+  .control-panel :deep(.el-checkbox__label) {
+    font-size: 12px;
+    padding-left: 6px;
+  }
+
+  .control-panel :deep(.el-checkbox__inner) {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* 触摸设备优化 - 增大触摸区域 */
+@media (hover: none) and (pointer: coarse) {
+  .control-item {
+    min-height: 44px;
+    padding: 4px 0;
+  }
+
+  .control-panel :deep(.el-checkbox) {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .control-panel :deep(.el-button) {
+    min-height: 44px;
+  }
+}
+
+/* 横屏模式优化 */
+@media (max-width: 896px) and (orientation: landscape) {
+  .control-panel {
+    padding: 6px;
+    gap: 4px;
+  }
+
+  .control-section {
+    gap: 3px;
+  }
+
+  .control-item {
+    font-size: 12px;
+    gap: 4px;
+  }
+
+  .control-panel :deep(.el-button) {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
 }
 </style>

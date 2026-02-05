@@ -11,12 +11,14 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html,
@@ -25,10 +27,16 @@ body {
   height: 100%;
   overflow: hidden;
   margin: 0;
+  /* 防止移动端拖动整个页面 */
+  position: fixed;
+  overscroll-behavior: none;
 }
 
 body {
   display: flex;
+  /* 优化移动端触摸滚动 */
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }
 
 #app {
@@ -40,4 +48,18 @@ canvas {
   display: block;
   width: 100%;
   height: 100%;
+  touch-action: none;
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+  :root {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    font-size: 13px;
+  }
 }

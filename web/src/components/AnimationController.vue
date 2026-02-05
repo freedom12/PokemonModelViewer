@@ -209,6 +209,7 @@ function handleLoopChange(value: boolean): void {
   min-width: 280px;
   color: #ffffff;
   font-size: 12px;
+  backdrop-filter: blur(5px);
 }
 
 /* 控制区域分组 */
@@ -277,5 +278,155 @@ function handleLoopChange(value: boolean): void {
 
 .animation-controller :deep(.el-checkbox__input.is-checked + .el-checkbox__label) {
   color: #ffffff;
+}
+
+/* ===== 移动端响应式优化 ===== */
+@media (max-width: 768px) {
+  .animation-controller {
+    min-width: 240px;
+    padding: 12px;
+    gap: 8px;
+    font-size: 11px;
+  }
+
+  .control-section {
+    gap: 5px;
+  }
+
+  .control-item {
+    gap: 6px;
+  }
+
+  .control-label {
+    min-width: 35px;
+    font-size: 11px;
+  }
+
+  .animation-select {
+    min-width: 150px;
+  }
+
+  .animation-buttons {
+    gap: 6px;
+  }
+
+  .animation-buttons :deep(.el-button) {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .info-item {
+    gap: 6px;
+    font-size: 11px;
+  }
+
+  .info-label {
+    min-width: 35px;
+  }
+}
+
+/* 小屏手机进一步优化 */
+@media (max-width: 480px) {
+  .animation-controller {
+    min-width: 200px;
+    max-width: calc(100vw - 40px);
+    padding: 10px;
+    gap: 6px;
+    font-size: 10px;
+  }
+
+  .control-section {
+    gap: 4px;
+  }
+
+  .control-item {
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .control-label {
+    min-width: 30px;
+    font-size: 10px;
+  }
+
+  .animation-select {
+    min-width: 120px;
+    flex: 1;
+  }
+
+  .animation-select :deep(.el-input__inner) {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+
+  .animation-buttons {
+    gap: 4px;
+    width: 100%;
+  }
+
+  .animation-buttons :deep(.el-button) {
+    padding: 5px 8px;
+    font-size: 10px;
+    flex: 1;
+  }
+
+  .animation-buttons :deep(.el-icon) {
+    font-size: 12px;
+  }
+
+  .animation-controller :deep(.el-checkbox__label) {
+    font-size: 10px;
+    padding-left: 6px;
+  }
+
+  .animation-controller :deep(.el-checkbox__inner) {
+    width: 14px;
+    height: 14px;
+  }
+
+  .info-item {
+    gap: 4px;
+    font-size: 10px;
+  }
+
+  .info-label {
+    min-width: 30px;
+  }
+}
+
+/* 触摸设备优化 */
+@media (hover: none) and (pointer: coarse) {
+  .control-item {
+    min-height: 40px;
+    padding: 2px 0;
+  }
+
+  .animation-buttons :deep(.el-button) {
+    min-height: 40px;
+  }
+
+  .animation-controller :deep(.el-checkbox) {
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* 横屏模式优化 */
+@media (max-width: 896px) and (orientation: landscape) {
+  .animation-controller {
+    min-width: 220px;
+    padding: 8px;
+    gap: 4px;
+  }
+
+  .control-section {
+    gap: 3px;
+  }
+
+  .frame-info {
+    padding-top: 6px;
+    margin-top: 3px;
+  }
 }
 </style>

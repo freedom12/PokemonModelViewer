@@ -223,5 +223,143 @@ function formatVector2(vec: THREE.Vector2): string {
 .vertex-detail div {
   font-family: monospace;
   font-size: 11px;
+  word-break: break-all;
+}
+
+/* 滚动条样式 */
+.selection-info-panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.selection-info-panel::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.selection-info-panel::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.selection-info-panel::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* ===== 移动端响应式优化 ===== */
+@media (max-width: 768px) {
+  .selection-info-panel {
+    width: 220px;
+    max-width: calc(100vw - 40px);
+    max-height: 50vh;
+    padding: 12px;
+    font-size: 11px;
+    bottom: 8px;
+    right: 8px;
+  }
+
+  .selection-info-title {
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+
+  .selection-info-content {
+    gap: 6px;
+  }
+
+  .selection-info-item {
+    margin-bottom: 4px;
+    font-size: 11px;
+  }
+
+  .triangle-vertices {
+    gap: 8px;
+    margin-top: 6px;
+  }
+
+  .vertex-info {
+    padding: 6px;
+  }
+
+  .vertex-info h5 {
+    font-size: 11px;
+    margin-bottom: 4px;
+  }
+
+  .vertex-detail div {
+    font-size: 10px;
+  }
+}
+
+/* 小屏手机进一步优化 */
+@media (max-width: 480px) {
+  .selection-info-panel {
+    width: 200px;
+    max-width: calc(100vw - 20px);
+    max-height: 45vh;
+    padding: 10px;
+    font-size: 10px;
+    bottom: 60px;
+    right: 10px;
+    left: 10px;
+    width: auto;
+  }
+
+  .selection-info-title {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+
+  .selection-info-content {
+    gap: 4px;
+  }
+
+  .selection-info-item {
+    margin-bottom: 3px;
+    font-size: 10px;
+  }
+
+  .triangle-vertices {
+    gap: 6px;
+    margin-top: 4px;
+  }
+
+  .vertex-info {
+    padding: 5px;
+  }
+
+  .vertex-info h5 {
+    font-size: 10px;
+    margin-bottom: 3px;
+  }
+
+  .vertex-detail {
+    gap: 2px;
+  }
+
+  .vertex-detail div {
+    font-size: 9px;
+  }
+
+  /* 小屏滚动条更细 */
+  .selection-info-panel::-webkit-scrollbar {
+    width: 4px;
+  }
+}
+
+/* 横屏模式优化 */
+@media (max-width: 896px) and (orientation: landscape) {
+  .selection-info-panel {
+    max-height: 60vh;
+    width: 200px;
+    right: 8px;
+    bottom: 8px;
+    left: auto;
+  }
+}
+
+/* 触摸设备优化，便于滚动 */
+@media (hover: none) and (pointer: coarse) {
+  .selection-info-panel {
+    -webkit-overflow-scrolling: touch;
+  }
 }
 </style>
