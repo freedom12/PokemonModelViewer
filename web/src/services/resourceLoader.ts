@@ -68,7 +68,8 @@ export function resolveResourcePath(path: string, isRemote = false): string {
     if (currentConfig.useRemoteCos) {
       return `${currentConfig.remoteCosPath}/${cleanPath}`;
     } else {
-      return `${currentConfig.assetsRemotePath}/${cleanPath}`;
+      const adjustedPath = cleanPath.replace(/^models\//, '');
+      return `${currentConfig.assetsRemotePath}/${adjustedPath}`;
     }
   }
 }
