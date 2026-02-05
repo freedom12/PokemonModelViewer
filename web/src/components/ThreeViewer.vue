@@ -254,30 +254,8 @@ async function loadAndDisplayModel(
     vertexNormalsGroup = null;
   }
 
-  // 清理骨骼可视化
-  if (skeletonUpdateCallback) {
-    world.removeRenderCallback(skeletonUpdateCallback);
-    skeletonUpdateCallback = null;
-  }
-  if (skeletonGroup) {
-    world.remove(skeletonGroup);
-    if (skeletonJointsInstanced) {
-      skeletonJointsInstanced.geometry.dispose();
-      if (skeletonJointsInstanced.material instanceof THREE.Material) {
-        skeletonJointsInstanced.material.dispose();
-      }
-    }
-    if (skeletonLinesSegments) {
-      skeletonLinesSegments.geometry.dispose();
-      if (skeletonLinesSegments.material instanceof THREE.Material) {
-        skeletonLinesSegments.material.dispose();
-      }
-    }
-    skeletonGroup = null;
-  }
-  skeletonJointsInstanced = null;
-  skeletonLinesSegments = null;
-  skeletonBoneIndexMap = null;
+  // 清理骨骼可视化（使用统一的清理函数）
+  disposeSkeletonVisualization();
   skeletonLineData = null;
 
   // 清理选择高亮
@@ -533,27 +511,25 @@ let skeletonLineData: Array<{
   childIndex: number;
 }> | null = null;
 let skeletonUpdateCallback: ((deltaTime: number) => void) | null = null;
+let currentSkeletonBoneCount = 0; // 当前骨骼可视化的骨骼数量
 
 // 复用的临时对象，避免每帧创建新对象
 const _tempWorldPos = new THREE.Vector3();
 const _tempMatrix = new THREE.Matrix4();
 
 /**
- * 更新骨骼可视化
- * 使用 InstancedMesh 渲染所有关节球体（1个 draw call）
- * 使用 LineSegments 渲染所有骨骼连接线（1个 draw call）
+ * 清理骨骼可视化资源
  */
-function updateSkeletonVisualization(visible: boolean): void {
+function disposeSkeletonVisualization(): void {
   // 移除更新回调
   if (skeletonUpdateCallback && world) {
     world.removeRenderCallback(skeletonUpdateCallback);
     skeletonUpdateCallback = null;
   }
 
-  // 移除现有的骨骼可视化
+  // 移除并释放资源
   if (skeletonGroup && world) {
     world.remove(skeletonGroup);
-    // 释放资源
     if (skeletonJointsInstanced) {
       skeletonJointsInstanced.geometry.dispose();
       if (skeletonJointsInstanced.material instanceof THREE.Material) {
@@ -571,18 +547,70 @@ function updateSkeletonVisualization(visible: boolean): void {
     skeletonLinesSegments = null;
     skeletonBoneIndexMap = null;
     skeletonLineData = null;
+    currentSkeletonBoneCount = 0;
   }
+}
 
-  if (!visible || !currentModel.value || !world) {
+/**
+ * 更新骨骼可视化
+ * 优化策略：
+ * 1. 如果骨骼数量未变化，只切换显示状态，不重建对象
+ * 2. 只有在骨骼数量变化时才重建可视化对象
+ * 3. 使用 InstancedMesh 渲染所有关节球体（1个 draw call）
+ * 4. 使用 LineSegments 渲染所有骨骼连接线（1个 draw call）
+ */
+function updateSkeletonVisualization(visible: boolean): void {
+  if (!currentModel.value || !world) {
+    disposeSkeletonVisualization();
     return;
   }
 
   const threeSkeleton = currentModel.value.threeSkeleton;
   if (!threeSkeleton || threeSkeleton.bones.length === 0) {
+    disposeSkeletonVisualization();
     return;
   }
 
   const boneCount = threeSkeleton.bones.length;
+
+  // 如果不显示骨骼，只是隐藏而不删除对象（可以快速恢复显示）
+  if (!visible) {
+    if (skeletonGroup) {
+      skeletonGroup.visible = false;
+      // 移除更新回调以节省性能
+      if (skeletonUpdateCallback && world) {
+        world.removeRenderCallback(skeletonUpdateCallback);
+        skeletonUpdateCallback = null;
+      }
+    }
+    return;
+  }
+
+  // 检查是否可以复用现有对象（骨骼数量未变化）
+  if (skeletonGroup && currentSkeletonBoneCount === boneCount) {
+    // 复用现有对象，只需显示并更新位置
+    skeletonGroup.visible = true;
+    
+    // 更新骨骼位置到当前状态
+    refreshSkeletonPositions();
+    
+    // 添加更新回调（如果还没有）
+    if (!skeletonUpdateCallback && world) {
+      skeletonUpdateCallback = updateSkeletonPositions;
+      world.addRenderCallback(skeletonUpdateCallback);
+    }
+    return;
+  }
+
+  // 骨骼数量变化，需要重建可视化对象
+  disposeSkeletonVisualization();
+  
+  if (!visible) {
+    return;
+  }
+
+  // 此时 threeSkeleton 和 boneCount 已在前面声明
+  currentSkeletonBoneCount = boneCount;
 
   // 创建新的骨骼组
   skeletonGroup = new THREE.Group();
@@ -595,7 +623,8 @@ function updateSkeletonVisualization(visible: boolean): void {
   }
 
   // 创建共享的球体几何体（所有关节使用同一个几何体）
-  const jointGeometry = new THREE.SphereGeometry(0.02, 6, 6);
+  // 使用低面数球体（4x4）以提升性能
+  const jointGeometry = new THREE.SphereGeometry(0.02, 4, 4);
   const jointMaterial = new THREE.MeshBasicMaterial({
     color: 0xff0000,
     depthTest: false,
@@ -678,10 +707,9 @@ function updateSkeletonVisualization(visible: boolean): void {
 }
 
 /**
- * 更新骨骼可视化位置（动画时调用）
- * 优化版本：直接更新 InstancedMesh 和 LineSegments 的缓冲区
+ * 刷新骨骼位置到当前状态（立即更新一次，不受帧计数器限制）
  */
-function updateSkeletonPositions(): void {
+function refreshSkeletonPositions(): void {
   if (!currentModel.value?.threeSkeleton) {
     return;
   }
@@ -689,37 +717,102 @@ function updateSkeletonPositions(): void {
   const threeSkeleton = currentModel.value.threeSkeleton;
   const boneCount = threeSkeleton.bones.length;
 
-  // 更新关节位置（InstancedMesh）
+  // 缓存所有骨骼的世界位置
+  const boneWorldPositions: THREE.Vector3[] = new Array(boneCount);
+
+  // 更新关节位置（InstancedMesh）并缓存位置
   if (skeletonJointsInstanced) {
     for (let i = 0; i < boneCount; i++) {
       const bone = threeSkeleton.bones[i];
-      bone.getWorldPosition(_tempWorldPos);
-      _tempMatrix.makeTranslation(_tempWorldPos.x, _tempWorldPos.y, _tempWorldPos.z);
+      const worldPos = new THREE.Vector3();
+      bone.getWorldPosition(worldPos);
+      boneWorldPositions[i] = worldPos;
+      
+      _tempMatrix.makeTranslation(worldPos.x, worldPos.y, worldPos.z);
       skeletonJointsInstanced.setMatrixAt(i, _tempMatrix);
     }
     skeletonJointsInstanced.instanceMatrix.needsUpdate = true;
   }
 
-  // 更新连接线位置（LineSegments）
-  if (skeletonLinesSegments && skeletonLineData) {
+  // 更新连接线位置（LineSegments），使用缓存的位置
+  if (skeletonLinesSegments && skeletonLineData && boneWorldPositions.length > 0) {
     const positionAttr = skeletonLinesSegments.geometry.attributes
       .position as THREE.BufferAttribute;
     const positions = positionAttr.array as Float32Array;
 
     for (let i = 0; i < skeletonLineData.length; i++) {
       const { parentIndex, childIndex } = skeletonLineData[i];
-      const parentBone = threeSkeleton.bones[parentIndex];
-      const childBone = threeSkeleton.bones[childIndex];
+      const parentPos = boneWorldPositions[parentIndex];
+      const childPos = boneWorldPositions[childIndex];
 
-      parentBone.getWorldPosition(_tempWorldPos);
-      positions[i * 6 + 0] = _tempWorldPos.x;
-      positions[i * 6 + 1] = _tempWorldPos.y;
-      positions[i * 6 + 2] = _tempWorldPos.z;
+      positions[i * 6 + 0] = parentPos.x;
+      positions[i * 6 + 1] = parentPos.y;
+      positions[i * 6 + 2] = parentPos.z;
 
-      childBone.getWorldPosition(_tempWorldPos);
-      positions[i * 6 + 3] = _tempWorldPos.x;
-      positions[i * 6 + 4] = _tempWorldPos.y;
-      positions[i * 6 + 5] = _tempWorldPos.z;
+      positions[i * 6 + 3] = childPos.x;
+      positions[i * 6 + 4] = childPos.y;
+      positions[i * 6 + 5] = childPos.z;
+    }
+
+    positionAttr.needsUpdate = true;
+  }
+}
+
+/**
+ * 更新骨骼可视化位置（动画时调用）
+ * 优化版本：
+ * 1. 直接更新 InstancedMesh 和 LineSegments 的缓冲区
+ * 2. 只在动画播放时更新
+ * 3. 缓存骨骼位置，避免重复调用 getWorldPosition
+ */
+function updateSkeletonPositions(): void {
+  // 只在动画播放时更新（静止时不需要每帧更新）
+  if (!isAnimationPlaying.value) {
+    return;
+  }
+
+  if (!currentModel.value?.threeSkeleton) {
+    return;
+  }
+
+  const threeSkeleton = currentModel.value.threeSkeleton;
+  const boneCount = threeSkeleton.bones.length;
+
+  // 缓存所有骨骼的世界位置，避免在更新线段时重复计算
+  const boneWorldPositions: THREE.Vector3[] = new Array(boneCount);
+
+  // 更新关节位置（InstancedMesh）并缓存位置
+  if (skeletonJointsInstanced) {
+    for (let i = 0; i < boneCount; i++) {
+      const bone = threeSkeleton.bones[i];
+      const worldPos = new THREE.Vector3();
+      bone.getWorldPosition(worldPos);
+      boneWorldPositions[i] = worldPos;
+      
+      _tempMatrix.makeTranslation(worldPos.x, worldPos.y, worldPos.z);
+      skeletonJointsInstanced.setMatrixAt(i, _tempMatrix);
+    }
+    skeletonJointsInstanced.instanceMatrix.needsUpdate = true;
+  }
+
+  // 更新连接线位置（LineSegments），使用缓存的位置
+  if (skeletonLinesSegments && skeletonLineData && boneWorldPositions.length > 0) {
+    const positionAttr = skeletonLinesSegments.geometry.attributes
+      .position as THREE.BufferAttribute;
+    const positions = positionAttr.array as Float32Array;
+
+    for (let i = 0; i < skeletonLineData.length; i++) {
+      const { parentIndex, childIndex } = skeletonLineData[i];
+      const parentPos = boneWorldPositions[parentIndex];
+      const childPos = boneWorldPositions[childIndex];
+
+      positions[i * 6 + 0] = parentPos.x;
+      positions[i * 6 + 1] = parentPos.y;
+      positions[i * 6 + 2] = parentPos.z;
+
+      positions[i * 6 + 3] = childPos.x;
+      positions[i * 6 + 4] = childPos.y;
+      positions[i * 6 + 5] = childPos.z;
     }
 
     positionAttr.needsUpdate = true;

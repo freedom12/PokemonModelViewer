@@ -59,35 +59,11 @@ export class AnimationMixer {
     { position: THREE.Vector3; quaternion: THREE.Quaternion; scale: THREE.Vector3 }
   > = new Map();
 
-  /** 是否应用动画中的缩放变换 */
-  private applyScale: boolean = true;
-
   /**
    * 创建 AnimationMixer 实例
    */
   constructor() {
     // 初始化为默认状态
-  }
-
-  /**
-   * 设置是否应用动画中的缩放变换
-   *
-   * 当设置为 false 时，动画中的缩放变换将被忽略，
-   * 骨骼将保持 (1, 1, 1) 的缩放值。
-   *
-   * @param apply - 是否应用缩放
-   */
-  setApplyScale(apply: boolean): void {
-    this.applyScale = apply;
-  }
-
-  /**
-   * 获取是否应用动画中的缩放变换
-   *
-   * @returns 是否应用缩放
-   */
-  getApplyScale(): boolean {
-    return this.applyScale;
   }
 
   /**
@@ -366,14 +342,7 @@ export class AnimationMixer {
             transform.rotation.w
           );
 
-          // 检查是否应用缩放（全局设置或单个骨骼设置）
-          const customBone = this.skeleton?.getBoneByName(boneName);
-          if (!this.applyScale || customBone?.isIgnoreScale) {
-            // 忽略缩放，设置为 (1, 1, 1)
-            threeBone.scale.set(1, 1, 1);
-          } else {
-            threeBone.scale.set(transform.scale.x, transform.scale.y, transform.scale.z);
-          }
+          threeBone.scale.set(transform.scale.x, transform.scale.y, transform.scale.z);
         }
       }
     }
@@ -386,7 +355,7 @@ export class AnimationMixer {
           // 获取当前帧的变换
           const transform = track.getTransformAtFrame(this.currentFrame);
 
-          // 应用变换到骨骼（isIgnoreScale 会在 updateWorldMatrix 中处理）
+          // 应用变换到骨骼
           bone.setLocalTransform(transform.position, transform.rotation, transform.scale);
         }
       }

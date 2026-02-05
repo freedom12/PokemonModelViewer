@@ -13,6 +13,7 @@ import { createNonDirectionalMaterial } from './NonDirectionalMaterial';
 import { createIkCharacterMaterial } from './IkCharacterMaterial';
 import { createInsideEmissionParallaxMaterial } from './InsideEmissionParallaxMaterial';
 import { createStandardMaterial } from './StandardMaterial';
+import { createSSSMaterial } from './SSSMaterial';
 import { createTransparentMaterial } from './TransparentMaterial';
 import { createFresnelEffectMaterial } from './FresnelEffectMaterial';
 import { createFresnelBlendMaterial } from './FresnelBlendMaterial';
@@ -36,6 +37,9 @@ import { createFresnelBlendMaterial } from './FresnelBlendMaterial';
 export function registerAllMaterials(): void {
   // 注册 Standard 材质（基础 PBR）
   MaterialFactory.register('Standard', createStandardMaterial);
+
+  // 注册 SSS 材质（次表面散射）
+  MaterialFactory.register('SSS', createSSSMaterial);
 
   // 注册 EyeClearCoat 材质（眼睛多层混合）
   // 支持 'EyeClearCoat' 和 'Eye' 两种 shader 名称
@@ -84,6 +88,7 @@ export function isAllMaterialsRegistered(): boolean {
     'IkCharacter',
     'Transparent',
     'FresnelEffect',
+    'SSS',
   ];
 
   return expectedShaders.every((shader) => MaterialFactory.isRegistered(shader));

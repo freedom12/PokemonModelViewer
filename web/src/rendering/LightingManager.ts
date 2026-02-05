@@ -45,10 +45,10 @@ const LIGHTING_CONFIG = {
     intensity: 1.0,
     // 渐变颜色配置（用于生成环境贴图）
     gradientColors: {
-      top: '#cccccc', // 顶部灰色
-      upperMiddle: '#a0d0e0', // 浅灰蓝色
-      lowerMiddle: '#5a9bb8', // 中等蓝色
-      bottom: '#2f5a7a', // 深灰蓝色
+      top: '#999999', // 顶部灰色（降低亮度）
+      upperMiddle: '#708090', // 浅灰蓝色（降低亮度）
+      lowerMiddle: '#405060', // 中等蓝色（降低亮度）
+      bottom: '#1f3a4a', // 深灰蓝色（降低亮度）
     },
     // 环境贴图尺寸
     size: 512,
@@ -122,6 +122,7 @@ export class LightingManager {
     if (LIGHTING_CONFIG.environment.enabled) {
       this.environmentMap = this.createEnvironmentMap();
       scene.environment = this.environmentMap;
+      this.setEnvironmentIntensity(LIGHTING_CONFIG.environment.intensity);
     } else {
       this.environmentMap = null;
     }

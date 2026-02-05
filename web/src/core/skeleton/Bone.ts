@@ -43,6 +43,11 @@ export class Bone {
   children: Bone[] = [];
 
   /**
+   * 节点类型：Default=0, Chained=1, Floating=2
+   */
+  readonly type: number;
+
+  /**
    * 局部位置
    */
   localPosition: THREE.Vector3;
@@ -56,12 +61,6 @@ export class Bone {
    * 局部缩放
    */
   localScale: THREE.Vector3;
-
-  /**
-   * 是否忽略当前和父级的所有缩放
-   * 当为 true 时，世界矩阵计算会忽略当前骨骼和所有父节点的缩放
-   */
-  isIgnoreScale: boolean;
 
   /**
    * 局部变换矩阵（私有，通过 getter 访问）
@@ -96,6 +95,7 @@ export class Bone {
   constructor(data: BoneData) {
     this.index = data.index;
     this.name = data.name;
+    this.type = data.type;
 
     // 初始化局部变换
     this.localPosition = data.localPosition.clone();
@@ -104,10 +104,6 @@ export class Bone {
     this.localRotation = new THREE.Quaternion().setFromEuler(data.localRotation);
 
     this.localScale = data.localScale.clone();
-
-    // 初始化是否忽略缩放
-    // 默认值根据是否提供来决定：如果提供了明确值则使用，否则默认为false（不忽略缩放）
-    this.isIgnoreScale = data.isIgnoreScale ?? false;
 
     // 初始化矩阵
     this._localMatrix = new THREE.Matrix4();
@@ -170,9 +166,6 @@ export class Bone {
    * 如果有父骨骼，世界矩阵 = 父骨骼世界矩阵 × 局部矩阵
    * 如果没有父骨骼（根骨骼），世界矩阵 = 局部矩阵
    *
-   * 当 isIgnoreScale 为 true 时，会忽略当前骨骼和所有父节点的缩放，
-   * 只使用位置和旋转进行变换。
-   *
    * @param parentWorldMatrix - 可选的父骨骼世界矩阵，如果提供则使用它而不是从 parent 获取
    *
    * @验证需求: 2.4 - 计算骨骼世界变换矩阵
@@ -186,48 +179,26 @@ export class Bone {
     const effectiveParentMatrix = parentWorldMatrix ?? this.parent?.worldMatrix;
 
     if (effectiveParentMatrix) {
-      if (this.isIgnoreScale) {
-        // 忽略缩放：从父矩阵中提取位置和旋转，忽略所有缩放
-        const parentPosition = new THREE.Vector3();
-        const parentRotation = new THREE.Quaternion();
+      // Floating类型（type=2）的骨骼不继承父骨骼的缩放
+      if (this.type === 2) {
+        // 提取父骨骼的位置和旋转（不含缩放）
+        const tempMatrix = new THREE.Matrix4();
+        const parentPos = new THREE.Vector3();
+        const parentQuat = new THREE.Quaternion();
         const parentScale = new THREE.Vector3();
-        effectiveParentMatrix.decompose(parentPosition, parentRotation, parentScale);
-
-        // 构建不含缩放的父矩阵（缩放设为1）
-        const parentMatrixNoScale = new THREE.Matrix4();
-        parentMatrixNoScale.compose(
-          parentPosition,
-          parentRotation,
-          new THREE.Vector3(1, 1, 1)
-        );
-
-        // 构建不含缩放的局部矩阵
-        const localMatrixNoScale = new THREE.Matrix4();
-        localMatrixNoScale.compose(
-          this.localPosition,
-          this.localRotation,
-          new THREE.Vector3(1, 1, 1)
-        );
-
-        // 世界矩阵 = 无缩放父矩阵 × 无缩放局部矩阵
-        this._worldMatrix.multiplyMatrices(parentMatrixNoScale, localMatrixNoScale);
+        
+        effectiveParentMatrix.decompose(parentPos, parentQuat, parentScale);
+        tempMatrix.compose(parentPos, parentQuat, new THREE.Vector3(1, 1, 1));
+        
+        // 世界矩阵 = 父矩阵（不含缩放） × 局部矩阵
+        this._worldMatrix.multiplyMatrices(tempMatrix, this._localMatrix);
       } else {
-        // 正常继承：世界矩阵 = 父矩阵 × 局部矩阵
+        // 默认情况：世界矩阵 = 父矩阵 × 局部矩阵
         this._worldMatrix.multiplyMatrices(effectiveParentMatrix, this._localMatrix);
       }
     } else {
-      // 根骨骼
-      if (this.isIgnoreScale) {
-        // 忽略缩放：只使用位置和旋转
-        this._worldMatrix.compose(
-          this.localPosition,
-          this.localRotation,
-          new THREE.Vector3(1, 1, 1)
-        );
-      } else {
-        // 世界矩阵等于局部矩阵
-        this._worldMatrix.copy(this._localMatrix);
-      }
+      // 根骨骼，世界矩阵等于局部矩阵
+      this._worldMatrix.copy(this._localMatrix);
     }
 
     this._worldMatrixNeedsUpdate = false;
@@ -401,7 +372,7 @@ export class Bone {
       localPosition: this.localPosition.clone(),
       localRotation: new THREE.Euler().setFromQuaternion(this.localRotation),
       localScale: this.localScale.clone(),
-      isIgnoreScale: this.isIgnoreScale,
+      type: this.type,
     };
 
     const cloned = new Bone(boneData);

@@ -28,6 +28,9 @@ export type { InsideEmissionParallaxParams } from './InsideEmissionParallaxMater
 export { createStandardMaterial } from './StandardMaterial';
 export type { StandardParams } from './StandardMaterial';
 
+export { createSSSMaterial } from './SSSMaterial';
+export type { SSSParams } from './SSSMaterial';
+
 export { createTransparentMaterial } from './TransparentMaterial';
 export type { TransparentParams } from './TransparentMaterial';
 

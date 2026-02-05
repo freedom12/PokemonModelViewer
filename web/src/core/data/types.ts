@@ -159,8 +159,7 @@ export interface BoneData {
   readonly localPosition: THREE.Vector3;
   readonly localRotation: THREE.Euler;
   readonly localScale: THREE.Vector3;
-  /** 是否忽略当前和父级的所有缩放，默认为 true */
-  readonly isIgnoreScale?: boolean;
+  readonly type: number; // NodeType: Default=0, Chained=1, Floating=2
 }
 
 // ==================== 动画相关类型 ====================
