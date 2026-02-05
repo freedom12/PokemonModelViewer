@@ -210,7 +210,7 @@ watch(
   <div class="pokemon-browser">
     <!-- 头部区域 -->
     <div class="browser-header">
-      <h2 class="browser-title">宝可梦图鉴</h2>
+      <!-- <h2 class="browser-title">宝可梦模型查看器</h2> -->
       <el-select v-model="currentGame" class="directory-selector" size="small">
         <el-option
           v-for="[value, label] in games"
