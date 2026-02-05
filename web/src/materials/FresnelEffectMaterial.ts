@@ -254,64 +254,64 @@ function applyTextures(
   }
 
   // 法线贴图
-  const normalMap = getTextureByName(data, textureMap, 'NormalMap');
-  if (normalMap) {
-    material.normalMap = normalMap;
-    material.normalScale = new THREE.Vector2(
-      params.normalHeight,
-      -params.normalHeight  // Y轴翻转，因为宝可梦模型使用DirectX格式
-    );
-    applyUVScaleOffset(normalMap, params.uvScaleOffset1);
-  }
+  // const normalMap = getTextureByName(data, textureMap, 'NormalMap');
+  // if (normalMap) {
+  //   material.normalMap = normalMap;
+  //   material.normalScale = new THREE.Vector2(
+  //     params.normalHeight,
+  //     -params.normalHeight  // Y轴翻转，因为宝可梦模型使用DirectX格式
+  //   );
+  //   applyUVScaleOffset(normalMap, params.uvScaleOffset);
+  // }
 
   // 第一层法线贴图
-  const normalMap1 = getTextureByName(data, textureMap, 'NormalMap1');
-  if (normalMap1 && !normalMap) {
-    material.normalMap = normalMap1;
-    material.normalScale = new THREE.Vector2(
-      params.normalHeight1,
-      -params.normalHeight1  // Y轴翻转
-    );
-    applyUVScaleOffset(normalMap1, params.uvScaleOffset1);
-  }
+  // const normalMap1 = getTextureByName(data, textureMap, 'NormalMap1');
+  // if (normalMap1 && !normalMap) {
+  //   material.normalMap = normalMap1;
+  //   material.normalScale = new THREE.Vector2(
+  //     params.normalHeight1,
+  //     -params.normalHeight1  // Y轴翻转
+  //   );
+  //   applyUVScaleOffset(normalMap1, params.uvScaleOffset1);
+  // }
 
   // 环境光遮蔽贴图
-  const aoMap = getTextureByName(data, textureMap, 'AOMap');
-  if (aoMap) {
-    material.aoMap = aoMap;
-    applyUVScaleOffset(aoMap, params.uvScaleOffset);
-  }
+  // const aoMap = getTextureByName(data, textureMap, 'AOMap');
+  // if (aoMap) {
+  //   material.aoMap = aoMap;
+  //   applyUVScaleOffset(aoMap, params.uvScaleOffset);
+  // }
 
   // 自发光颜色贴图
-  const emissionMap = getTextureByName(data, textureMap, 'EmissionColorMap');
-  if (emissionMap) {
-    material.emissiveMap = emissionMap;
-    applyUVScaleOffset(emissionMap, params.uvScaleOffset);
-    emissionMap.colorSpace = THREE.SRGBColorSpace;
-  }
+  // const emissionMap = getTextureByName(data, textureMap, 'EmissionColorMap');
+  // if (emissionMap) {
+  //   material.emissiveMap = emissionMap;
+  //   applyUVScaleOffset(emissionMap, params.uvScaleOffset);
+  //   emissionMap.colorSpace = THREE.SRGBColorSpace;
+  // }
 
   // 菲涅尔遮罩贴图（不直接用作alphaMap，避免意外透明）
-  const fresnelMaskMap = getTextureByName(data, textureMap, 'FresnelMaskMap');
-  if (fresnelMaskMap) {
-    // FresnelMaskMap 通常用于控制菲涅尔效果强度，不直接作为alpha
-    // 如果需要透明效果，应该由材质参数控制
-    // material.alphaMap = fresnelMaskMap; // 移除这行，避免意外透明
-    applyUVScaleOffset(fresnelMaskMap, params.uvScaleOffset);
-  }
+  // const fresnelMaskMap = getTextureByName(data, textureMap, 'FresnelMaskMap');
+  // if (fresnelMaskMap) {
+  //   // FresnelMaskMap 通常用于控制菲涅尔效果强度，不直接作为alpha
+  //   // 如果需要透明效果，应该由材质参数控制
+  //   // material.alphaMap = fresnelMaskMap; // 移除这行，避免意外透明
+  //   applyUVScaleOffset(fresnelMaskMap, params.uvScaleOffset);
+  // }
 
   // 自发光遮罩贴图
-  const emissionMaskMap = getTextureByName(data, textureMap, 'EmissionMaskMap');
-  if (emissionMaskMap && !material.emissiveMap) {
-    // 如果没有 emissiveMap，使用 emissionMaskMap 作为自发光强度控制
-    material.emissiveMap = emissionMaskMap;
-    applyUVScaleOffset(emissionMaskMap, params.uvScaleOffset);
-  }
+  // const emissionMaskMap = getTextureByName(data, textureMap, 'EmissionMaskMap');
+  // if (emissionMaskMap && !material.emissiveMap) {
+  //   // 如果没有 emissiveMap，使用 emissionMaskMap 作为自发光强度控制
+  //   material.emissiveMap = emissionMaskMap;
+  //   applyUVScaleOffset(emissionMaskMap, params.uvScaleOffset);
+  // }
 
   // 局部镜面探针（可用作环境贴图）
-  const localSpecularProbe = getTextureByName(data, textureMap, 'LocalSpecularProbe');
-  if (localSpecularProbe) {
-    // 设置为环境贴图
-    material.envMap = localSpecularProbe;
-    material.envMapIntensity = params.localSpecularProbeIntensity;
-  }
+  // const localSpecularProbe = getTextureByName(data, textureMap, 'LocalSpecularProbe');
+  // if (localSpecularProbe) {
+  //   // 设置为环境贴图
+  //   material.envMap = localSpecularProbe;
+  //   material.envMapIntensity = params.localSpecularProbeIntensity;
+  // }
 }

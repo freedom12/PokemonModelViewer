@@ -13,8 +13,8 @@ export type { MaterialCreator, TextureLoader } from './MaterialFactory';
 // 导出具体材质实现
 export { createEyeClearCoatMaterial } from './EyeClearCoatMaterial';
 
-export { createFireMaterial } from './FireMaterial';
-export type { FireParams } from './FireMaterial';
+export { createUnlitMaterial } from './UnlitMaterial';
+export type { UnlitParams } from './UnlitMaterial';
 
 export { createNonDirectionalMaterial } from './NonDirectionalMaterial';
 export type { NonDirectionalParams } from './NonDirectionalMaterial';

@@ -1,16 +1,16 @@
 /**
- * Fire/Unlit 材质
+ * Unlit 材质
  *
- * Fire 是一种 Unlit 多层材质，使用 LayerMaskMap 的 RGBA 通道作为四层蒙版。
+ * Unlit 是一种不受光照影响的多层材质，使用 LayerMaskMap 的 RGBA 通道作为四层蒙版。
  * 每一层都有独立的颜色，支持位移贴图（但在 fragment 中不处理以保证顶点动画正常）。
- * 主要用于火焰、光效等自发光效果。
+ * 主要用于自发光效果、UI元素等不需要光照的对象。
  *
  * 使用 onBeforeCompile 方式修改 fragment shader，保持 vertex shader 不变（用于蒙皮动画）。
  *
- * @module materials/FireMaterial
+ * @module materials/UnlitMaterial
  *
  * @validates 需求 4.5: 使用 onBeforeCompile 方式修改 shader，保持默认顶点 shader 不变
- * @validates 需求 4.7: 支持 Fire/Unlit 材质（自发光多层混合）
+ * @validates 需求 4.7: 支持 Unlit 材质（自发光多层混合）
  */
 
 import * as THREE from 'three';
@@ -18,9 +18,9 @@ import { MaterialData } from '../core/data';
 import type { MaterialCreator } from './MaterialFactory';
 
 /**
- * Fire 材质参数接口
+ * Unlit 材质参数接口
  */
-export interface FireParams {
+export interface UnlitParams {
   /** 基础颜色 */
   baseColor: THREE.Vector4;
   /** 第一层基础颜色 */
@@ -38,14 +38,14 @@ export interface FireParams {
 }
 
 /**
- * 创建 Fire/Unlit 材质
+ * 创建 Unlit 材质
  *
  * @param data - 材质数据
  * @param basePath - 纹理文件基础路径
  * @param textureMap - 已加载的纹理映射表
- * @returns THREE.MeshBasicMaterial Fire 材质
+ * @returns THREE.MeshBasicMaterial Unlit 材质
  */
-export const createFireMaterial: MaterialCreator = (
+export const createUnlitMaterial: MaterialCreator = (
   data: MaterialData,
   basePath: string,
   textureMap: Map<string, THREE.Texture>
@@ -85,6 +85,16 @@ export const createFireMaterial: MaterialCreator = (
     new THREE.Vector4(1.0, 1.0, 0.0, 0.0)
   );
 
+  // 获取 UV 变换模式：T (仅平移) 或 SRT (缩放+旋转+平移)，默认为 SRT
+  const uvTransformMode = data.findShaderValue('UVTransformMode') || 'SRT';
+  const isTranslateOnly = uvTransformMode.toUpperCase() === 'T';
+
+  // 根据 UVTransformMode 决定是否应用缩放
+  const uvRepeat = isTranslateOnly 
+    ? new THREE.Vector2(1.0, 1.0) 
+    : new THREE.Vector2(uvScaleOffset.x, uvScaleOffset.y);
+  const uvOffset = new THREE.Vector2(uvScaleOffset.z, uvScaleOffset.w);
+
   // 创建 MeshBasicMaterial（Unlit 材质）
   const material = new THREE.MeshBasicMaterial({
     side: THREE.DoubleSide,
@@ -94,22 +104,22 @@ export const createFireMaterial: MaterialCreator = (
   // 设置纹理和 UV 变换
   if (baseColorTexture) {
     material.map = baseColorTexture;
-    baseColorTexture.repeat.set(uvScaleOffset.x, uvScaleOffset.y);
-    baseColorTexture.offset.set(uvScaleOffset.z, uvScaleOffset.w);
+    baseColorTexture.repeat.copy(uvRepeat);
+    baseColorTexture.offset.copy(uvOffset);
   }
   if (layerMaskTexture) {
     material.userData.layerMaskMap = layerMaskTexture;
-    layerMaskTexture.repeat.set(uvScaleOffset.x, uvScaleOffset.y);
-    layerMaskTexture.offset.set(uvScaleOffset.z, uvScaleOffset.w);
+    layerMaskTexture.repeat.copy(uvRepeat);
+    layerMaskTexture.offset.copy(uvOffset);
   }
   if (displacementTexture) {
     material.userData.displacementMap = displacementTexture;
-    displacementTexture.repeat.set(uvScaleOffset.x, uvScaleOffset.y);
-    displacementTexture.offset.set(uvScaleOffset.z, uvScaleOffset.w);
+    displacementTexture.repeat.copy(uvRepeat);
+    displacementTexture.offset.copy(uvOffset);
   }
 
-  // 存储 Fire 参数
-  const fireParams: FireParams = {
+  // 存储 Unlit 参数
+  const unlitParams: UnlitParams = {
     baseColor,
     baseColorLayer1,
     baseColorLayer2,
@@ -118,7 +128,7 @@ export const createFireMaterial: MaterialCreator = (
     emissionIntensity,
     uvScaleOffset,
   };
-  material.userData.fireParams = fireParams;
+  material.userData.unlitParams = unlitParams;
 
   // 使用 onBeforeCompile 修改 fragment shader
   material.onBeforeCompile = (shader) => {
@@ -133,7 +143,28 @@ export const createFireMaterial: MaterialCreator = (
     shader.uniforms.baseColorLayer3 = { value: baseColorLayer3 };
     shader.uniforms.baseColorLayer4 = { value: baseColorLayer4 };
     shader.uniforms.emissionIntensity = { value: emissionIntensity };
+    shader.uniforms.uvTransform = {
+      value: new THREE.Vector4(
+        uvRepeat.x,
+        uvRepeat.y,
+        uvOffset.x,
+        uvOffset.y
+      ),
+    };
 
+    // 确保 vUv 在 vertex shader 中可用
+    if (!shader.vertexShader.includes('varying vec2 vUv;')) {
+      shader.vertexShader = shader.vertexShader.replace(
+        '#include <common>',
+        '#include <common>\nvarying vec2 vUv;'
+      );
+    }
+
+    // 确保 vUv 被赋值 - 在 uv_vertex chunk 之后插入
+    shader.vertexShader = shader.vertexShader.replace(
+      '#include <uv_vertex>',
+      '#include <uv_vertex>\nvUv = uv;'
+    );
     // uniform 声明
     const uniformDeclarations = `
       uniform sampler2D layerMaskMap;
@@ -146,6 +177,7 @@ export const createFireMaterial: MaterialCreator = (
       uniform vec4 baseColorLayer3;
       uniform vec4 baseColorLayer4;
       uniform float emissionIntensity;
+      uniform vec4 uvTransform;
     `;
 
     // 在 fragment shader 中添加 uniform 声明
@@ -197,12 +229,13 @@ export const createFireMaterial: MaterialCreator = (
       const diffuseColorMatch = mainFunctionBody.match(diffuseColorAssignmentRegex);
 
       if (diffuseColorMatch) {
-        // Fire 多层混合逻辑
-        const fireLogic = `
-          // Fire 多层混合逻辑
+        // Unlit 多层混合逻辑
+        const unlitLogic = `
+          vec2 transformedUv = vUv * uvTransform.xy + uvTransform.zw;
+          // Unlit 多层混合逻辑
           vec4 layerMask = vec4(1.0, 0.0, 0.0, 0.0);
           if (hasLayerMaskMap > 0.5) {
-            layerMask = texture2D(layerMaskMap, vUv);
+            layerMask = texture2D(layerMaskMap, transformedUv);
           }
           float weight1 = layerMask.r;
           float weight2 = layerMask.g;
@@ -217,7 +250,7 @@ export const createFireMaterial: MaterialCreator = (
           // 应用基础颜色纹理
           vec4 baseColorTex = vec4(1.0);
           if (hasBaseColorMap > 0.5) {
-            baseColorTex = texture2D(baseColorMap, vUv);
+            baseColorTex = texture2D(baseColorMap, transformedUv);
           }
           vec4 finalColor = baseColor * baseColorTex * layerColor;
 
@@ -229,7 +262,7 @@ export const createFireMaterial: MaterialCreator = (
 
         mainFunctionBody = mainFunctionBody.replace(
           diffuseColorMatch[0],
-          diffuseColorMatch[0] + fireLogic
+          diffuseColorMatch[0] + unlitLogic
         );
       }
 

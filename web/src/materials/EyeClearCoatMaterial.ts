@@ -133,6 +133,23 @@ export const createEyeClearCoatMaterial: MaterialCreator = (
     new THREE.Vector4(1.0, 1.0, 0.0, 0.0)
   );
 
+  // 获取 UV 变换模式：T (仅平移) 或 SRT (缩放+旋转+平移)，默认为 SRT
+  const uvTransformMode = data.findShaderValue('UVTransformMode') || 'SRT';
+  const isTranslateOnly = uvTransformMode.toUpperCase() === 'T';
+
+  // 根据 UVTransformMode 决定是否应用缩放
+  // T 模式：只应用偏移，缩放设为 1.0
+  // SRT 模式：应用完整的缩放和偏移
+  const uvRepeat = isTranslateOnly 
+    ? new THREE.Vector2(1.0, 1.0) 
+    : new THREE.Vector2(uvScaleOffset.x, uvScaleOffset.y);
+  const uvOffset = new THREE.Vector2(uvScaleOffset.z, uvScaleOffset.w);
+  
+  const uvRepeatNormal = isTranslateOnly
+    ? new THREE.Vector2(1.0, 1.0)
+    : new THREE.Vector2(uvScaleOffsetNormal.x, uvScaleOffsetNormal.y);
+  const uvOffsetNormal = new THREE.Vector2(uvScaleOffsetNormal.z, uvScaleOffsetNormal.w);
+
   // 创建 MeshStandardMaterial
   const material = new THREE.MeshStandardMaterial({
     side: THREE.DoubleSide,
@@ -143,28 +160,28 @@ export const createEyeClearCoatMaterial: MaterialCreator = (
   if (baseColorMapTexture) {
     material.map = baseColorMapTexture;
     material.userData.baseColorMap = baseColorMapTexture;
-    baseColorMapTexture.repeat.set(uvScaleOffset.x, uvScaleOffset.y);
-    baseColorMapTexture.offset.set(uvScaleOffset.z, uvScaleOffset.w);
+    baseColorMapTexture.repeat.copy(uvRepeat);
+    baseColorMapTexture.offset.copy(uvOffset);
   }
   if (layerMaskTexture) {
     material.userData.layerMaskMap = layerMaskTexture;
-    layerMaskTexture.repeat.set(uvScaleOffset.x, uvScaleOffset.y);
-    layerMaskTexture.offset.set(uvScaleOffset.z, uvScaleOffset.w);
+    layerMaskTexture.repeat.copy(uvRepeat);
+    layerMaskTexture.offset.copy(uvOffset);
   }
   if (highlightMaskTexture) {
     material.userData.highlightMaskMap = highlightMaskTexture;
-    highlightMaskTexture.repeat.set(uvScaleOffset.x, uvScaleOffset.y);
-    highlightMaskTexture.offset.set(uvScaleOffset.z, uvScaleOffset.w);
+    highlightMaskTexture.repeat.copy(uvRepeat);
+    highlightMaskTexture.offset.copy(uvOffset);
   }
   if (normalTexture) {
     material.normalMap = normalTexture;
-    normalTexture.repeat.set(uvScaleOffsetNormal.x, uvScaleOffsetNormal.y);
-    normalTexture.offset.set(uvScaleOffsetNormal.z, uvScaleOffsetNormal.w);
+    normalTexture.repeat.copy(uvRepeatNormal);
+    normalTexture.offset.copy(uvOffsetNormal);
   }
   if (normalTexture1) {
     material.userData.normalMap1 = normalTexture1;
-    normalTexture1.repeat.set(uvScaleOffsetNormal.x, uvScaleOffsetNormal.y);
-    normalTexture1.offset.set(uvScaleOffsetNormal.z, uvScaleOffsetNormal.w);
+    normalTexture1.repeat.copy(uvRepeatNormal);
+    normalTexture1.offset.copy(uvOffsetNormal);
   }
 
   // 使用 onBeforeCompile 修改 fragment shader
@@ -212,21 +229,21 @@ export const createEyeClearCoatMaterial: MaterialCreator = (
     shader.uniforms.layerMaskScale2 = { value: layerMaskScale2 };
     shader.uniforms.layerMaskScale3 = { value: layerMaskScale3 };
     shader.uniforms.layerMaskScale4 = { value: layerMaskScale4 };
-    // 添加 UV 变换 uniform
+    // 添加 UV 变换 uniform（使用已根据 UVTransformMode 处理的值）
     shader.uniforms.uvTransform = {
       value: new THREE.Vector4(
-        uvScaleOffset.x,
-        uvScaleOffset.y,
-        uvScaleOffset.z,
-        uvScaleOffset.w
+        uvRepeat.x,
+        uvRepeat.y,
+        uvOffset.x,
+        uvOffset.y
       ),
     };
     shader.uniforms.uvTransformNormal = {
       value: new THREE.Vector4(
-        uvScaleOffsetNormal.x,
-        uvScaleOffsetNormal.y,
-        uvScaleOffsetNormal.z,
-        uvScaleOffsetNormal.w
+        uvRepeatNormal.x,
+        uvRepeatNormal.y,
+        uvOffsetNormal.x,
+        uvOffsetNormal.y
       ),
     };
 
@@ -300,38 +317,82 @@ export const createEyeClearCoatMaterial: MaterialCreator = (
 
     // EyeClearCoat 多层混合逻辑 - 在 map_fragment 之后插入
     const eyeClearCoatLogic = `
-      // EyeClearCoat 多层混合逻辑
-      // 应用 UV 变换：uvTransform.xy = scale, uvTransform.zw = offset
+      // ============ EyeClearCoat 层叠逻辑 ============
+      // 应用 UV 变换
       vec2 transformedUv = vUv * uvTransform.xy + uvTransform.zw;
+      // 1. 采样 LayerMask (RGBA 四个通道)
       vec4 layerMask = texture(layerMaskMap, transformedUv);
-      // 明度乘以2
-      layerMask *= 2.0;
+      
+      // 2. 应用 LayerMaskScale 并 clamp
+      float s1 = (layerMaskScale1 == 0.0) ? 1.0 : layerMaskScale1;
+      float s2 = (layerMaskScale2 == 0.0) ? 1.0 : layerMaskScale2;
+      float s3 = (layerMaskScale3 == 0.0) ? 1.0 : layerMaskScale3;
+      float s4 = (layerMaskScale4 == 0.0) ? 1.0 : layerMaskScale4;
+      
+      layerMask.r *= s1;
+      layerMask.g *= s2;
+      layerMask.b *= s3;
+      layerMask.a *= s4;
       layerMask = clamp(layerMask, 0.0, 1.0);
-
-
-      float weight1 = layerMask.r * layerMaskScale1;
-      float weight2 = layerMask.g * layerMaskScale2;
-      float weight3 = layerMask.b * layerMaskScale3;
-      float weight4 = layerMask.a * layerMaskScale4;
-
-      // 从 BaseColorMap 纹理采样基础颜色，如果没有则使用 baseColor 参数
-      vec4 albedo = baseColor;
+      
+      // 3. 采样 BaseColorMap 作为基础纹理
+      vec3 baseSample = vec3(1.0);
       if (useBaseColorMap) {
-        albedo = texture(baseColorMap, transformedUv) * baseColor;
+        baseSample = texture(baseColorMap, transformedUv).rgb;
       }
-
-      albedo = albedo + emissionColor * emissionIntensity;
-      albedo = (baseColorLayer1 + emissionColorLayer1 * emissionIntensityLayer1) * weight1 + albedo * (1.0 - weight1);
-      albedo = (baseColorLayer2 + emissionColorLayer2 * emissionIntensityLayer2) * weight2 + albedo * (1.0 - weight2);
-      albedo = (baseColorLayer3 + emissionColorLayer3 * emissionIntensityLayer3) * weight3 + albedo * (1.0 - weight3);
-      albedo = (baseColorLayer4 + emissionColorLayer4 * emissionIntensityLayer4) * weight4 + albedo * (1.0 - weight4);
-
-      vec4 highlightMask = vec4(0.0);
+      
+      // 4. 基础颜色混合逻辑 (参考 shader 的层叠算法)
+      vec3 finalBaseColor = baseSample * baseColor.rgb;
+      
+      // 计算基础层权重 (1.0 - 所有层mask的总和)
+      float weightBase = clamp(1.0 - dot(vec4(1.0), layerMask), 0.0, 1.0);
+      vec3 blendedColor = finalBaseColor * weightBase;
+      
+      // Layer1 (R 通道)
+      vec3 layer1Color = baseSample * baseColorLayer1.rgb;
+      blendedColor = mix(blendedColor, layer1Color, layerMask.r);
+      weightBase = mix(weightBase, 1.0, layerMask.r);
+      
+      // Layer2 (G 通道)
+      vec3 layer2Color = baseSample * baseColorLayer2.rgb;
+      blendedColor = mix(blendedColor, layer2Color, layerMask.g);
+      weightBase = mix(weightBase, 1.0, layerMask.g);
+      
+      // Layer3 (B 通道)
+      vec3 layer3Color = baseSample * baseColorLayer3.rgb;
+      blendedColor = mix(blendedColor, layer3Color, layerMask.b);
+      weightBase = mix(weightBase, 1.0, layerMask.b);
+      
+      // Layer4 (A 通道)
+      vec3 layer4Color = baseSample * baseColorLayer4.rgb;
+      blendedColor = mix(blendedColor, layer4Color, layerMask.a);
+      weightBase = mix(weightBase, 1.0, layerMask.a);
+      
+      // 归一化 (防止除零)
+      float invWeight = 1.0 / max(weightBase, 0.00001);
+      finalBaseColor = blendedColor * invWeight;
+      
+      // 5. Emission 层叠逻辑
+      vec3 finalEmission = emissionColor.rgb * emissionIntensity;
+      
+      // 同样按照层混合 emission
+      vec3 blendedEmission = finalEmission * (1.0 - dot(vec4(1.0), layerMask));
+      blendedEmission = mix(blendedEmission, emissionColorLayer1.rgb * emissionIntensityLayer1, layerMask.r);
+      blendedEmission = mix(blendedEmission, emissionColorLayer2.rgb * emissionIntensityLayer2, layerMask.g);
+      blendedEmission = mix(blendedEmission, emissionColorLayer3.rgb * emissionIntensityLayer3, layerMask.b);
+      blendedEmission = mix(blendedEmission, emissionColorLayer4.rgb * emissionIntensityLayer4, layerMask.a);
+      
+      // 6. 高光遮罩混合
+      vec3 highlightColor = vec3(0.0);
       if (useHighlightMask) {
-        highlightMask = texture2D(highlightMaskMap, transformedUv);
+        vec4 highlightMask = texture2D(highlightMaskMap, transformedUv);
+        // 高光遮罩叠加到最终颜色
+        highlightColor = highlightMask.rgb * highlightMask.a;
       }
-
-      diffuseColor.rgb = albedo.rgb + highlightMask.rgb;
+      
+      // 7. 最终输出: baseColor + emission + highlight
+      diffuseColor.rgb = finalBaseColor + blendedEmission + highlightColor;
+      diffuseColor.a = 1.0;
     `;
 
     // 在 #include <map_fragment> 之后插入自定义逻辑

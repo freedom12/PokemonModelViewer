@@ -8,7 +8,7 @@
 
 import { MaterialFactory } from './MaterialFactory';
 import { createEyeClearCoatMaterial } from './EyeClearCoatMaterial';
-import { createFireMaterial } from './FireMaterial';
+import { createUnlitMaterial } from './UnlitMaterial';
 import { createNonDirectionalMaterial } from './NonDirectionalMaterial';
 import { createIkCharacterMaterial } from './IkCharacterMaterial';
 import { createInsideEmissionParallaxMaterial } from './InsideEmissionParallaxMaterial';
@@ -47,8 +47,9 @@ export function registerAllMaterials(): void {
   MaterialFactory.register('Eye', createEyeClearCoatMaterial);
 
   // 注册 Fire/Unlit 材质（自发光多层混合）
-  MaterialFactory.register('Unlit', createFireMaterial);
-  MaterialFactory.register('Fire', createFireMaterial);
+  // Unlit 和 Fire 使用相同的实现
+  MaterialFactory.register('Unlit', createUnlitMaterial);
+  MaterialFactory.register('Fire', createUnlitMaterial);
 
   // 注册 NonDirectional 材质（烟雾效果）
   MaterialFactory.register('NonDirectional', createNonDirectionalMaterial);
