@@ -145,6 +145,21 @@ export class Bone {
   }
 
   /**
+   * 获取有效的局部缩放
+   *
+   * @returns 有效的局部缩放向量
+   */
+  getEffectiveLocalScale(): THREE.Vector3 {
+    if (this.type === 0) {
+      return this.localScale.clone();
+    } else if (this.type === 1) {
+      return this.localScale.clone();
+    } else {//if (this.type === 2) {
+      return new THREE.Vector3(1, 1, 1);
+    }
+  }
+
+  /**
    * 更新局部变换矩阵
    *
    * 根据当前的 localPosition、localRotation、localScale 计算局部矩阵。

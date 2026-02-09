@@ -54,6 +54,7 @@ export const createEyeClearCoatMaterial: MaterialCreator = (
 
   const normalTexture = getTextureByName(data, textureMap, 'NormalMap');
   const normalTexture1 = getTextureByName(data, textureMap, 'NormalMap1');
+  const lowerEyelidColorMap = getTextureByName(data, textureMap, 'LowerEyelidColorMap');
 
   // 获取各层的参数
   const baseColor = data.getColorParam(
@@ -183,6 +184,11 @@ export const createEyeClearCoatMaterial: MaterialCreator = (
     normalTexture1.repeat.copy(uvRepeatNormal);
     normalTexture1.offset.copy(uvOffsetNormal);
   }
+  if (lowerEyelidColorMap) {
+    material.userData.lowerEyelidColorMap = lowerEyelidColorMap;
+    lowerEyelidColorMap.repeat.copy(uvRepeat);
+    lowerEyelidColorMap.offset.copy(uvOffset);
+  }
 
   // 使用 onBeforeCompile 修改 fragment shader
   material.onBeforeCompile = (shader) => {
@@ -193,6 +199,8 @@ export const createEyeClearCoatMaterial: MaterialCreator = (
     shader.uniforms.highlightMaskMap = { value: highlightMaskTexture || null };
     shader.uniforms.useHighlightMask = { value: !!highlightMaskTexture };
     shader.uniforms.normalMap1 = { value: normalTexture1 || null };
+    shader.uniforms.lowerEyelidColorMap = { value: lowerEyelidColorMap || null };
+    shader.uniforms.useLowerEyelidColorMap = { value: !!lowerEyelidColorMap };
     shader.uniforms.baseColor = { value: baseColor };
     shader.uniforms.baseColorLayer1 = { value: baseColorLayer1 };
     shader.uniforms.baseColorLayer2 = { value: baseColorLayer2 };
@@ -269,6 +277,8 @@ export const createEyeClearCoatMaterial: MaterialCreator = (
       uniform sampler2D highlightMaskMap;
       uniform bool useHighlightMask;
       uniform sampler2D normalMap1;
+      uniform sampler2D lowerEyelidColorMap;
+      uniform bool useLowerEyelidColorMap;
       uniform vec4 baseColor;
       uniform vec4 baseColorLayer1;
       uniform vec4 baseColorLayer2;
@@ -337,9 +347,9 @@ export const createEyeClearCoatMaterial: MaterialCreator = (
       
       // 3. 采样 BaseColorMap 作为基础纹理
       vec3 baseSample = vec3(1.0);
-      if (useBaseColorMap) {
-        baseSample = texture(baseColorMap, transformedUv).rgb;
-      }
+      // if (useBaseColorMap) {
+      //   baseSample = texture(baseColorMap, transformedUv).rgb;
+      // }
       
       // 4. 基础颜色混合逻辑 (参考 shader 的层叠算法)
       vec3 finalBaseColor = baseSample * baseColor.rgb;
@@ -390,9 +400,16 @@ export const createEyeClearCoatMaterial: MaterialCreator = (
         highlightColor = highlightMask.rgb * highlightMask.a;
       }
       
+
+
       // 7. 最终输出: baseColor + emission + highlight
       diffuseColor.rgb = finalBaseColor + blendedEmission + highlightColor;
       diffuseColor.a = 1.0;
+
+      if (useLowerEyelidColorMap) {
+        vec4 lowerEyelidColor = texture2D(lowerEyelidColorMap, transformedUv);
+        diffuseColor.rgb = mix(diffuseColor.rgb, lowerEyelidColor.rgb, lowerEyelidColor.a);
+      }
     `;
 
     // 在 #include <map_fragment> 之后插入自定义逻辑

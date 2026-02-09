@@ -192,6 +192,52 @@ export class Skeleton {
   }
 
   /**
+   * 创建单个 THREE.Bone 对象并设置局部变换
+   *
+   * @param bone - 自定义 Bone 对象
+   * @returns THREE.Bone 对象
+   * @private
+   */
+  private createThreeBone(bone: Bone): THREE.Bone {
+    const threeBone = new THREE.Bone();
+    threeBone.name = bone.name;
+
+    // 设置局部变换（使用有效缩放）
+    threeBone.position.copy(bone.localPosition);
+    threeBone.quaternion.copy(bone.localRotation);
+    threeBone.scale.copy(bone.getEffectiveLocalScale());
+
+    return threeBone;
+  }
+
+  /**
+   * 创建所有 THREE.Bone 对象并建立父子关系
+   *
+   * @returns THREE.Bone 数组
+   * @private
+   */
+  private createThreeBones(): THREE.Bone[] {
+    // 创建所有 THREE.Bone 对象
+    const threeBones: THREE.Bone[] = [];
+    for (const bone of this.bones) {
+      threeBones.push(this.createThreeBone(bone));
+    }
+
+    // 建立父子关系
+    for (let i = 0; i < this.bones.length; i++) {
+      const bone = this.bones[i];
+      if (bone.parent) {
+        const parentIndex = bone.parent.index;
+        if (parentIndex >= 0 && parentIndex < threeBones.length) {
+          threeBones[parentIndex].add(threeBones[i]);
+        }
+      }
+    }
+
+    return threeBones;
+  }
+
+  /**
    * 将 Skeleton 转换为 Three.js Skeleton 对象
    *
    * 创建 Three.js 骨骼层次结构，包括：
@@ -205,30 +251,8 @@ export class Skeleton {
    * @验证需求: 2.8 - 从 SkeletonData 创建 Three.js Skeleton 对象
    */
   toThreeSkeleton(): THREE.Skeleton {
-    // 创建所有 THREE.Bone 对象
-    const threeBones: THREE.Bone[] = [];
-
-    for (const bone of this.bones) {
-      const threeBone = new THREE.Bone();
-      threeBone.name = bone.name;
-
-      // 设置局部变换
-      threeBone.position.copy(bone.localPosition);
-      threeBone.quaternion.copy(bone.localRotation);
-      threeBone.scale.copy(bone.localScale);
-      threeBones.push(threeBone);
-    }
-
-    // 建立父子关系
-    for (let i = 0; i < this.bones.length; i++) {
-      const bone = this.bones[i];
-      if (bone.parent) {
-        const parentIndex = bone.parent.index;
-        if (parentIndex >= 0 && parentIndex < threeBones.length) {
-          threeBones[parentIndex].add(threeBones[i]);
-        }
-      }
-    }
+    // 创建所有骨骼并建立父子关系
+    const threeBones = this.createThreeBones();
 
     // 更新所有根骨骼的世界矩阵
     for (const rootBone of this.rootBones) {
@@ -262,33 +286,16 @@ export class Skeleton {
     const group = new THREE.Group();
     group.name = 'SkeletonBoneGroup';
 
-    // 创建所有 THREE.Bone 对象
-    const threeBones: THREE.Bone[] = [];
+    // 创建所有骨骼并建立父子关系
+    const threeBones = this.createThreeBones();
 
+    // 添加根骨骼到 group
     for (const bone of this.bones) {
-      const threeBone = new THREE.Bone();
-      threeBone.name = bone.name;
-
-      // 设置局部变换
-      threeBone.position.copy(bone.localPosition);
-      threeBone.quaternion.copy(bone.localRotation);
-      threeBone.scale.copy(bone.localScale);
-
-      threeBones.push(threeBone);
-    }
-
-    // 建立父子关系并添加根骨骼到 group
-    for (let i = 0; i < this.bones.length; i++) {
-      const bone = this.bones[i];
-
-      if (bone.parent) {
-        const parentIndex = bone.parent.index;
-        if (parentIndex >= 0 && parentIndex < threeBones.length) {
-          threeBones[parentIndex].add(threeBones[i]);
+      if (!bone.parent) {
+        const rootIndex = bone.index;
+        if (rootIndex >= 0 && rootIndex < threeBones.length) {
+          group.add(threeBones[rootIndex]);
         }
-      } else {
-        // 根骨骼添加到 group
-        group.add(threeBones[i]);
       }
     }
 
@@ -359,5 +366,30 @@ export class Skeleton {
    */
   hasBone(name: string): boolean {
     return this.boneMap.has(name);
+  }
+
+  /**
+   * 将自定义骨骼的局部变换同步到 Three.js Skeleton
+   *
+   * 从自定义 Bone 复制局部变换到对应的 THREE.Bone。
+   * 骨骼类型的缩放处理由 Bone.getEffectiveLocalScale() 统一处理。
+   *
+   * @param threeSkeleton - Three.js Skeleton 对象
+   */
+  syncToThreeSkeleton(threeSkeleton: THREE.Skeleton): void {
+    const threeBones = threeSkeleton.bones;
+
+    // 按索引同步每个骨骼的局部变换
+    for (let i = 0; i < this.bones.length && i < threeBones.length; i++) {
+      const bone = this.bones[i];
+      const threeBone = threeBones[i];
+
+      // 复制局部位置和旋转
+      threeBone.position.copy(bone.localPosition);
+      threeBone.quaternion.copy(bone.localRotation);
+
+      // 复制有效的局部缩放（根据骨骼类型自动调整）
+      threeBone.scale.copy(bone.getEffectiveLocalScale());
+    }
   }
 }

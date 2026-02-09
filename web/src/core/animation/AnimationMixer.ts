@@ -313,55 +313,34 @@ export class AnimationMixer {
   /**
    * 更新骨骼变换
    *
-   * 遍历所有骨骼轨道，获取当前帧的变换并应用到骨骼上
-   * 优先更新 THREE.Skeleton（用于实际渲染），同时也更新自定义 Skeleton
+   * 遍历所有骨骼轨道，获取当前帧的变换并应用到自定义 Skeleton，
+   * 然后通过 Skeleton 同步到 THREE.Skeleton 用于渲染。
+   * 骨骼类型的处理逻辑（如 Chained 类型不继承缩放）在 Bone.updateWorldMatrix 中完成。
    *
    * @验证需求: 3.7 - 骨骼变换应用
    */
   private updateBoneTransforms(): void {
-    if (!this.currentClip) return;
+    if (!this.currentClip || !this.skeleton) return;
 
-    // 优先更新 THREE.Skeleton（用于实际渲染）
-    if (this.threeSkeleton) {
-      for (const [boneName, track] of this.currentClip.boneTracks) {
-        const threeBone = this.boneMap.get(boneName);
-        if (threeBone) {
-          // 获取当前帧的变换
-          const transform = track.getTransformAtFrame(this.currentFrame);
+    // 1. 更新自定义 Skeleton 的所有骨骼
+    for (const [boneName, track] of this.currentClip.boneTracks) {
+      const bone = this.skeleton.getBoneByName(boneName);
+      if (bone) {
+        // 获取当前帧的变换
+        const transform = track.getTransformAtFrame(this.currentFrame);
 
-          // 直接设置 THREE.Bone 的局部变换
-          threeBone.position.set(
-            transform.position.x,
-            transform.position.y,
-            transform.position.z
-          );
-          threeBone.quaternion.set(
-            transform.rotation.x,
-            transform.rotation.y,
-            transform.rotation.z,
-            transform.rotation.w
-          );
-
-          threeBone.scale.set(transform.scale.x, transform.scale.y, transform.scale.z);
-        }
+        // 应用变换到骨骼（直接设置局部变换）
+        bone.setLocalTransform(transform.position, transform.rotation, transform.scale);
       }
     }
 
-    // 同时更新自定义 Skeleton（如果存在）
-    if (this.skeleton) {
-      for (const [boneName, track] of this.currentClip.boneTracks) {
-        const bone = this.skeleton.getBoneByName(boneName);
-        if (bone) {
-          // 获取当前帧的变换
-          const transform = track.getTransformAtFrame(this.currentFrame);
+    // 2. 批量更新所有骨骼的世界矩阵
+    // Bone.updateWorldMatrix 会根据骨骼类型正确处理缩放继承
+    this.skeleton.updateWorldMatrices();
 
-          // 应用变换到骨骼
-          bone.setLocalTransform(transform.position, transform.rotation, transform.scale);
-        }
-      }
-
-      // 批量更新所有骨骼的世界矩阵
-      this.skeleton.updateWorldMatrices();
+    // 3. 同步到 THREE.Skeleton 用于实际渲染
+    if (this.threeSkeleton) {
+      this.skeleton.syncToThreeSkeleton(this.threeSkeleton);
     }
   }
 
