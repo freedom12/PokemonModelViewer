@@ -826,6 +826,7 @@ function handleGridHelperChange(value: boolean): void {
   showGridHelper.value = value;
   if (world) {
     world.setGridVisible(value);
+    world.setAxesVisible(value);
   }
 }
 
