@@ -2,7 +2,7 @@
 /**
  * gen-parsers.js - 生成所有 FlatBuffers schema 的 TypeScript 解析器
  *
- * 用法: npm run gen-parsers
+ * 用法: pnpm run gen-parsers
  */
 
 const { execSync } = require("child_process");

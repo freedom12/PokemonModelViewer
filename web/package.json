@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently -n \"assets,vite\" -c \"blue,green\" \"npm run serve:assets\" \"vite --port 6003\"",
+    "dev": "concurrently -n \"assets,vite\" -c \"blue,green\" \"pnpm run serve:assets\" \"vite --port 6003\"",
     "serve:assets": "http-server ../assets -p 5003 --cors -c 3600 -d false",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",

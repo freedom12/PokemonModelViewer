@@ -33,17 +33,17 @@
 
 ### 安装依赖
 ```bash
-npm install
+pnpm install
 ```
 
 ### 启动开发服务器
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 ### 构建生产版本
 ```bash
-npm run build
+pnpm run build
 ```
 
 ## 项目结构

@@ -387,7 +387,7 @@ if (require.main === module) {
     generateIndex();
   } catch (error) {
     console.error("❌ 生成失败:", error.message);
-    console.error("\n运行 npm run generate-index -- --help 查看帮助信息");
+    console.error("\n运行 pnpm run generate-index -- --help 查看帮助信息");
     process.exit(1);
   }
 }
