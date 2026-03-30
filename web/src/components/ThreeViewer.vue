@@ -13,7 +13,7 @@
  * @validates 需求 6.1: ThreeViewer组件拆分为场景容器组件和控制面板组件
  * @validates 需求 6.7: 组件间通信使用props和emits进行数据传递
  */
-import { ref, watch, onMounted, onUnmounted, computed } from 'vue';
+import { ref, watch, onMounted, onUnmounted, computed, shallowRef } from 'vue';
 import * as THREE from 'three';
 
 // 导入渲染层类
@@ -74,7 +74,7 @@ const containerRef = ref<HTMLDivElement | null>(null);
 let world: World | null = null;
 
 // 当前加载的 Model 实例
-const currentModel = ref<Model | null>(null);
+const currentModel = shallowRef<Model | null>(null);
 
 // 当前形态 ID
 const currentFormId = ref<string>('');
@@ -84,6 +84,7 @@ const loading = ref(false);
 const progress = ref(0);
 const progressInfo = ref({ message: '加载中...' });
 const error = ref<string | null>(null);
+let activeLoadRequestId = 0;
 
 // 场景是否已初始化
 const sceneInitialized = ref(false);
@@ -225,6 +226,7 @@ async function loadAndDisplayModel(
   pokemon: PokemonModel,
   form: [number, number]
 ): Promise<void> {
+  const requestId = ++activeLoadRequestId;
   // 确保场景已初始化
   if (!sceneInitialized.value || !world) {
     console.warn('[ThreeViewer] 场景未初始化，无法加载模型');
@@ -293,6 +295,11 @@ async function loadAndDisplayModel(
 
     const model = await loadModel(formId, props.game);
 
+    if (requestId !== activeLoadRequestId || !world) {
+      model?.dispose();
+      return;
+    }
+
     // 检查加载是否成功
     if (!model) {
       throw new Error('模型加载失败');
@@ -333,13 +340,17 @@ async function loadAndDisplayModel(
       
       // 自动播放第一个动画
       try {
-        await loadAndPlayAnimationByName(firstAnimationName);
+        await loadAndPlayAnimationByName(firstAnimationName, model);
         console.log(`[ThreeViewer] 自动播放第一个动画: ${firstAnimationName}`);
       } catch (err) {
         console.warn('[ThreeViewer] 自动播放动画失败:', err);
       }
     }
   } catch (err) {
+    if (requestId !== activeLoadRequestId) {
+      return;
+    }
+
     // 加载失败时设置为无选择模式
     selectionMode.value = 'none';
 
@@ -355,7 +366,9 @@ async function loadAndDisplayModel(
       timestamp: new Date().toISOString(),
     });
   } finally {
-    loading.value = false;
+    if (requestId === activeLoadRequestId) {
+      loading.value = false;
+    }
   }
 }
 
@@ -1069,8 +1082,12 @@ function handleLoopChange(value: boolean): void {
 /**
  * 加载并播放动画
  */
-async function loadAndPlayAnimationByName(animationName: string): Promise<void> {
-  if (!currentModel.value || !props.pokemon || !props.form) return;
+async function loadAndPlayAnimationByName(
+  animationName: string,
+  targetModel?: Model
+): Promise<void> {
+  const resolvedTargetModel = targetModel ?? currentModel.value;
+  if (!resolvedTargetModel || !props.pokemon || !props.form) return;
 
   try {
     // 使用 composable 的方法加载和播放动画（不需要传入 animationFiles）
@@ -1078,13 +1095,18 @@ async function loadAndPlayAnimationByName(animationName: string): Promise<void> 
       currentFormId.value,
       props.game,
       animationName,
-      animationLoop.value
+      animationLoop.value,
+      resolvedTargetModel
     );
 
-    isAnimationPlaying.value = true;
+    if (resolvedTargetModel === currentModel.value) {
+      isAnimationPlaying.value = true;
+    }
   } catch (err) {
     console.error('[ThreeViewer] 加载动画失败:', err);
-    isAnimationPlaying.value = false;
+    if (resolvedTargetModel === currentModel.value) {
+      isAnimationPlaying.value = false;
+    }
   }
 }
 
@@ -1257,6 +1279,7 @@ watch(
         loadAndDisplayModel(newPokemon, newForm);
       }
     } else if (!newPokemon || !newForm) {
+      activeLoadRequestId++;
       // 宝可梦或形态被清空，移除当前模型
       if (currentModel.value && world) {
         world.remove(currentModel.value);
@@ -1319,6 +1342,7 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
+  activeLoadRequestId++;
   // 移除窗口大小变化监听器
   window.removeEventListener('resize', handleResize);
 

@@ -19,6 +19,7 @@ export function usePokemonModel() {
   const model = shallowRef<Model | null>(null);
   const loading = ref(false);
   const error = ref<Error | null>(null);
+  let loadRequestId = 0;
 
   /**
    * 加载宝可梦模型
@@ -28,6 +29,7 @@ export function usePokemonModel() {
    * @returns Promise<Model | null> 加载的模型实例，失败返回 null
    */
   async function loadModel(formId: string, game: Game): Promise<Model | null> {
+    const requestId = ++loadRequestId;
     loading.value = true;
     error.value = null;
 
@@ -108,6 +110,11 @@ export function usePokemonModel() {
       const newModel = new Model(modelData);
       await newModel.materialize(basePath);
 
+      if (requestId !== loadRequestId) {
+        newModel.dispose();
+        return null;
+      }
+
       model.value = newModel;
       return model.value;
     } catch (err) {
@@ -122,7 +129,9 @@ export function usePokemonModel() {
       }
       return null;
     } finally {
-      loading.value = false;
+      if (requestId === loadRequestId) {
+        loading.value = false;
+      }
     }
   }
 
